@@ -1,0 +1,2779 @@
+% Definitive paper source for Erd\H{o}s Problem 536.
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{xurl}
+\usepackage{authblk}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+
+\hypersetup{
+  unicode=true,
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  hypertexnames=false,
+  pdftitle={A Proposed Complete Solution to Erdős Problem 536},
+  pdfauthor={Shouqiao Wang}
+}
+\urlstyle{same}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\kappacap}{\kappa_{\mathrm{cap}}}
+
+\title{
+A Proposed Complete Solution to Erd\H{o}s Problem 536
+}
+\author{Shouqiao Wang}
+\affil{Columbia University}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $f(N)$ be the largest size of a set $A\subseteq\{1,\ldots,N\}$
+containing no three distinct integers whose three pairwise least common
+multiples are equal.  We prove that $f(N)=o(N)$, answering a question of
+Erd\H{o}s.  The proof first reduces positive density to a weighted
+finite-prime extremal problem and then deletes all prime exponents equal to
+one.  The resulting squarefree problem is controlled by balanced
+pair-product cubes and the cap-set theorem.  A five-state prime-band model,
+an exact factorial insertion identity, and matching first- and second-moment
+estimates produce cube laws whose word marginals are asymptotically flat.
+The only external mathematical inputs are standard prime-number estimates,
+the Brun--Titchmarsh inequality, and the polynomial-method cap-set bound.
+Finite algebraic and combinatorial checks are reproduced by a companion
+Python verifier.
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+Call a set of positive integers \emph{safe} if it contains no three
+distinct members $a,b,c$ satisfying
+\begin{equation}\label{eq:forbidden}
+ \lcm(a,b)=\lcm(a,c)=\lcm(b,c).
+\end{equation}
+Let $f(N)$ be the maximum size of a safe subset of $[N]=\{1,\ldots,N\}$.
+Erd\H{o}s asked whether every set of positive upper density must contain a
+triple of the form \eqref{eq:forbidden} \cite[p.~646]{Erdos1964}; see also
+the modern formulation \cite{Bloom536}.  Abbott and Gardner gave an early
+lower-bound construction for the associated extremal problem
+\cite{AbbottGardner}.
+
+Our main result is the following.
+
+\begin{theorem}\label{thm:main}
+As $N\to\infty$,
+\[
+ f(N)=o(N).
+\]
+\end{theorem}
+
+Here is the proof strategy.  Equal pairwise least common multiples have an
+exact pair-product form
+\[
+ txy,\qquad txz,\qquad tyz,
+\]
+with $x,y,z$ pairwise coprime.  This simple observation is used at four
+different scales.  The logical chain is
+\begin{equation}\label{eq:roadmap}
+ \begin{gathered}
+ \text{positive density}
+ \Longrightarrow \text{a finite-prime envelope}
+ \Longrightarrow \text{a squarefree moving-prefix capacity}\\[1mm]
+ \Longrightarrow \text{balanced pair-product cubes}
+ \Longrightarrow \text{a cap-set saving}.
+ \end{gathered}
+\end{equation}
+The first two arrows are deterministic.  The difficult point is to build
+balanced cubes whose individual word marginals are close to the relevant
+product measure even though the extremizing prefix is allowed to move.
+
+For that purpose we use many disjoint prime bands.  On one band, a
+five-state coupling creates a common part and three disjoint petals.  If
+$B_T$ denotes the event that the three petal weights nearly agree and all
+four active labels satisfy lower prefix profiles, then
+\[
+ \Pp(B_T)\gg w^2,
+ \qquad
+ \E\bigl[\Pp(B_T\mid S)^2\bigr]\ll w^4.
+\]
+The first estimate is proved by a whole-band Poisson coupling and two
+adaptive anchors.  The second is a fully discrete calculation: two
+canonical root pivots give two factors of $w$, and two missing-petal pivots
+give two more.  Consequently the conditioned root density has a uniform
+$L^2$ bound.  Averaging the active band among many alternatives converts
+this $L^2$ control into the $L^1$ flatness needed by the moving-prefix
+argument.
+
+The paper is organized in dependency order.  Section~\ref{sec:structure}
+proves the elementary pair-product description and records the external
+inputs.  Section~\ref{sec:reduction} reduces the theorem to a normalized
+squarefree capacity.  Section~\ref{sec:cubes} proves the balanced-cube
+transference principle.  Section~\ref{sec:firstmoment} constructs one
+prime-band coordinate and proves its first-moment lower bound.
+Section~\ref{sec:secondmoment} proves the exact pivot estimates and the
+matching second-moment upper bound.  Section~\ref{sec:flattening} flattens
+the word marginals by alternative bands, and Section~\ref{sec:completion}
+places those bands and completes the proof.  Appendix~\ref{app:verification}
+describes the companion verifier and its precise scope.
+
+\section{Structure and external inputs}\label{sec:structure}
+
+\subsection{The pair-product form}
+
+\begin{lemma}[Pair-product form]\label{lem:pair-product}
+Three distinct positive integers $a,b,c$ satisfy \eqref{eq:forbidden} if
+and only if, after possibly permuting them, there are positive integers
+$t,x,y,z$ such that
+\begin{equation}\label{eq:pair-product}
+ a=txy,\qquad b=txz,\qquad c=tyz,
+\end{equation}
+and $x,y,z$ are pairwise coprime.
+\end{lemma}
+
+\begin{proof}
+If \eqref{eq:pair-product} holds, pairwise coprimality gives
+\[
+ \lcm(a,b)=\lcm(a,c)=\lcm(b,c)=txyz
+\]
+prime by prime.
+
+Conversely, let $L$ be the common value in \eqref{eq:forbidden}.  Fix a
+prime $p$ and write
+\[
+ A=v_p(a),\qquad B=v_p(b),\qquad C=v_p(c),\qquad M=v_p(L).
+\]
+The maximum of each pair among $A,B,C$ is $M$.  Therefore at least two of
+$A,B,C$ equal $M$.  Define
+\[
+ x=\frac{L}{c},\qquad y=\frac{L}{b},\qquad z=\frac{L}{a}.
+\]
+If, for example, $p$ divided both $x$ and $y$, then $C<M$ and $B<M$, which
+would contradict $\max(B,C)=M$.  The same argument for the other two pairs
+shows that $x,y,z$ are pairwise coprime.
+
+Finally put $t=abc/L^2$.  At the prime $p$ its exponent is
+\[
+ A+B+C-2M\ge0,
+\]
+because at least two of $A,B,C$ equal $M$.  Hence $t$ is an integer.  A
+direct valuation calculation now gives
+\[
+ v_p(txy)=A,\qquad v_p(txz)=B,\qquad v_p(tyz)=C.
+\]
+Since this holds for every prime, \eqref{eq:pair-product} follows.
+\end{proof}
+
+For squarefree integers, least common multiple corresponds to union of
+prime supports.  Thus Lemma~\ref{lem:pair-product} is the bridge between the
+integer problem and the set systems used below.
+
+\subsection{Prime-number estimates}
+
+We use the following standard consequences of the classical zero-free
+region and the Brun--Titchmarsh inequality.  The quoted forms follow by
+partial summation from the prime number theorem with de la Vall\'ee Poussin
+error; see \cite[Chapters~2 and~6]{MontgomeryVaughan} and
+\cite[Chapters~5 and~6]{IwaniecKowalski}.  The interval estimate is the
+classical Brun--Titchmarsh theorem; see
+\cite{MontgomeryVaughanLargeSieve}.
+
+\begin{proposition}[Analytic prime inputs]\label{prop:prime-inputs}
+There are constants $B_0,B_1\in\mathbb R$ and $c>0$ such that, for
+$x\ge3$,
+\begin{align}
+ \sum_{p\le x}\frac1p
+   &=\log\log x+B_0+O\!\left(\e^{-c\sqrt{\log x}}\right),
+                                                        \label{eq:mertens-recip}\\
+ \sum_{p\le x}\frac1{p+1}
+   &=\log\log x+B_1+O\!\left(\e^{-c\sqrt{\log x}}\right),
+                                                        \label{eq:mertens-plus}\\
+ \sum_{p\le x}\frac{\log p}{p-1}
+   &=(1+o(1))\log x.                                  \label{eq:weighted-prime}
+\end{align}
+Moreover, whenever $2\le h\le x$,
+\begin{equation}\label{eq:brun-titchmarsh}
+ \pi(x+h)-\pi(x)\le\frac{2h}{\log h}.
+\end{equation}
+If $h>x$, the ordinary prime number theorem gives the weaker estimates
+needed below.
+\end{proposition}
+
+The replacement of $1/p$ by $1/(p+1)$ in
+\eqref{eq:mertens-plus} changes only the constant, because
+$\sum_p p^{-2}<\infty$ and its tail is $O(1/x)$.
+
+\subsection{The cap-set estimate}
+
+\begin{proposition}[Cap-set bound]\label{prop:cap-set}
+Let $A\subseteq\F_3^H$ contain no nonconstant affine line.  Then
+\begin{equation}\label{eq:cap-set}
+ |A|\le 3\kappacap^H3^H,
+ \qquad
+ \kappacap:=\frac7{12}2^{2/3}<1.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The polynomial-method bound of Ellenberg and Gijswijt
+\cite{EllenbergGijswijt} gives
+\[
+ |A|\le3\min_{0<t<1}
+       \bigl((1+t+t^2)t^{-2/3}\bigr)^H.
+\]
+Taking $t=1/2$ gives
+$(1+t+t^2)t^{-2/3}=3\kappacap$.  Also
+\[
+ \kappacap^3=4\left(\frac7{12}\right)^3
+             =\frac{343}{432}<1,
+\]
+which proves the displayed strict inequality.  The same exact calculation
+is reproduced by the companion verifier.
+\end{proof}
+
+\section{Reduction to a squarefree moving-prefix capacity}
+\label{sec:reduction}
+
+\subsection{The finite-prime envelope}
+
+Let $P$ be a finite set of primes.  Write $\cM_P$ for the multiplicative
+monoid generated by $P$, and put
+\[
+ \delta_P:=\prod_{p\in P}\left(1-\frac1p\right).
+\]
+Let $b_P(T)$ be the largest size of a safe subset of
+$\cM_P\cap[1,T]$, and define
+\begin{equation}\label{eq:finite-envelope-capacity}
+ C(P):=\delta_P\int_1^\infty b_P(T)\frac{\dd T}{T^2}.
+\end{equation}
+This integral converges.  Indeed, a member of $\cM_P\cap[1,T]$ is
+determined by $|P|$ nonnegative exponents, each $O_P(1+\log T)$, and hence
+\begin{equation}\label{eq:smooth-count}
+ b_P(T)\le|\cM_P\cap[1,T]|=O_P((1+\log T)^{|P|}).
+\end{equation}
+
+\begin{proposition}[Finite-prime envelope]\label{prop:finite-envelope}
+For every fixed finite set $P$ of primes,
+\begin{equation}\label{eq:finite-envelope}
+ \limsup_{N\to\infty}\frac{f(N)}N\le C(P).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Fix $P$ throughout the proof.  Every positive integer has a unique
+factorization $n=mq$ with $q\in\cM_P$ and
+$(m,\prod_{p\in P}p)=1$.  If a safe subset of $[N]$ is restricted to one
+fixed $m$-fibre, the resulting set of $q$'s is safe: here $m$ is coprime to
+every $q$, so
+\[
+ \lcm(mq_i,mq_j)=m\lcm(q_i,q_j).
+\]
+It follows that
+\begin{equation}\label{eq:fibre-bound}
+ f(N)\le
+ \sum_{\substack{m\le N\\(m,\prod_{p\in P}p)=1}}b_P(N/m).
+\end{equation}
+
+Finite inclusion--exclusion gives
+\[
+ A_P(x):=\#\{m\le x:(m,\textstyle\prod_{p\in P}p)=1\}
+ =\delta_Px+E_P(x),
+ \qquad E_P(x)=O_P(1).
+\]
+The function $t\mapsto b_P(N/t)$ is nonincreasing, and its total variation
+on $[1,N]$ is at most $b_P(N)$.  Stieltjes summation therefore gives
+\begin{align}
+ \sum_{\substack{m\le N\\(m,\prod_{p\in P}p)=1}}b_P(N/m)
+ &=\int_{1^-}^{N}b_P(N/t)\,\dd A_P(t)\notag\\
+ &=\delta_P\int_1^N b_P(N/t)\,\dd t+O_P(b_P(N)).
+                                                        \label{eq:stieltjes}
+\end{align}
+For completeness, the error term follows by integration by parts: the two
+endpoint terms are $O_P(b_P(N))$, and the remaining integral is bounded by
+$\|E_P\|_\infty$ times the total variation of $b_P(N/t)$.
+
+In the main integral set $u=N/t$.  Then
+\begin{equation}\label{eq:envelope-integral}
+ \delta_P\int_1^N b_P(N/t)\,\dd t
+ =\delta_PN\int_1^N b_P(u)\frac{\dd u}{u^2}.
+\end{equation}
+By \eqref{eq:smooth-count}, $b_P(N)=o(N)$ for fixed $P$.  Divide
+\eqref{eq:fibre-bound}--\eqref{eq:envelope-integral} by $N$ and let
+$N\to\infty$ to obtain \eqref{eq:finite-envelope}.
+\end{proof}
+
+\subsection{Deleting all unit exponents}
+
+For a finite prime set $\cR$ and $S\subseteq\cR$, write
+\[
+ d(S):=\prod_{p\in S}p,
+ \qquad
+ Z_{\cR}:=\prod_{p\in\cR}(1+p^{-1}),
+ \qquad
+ \mu_{\cR}(S):=\frac1{Z_{\cR}d(S)}.
+\]
+Thus $\mu_{\cR}$ is the product law in which $p$ is selected with
+probability $1/(p+1)$.
+
+A family $\mathcal H\subseteq2^{\cR}$ is \emph{admissible} if it contains
+no three distinct members $S_1,S_2,S_3$ for which
+\begin{equation}\label{eq:equal-unions}
+ S_1\cup S_2=S_1\cup S_3=S_2\cup S_3.
+\end{equation}
+Let $A_{\cR}^{\mathrm{sf}}(x)$ be the largest size of an admissible
+subfamily of
+\[
+ \{S\subseteq\cR:d(S)\le x\},
+\]
+and adopt the convention
+\begin{equation}\label{eq:capacity-zero-convention}
+ A_{\cR}^{\mathrm{sf}}(x):=0\qquad(0<x<1).
+\end{equation}
+Thus $A_{\cR}^{\mathrm{sf}}$ is defined for every $x>0$.  We then define
+\begin{equation}\label{eq:squarefree-capacity}
+ I_{\cR}^{\mathrm{sf}}
+ :=\int_1^\infty A_{\cR}^{\mathrm{sf}}(x)\frac{\dd x}{x^2}.
+\end{equation}
+The elementary bound
+\begin{equation}\label{eq:capacity-trivial}
+ 0\le\frac{I_{\cR}^{\mathrm{sf}}}{Z_{\cR}}\le1
+\end{equation}
+follows from
+\[
+ I_{\cR}^{\mathrm{sf}}
+ \le\sum_{S\subseteq\cR}\int_{d(S)}^\infty\frac{\dd x}{x^2}
+ =\sum_{S\subseteq\cR}\frac1{d(S)}=Z_{\cR}.
+\]
+
+For $E\subseteq P$ and $m\in\cM_P$, set
+\[
+ U_E(m):=\{p\in E:v_p(m)=1\}.
+\]
+
+\begin{proposition}[All-unit deletion]\label{prop:unit-deletion}
+For finite prime sets $E\subseteq P$,
+\begin{equation}\label{eq:deletion-bound}
+ C(P)\le\delta_P
+ \sum_{\substack{m\in\cM_P\\U_E(m)=\varnothing}}
+ \frac1m I_{E\setminus\supp(m)}^{\mathrm{sf}}.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:deletion-normalized}
+ C(P)\le
+ \frac{I_E^{\mathrm{sf}}}{Z_E}+\sum_{p\in E}\frac1{p^2}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Every $q\in\cM_P$ has a unique decomposition
+\begin{equation}\label{eq:unit-decomposition}
+ q=m\,d(S),
+ \qquad
+ S=U_E(q),
+ \qquad
+ U_E(m)=\varnothing,
+ \qquad
+ S\subseteq E\setminus\supp(m).
+\end{equation}
+Indeed, $d(S)$ removes exactly one copy of each prime whose exponent in
+$q$ is one.  Hence every prime of $E$ has exponent either zero or at least
+two in $m$.
+
+Fix $m$ in \eqref{eq:unit-decomposition} and consider a safe family in
+$\cM_P\cap[1,T]$.  Its $m$-section is admissible.  Otherwise three supports
+satisfying \eqref{eq:equal-unions} would give
+\[
+ \lcm(md(S_i),md(S_j))=m\,d(S_i\cup S_j)
+\]
+for each pair, contradicting safety.  Therefore
+\[
+ b_P(T)\le
+ \sum_{\substack{m\in\cM_P\\U_E(m)=\varnothing}}
+ A_{E\setminus\supp(m)}^{\mathrm{sf}}(T/m).
+\]
+Insert this inequality into \eqref{eq:finite-envelope-capacity}.  Positivity
+allows termwise integration.  For each eligible $m$, the substitution
+$T=mx$ and the convention \eqref{eq:capacity-zero-convention} give
+\begin{align*}
+ \int_1^\infty
+ A_{E\setminus\supp(m)}^{\mathrm{sf}}(T/m)\frac{\dd T}{T^2}
+ &=\frac1m\int_{1/m}^\infty
+ A_{E\setminus\supp(m)}^{\mathrm{sf}}(x)\frac{\dd x}{x^2}\\
+ &=\frac1m\int_1^\infty
+ A_{E\setminus\supp(m)}^{\mathrm{sf}}(x)\frac{\dd x}{x^2}
+ =\frac1m I_{E\setminus\supp(m)}^{\mathrm{sf}}.
+\end{align*}
+This proves \eqref{eq:deletion-bound}.
+
+It remains to normalize the right side.  For an eligible $m$, put
+$R=E\setminus\supp(m)$ and define
+\begin{equation}\label{eq:deletion-law}
+ \mathcal W(m):=\delta_P\frac{Z_R}{m}.
+\end{equation}
+We verify prime by prime that $\mathcal W$ is a probability law.  If
+$p\notin E$, summing all valuations gives
+\[
+ (1-p^{-1})\sum_{k\ge0}p^{-k}=1.
+\]
+If $p\in E$, valuation zero contributes
+\[
+ (1-p^{-1})(1+p^{-1})=1-p^{-2},
+\]
+while all permitted positive valuations, namely $k\ge2$, contribute
+\[
+ (1-p^{-1})\sum_{k\ge2}p^{-k}=p^{-2}.
+\]
+Thus the local masses sum to one.  They also show that the events
+$\{p\notin R\}$ are independent and satisfy
+\begin{equation}\label{eq:deletion-error-law}
+ \Pp_{\mathcal W}(p\notin R)=p^{-2}\qquad(p\in E).
+\end{equation}
+
+The right side of \eqref{eq:deletion-bound} is exactly
+\[
+ \E_{\mathcal W}\left[\frac{I_R^{\mathrm{sf}}}{Z_R}\right].
+\]
+On $\{R=E\}$ the random ratio equals $I_E^{\mathrm{sf}}/Z_E$; off that
+event it lies in $[0,1]$ by \eqref{eq:capacity-trivial}.  Hence
+\[
+ C(P)\le\frac{I_E^{\mathrm{sf}}}{Z_E}
+          +\Pp_{\mathcal W}(R\ne E)
+ \le\frac{I_E^{\mathrm{sf}}}{Z_E}+\sum_{p\in E}p^{-2},
+\]
+which is \eqref{eq:deletion-normalized}.
+\end{proof}
+
+\begin{corollary}[The remaining target]\label{cor:capacity-target}
+Let $P_y=\{p:p\le y\}$.  Suppose that $E_y\subseteq P_y$ satisfies
+\begin{equation}\label{eq:capacity-target}
+ \min E_y\longrightarrow\infty,
+ \qquad
+ \frac{I_{E_y}^{\mathrm{sf}}}{Z_{E_y}}\longrightarrow0.
+\end{equation}
+Then $f(N)=o(N)$.
+\end{corollary}
+
+\begin{proof}
+Apply Proposition~\ref{prop:unit-deletion} with $P=P_y$ and $E=E_y$.
+Since $\min E_y\to\infty$,
+\[
+ \sum_{p\in E_y}p^{-2}
+ \le\sum_{n\ge\min E_y}n^{-2}\longrightarrow0.
+\]
+Thus $C(P_y)\to0$.  Proposition~\ref{prop:finite-envelope} gives, for each
+fixed $y$,
+\[
+ \limsup_{N\to\infty}\frac{f(N)}N\le C(P_y).
+\]
+Letting $y\to\infty$ proves the corollary.
+\end{proof}
+
+\section{Balanced cubes and moving prefixes}\label{sec:cubes}
+
+\subsection{Pair-product cubes}
+
+A dimension-$H$ \emph{pair-product cube} consists of a common prime support
+and, for each coordinate $1\le i\le H$, three nonempty prime supports
+$x_i,y_i,z_i$.  All $3H$ petals are mutually disjoint, and the common
+support is disjoint from every petal.  A word
+$\omega=(\omega_1,\ldots,\omega_H)\in\F_3^H$ takes one of the following
+three contributions in coordinate $i$:
+\begin{center}
+\begin{tabular}{c c c}
+\toprule
+state $\omega_i$ & chosen petals & omitted petal\\
+\midrule
+$0$ & $y_i\cup z_i$ & $x_i$\\
+$1$ & $x_i\cup z_i$ & $y_i$\\
+$2$ & $x_i\cup y_i$ & $z_i$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The support of the word is the union of its $H$ coordinate contributions
+and the common support.
+
+\begin{lemma}[Cap-set saving on one cube]\label{lem:cube-saving}
+An admissible family occupies at most a proportion
+$3\kappacap^H$ of the $3^H$ words of a pair-product cube.
+\end{lemma}
+
+\begin{proof}
+The word map is injective: if two words first differ in coordinate $i$,
+then one of the nonempty petals $x_i,y_i,z_i$ occurs in exactly one of the
+two supports.
+
+Consider a nonconstant affine line
+\[
+ \omega,\qquad \omega+v,\qquad \omega+2v
+ \quad\text{in }\F_3^H.
+\]
+In a coordinate where $v_i=0$, all three words make the same choice.  In a
+coordinate where $v_i\ne0$, the three states are $0,1,2$ in some order.
+The pairwise union of any two corresponding coordinate contributions is
+then $x_i\cup y_i\cup z_i$.  It follows coordinate by coordinate that the
+three full supports have identical pairwise unions.  Consequently the
+preimage of an admissible family contains no nonconstant affine line.
+Proposition~\ref{prop:cap-set} bounds that preimage by
+$3\kappacap^H3^H$, proving the lemma.
+\end{proof}
+
+\subsection{A joint law for a moving prefix}
+
+The extremal family in the definition of
+$A_{\cR}^{\mathrm{sf}}(x)$ depends on $x$.  It is therefore not enough to
+construct a good cube at one fixed cutoff.  The next proposition couples
+the cube and the cutoff so that all words are tested against the same
+moving prefix.
+
+\begin{proposition}[Joint-prefix transference]\label{prop:joint-prefix}
+Let $\cR$ be finite, and let $\lambda$ be a probability law on
+dimension-$H$ pair-product cubes in $2^{\cR}$.  For a word $\omega$, let
+$\nu_\omega$ be its support marginal.  Suppose that
+\begin{equation}\label{eq:word-density}
+ \frac{\dd\nu_\omega}{\dd\mu_{\cR}}=G_\omega,
+ \qquad
+ \E_{\mu_{\cR}}|G_\omega-1|\le\eps
+\end{equation}
+for every $\omega\in\F_3^H$.  Suppose also that $0\le\zeta\le1$ and, for
+every sampled cube $c$ and every word $\omega$,
+\begin{equation}\label{eq:log-balance}
+ \left|\log d(S_\omega(c))-\log\mathcal G(c)\right|\le\zeta,
+ \qquad
+ \mathcal G(c):=
+ \left(\prod_{\tau\in\F_3^H}d(S_\tau(c))\right)^{1/3^H}.
+\end{equation}
+Then
+\begin{equation}\label{eq:joint-prefix-bound}
+ \frac{I_{\cR}^{\mathrm{sf}}}{Z_{\cR}}
+ \le 3\kappacap^H+O(\eps+\zeta),
+\end{equation}
+where the implied constant is absolute.
+\end{proposition}
+
+\begin{proof}
+We separate the construction into four steps.
+
+\smallskip
+\noindent\emph{Step 1: a joint cube--cutoff measure.}
+For a cube $c$, put
+\[
+ D(c):=\max_{\omega\in\F_3^H}d(S_\omega(c)).
+\]
+Define a finite measure on the cube space times $[1,\infty)$ by
+\begin{equation}\label{eq:joint-measure}
+ \dd\Lambda(c,x):=
+ \mathcal G(c)\,\1_{\{x\ge D(c)\}}
+ \frac{\dd x}{x^2}\,\dd\lambda(c).
+\end{equation}
+Since $D(c)\ge\mathcal G(c)$, while \eqref{eq:log-balance} gives
+$D(c)\le\e^\zeta\mathcal G(c)$,
+\begin{equation}\label{eq:joint-mass}
+ \e^{-\zeta}\le
+ \|\Lambda\|
+ =\E_\lambda\frac{\mathcal G(c)}{D(c)}
+ \le1.
+\end{equation}
+
+\smallskip
+\noindent\emph{Step 2: the weighted mass of one fibre.}
+Fix a word $\omega$ and a support $S\subseteq\cR$.  Whenever
+$S_\omega(c)=S$, the balance assumption implies
+\begin{equation}\label{eq:fibre-balance}
+ \e^{-\zeta}d(S)\le\mathcal G(c)\le\e^\zeta d(S),
+ \qquad
+ D(c)\le\e^{2\zeta}d(S).
+\end{equation}
+The second inequality follows because every word product is at most
+$\e^\zeta\mathcal G(c)$ and
+$\mathcal G(c)\le\e^\zeta d(S)$.  By \eqref{eq:word-density},
+\[
+ \nu_\omega(S)=\frac{G_\omega(S)}{Z_{\cR}d(S)}.
+\]
+Consequently the weighted fibre mass
+\[
+ M_\omega(S):=
+ \int_{\{c:S_\omega(c)=S\}}\mathcal G(c)\,\dd\lambda(c)
+\]
+satisfies the pointwise bounds
+\begin{equation}\label{eq:weighted-fibre}
+ \frac{\e^{-\zeta}G_\omega(S)}{Z_{\cR}}
+ \le M_\omega(S)\le
+ \frac{\e^\zeta G_\omega(S)}{Z_{\cR}}.
+\end{equation}
+
+\smallskip
+\noindent\emph{Step 3: comparison with the canonical prefix law.}
+We use the following convention.  If $\sigma$ is a finite signed measure,
+then $\|\sigma\|_{\mathrm{var}}:=|\sigma|(\Omega)$ denotes its total
+variation norm.  For probability measures $P,Q$ we write
+\[
+ d_{\TV}(P,Q):=\sup_E|P(E)-Q(E)|
+ =\frac12\|P-Q\|_{\mathrm{var}}.
+\]
+Let $\Lambda_\omega$ be the pushforward of $\Lambda$ under
+$(c,x)\mapsto(S_\omega(c),x)$.  With respect to
+\[
+ \rho:=\sum_{S\subseteq\cR}\delta_S\otimes\frac{\dd x}{x^2}
+ \quad\text{on }2^{\cR}\times[1,\infty),
+\]
+its density is
+\[
+ L_\omega(S,x):=
+ \int_{\{c:S_\omega(c)=S\}}
+ \mathcal G(c)\1_{\{D(c)\le x\}}\,\dd\lambda(c).
+\]
+Let $\Pi$ be the probability measure whose $\rho$-density is
+\begin{equation}\label{eq:canonical-prefix-law}
+ \frac{\dd\Pi}{\dd\rho}(S,x)
+ :=\frac1{Z_{\cR}}\1_{\{x\ge d(S)\}}.
+\end{equation}
+Indeed,
+\[
+ \Pi(2^{\cR}\times[1,\infty))
+ =\frac1{Z_{\cR}}\sum_{S\subseteq\cR}\frac1{d(S)}=1.
+\]
+
+Fix $S\subseteq\cR$ and abbreviate
+$G=G_\omega(S)$ and $M=M_\omega(S)$.  If $G>0$,
+\eqref{eq:weighted-fibre} permits us to write
+\[
+ M=\frac{\theta_SG}{Z_{\cR}},
+ \qquad \e^{-\zeta}\le\theta_S\le\e^\zeta.
+\]
+If $G=0$, then \eqref{eq:weighted-fibre} gives $M=0$, and the same formula
+holds after setting $\theta_S=1$.  Since $0\le\zeta\le1$,
+\[
+ |\theta_S-1|\le\e^\zeta-1\le2\zeta.
+\]
+On the fibre $S_\omega(c)=S$, one has $D(c)\ge d(S)$ and, by
+\eqref{eq:fibre-balance}, $D(c)\le\e^{2\zeta}d(S)$.  Consequently
+$L_\omega(S,x)=0$ for $x<d(S)$ and
+$L_\omega(S,x)=M_\omega(S)$ for $x\ge\e^{2\zeta}d(S)$.  On the latter
+region,
+\begin{align}
+ &\sum_{S\subseteq\cR}
+ \int_{\e^{2\zeta}d(S)}^\infty
+ \left|L_\omega(S,x)-\frac1{Z_{\cR}}\right|
+ \frac{\dd x}{x^2}\notag\\
+ &=\e^{-2\zeta}\sum_{S\subseteq\cR}
+ \frac{|M_\omega(S)-Z_{\cR}^{-1}|}{d(S)}\notag\\
+ &\le
+ \sum_{S\subseteq\cR}
+ \frac{|G_\omega(S)-1|+2\zeta G_\omega(S)}
+      {Z_{\cR}d(S)}
+ \le\eps+2\zeta.                                  \label{eq:high-region}
+\end{align}
+Here the last line uses
+$\E_{\mu_{\cR}}|G_\omega-1|\le\eps$ and
+$\E_{\mu_{\cR}}G_\omega=1$.
+
+It remains to control the transition strip
+\[
+ \mathcal T:=\{(S,x):d(S)\le x<\e^{2\zeta}d(S)\}.
+\]
+Its $\Pi$-mass is exactly
+\begin{equation}\label{eq:strip-pi}
+ \Pi(\mathcal T)
+ =(1-\e^{-2\zeta})
+ \sum_{S\subseteq\cR}\frac1{Z_{\cR}d(S)}
+ =1-\e^{-2\zeta}\le2\zeta.
+\end{equation}
+For the other marginal, Tonelli's theorem and nonnegativity give
+\begin{align}
+ \Lambda_\omega(\mathcal T)
+ &=\int \mathcal G(c)
+   \int_{d(S_\omega(c))}^{\e^{2\zeta}d(S_\omega(c))}
+   \1_{\{D(c)\le x\}}\frac{\dd x}{x^2}\,\dd\lambda(c)\notag\\
+ &\le(1-\e^{-2\zeta})
+   \int\frac{\mathcal G(c)}{d(S_\omega(c))}\,\dd\lambda(c)\notag\\
+ &\le\e^\zeta(1-\e^{-2\zeta})
+ \le6\zeta.                                      \label{eq:strip-lambda}
+\end{align}
+The penultimate inequality follows from \eqref{eq:log-balance}; the last
+uses $\e^\zeta\le\e<3$ and
+$1-\e^{-2\zeta}\le2\zeta$.  On $\mathcal T$ the variation norm of the
+difference is at most the sum of the two masses, while below $x=d(S)$
+both measures vanish.  Combining
+\eqref{eq:high-region}--\eqref{eq:strip-lambda} yields
+\begin{equation}\label{eq:unnormalized-prefix-TV}
+ \|\Lambda_\omega-\Pi\|_{\mathrm{var}}
+ \le\eps+10\zeta.
+\end{equation}
+
+Put $a_\Lambda:=\|\Lambda\|$.  Every $\Lambda_\omega$ has mass
+$a_\Lambda$, and \eqref{eq:joint-mass} gives
+$\e^{-\zeta}\le a_\Lambda\le1$.  The word marginal
+$\overline\Lambda_\omega$ of
+$\overline\Lambda:=a_\Lambda^{-1}\Lambda$ is
+$a_\Lambda^{-1}\Lambda_\omega$.  Therefore
+\begin{align}
+ \|\overline\Lambda_\omega-\Pi\|_{\mathrm{var}}
+ &\le
+ \|a_\Lambda^{-1}\Lambda_\omega-\Lambda_\omega\|_{\mathrm{var}}
+ +\|\Lambda_\omega-\Pi\|_{\mathrm{var}}\notag\\
+ &=(1-a_\Lambda)+\|\Lambda_\omega-\Pi\|_{\mathrm{var}}
+ \le\eps+11\zeta,                              \label{eq:normalized-prefix-TV}
+\end{align}
+because $1-a_\Lambda\le1-\e^{-\zeta}\le\zeta$.  Thus, uniformly in
+$\omega$,
+\begin{equation}\label{eq:normalized-prefix-distance}
+ d_{\TV}(\overline\Lambda_\omega,\Pi)
+ \le\frac{\eps+11\zeta}{2}.
+\end{equation}
+
+\smallskip
+\noindent\emph{Step 4: the moving extremizer.}
+Fix a lexicographic order on the finite set $2^{\cR}$, and use the induced
+lexicographic order on its subfamilies.  For each $x\ge1$, choose the first
+admissible family
+$\mathcal F_x\subseteq\{S:d(S)\le x\}$ of maximum size.  Only finitely many
+prefixes occur, so $x\mapsto\mathcal F_x$ is piecewise constant and hence
+measurable.  Set
+\[
+ \mathcal E:=\{(S,x):S\in\mathcal F_x\}.
+\]
+Because $\mathcal F_x$ is contained in the $x$-prefix, Tonelli's theorem
+gives
+\begin{align}
+ \Pi(\mathcal E)
+ &=\frac1{Z_{\cR}}
+   \sum_{S\subseteq\cR}\int_{d(S)}^\infty
+      \1_{\{S\in\mathcal F_x\}}\frac{\dd x}{x^2}\notag\\
+ &=\frac1{Z_{\cR}}\int_1^\infty
+      |\mathcal F_x|\frac{\dd x}{x^2}
+ =\frac{I_{\cR}^{\mathrm{sf}}}{Z_{\cR}}.       \label{eq:prefix-occupancy}
+\end{align}
+
+For $\overline\Lambda$-almost every $(c,x)$, one has
+$x\ge D(c)$, so all $3^H$ word supports lie in the same $x$-prefix.
+Since $\mathcal F_x$ is admissible, Lemma~\ref{lem:cube-saving} implies
+\[
+ \frac1{3^H}\sum_{\omega\in\F_3^H}
+ \1_{\{S_\omega(c)\in\mathcal F_x\}}
+ \le3\kappacap^H.
+\]
+Integrating this pointwise inequality and using that
+$\overline\Lambda_\omega$ is the $(S_\omega,x)$-pushforward of
+$\overline\Lambda$, we obtain
+\begin{align}
+ \frac1{3^H}\sum_{\omega\in\F_3^H}
+ \overline\Lambda_\omega(\mathcal E)
+ &=\int\frac1{3^H}\sum_{\omega\in\F_3^H}
+   \1_{\{S_\omega(c)\in\mathcal F_x\}}
+   \,\dd\overline\Lambda(c,x)\notag\\
+ &\le3\kappacap^H.                              \label{eq:word-average-upper}
+\end{align}
+On the other hand, \eqref{eq:normalized-prefix-distance} and
+\eqref{eq:prefix-occupancy} imply, for every $\omega$,
+\[
+ \overline\Lambda_\omega(\mathcal E)
+ \ge\frac{I_{\cR}^{\mathrm{sf}}}{Z_{\cR}}
+      -\frac{\eps+11\zeta}{2}.
+\]
+Averaging this inequality over all words and comparing with
+\eqref{eq:word-average-upper} gives
+\[
+ \frac{I_{\cR}^{\mathrm{sf}}}{Z_{\cR}}
+ \le3\kappacap^H+\frac{\eps+11\zeta}{2},
+\]
+which proves \eqref{eq:joint-prefix-bound}.
+\end{proof}
+
+\section{One prime band: the model and its first moment}
+\label{sec:firstmoment}
+
+\subsection{Explicit parameters and normalized prime weights}
+
+We make all structural constants explicit:
+\begin{equation}\label{eq:parameters}
+ a=\frac{23}{25},\qquad
+ a_0=\frac{24}{25},\qquad
+ \vartheta=\frac1{200},\qquad
+ \alpha=\frac8{25},\qquad
+ q:=3\alpha=\frac{24}{25}.
+\end{equation}
+These choices satisfy
+\begin{equation}\label{eq:parameter-inequalities}
+ \frac1{\log3}<a<a_0<1,
+ \qquad
+ a(1-\vartheta)\log3>1.
+\end{equation}
+Here is an exact certificate.  The positive series
+\[
+ \log3
+ =2\sum_{n\ge0}\frac{(1/2)^{2n+1}}{2n+1}
+\]
+gives, on retaining its first five terms,
+\[
+ \log3>
+ 1+\frac1{12}+\frac1{80}+\frac1{448}+\frac1{2304}
+ >\frac{549}{500}.
+\]
+Consequently
+\[
+ a(1-\vartheta)\log3
+ >
+ \frac{23}{25}\frac{199}{200}\frac{549}{500}
+ =\frac{2512773}{2500000}>1.
+\]
+This also implies $a\log3>1$.  The companion verifier reproduces these
+comparisons with exact rational arithmetic.
+
+Let $T\to\infty$, and define
+\begin{equation}\label{eq:band-definitions}
+ \cB(T):=\{p:\e^{T^\vartheta}<p\le\e^T\},
+ \qquad
+ u_p:=\frac{\log p}{T},
+ \qquad
+ s_p:=-\log u_p.
+\end{equation}
+Thus $u_p\in(T^{\vartheta-1},1]$.  The largest possible depth is
+\begin{equation}\label{eq:horizon}
+ \lambda_T:=(1-\vartheta)\log T.
+\end{equation}
+Let $\eta=\eta(T)$ satisfy
+\begin{equation}\label{eq:slow-eta}
+ \eta\longrightarrow0,
+ \qquad
+ \log(1/\eta)=o(\log T),
+ \qquad
+ w:=\frac{\eta}{T}.
+\end{equation}
+Equivalently, $\eta=T^{-o(1)}$.  All statements in this section hold for
+every such function $\eta$ once $T$ is sufficiently large; the threshold
+may depend on the function, but all displayed constants are uniform in
+$T$ and $\eta$.
+
+\subsection{Reciprocal-prime mass on a normalized band}
+
+The upper bound below is expressed in terms of $w$, not the actual length
+of the interval.  This is important because reciprocal-prime measure is
+atomic.
+
+\begin{lemma}[Local reciprocal-prime mass]\label{lem:local-prime-mass}
+Fix $C_0>0$.  For every sufficiently large $T$, every interval
+$I\subseteq[T^{\vartheta-1},1]$ of length at most $C_0w$ satisfies
+\begin{equation}\label{eq:local-upper}
+ \sum_{\substack{p\in\cB(T)\\u_p\in I}}\frac1p
+ \ll_{C_0}\frac{w}{\inf I}.
+\end{equation}
+This includes degenerate intervals and intervals containing only one prime.
+
+If $0<r_0<r_1<1$ and $c_0>0$ are fixed, then, uniformly for
+$t\in[r_0,r_1]$,
+\begin{equation}\label{eq:local-lower}
+ \sum_{\substack{p\in\cB(T)\\t\le u_p\le t+c_0w}}\frac1p
+ =\log\!\left(1+\frac{c_0w}{t}\right)+o(w)
+ =(1+o(1))\frac{c_0w}{t}.
+\end{equation}
+Both statements remain valid with $1/p$ replaced by $1/(p+1)$.
+\end{lemma}
+
+\begin{proof}
+Put $\epsilon_T=T^{\vartheta-1}$.  Since
+\[
+ \frac{w}{\epsilon_T}=\frac{\eta}{T^\vartheta}=o(1),
+\]
+we may enlarge $I$, only in an available direction at a band endpoint, to
+an interval $[r,s]\subseteq[\epsilon_T,1]$ such that
+\begin{equation}\label{eq:interval-enlargement}
+ I\subseteq[r,s],\qquad
+ w\le s-r\le(C_0+2)w,\qquad
+ r\ge\frac12\inf I.
+\end{equation}
+Set $x=\e^{Tr}$ and $\Delta=\e^{Ts}-\e^{Tr}$.  Because
+$T(s-r)\asymp_{C_0}\eta$,
+\[
+ \Delta\asymp_{C_0}x\eta,\qquad
+ \Delta\le x,\qquad
+ \log\Delta=Tr+\log\eta+O_{C_0}(1).
+\]
+Now $Tr\ge T^\vartheta/2$, while
+$|\log\eta|=o(\log T)=o(T^\vartheta)$.  Hence, for large $T$,
+\[
+ \log\Delta\ge\frac14T\inf I
+ \quad\text{and}\quad \Delta\ge2.
+\]
+Brun--Titchmarsh, Proposition~\ref{prop:prime-inputs}, gives
+\[
+ \pi(x+\Delta)-\pi(x)
+ \ll_{C_0}\frac{x\eta}{T\inf I}.
+\]
+Allowing one possible prime at a closed lower endpoint,
+\begin{align*}
+ \sum_{\substack{p\in\cB(T)\\u_p\in I}}\frac1p
+ &\le\frac{\pi(x+\Delta)-\pi(x)+1}{x}\\
+ &\ll_{C_0}\frac{\eta}{T\inf I}+\e^{-T^\vartheta}
+ \ll_{C_0}\frac{w}{\inf I}.
+\end{align*}
+ The last absorption uses $\e^{-T^\vartheta}=o(w)$.  The enlargement in
+ \eqref{eq:interval-enlargement} was made for every $I$, including a
+ degenerate interval.  Equivalently, a degenerate $I$ contains at most one
+ normalized prime weight, whose reciprocal contribution is at most
+ $\e^{-T^\vartheta}=o(w)$; thus single-atom intervals cause no exception.
+
+For \eqref{eq:local-lower}, subtract
+\eqref{eq:mertens-recip} at $\e^{Tt}$ and
+$\e^{T(t+c_0w)}$.  Uniformly for $t\in[r_0,r_1]$ this gives
+\[
+ \sum_{\substack{p\in\cB(T)\\t\le u_p\le t+c_0w}}\frac1p
+ =
+ \log\frac{t+c_0w}{t}
+ +O(\e^{-c\sqrt{Tr_0}})+O(\e^{-Tr_0}).
+\]
+Both error terms are $o(w)$ because $\eta=T^{-o(1)}$.  Finally,
+\[
+ 0\le
+ \sum_{p\in\cB(T)}
+ \left(\frac1p-\frac1{p+1}\right)
+ \le\sum_{n>\e^{T^\vartheta}}\frac1{n^2}
+ \ll\e^{-T^\vartheta}=o(w),
+\]
+which proves the versions with $1/(p+1)$.
+\end{proof}
+
+\subsection{The five-state coupling and the target event}
+
+For $p\in\cB(T)$ put
+\[
+ r_p:=\frac1{p+1},
+ \qquad
+ h_p:=\frac{r_p}{3}=\frac1{3(p+1)}.
+\]
+Independently at each prime, choose one of the five labels
+\[
+ \varnothing,\quad c,\quad x,\quad y,\quad z
+\]
+with probabilities
+\begin{equation}\label{eq:five-state-law}
+ \Pp(c)=\Pp(x)=\Pp(y)=\Pp(z)=h_p,
+ \qquad
+ \Pp(\varnothing)=1-4h_p.
+\end{equation}
+These probabilities are nonnegative because $r_p\le1/3$.  From one labelled
+configuration form the following three state supports:
+\begin{center}
+\begin{tabular}{c c c}
+\toprule
+state & support on the band & missing petal\\
+\midrule
+$S^{(x)}$ & $c\cup y\cup z$ & $x$\\
+$S^{(y)}$ & $c\cup x\cup z$ & $y$\\
+$S^{(z)}$ & $c\cup x\cup y$ & $z$\\
+\bottomrule
+\end{tabular}
+\end{center}
+A fixed prime belongs to any one state with probability $3h_p=r_p$.
+Independence across primes therefore shows that each state has exactly the
+product law $\mu_{\cB(T)}$.
+
+For a labelled configuration define the normalized petal weights
+\begin{equation}\label{eq:petal-weights}
+ X:=\sum_{p:\,x(p)}u_p,\qquad
+ Y:=\sum_{p:\,y(p)}u_p,\qquad
+ Z:=\sum_{p:\,z(p)}u_p
+\end{equation}
+and the four prefix counts
+\begin{equation}\label{eq:label-counts}
+ N_\ell(s):=\#\{p:\ell(p)=\ell,\ s_p\le s\},
+ \qquad \ell\in\{c,x,y,z\}.
+\end{equation}
+
+We now fix, once and for all,
+\begin{equation}\label{eq:fixed-window-depth}
+ J:=\left[\frac9{20},\frac{11}{20}\right],
+ \qquad R_0:=75.
+\end{equation}
+The parameter choice gives, for every real $s\ge R_0$,
+\begin{equation}\label{eq:profile-dominates}
+ 3\lfloor\alpha s\rfloor
+ \ge3\alpha s-3=a_0s-3\ge as,
+\end{equation}
+because $(a_0-a)R_0=3$.  Also
+$\lfloor\alpha R_0\rfloor=24\ge1$.
+
+Define the symmetric event
+\begin{align}
+ B_T:=\{&
+ X,Y,Z\in J,\quad
+ \max(X,Y,Z)-\min(X,Y,Z)\le w;\notag\\
+ &N_\ell(s)\ge\lfloor\alpha s\rfloor
+ \text{ for }\ell\in\{c,x,y,z\}
+ \text{ and }R_0\le s\le\lambda_T\}.
+                                                        \label{eq:target-event}
+\end{align}
+Fix the first state $S=S^{(x)}$ and set
+\begin{equation}\label{eq:rooted-functions}
+ g_T(S):=\Pp(B_T\mid S),
+ \qquad
+ \beta_T:=\Pp(B_T).
+\end{equation}
+The event $B_T$ is invariant under every permutation of $x,y,z$.
+Consequently the same function $g_T$ describes all three states.  Bayes'
+formula gives the exact Radon--Nikodym identity
+\begin{equation}\label{eq:bayes-density}
+ \frac{\dd\nu_T}{\dd\mu_{\cB(T)}}(S)
+ =\frac{g_T(S)}{\beta_T},
+\end{equation}
+where $\nu_T$ is the law of any state conditioned on $B_T$.
+
+The next three lemmas prepare the lower bound
+$\beta_T\gg w^2$.
+
+\begin{lemma}[Whole-band Poisson coupling]\label{lem:poisson-coupling}
+Let $\mathsf Q_T$ be the categorical law
+\eqref{eq:five-state-law}.  Regard it as a law on four nonnegative integer
+arrays, one for each active label.  Let $\widetilde{\mathsf Q}_T$ be the law
+of independent random variables
+\[
+ K_{\ell,p}\sim\operatorname{Poisson}(h_p),
+ \qquad
+ \ell\in\{c,x,y,z\},\quad p\in\cB(T).
+\]
+Then
+\begin{equation}\label{eq:whole-band-tv}
+ d_{\TV}(\mathsf Q_T,\widetilde{\mathsf Q}_T)
+ \le16\sum_{p\in\cB(T)}h_p^2
+ \ll\e^{-T^\vartheta}
+ =o(w^A)
+\end{equation}
+for every fixed $A>0$.
+\end{lemma}
+
+\begin{proof}
+Fix $p$ and write $h=h_p$.  Under the Poisson law, the total number of
+points at $p$ is Poisson with mean $4h$.  The empty configuration and each
+of the four singleton configurations have probabilities
+$\e^{-4h}$ and $h\e^{-4h}$, respectively.  Therefore
+\begin{align*}
+ 2d_{\TV}(\mathsf Q_p,\widetilde{\mathsf Q}_p)
+ &\le |1-4h-\e^{-4h}|
+      +4h(1-\e^{-4h})
+      +\Pp(\operatorname{Poisson}(4h)\ge2).
+\end{align*}
+The elementary inequalities
+\[
+ 1-x\le\e^{-x}\le1-x+\frac{x^2}{2},
+ \qquad
+ 1-\e^{-x}\le x
+ \quad(x\ge0)
+\]
+bound the first two terms by $8h^2$ and $16h^2$.  If
+$N\sim\operatorname{Poisson}(4h)$, then
+\[
+ \Pp(N\ge2)\le\frac{\E[N(N-1)]}{2}=8h^2.
+\]
+Thus the local total-variation distance is at most $16h^2$.
+
+Couple the arrays prime by prime.  The probability that any local coupling
+fails is at most the sum of the local distances, which proves the first
+inequality in \eqref{eq:whole-band-tv}.  Since $h_p\le1/(3p)$,
+\[
+ \sum_{p\in\cB(T)}h_p^2
+ \le\frac19\sum_{n>\e^{T^\vartheta}}\frac1{n^2}
+ \ll\e^{-T^\vartheta}.
+\]
+Finally,
+\[
+ \log(1/w)=\log T+\log(1/\eta)=(1+o(1))\log T,
+\]
+whereas $T^\vartheta/\log T\to\infty$.  Hence
+$\e^{-T^\vartheta}=o(w^A)$ for every fixed $A$.
+\end{proof}
+
+On the common array space define
+\begin{equation}\label{eq:poisson-observables}
+ X_\ell^{\mathrm P}:=\sum_{p\in\cB(T)}u_pK_{\ell,p},
+ \qquad
+ N_\ell^{\mathrm P}(s):=
+ \sum_{\substack{p\in\cB(T)\\s_p\le s}}K_{\ell,p}.
+\end{equation}
+Let $B_T^{\mathrm P}$ be the event obtained from
+\eqref{eq:target-event} by replacing $X,Y,Z$ with
+$X_x^{\mathrm P},X_y^{\mathrm P},X_z^{\mathrm P}$ and every $N_\ell$
+with $N_\ell^{\mathrm P}$.  Multiplicities are counted under the Poisson
+law.  On the categorical subspace, where each entry is zero or one and at
+most one label is nonzero at a prime, $B_T^{\mathrm P}$ is literally
+$B_T$.  Thus
+\begin{equation}\label{eq:event-identification}
+ \mathsf Q_T(B_T^{\mathrm P})
+ =\mathsf Q_T(B_T)=\beta_T.
+\end{equation}
+
+For a depth interval $D$, write
+\[
+ \Lambda_T(D):=
+ \sum_{\substack{p\in\cB(T)\\s_p\in D}}h_p.
+\]
+
+\begin{lemma}[Uniform prime time change and small tails]
+\label{lem:prime-time-change}
+Uniformly for $0\le t\le\lambda_T-R_0$,
+\begin{equation}\label{eq:time-change}
+ \Lambda_T((R_0,R_0+t])
+ =\frac t3+\varepsilon_T(t),
+ \qquad
+ \sup_t|\varepsilon_T(t)|=o(1).
+\end{equation}
+For $\ell\in\{c,x,y,z\}$, put
+\begin{equation}\label{eq:tail-weight}
+ V_{\ell,T}:=
+ \sum_{\substack{p\in\cB(T)\\s_p>R_0}}u_pK_{\ell,p}.
+\end{equation}
+For all sufficiently large $T$,
+\begin{equation}\label{eq:tail-mean}
+ \E_{\widetilde{\mathsf Q}_T}V_{\ell,T}\le\e^{-R_0}.
+\end{equation}
+Finally, for every fixed interval $D\subseteq[0,R_0]$,
+\begin{equation}\label{eq:fixed-depth-intensity}
+ \Lambda_T(D)\longrightarrow\frac{|D|}{3}.
+\end{equation}
+All estimates hold simultaneously for the four labels.
+\end{lemma}
+
+\begin{proof}
+Let
+\[
+ H_+(x):=\sum_{p\le x}\frac1{p+1}.
+\]
+For $0\le t\le\lambda_T-R_0$,
+\begin{align}
+ 3\Lambda_T((R_0,R_0+t])
+ &=
+ H_+(\e^{T\e^{-R_0}})
+ -H_+(\e^{T\e^{-(R_0+t)}})
+ +O(\e^{-T^\vartheta}).                    \label{eq:time-change-difference}
+\end{align}
+The logarithms of both prime cutoffs are at least $T^\vartheta$.  By
+\eqref{eq:mertens-plus}, the error in
+\eqref{eq:time-change-difference} is
+$O(\e^{-cT^{\vartheta/2}})$ uniformly in $t$.  Since
+\[
+ \log\log(\e^{T\e^{-s}})=\log T-s,
+\]
+the main term in \eqref{eq:time-change-difference} is $t$.  This proves
+\eqref{eq:time-change}.  The same subtraction over a fixed depth interval
+proves \eqref{eq:fixed-depth-intensity}.
+
+For the weighted tail, positivity and
+\eqref{eq:weighted-prime} give
+\begin{align*}
+ \E V_{\ell,T}
+ &=\frac1{3T}
+ \sum_{\substack{\e^{T^\vartheta}<p<\e^{T\e^{-R_0}}}}
+ \frac{\log p}{p+1}\\
+ &\le\frac1{3T}
+ \sum_{p\le\e^{T\e^{-R_0}}}\frac{\log p}{p-1}
+ =\left(\frac13+o(1)\right)\e^{-R_0}.
+\end{align*}
+The last expression is at most $\e^{-R_0}$ for all sufficiently large
+$T$, proving \eqref{eq:tail-mean}.
+\end{proof}
+
+\begin{lemma}[A uniform Poisson lower profile]\label{lem:poisson-survival}
+Let $\Pi(v)$ be a rate-one Poisson process.  With
+\[
+ q=\frac{24}{25},
+ \qquad
+ \gamma:=\frac1{50},
+\]
+one has, for every $b\ge0$,
+\begin{equation}\label{eq:survival}
+ \Pp\bigl(\Pi(v)+b\ge qv\text{ for every }v\ge0\bigr)
+ \ge1-\e^{-\gamma b}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The inequality $\e^{-x}\le1-x+x^2/2$ gives
+\[
+ q\gamma+\e^{-\gamma}-1
+ \le(q-1)\gamma+\frac{\gamma^2}{2}
+ =-\frac3{5000}<0.
+\]
+It follows from independent increments that
+\[
+ M(v):=\exp\!\bigl(\gamma(qv-\Pi(v))\bigr)
+\]
+is a nonnegative supermartingale.
+
+We include the short maximal argument, including the harmless strictness at
+the boundary.  Fix $L<\infty$ and $\epsilon>0$.  On a finite time grid in
+$[0,L]$, stop $M$ at the first grid point at which it reaches
+$\e^{\gamma(b+\epsilon)}$.  Conditioning on whether the stopping time has
+already occurred shows directly that the stopped process is still a
+nonnegative supermartingale.  Its expectation is therefore at most
+$M(0)=1$, so the grid crossing probability is at most
+$\e^{-\gamma(b+\epsilon)}$.  Apply this to nested dyadic grids.  Right
+continuity detects every strict crossing, and hence
+\[
+ \Pp\bigl(\exists v\in[0,L]:qv-\Pi(v)>b+\epsilon\bigr)
+ \le\e^{-\gamma(b+\epsilon)}.
+\]
+Let first $\epsilon\downarrow0$ and then $L\to\infty$.  We obtain
+\[
+ \Pp\bigl(\exists v\ge0:qv-\Pi(v)>b\bigr)\le\e^{-\gamma b}.
+\]
+The complement is exactly the event in \eqref{eq:survival}.
+\end{proof}
+
+\begin{proposition}[Profiled anchor lower bound]\label{prop:first-moment}
+There is an absolute constant $c>0$ such that, for every function
+$\eta(T)$ satisfying \eqref{eq:slow-eta} and all sufficiently large $T$,
+\begin{equation}\label{eq:first-moment}
+ \beta_T=\Pp(B_T)\ge c w^2.
+\end{equation}
+The constant $c$ is independent of $T$ and $\eta$.
+\end{proposition}
+
+\begin{proof}
+We construct under $\widetilde{\mathsf Q}_T$ an event contained in
+$B_T^{\mathrm P}$ whose probability is at least a fixed multiple of $w^2$.
+The whole-band coupling will then transfer it to the categorical law.
+
+\smallskip
+\noindent\emph{Step 1: fixed numerical choices.}
+Set
+\begin{equation}\label{eq:first-moment-constants}
+ \delta:=\frac1{100},
+ \qquad
+ B:=350,
+ \qquad
+ m:=\lceil\alpha R_0\rceil+B=374.
+\end{equation}
+These constants satisfy the three inequalities needed below:
+\begin{equation}\label{eq:constant-certificate}
+ 4\e^{-\gamma B/2}<\frac18,
+ \qquad
+ m\e^{1-R_0}<\frac{\delta}{2},
+ \qquad
+ \frac{8\e^{-R_0}}{\delta}<\frac18.
+\end{equation}
+We record exact witnesses.  First,
+\[
+ \e^{7/2}>
+ \sum_{n=0}^{7}\frac{(7/2)^n}{n!}
+ =\frac{66007}{2048}>32,
+\]
+which proves the first inequality.  Next,
+\[
+ 374\e^{-74}
+ <\frac{374\cdot4!}{74^4}
+ =\frac{561}{1874161}<\frac1{200}.
+\]
+Finally,
+\[
+ 800\e^{-75}
+ <\frac{800\cdot3!}{75^3}
+ =\frac{64}{5625}<\frac18.
+\]
+Only positive terms of the exponential series were used.  These
+calculations are also checked exactly in the companion verifier.
+
+\smallskip
+\noindent\emph{Step 2: finite-depth buffers.}
+Let
+\[
+ \mathcal K:=\left[\frac9{20},\frac{11}{20}\right),
+ \qquad
+ \mathcal A:=\left[\frac{12}{25},\frac{13}{25}\right).
+\]
+For a half-open weight interval $\mathcal I$, write
+$D_{\mathcal I}:=\{-\log u:u\in\mathcal I\}$; its image is again taken
+with the corresponding half-open endpoint convention.  Choose the four
+explicit, pairwise disjoint depth intervals
+\begin{align*}
+ Q_c&=(R_0-1,R_0-7/8],&
+ Q_x&=(R_0-3/4,R_0-5/8],\\
+ Q_y&=(R_0-1/2,R_0-3/8],&
+ Q_z&=(R_0-1/4,R_0-1/8].
+\end{align*}
+All lie in $(R_0-1,R_0)$.
+
+Let $F_{\mathrm{fix}}$ be the following finite-depth event:
+\begin{enumerate}[label=(\roman*)]
+ \item label $c$ has exactly $m$ points in $Q_c$ and no other point of
+       depth at most $R_0$;
+ \item label $z$ has exactly $m$ points in $Q_z$, exactly one point in
+       $D_{\mathcal A}$, and no other point of depth at most $R_0$;
+ \item each label $\ell\in\{x,y\}$ has exactly $m$ points in $Q_\ell$,
+       no point in
+       $[0,R_0]\setminus(Q_\ell\cup D_{\mathcal K})$, and no condition
+       imposed on its process in $D_{\mathcal K}$.
+\end{enumerate}
+Since $D_{\mathcal A},D_{\mathcal K}\subset(0,1)$ whereas every $Q_\ell$
+lies in $(R_0-1,R_0)=(74,75)$, the anchor-depth regions are disjoint from
+all four buffer intervals.
+We now specify the finite atoms used to evaluate this event.  For label
+$c$, take $Q_c$ itself and the nonempty interval components of
+$[0,R_0]\setminus Q_c$; prescribe counts $m$ and $0$, respectively.  For
+label $z$, take $Q_z$, $D_{\mathcal A}$, and the nonempty interval
+components of their complement in $[0,R_0]$; prescribe counts
+$m$, $1$, and $0$.  For each $\ell\in\{x,y\}$, take $Q_\ell$ and the
+nonempty interval components of
+\[
+ [0,R_0]\setminus(Q_\ell\cup D_{\mathcal K});
+\]
+prescribe count $m$ on $Q_\ell$ and count $0$ on every listed component.
+The region $D_{\mathcal K}$ is deliberately absent from the constrained
+atom family for these two labels.  Endpoint assignments are inherited
+from the half-open conventions defining the intervals, so within each
+label the listed atoms are disjoint and describe exactly the conditions
+in (i)--(iii).  Let $k_{\ell,D}$ denote the prescribed count.  When
+$k_{\ell,D}=0$, the corresponding factor below is simply
+$\e^{-\Lambda_T(D)}$.
+Poisson independent increments give the exact product
+\begin{equation}\label{eq:fixed-event-product}
+ \widetilde{\mathsf Q}_T(F_{\mathrm{fix}})
+ =
+ \prod_{(\ell,D)\ \mathrm{constrained}}
+ \e^{-\Lambda_T(D)}
+ \frac{\Lambda_T(D)^{k_{\ell,D}}}{k_{\ell,D}!}.
+\end{equation}
+By finite additivity and \eqref{eq:fixed-depth-intensity}, every intensity
+in this finite product has a finite limit.  Each atom on which a positive
+count is required has positive length and hence a strictly positive
+limiting intensity.  It follows that, for all sufficiently large $T$,
+\begin{equation}\label{eq:fixed-event-lower}
+ \widetilde{\mathsf Q}_T(F_{\mathrm{fix}})
+ \ge c_{\mathrm{fix}}>0,
+\end{equation}
+where $c_{\mathrm{fix}}$ is independent of $T$.
+
+\smallskip
+\noindent\emph{Step 3: survival through the entire remaining depth.}
+For a label $\ell$, define
+\[
+ M_{\ell,T}(t):=
+ \sum_{\substack{p\in\cB(T)\\R_0<s_p\le R_0+t}}K_{\ell,p},
+ \qquad 0\le t\le\lambda_T-R_0.
+\]
+This independent-increment process can be realized as
+\begin{equation}\label{eq:poisson-time-change}
+ M_{\ell,T}(t)
+ =\Pi_\ell(\Lambda_T((R_0,R_0+t])),
+\end{equation}
+where the $\Pi_\ell$ are independent rate-one Poisson processes.  Put
+$\epsilon_T:=\sup_t|\varepsilon_T(t)|$.  For all sufficiently large $T$,
+$q\epsilon_T\le B/2$.
+
+Suppose that
+\begin{equation}\label{eq:survival-event}
+ \Pi_\ell(v)+B/2\ge qv
+ \quad\text{for every }v\ge0.
+\end{equation}
+With $v=\Lambda_T((R_0,R_0+t])$, the time-change estimate gives
+$t/3\le v+\epsilon_T$.  Therefore
+\begin{align}
+ M_{\ell,T}(t)+B
+ &\ge qv+B/2
+ \ge \alpha t,                                      \label{eq:profile-growth}\\
+ m+M_{\ell,T}(t)
+ &\ge \alpha(R_0+t).                                 \label{eq:full-profile-growth}
+\end{align}
+The second line uses $m\ge\alpha R_0+B$.  By
+Lemma~\ref{lem:poisson-survival} and the first inequality in
+\eqref{eq:constant-certificate}, the probability that
+\eqref{eq:full-profile-growth} fails for at least one of the four labels
+is less than $1/8$.
+
+The weighted tails are also small at fixed positive cost.  By
+\eqref{eq:tail-mean}, Markov's inequality, and the last inequality in
+\eqref{eq:constant-certificate},
+\begin{equation}\label{eq:tail-union}
+ \Pp\left(
+ \max_{\ell\in\{c,x,y,z\}}V_{\ell,T}>\delta/2
+ \right)
+ \le\frac{8\e^{-R_0}}{\delta}<\frac18.
+\end{equation}
+All depth-$>R_0$ processes are independent of $F_{\mathrm{fix}}$.  Let
+$\mathcal E_T$ be the event that \eqref{eq:full-profile-growth} holds for
+all four labels and all $0\le t\le\lambda_T-R_0$, and that
+\begin{equation}\label{eq:small-tails}
+ V_{\ell,T}\le\delta/2
+ \qquad(\ell=c,x,y,z)
+\end{equation}
+holds.  The preceding two union bounds show that
+\begin{equation}\label{eq:profile-tail-success}
+ \widetilde{\mathsf Q}_T(\mathcal E_T\mid F_{\mathrm{fix}})
+ \ge\frac34.
+\end{equation}
+No error depending on $w$ has been subtracted.
+
+\smallskip
+\noindent\emph{Step 4: two adaptive correcting anchors.}
+Let $\mathcal H_T$ be the $\sigma$-field generated by the restrictions of
+all four labelled Poisson arrays except for the restrictions of the
+$x$- and $y$-arrays to $D_{\mathcal K}$.  The event
+$F_{\mathrm{fix}}$ is $\mathcal H_T$-measurable because it imposes no
+condition on those two omitted restrictions.  The event $\mathcal E_T$ is
+also $\mathcal H_T$-measurable: it is determined entirely by the four
+depth-$>R_0$ processes.  By independence across labels and independent
+increments on disjoint depth sets, conditionally on $\mathcal H_T$ the
+two omitted restrictions remain independent Poisson processes, each with
+its original intensity $\Lambda_T$ restricted to $D_{\mathcal K}$.
+
+Let $U_z\in\mathcal A$ be the normalized weight of the unique $z$-point in
+$D_{\mathcal A}$.  For $\ell\in\{x,y,z\}$, let $E_\ell$ be the total weight
+of the $m$ points in $Q_\ell$ plus $V_{\ell,T}$.  Every point in $Q_\ell$
+has weight at most $\e^{1-R_0}$, so
+\eqref{eq:constant-certificate} and \eqref{eq:small-tails} imply
+\begin{equation}\label{eq:error-weights}
+ 0\le E_\ell\le\delta.
+\end{equation}
+
+Work conditionally on $\mathcal H_T$, on
+$F_{\mathrm{fix}}\cap\mathcal E_T$.  The variables
+$U_z,E_x,E_y,E_z$ are then fixed.
+Define the $\mathcal H_T$-measurable centers
+\begin{equation}\label{eq:anchor-centers}
+ t_x:=U_z+E_z-E_x,
+ \qquad
+ t_y:=U_z+E_z-E_y
+\end{equation}
+and target intervals
+\begin{equation}\label{eq:anchor-intervals}
+ I_x:=\left[t_x-\frac w8,t_x+\frac w8\right],
+ \qquad
+ I_y:=\left[t_y-\frac w8,t_y+\frac w8\right].
+\end{equation}
+From $U_z\in[12/25,13/25)$ and \eqref{eq:error-weights},
+\[
+ t_x,t_y\in\left[\frac{47}{100},\frac{53}{100}\right].
+\]
+Since $w\to0$, both intervals in \eqref{eq:anchor-intervals} lie in
+$\mathcal K$ for all sufficiently large $T$.
+
+Require the $x$-process to have exactly one point in $I_x$ and no other
+point in $D_{\mathcal K}$, and impose the analogous requirement on the
+$y$-process.  Let $\mathcal A_T$ denote this two-anchor event on
+$F_{\mathrm{fix}}\cap\mathcal E_T$, and declare it empty off that event.
+Conditionally on $\mathcal H_T$, the probability of the
+$x$-requirement is exactly
+\begin{equation}\label{eq:anchor-probability}
+ \left(
+ \sum_{\substack{p\in\cB(T)\\u_p\in I_x}}h_p
+ \right)
+ \exp\!\left(
+ -\sum_{\substack{p\in\cB(T)\\u_p\in\mathcal K}}h_p
+ \right).
+\end{equation}
+The interval $I_x$ has the form $[t,t+w/4]$ with
+$t=t_x-w/8$; for large $T$, this left endpoint lies in the fixed compact
+interval $[23/50,27/50]\subset(0,1)$.  Thus
+Lemma~\ref{lem:local-prime-mass}, with $c_0=1/4$, gives, almost surely on
+$F_{\mathrm{fix}}\cap\mathcal E_T$ and uniformly over every possible
+conditional realization,
+\[
+ \sum_{\substack{p\in\cB(T)\\u_p\in I_x}}h_p
+ =\frac13\sum_{\substack{p\in\cB(T)\\u_p\in I_x}}\frac1{p+1}
+ \ge c_1w.
+\]
+Although $I_x$ is random before conditioning, it is
+$\mathcal H_T$-measurable and hence is a fixed deterministic interval
+under each conditional realization.  The lower bound in
+Lemma~\ref{lem:local-prime-mass} is uniform over all left endpoints in
+$[23/50,27/50]$, so the same constant $c_1$ applies simultaneously to
+every such realization.  The identical observation applies to $I_y$.
+Moreover, \eqref{eq:mertens-plus} gives
+\[
+ \sum_{\substack{p\in\cB(T)\\u_p\in\mathcal K}}h_p
+ \longrightarrow\frac13\log\frac{11}{9}.
+\]
+Consequently the exponential factor in \eqref{eq:anchor-probability} is at
+least a fixed $c_2>0$.  The same bounds hold for $I_y$.  Independence of the two
+omitted processes therefore gives both correcting anchors with
+conditional probability at least
+\begin{equation}\label{eq:two-anchor-lower}
+ c_3w^2.
+\end{equation}
+
+\smallskip
+\noindent\emph{Step 5: verification of the target event and transfer.}
+Let $U_x,U_y$ be the weights of the two correcting anchors.  On the event
+just constructed,
+\[
+ X=U_x+E_x,\qquad
+ Y=U_y+E_y,\qquad
+ Z=U_z+E_z.
+\]
+By \eqref{eq:anchor-centers}--\eqref{eq:anchor-intervals},
+\begin{equation}\label{eq:balanced-totals}
+ |X-Z|\le w/8,\qquad |Y-Z|\le w/8.
+\end{equation}
+Thus the range of $X,Y,Z$ is at most $w/4$.  Also
+$Z\in[48/100,53/100]$ by \eqref{eq:error-weights}; since $w\to0$,
+\eqref{eq:balanced-totals} places all three totals in the fixed closed
+interval $J$ for large $T$.
+
+At depth $R_0$, every label has at least $m$ points.  For
+$s=R_0+t$, \eqref{eq:full-profile-growth} gives
+\[
+ N_\ell^{\mathrm P}(s)
+ \ge\alpha s\ge\lfloor\alpha s\rfloor
+ \qquad(\ell=c,x,y,z).
+\]
+The constructed event is therefore contained in $B_T^{\mathrm P}$.
+The conditional estimate \eqref{eq:two-anchor-lower} is uniform on
+$F_{\mathrm{fix}}\cap\mathcal E_T$.  The tower property,
+\eqref{eq:fixed-event-lower}, and \eqref{eq:profile-tail-success} therefore
+give
+\begin{align*}
+ \widetilde{\mathsf Q}_T(
+ F_{\mathrm{fix}}\cap\mathcal E_T\cap\mathcal A_T)
+ &=\E_{\widetilde{\mathsf Q}_T}\!\left[
+   \1_{F_{\mathrm{fix}}\cap\mathcal E_T}
+   \widetilde{\mathsf Q}_T(\mathcal A_T\mid\mathcal H_T)
+   \right]\\
+ &\ge c_3w^2\,
+   \widetilde{\mathsf Q}_T(F_{\mathrm{fix}}\cap\mathcal E_T)
+ \ge\frac34c_{\mathrm{fix}}c_3w^2.
+\end{align*}
+The event on the left is contained in $B_T^{\mathrm P}$, so
+\begin{equation}\label{eq:poisson-first-moment}
+ \widetilde{\mathsf Q}_T(B_T^{\mathrm P})
+ \ge\frac34c_{\mathrm{fix}}c_3w^2=:c_4w^2.
+\end{equation}
+Finally, the defining property of total-variation distance gives
+\[
+ \left|
+ \mathsf Q_T(B_T^{\mathrm P})
+ -\widetilde{\mathsf Q}_T(B_T^{\mathrm P})
+ \right|
+ \le d_{\TV}(\mathsf Q_T,\widetilde{\mathsf Q}_T).
+\]
+Lemma~\ref{lem:poisson-coupling} with $A=2$ makes the right side
+$o(w^2)$.  Hence \eqref{eq:event-identification} and
+\eqref{eq:poisson-first-moment} give
+\[
+ \beta_T
+ =\mathsf Q_T(B_T^{\mathrm P})
+ \ge\widetilde{\mathsf Q}_T(B_T^{\mathrm P})-o(w^2)
+ \ge c_4w^2-o(w^2)
+ \ge\frac{c_4}{2}w^2
+\]
+for all sufficiently large $T$.  This proves
+\eqref{eq:first-moment}.
+\end{proof}
+
+\section{The exact rooted second moment}\label{sec:secondmoment}
+
+The first-moment estimate shows that conditioning on $B_T$ is not too
+expensive.  We now show that the conditioned root density does not
+concentrate.  The proof is annealed: the root support and its two independent
+colourings are summed together.  This is essential, because no comparable
+anti-concentration statement is true uniformly for every fixed root.
+
+\subsection{The conditional root law and factorial insertion}
+
+Fix the first state $S=S^{(x)}=c\cup y\cup z$.  Since its marginal is
+$\mu_{\cB(T)}$, the primes of $S$ are independent with probabilities
+$r_p=1/(p+1)$ and inclusion odds
+\begin{equation}\label{eq:root-odds}
+ \frac{r_p}{1-r_p}=\frac1p.
+\end{equation}
+Conditional on $S$, every $p\in S$ is independently and uniformly coloured
+$c,y,$ or $z$.  Every $p\notin S$ is independently assigned to the missing
+$x$-petal with probability
+\begin{equation}\label{eq:missing-probability}
+ \frac{h_p}{1-r_p}
+ =\frac{1}{3p}.
+\end{equation}
+Indeed, absence from $S$ means that the original label is either
+$\varnothing$ or $x$.
+
+Take two independent completions conditional on the same root.  Put
+\[
+ \sigma(c)=0,\qquad \sigma(y)=1,\qquad \sigma(z)=-1
+\]
+and, for $p\in S$, define the nine-valued mark
+\begin{equation}\label{eq:nine-marks}
+ \xi_p:=(\sigma(\ell_1(p)),\sigma(\ell_2(p)))
+ \in\cM:=\{-1,0,1\}^2.
+\end{equation}
+All nine marks are equiprobable.  If
+\begin{equation}\label{eq:root-differences}
+ D_h:=Y_h-Z_h\qquad(h=1,2),
+\end{equation}
+then the vector $D=(D_1,D_2)$ is exactly
+\begin{equation}\label{eq:marked-sum}
+ D=\sum_{p\in S}u_p\xi_p.
+\end{equation}
+
+Both pivot estimates use the following exact identity.
+
+\begin{lemma}[Factorial deletion and insertion]\label{lem:factorial-insertion}
+Let $\mathcal P$ be finite, and let $\mu$ be the product law
+\[
+ \mu(S)=\prod_{p\in S}r_p\prod_{p\notin S}(1-r_p),
+ \qquad
+ \omega_p:=\frac{r_p}{1-r_p},
+ \qquad 0<r_p<1.
+\]
+For $d\ge1$, let $F(S;p_1,\ldots,p_d)$ be nonnegative and defined when
+$p_1,\ldots,p_d$ are distinct members of $S$.  Then
+\begin{align}
+ &\E_{S\sim\mu}
+ \sum_{p_1,\ldots,p_d\in S}^{\ne}
+ F(S;p_1,\ldots,p_d)\notag\\
+ &\quad=
+ \sum_{A\subseteq\mathcal P}\mu(A)
+ \sum_{\substack{p_1,\ldots,p_d\in\mathcal P\setminus A\\
+                  p_1,\ldots,p_d\ \mathrm{distinct}}}
+ \left(\prod_{j=1}^d\omega_{p_j}\right)
+ F(A\cup\{p_1,\ldots,p_d\};p_1,\ldots,p_d).
+                                                        \label{eq:factorial-insertion}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Expand the expectation on the left.  For every ordered tuple appearing in
+the expansion, make the bijective substitution
+\[
+ A=S\setminus\{p_1,\ldots,p_d\}.
+\]
+The deleted points are pairwise distinct and absent from $A$, so
+\[
+ \mu(A\cup\{p_1,\ldots,p_d\})
+ =\mu(A)\prod_{j=1}^d\frac{r_{p_j}}{1-r_{p_j}}.
+\]
+Substitution gives \eqref{eq:factorial-insertion}.  Every sum is finite, so
+no limiting interchange is involved.
+\end{proof}
+
+\subsection{Profiles and ordered weights}
+
+Order a nonempty support $S$ by decreasing normalized weight:
+\[
+ u_{(1)}>u_{(2)}>\cdots>u_{(K)}.
+\]
+There are no ties because distinct primes have distinct logarithms.
+
+\begin{lemma}[Ordered weights forced by a profile]
+\label{lem:ordered-profile}
+Suppose that
+\begin{equation}\label{eq:root-profile}
+ N_S(s):=\#\{p\in S:s_p\le s\}\ge as
+ \qquad(R_0\le s\le\lambda_T).
+\end{equation}
+Then $K=|S|\ge a\lambda_T$, and for $1\le k\le K$,
+\begin{equation}\label{eq:ordered-lower}
+ u_{(k)}\ge\ell_k,
+ \qquad
+ \ell_k:=
+ \exp\!\left(
+ -\max\left\{R_0,\frac{k+1}{a}\right\}
+ \right).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The inequality $K\ge a\lambda_T$ is
+\eqref{eq:root-profile} at $s=\lambda_T$.  Put
+$s_{(k)}=-\log u_{(k)}$.  If $s_{(k)}\le R_0$, then
+$u_{(k)}\ge\e^{-R_0}\ge\ell_k$.  Otherwise take
+$R_0\le s<s_{(k)}$ and let $s\uparrow s_{(k)}$.  At depth $s$ there are at
+most $k-1$ points, so $as\le k-1$.  Hence
+$s_{(k)}\le(k-1)/a$, which is stronger than
+\eqref{eq:ordered-lower}.
+\end{proof}
+
+We record the two convergent endpoint estimates before using them.  From
+\eqref{eq:parameter-inequalities},
+\begin{equation}\label{eq:endpoint-decay}
+ \frac{3^{-a\lambda_T}}{w}
+ =
+ \frac{T^{\,1-a(1-\vartheta)\log3}}{\eta}
+ =o(1).
+\end{equation}
+Indeed the exponent of $T$ is a fixed negative number and
+$1/\eta=T^{o(1)}$.  Moreover,
+\begin{equation}\label{eq:rank-series}
+ \sum_{k\ge1}\frac{3^{-k}}{\ell_k}<\infty.
+\end{equation}
+To see this, discard finitely many indices controlled by $R_0$; the
+remaining ratio is $\e^{1/a}/3<1$, which is equivalent to
+$a\log3>1$.
+
+\begin{lemma}[Annealed two-pivot small-ball bound]
+\label{lem:two-pivot}
+Let $S\sim\mu_{\cB(T)}$, give its primes independent uniform marks in
+$\cM=\{-1,0,1\}^2$, and define $D$ by \eqref{eq:marked-sum}.  For every
+axis-parallel square $Q\subseteq\mathbb R^2$ of side at most $C_Qw$,
+uniformly in its position,
+\begin{equation}\label{eq:two-pivot}
+ \Pp\bigl(
+ N_S(s)\ge as\text{ for }R_0\le s\le\lambda_T,
+ \ D\in Q
+ \bigr)
+ \ll_{C_Q}w^2.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+ \mathcal P_T(S):=
+ \{N_S(s)\ge as\text{ for every }R_0\le s\le\lambda_T\}.
+\]
+For brevity, write $\mu:=\mu_{\cB(T)}$.
+For each realization put $K:=|S|$.
+All ranks below refer to decreasing order of the weights $u_p$.  For a
+marked realization $\xi=(\xi_p)_{p\in S}$, define
+\[
+ r(\xi):=\dim_{\mathbb R}\operatorname{span}\{\xi_p:p\in S\}.
+\]
+The span of the empty set is understood to be $\{0\}$.  Thus the cases
+$r(\xi)=0,1,2$ are disjoint and exhaustive.
+
+\smallskip
+\noindent\emph{Mark-counting sublemma.}
+For $v\in\cM\setminus\{0\}$, put
+\[
+ L(v):=\cM\cap\mathbb Rv=\{-v,0,v\}.
+\]
+Thus $|L(v)|=3$ and $|\cM\setminus L(v)|=6$.  On a support of size $K$,
+the total probability of all mark sequences whose first nonzero mark has
+rank $i$ and whose first subsequent mark outside its real span has rank
+$j>i$ is
+\begin{equation}\label{eq:rank-two-mark-mass}
+ 9^{-K}\cdot8\cdot3^{j-i-1}\cdot6\cdot9^{K-j}
+ =16\,3^{-(i+j)}.
+\end{equation}
+The total probability of all rank-one mark sequences whose first nonzero
+mark has rank $i$ is
+\begin{equation}\label{eq:rank-one-mark-mass}
+ 9^{-K}\cdot8\cdot3^{K-i}
+ =8\,3^{-(K+i)}.
+\end{equation}
+Indeed, there are eight choices for the mark at rank $i$.  For
+\eqref{eq:rank-two-mark-mass}, the ranks $i+1,\ldots,j-1$ have the three
+choices in $L(v)$, rank $j$ has the six choices outside $L(v)$, and every
+later rank has nine choices.  For \eqref{eq:rank-one-mark-mass}, every
+later mark must belong to $L(v)$.  Multiplication and division by the
+$9^K$ equally likely mark sequences prove both formulas.
+
+\smallskip
+\noindent\emph{Rank two.}
+For a rank-two marked support, let $i$ be the rank of its first nonzero
+mark and let $j>i$ be the rank of its first mark outside the span of the
+mark at rank $i$.  Let $p$ and $q$ be the primes at these ranks.  This
+choice is canonical.
+
+We spell out the data remaining after deletion of $p$ and $q$.  Put
+$A=S\setminus\{p,q\}$ and $K=|A|+2$.  Order $A$ as
+$r_1,\ldots,r_{K-2}$ with
+\[
+ b_1:=u_{r_1}>\cdots>b_{K-2}:=u_{r_{K-2}},
+ \qquad b_0:=+\infty,\quad b_{K-1}:=0.
+\]
+When $A=\varnothing$, the displayed ordered list is empty and only the
+two endpoint conventions apply.
+For $1\le i<j\le K$, let $\mathcal G_{ij}(A)$ be the set of ordered pairs
+of distinct primes $p,q\in\cB(T)\setminus A$ such that
+\begin{equation}\label{eq:rank-two-gaps}
+ \begin{cases}
+ b_{i-1}>u_p>u_q>b_i, & j=i+1,\\
+ b_{i-1}>u_p>b_i\ \text{ and }\
+ b_{j-2}>u_q>b_{j-1}, & j\ge i+2.
+ \end{cases}
+\end{equation}
+These inequalities say exactly that $p$ and $q$ occupy ranks $i$ and $j$
+after insertion.  For $v\ne0$, let $\mathcal C_{ij}(A;v)$ be the set of
+mark vectors $\zeta=(\zeta_1,\ldots,\zeta_{K-2})$ on this ordered copy of
+$A$ satisfying
+\begin{equation}\label{eq:rank-two-residual-marks}
+ \zeta_k=0\ (k<i),\qquad
+ \zeta_k\in L(v)\ (i\le k\le j-2),\qquad
+ \zeta_k\in\cM\ (k\ge j-1),
+\end{equation}
+where an empty index range imposes no condition.  Put
+\[
+ D_A(\zeta):=\sum_{k=1}^{K-2}b_k\zeta_k.
+\]
+
+We now verify explicitly that deletion and insertion preserve every
+canonical index.  Let $t_1,\ldots,t_K$ denote the decreasing-weight
+ordering after $p,q$ are inserted.  For
+$(p,q)\in\mathcal G_{ij}(A)$ this ordering is, and can only be,
+\begin{equation}\label{eq:rank-two-reconstruction}
+ (t_1,\ldots,t_K)=
+ (r_1,\ldots,r_{i-1},p,r_i,\ldots,r_{j-2},q,
+  r_{j-1},\ldots,r_{K-2}),
+\end{equation}
+where every sublist with lower index larger than its upper index is empty.
+If $j\ge i+2$, the two insertion conditions in
+\eqref{eq:rank-two-reconstruction} are precisely
+\[
+ b_{i-1}>u_p>b_i,\qquad b_{j-2}>u_q>b_{j-1}.
+\]
+If $j=i+1$, both points lie in the same residual gap and their required
+order is precisely
+\[
+ b_{i-1}>u_p>u_q>b_i.
+\]
+Thus \eqref{eq:rank-two-reconstruction} is equivalent to
+$(p,q)\in\mathcal G_{ij}(A)$, including the endpoint ranks under the
+sentinel conventions.
+
+For an ordered marked support $(S,\xi)$, define
+$\mathcal E_{ij}^{v,v'}(S,\xi;p,q)$ to be the event
+\[
+ \begin{gathered}
+ p=t_i,\qquad q=t_j,\qquad
+ \xi_{t_k}=0\quad(k<i),\\
+ \xi_p=v\ne0,\qquad
+ \xi_{t_k}\in L(v)\quad(i<k<j),\qquad
+ \xi_q=v'\notin L(v).
+ \end{gathered}
+\]
+There is no restriction on marks after rank $j$.  Pointwise in
+$(S,\xi)$,
+\begin{equation}\label{eq:rank-two-canonical-identity}
+ \1_{\{r(\xi)=2\}}
+ =
+ \sum_{\substack{p,q\in S\\p\ne q}}
+ \sum_{1\le i<j\le K}
+ \sum_{v\in\cM\setminus\{0\}}
+ \sum_{v'\in\cM\setminus L(v)}
+ \1_{\mathcal E_{ij}^{v,v'}(S,\xi;p,q)}.
+\end{equation}
+Indeed, if $r(\xi)=2$, the sole nonzero summand uses the prime carrying
+the first nonzero mark and the prime carrying the first later mark outside
+its span.  If $r(\xi)<2$, no summand can occur.  In particular, exchanging
+$p$ and $q$ never creates a second summand: their canonical ranks are
+different, and \eqref{eq:rank-two-reconstruction} assigns each rank to one
+specific insertion gap.
+
+Under \eqref{eq:rank-two-reconstruction}, deletion of the two pivot marks
+turns the full-rank conditions in
+$\mathcal E_{ij}^{v,v'}$ into exactly
+\eqref{eq:rank-two-residual-marks}.  Namely, residual indices $k<i$
+retain full rank $k$; indices $i\le k\le j-2$ retain full rank $k+1$ and
+lie strictly between the pivots; and indices $k\ge j-1$ retain full rank
+$k+2$ and occur after the second pivot.
+
+To apply Lemma~\ref{lem:factorial-insertion} without suppressing the mark
+average, for distinct $p,q\in S$ define
+\begin{align*}
+ F_2(S;p,q)
+ &:=
+ 9^{-|S|}\sum_{\xi\in\cM^S}
+ \1_{\mathcal P_T(S)}
+ \1_{\{\sum_{s\in S}u_s\xi_s\in Q\}}\\
+ &\qquad\times
+ \sum_{1\le i<j\le |S|}
+ \sum_{v\in\cM\setminus\{0\}}
+ \sum_{v'\in\cM\setminus L(v)}
+ \1_{\mathcal E_{ij}^{v,v'}(S,\xi;p,q)}.
+\end{align*}
+Equation~\eqref{eq:rank-two-canonical-identity} gives the exact identity
+\[
+ \Pp(r(\xi)=2,\mathcal P_T(S),D\in Q)
+ =
+ \E_{S\sim\mu}\sum_{\substack{p,q\in S\\p\ne q}}F_2(S;p,q).
+\]
+For $p,q\notin A$, the support and mark coefficient after deletion is
+\begin{align*}
+ \mu(A\cup\{p,q\})9^{-(|A|+2)}
+ &=\mu(A)
+ \frac{1/(p+1)}{1-1/(p+1)}
+ \frac{1/(q+1)}{1-1/(q+1)}
+ 9^{-(|A|+2)}\\
+ &=\frac{\mu(A)}{pq}\,9^{-(|A|+2)}.
+\end{align*}
+Thus the two-point case of
+Lemma~\ref{lem:factorial-insertion}, followed by the unique decomposition
+of the marks into $(v,v',\zeta)$ described above, gives the exact equality
+\begin{align}
+ &\Pp(r(\xi)=2,\ \mathcal P_T(S),\ D\in Q)\notag\\
+ &=\sum_{A\subseteq\cB(T)}\mu(A)
+   \sum_{1\le i<j\le |A|+2}9^{-(|A|+2)}
+   \sum_{v\in\cM\setminus\{0\}}
+   \sum_{v'\in\cM\setminus L(v)}
+   \sum_{\zeta\in\mathcal C_{ij}(A;v)}\notag\\
+ &\quad\times
+   \sum_{(p,q)\in\mathcal G_{ij}(A)}\frac1{pq}
+   \1_{\mathcal P_T(A\cup\{p,q\})}
+   \1_{\{D_A(\zeta)+u_pv+u_qv'\in Q\}}.
+                                                        \label{eq:rank-two-exact}
+\end{align}
+Here factorial insertion changes the support mass from
+$\mu(A\cup\{p,q\})$ to $\mu(A)/(pq)$;
+\eqref{eq:rank-two-gaps} restores the two deleted ranks; and
+\eqref{eq:rank-two-residual-marks} restores exactly the residual mark
+restrictions.  Conversely, every tuple counted on the right reconstructs
+a rank-two marked support whose canonical data are
+$(i,j,p,q,v,v')$.  Thus \eqref{eq:rank-two-exact} has neither omission nor
+multiplicity.
+
+Fix a term through the choice of $A,i,j,v,v',\zeta$.  On the profile
+event, Lemma~\ref{lem:ordered-profile} gives
+\begin{equation}\label{eq:pivot-lower-weights}
+ u_p\ge\ell_i,\qquad u_q\ge\ell_j.
+\end{equation}
+Let $M_{v,v'}$ be the matrix with columns $v,v'$.  It has nonzero integer
+determinant.  Every cofactor has absolute value at most one, while the
+determinant has absolute value at least one; hence every entry of
+$M_{v,v'}^{-1}$ has absolute value at most one.  Define
+\[
+ \mathfrak R:=M_{v,v'}^{-1}(Q-D_A(\zeta)),
+ \qquad J_h:=\pi_h(\mathfrak R)\quad(h=1,2).
+\]
+Each $J_h$ is an interval of length at most $2C_Qw$.  Indeed, if
+$z,z'\in Q$ and $\rho_h$ is row $h$ of $M_{v,v'}^{-1}$, then
+\[
+ |\rho_h(z-z')|
+ \le\|\rho_h\|_1\max_{k=1,2}|z_k-z'_k|
+ \le2C_Qw.
+\]
+
+Let $H_i,H_j$ denote the two individual rank gaps in
+\eqref{eq:rank-two-gaps}; when $j=i+1$, both equal
+$(b_i,b_{i-1})$, while for $j\ge i+2$ they are
+\[
+ H_i=(b_i,b_{i-1}),\qquad H_j=(b_{j-1},b_{j-2}).
+\]
+Taking closures only enlarges the sets, so define
+\[
+ I_i:=\overline{
+ J_1\cap H_i\cap[\ell_i,1]\cap[T^{\vartheta-1},1]},
+ \qquad
+ I_j:=\overline{
+ J_2\cap H_j\cap[\ell_j,1]\cap[T^{\vartheta-1},1]}.
+\]
+If either intersection is empty, the corresponding term in
+\eqref{eq:rank-two-exact} is zero.  Otherwise
+$I_i,I_j\subseteq[T^{\vartheta-1},1]$, both have length at most $2C_Qw$,
+and
+\[
+ \inf I_i\ge\ell_i,\qquad \inf I_j\ge\ell_j.
+\]
+Every pair retained by \eqref{eq:rank-two-exact} lies in the Cartesian
+product determined by $I_i,I_j$.  Hence
+\begin{align}
+ &\sum_{(p,q)\in\mathcal G_{ij}(A)}\frac1{pq}
+   \1_{\mathcal P_T(A\cup\{p,q\})}
+   \1_{\{D_A(\zeta)+u_pv+u_qv'\in Q\}}\notag\\
+ &\quad\le
+ \left(\sum_{\substack{p\in\cB(T)\\u_p\in I_i}}\frac1p\right)
+ \left(\sum_{\substack{q\in\cB(T)\\u_q\in I_j}}\frac1q\right)
+ \ll_{C_Q}\frac{w^2}{\ell_i\ell_j}.
+                                                        \label{eq:two-local-sums}
+\end{align}
+The product on the right deliberately adds pairs with $p=q$, primes
+belonging to $A$, the wrong order $u_p\le u_q$ in the adjacent-rank case,
+and points of $J_1\times J_2$ outside the parallelogram $\mathfrak R$.  It
+also discards the profile restriction.  All summands are nonnegative, so
+each enlargement has the required upper-bound direction.
+
+The final bound in \eqref{eq:two-local-sums} is uniform in
+$A,i,j,v,v',\zeta$.  The mark-counting sublemma therefore allows the mark
+sums in \eqref{eq:rank-two-exact} to be performed before the remaining
+restrictions are discarded:
+\begin{align}
+ &\Pp(r(\xi)=2,\ \mathcal P_T(S),\ D\in Q)\notag\\
+ &\quad\ll_{C_Q}w^2
+ \sum_{A\subseteq\cB(T)}\mu(A)
+ \sum_{1\le i<j\le |A|+2}
+ \frac{16\,3^{-(i+j)}}{\ell_i\ell_j}\notag\\
+ &\quad\le
+ 16Cw^2
+ \left(\sum_{k\ge1}\frac{3^{-k}}{\ell_k}\right)^2
+ \sum_{A\subseteq\cB(T)}\mu(A)
+ \ll_{C_Q}w^2,                                      \label{eq:rank-two-bound}
+\end{align}
+where \eqref{eq:rank-series} and $\sum_A\mu(A)=1$ were used.
+
+\smallskip
+\noindent\emph{Rank one.}
+Let $p$ be the canonical first nonzero pivot and let $i$ be its rank.
+After deleting $p$, put $A=S\setminus\{p\}$ and $K=|A|+1$.  Order $A$
+with weights $b_1>\cdots>b_{K-1}$ and put
+$b_0=+\infty$, $b_K=0$.  The pivot has rank $i$ exactly when
+\[
+ u_p\in G_i(A):=(b_i,b_{i-1}).
+\]
+For $v\ne0$, let $\mathcal C_i^{(1)}(A;v)$ consist of the residual marks
+$\zeta=(\zeta_1,\ldots,\zeta_{K-1})$ satisfying
+\[
+ \zeta_k=0\quad(k<i),\qquad
+ \zeta_k\in L(v)\quad(k\ge i).
+\]
+When $A=\varnothing$, this residual list is empty and the endpoint
+conventions still apply.  Put
+\[
+ D_A(\zeta):=\sum_{k=1}^{K-1}b_k\zeta_k.
+\]
+Let $t_1,\ldots,t_K$ denote the reconstructed decreasing-weight order.
+It is uniquely
+\begin{equation}\label{eq:rank-one-reconstruction}
+ (t_1,\ldots,t_K)
+ =(r_1,\ldots,r_{i-1},p,r_i,\ldots,r_{K-1}),
+\end{equation}
+which is equivalent to $b_{i-1}>u_p>b_i$.  For an ordered marked support
+$(S,\xi)$, let $\mathcal E_i^v(S,\xi;p)$ denote the event
+\[
+ p=t_i,\qquad
+ \xi_{t_k}=0\ (k<i),\qquad
+ \xi_p=v\ne0,\qquad
+ \xi_{t_k}\in L(v)\ (k>i).
+\]
+Then, pointwise,
+\begin{equation}\label{eq:rank-one-canonical-identity}
+ \1_{\{r(\xi)=1\}}
+ =
+ \sum_{p\in S}\sum_{i=1}^K
+ \sum_{v\in\cM\setminus\{0\}}
+ \1_{\mathcal E_i^v(S,\xi;p)}.
+\end{equation}
+The unique nonzero summand uses the first nonzero marked prime.  Deleting
+that prime from \eqref{eq:rank-one-reconstruction} makes residual indices
+$k<i$ the marks before the pivot and indices $k\ge i$ the marks after it.
+Thus the residual conditions are exactly those defining
+$\mathcal C_i^{(1)}(A;v)$, and in particular
+$|\mathcal C_i^{(1)}(A;v)|=3^{K-i}$.
+
+For $p\in S$, define
+\begin{align*}
+ F_1(S;p)
+ &:=
+ 9^{-|S|}\sum_{\xi\in\cM^S}
+ \1_{\mathcal P_T(S)}
+ \1_{\{\sum_{s\in S}u_s\xi_s\in Q\}}
+ \sum_{i=1}^{|S|}
+ \sum_{v\in\cM\setminus\{0\}}
+ \1_{\mathcal E_i^v(S,\xi;p)}.
+\end{align*}
+Equation~\eqref{eq:rank-one-canonical-identity} gives
+\[
+ \Pp(r(\xi)=1,\mathcal P_T(S),D\in Q)
+ =\E_{S\sim\mu}\sum_{p\in S}F_1(S;p).
+\]
+For $p\notin A$, the coefficient after deletion is exactly
+\[
+ \mu(A\cup\{p\})9^{-(|A|+1)}
+ =\mu(A)\frac{1/(p+1)}{1-1/(p+1)}9^{-(|A|+1)}
+ =\frac{\mu(A)}p\,9^{-(|A|+1)}.
+\]
+The one-point case of Lemma~\ref{lem:factorial-insertion}, followed by the
+unique decomposition of the remaining marks as $\zeta$, therefore gives
+the exact equality
+\begin{align}
+ &\Pp(r(\xi)=1,\ \mathcal P_T(S),\ D\in Q)\notag\\
+ &=\sum_{A\subseteq\cB(T)}\mu(A)
+   \sum_{i=1}^{|A|+1}9^{-(|A|+1)}
+   \sum_{v\in\cM\setminus\{0\}}
+   \sum_{\zeta\in\mathcal C_i^{(1)}(A;v)}
+   \sum_{\substack{p\in\cB(T)\setminus A\\u_p\in G_i(A)}}\frac1p
+   \1_{\mathcal P_T(A\cup\{p\})}
+   \1_{\{D_A(\zeta)+u_pv\in Q\}}.
+                                                        \label{eq:rank-one-exact}
+\end{align}
+
+Fix $A,i,v,\zeta$ and choose a coordinate $h$ with $|v_h|=1$.  Write
+$Q=Q_1\times Q_2$.  The last indicator in
+\eqref{eq:rank-one-exact} forces
+\[
+ u_p\in J_i^0:=v_h(Q_h-D_{A,h}(\zeta)),
+\]
+an interval of length at most $C_Qw$.  On the profile event,
+Lemma~\ref{lem:ordered-profile} also gives $u_p\ge\ell_i$.  Intersect
+$J_i^0$ with the rank gap, the profile lower bound, and the prime band,
+and set
+\[
+ I_i^{(1)}:=
+ \overline{
+ J_i^0\cap G_i(A)\cap[\ell_i,1]\cap[T^{\vartheta-1},1]}.
+\]
+If the intersection is empty, the term is zero.  Otherwise
+$I_i^{(1)}\subseteq[T^{\vartheta-1},1]$ is an interval of length at most
+$C_Qw$ and $\inf I_i^{(1)}\ge\ell_i$.  Therefore
+\begin{align}
+ &\sum_{\substack{p\in\cB(T)\setminus A\\u_p\in G_i(A)}}\frac1p
+   \1_{\mathcal P_T(A\cup\{p\})}
+   \1_{\{D_A(\zeta)+u_pv\in Q\}}\notag\\
+ &\qquad\le
+ \sum_{\substack{p\in\cB(T)\\u_p\in I_i^{(1)}}}\frac1p
+ \ll_{C_Q}\frac{w}{\ell_i}.                         \label{eq:one-local-sum}
+\end{align}
+The right side adds back primes in $A$ and discards the profile and the
+unused coordinate condition from $D_A(\zeta)+u_pv\in Q$; nonnegativity
+gives the displayed upper-bound direction.
+
+The profile event further implies $K\ge a\lambda_T$.  We may now drop all
+of its other restrictions and sum the residual marks explicitly.  The
+mark-counting sublemma gives
+\begin{align}
+ &\Pp(r(\xi)=1,\ \mathcal P_T(S),\ D\in Q)\notag\\
+ &\quad\le Cw\sum_{A\subseteq\cB(T)}\mu(A)
+   \1_{\{|A|+1\ge a\lambda_T\}}
+   \sum_{i=1}^{|A|+1}
+   \frac{8\,3^{-(|A|+1+i)}}{\ell_i}\notag\\
+ &\quad\le
+ 8Cw\,3^{-a\lambda_T}
+ \left(\sum_{i\ge1}\frac{3^{-i}}{\ell_i}\right)
+ \sum_{A\subseteq\cB(T)}\mu(A)
+ =o(w^2),                                           \label{eq:rank-one-bound}
+\end{align}
+by \eqref{eq:rank-series}, \eqref{eq:endpoint-decay}, and
+$\sum_A\mu(A)=1$.
+
+\smallskip
+\noindent\emph{Rank zero.}
+All $K$ marks vanish, which has conditional probability $9^{-K}$.
+The profile gives $K\ge a\lambda_T$, so
+\begin{equation}\label{eq:rank-zero-bound}
+ \Pp(r(\xi)=0,\ \mathcal P_T(S),\ D\in Q)
+ \le9^{-a\lambda_T}
+ =o(w^2)
+\end{equation}
+by \eqref{eq:endpoint-decay}.  The three rank cases prove
+\eqref{eq:two-pivot}.
+\end{proof}
+
+The finite counts in \eqref{eq:rank-two-mark-mass} and
+\eqref{eq:rank-one-mark-mass}, as well as the inverse-matrix bound for all
+48 ordered noncollinear mark pairs, are independently enumerated by the
+companion verifier.
+
+\subsection{The missing-petal pivot}
+
+\begin{lemma}[Canonical top missing-petal pivot]
+\label{lem:missing-pivot}
+Fix a root support $S\subseteq\cB(T)$.  Independently select each
+$p\in\cB(T)\setminus S$ with probability $q_p=1/(3p)$, and let
+\[
+ X=\sum_{\text{selected }p}u_p.
+\]
+For every interval $I$ of length at most $C_Xw$,
+\begin{equation}\label{eq:missing-one-copy}
+ \Pp\bigl(X\in I,\ N_x(R_0)\ge1\mid S\bigr)
+ \ll_{C_X}w,
+\end{equation}
+uniformly in $S$ and $I$.  For two conditionally independent completions
+and two target intervals fixed after the root data have been exposed, the
+corresponding joint probability is $O_{C_X}(w^2)$.
+\end{lemma}
+
+\begin{proof}
+On the event in \eqref{eq:missing-one-copy}, choose canonically the selected
+prime $p_*$ of largest weight among those of depth at most $R_0$, and delete
+it.  Let $\nu$ be the product law with parameters $q_p$ on
+$\cB(T)\setminus S$.  The one-point case of
+Lemma~\ref{lem:factorial-insertion} gives the exact identity
+\begin{align}
+ &\Pp\bigl(X\in I,\ N_x(R_0)\ge1\mid S\bigr)\notag\\
+ &\quad=
+ \sum_{A\subseteq\cB(T)\setminus S}\nu(A)
+ \sum_{p\in(\cB(T)\setminus S)\setminus A}
+ \frac{q_p}{1-q_p}\,
+ \1_{\{p\ \mathrm{is\ canonical}\}}
+ \1_{\{u_p+\sum_{r\in A}u_r\in I\}}.                  \label{eq:missing-insertion}
+\end{align}
+There is exactly one canonical point on the event, so no multiplicity is
+present in this identity.
+
+The canonical restriction gives $u_p\ge\e^{-R_0}$.  For fixed $A$, the last
+indicator in \eqref{eq:missing-insertion} confines $u_p$ to a translate of
+$I$.  Moreover,
+\begin{equation}\label{eq:missing-odds}
+ \frac{q_p}{1-q_p}=\frac1{3p-1}\le\frac1p.
+\end{equation}
+Discard the remaining canonical order restriction and apply
+Lemma~\ref{lem:local-prime-mass} on $[\e^{-R_0},1]$.  The inner sum in
+\eqref{eq:missing-insertion} is $O_{C_X}(w)$ uniformly in $A,S$.
+Summing $\nu(A)$ proves \eqref{eq:missing-one-copy}.
+
+Given the root data, the two missing-$x$ processes are independent, so the
+two one-copy estimates multiply.  The product already includes the
+possibility that both copies select the same prime; no diagonal correction
+is needed.
+\end{proof}
+
+\subsection{The second moment and rooted balance}
+
+\begin{corollary}[Rooted second moment]\label{cor:rooted-second-moment}
+For the function $g_T$ in \eqref{eq:rooted-functions},
+\begin{equation}\label{eq:second-moment}
+ \E_{S\sim\mu_{\cB(T)}}g_T(S)^2
+ =\Pp(B_T^{(1)}\cap B_T^{(2)})
+ \ll w^4.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $B_T^{(1)}$ and $B_T^{(2)}$ be formed from two independent
+completions conditional on the same root $S$.  Then, conditionally on $S$,
+\[
+ \Pp(B_T^{(1)}\cap B_T^{(2)}\mid S)
+ =\Pp(B_T\mid S)^2=g_T(S)^2.
+\]
+Taking expectations proves the equality in \eqref{eq:second-moment}.
+
+Let
+\[
+ \mathcal F_{\mathrm{root}}
+ :=\sigma\bigl(S,(\xi_p)_{p\in S}\bigr),
+\]
+where the two coordinates of $\xi_p$ record the two complete colourings
+of the root support as in \eqref{eq:nine-marks}.  Thus
+$\mathcal F_{\mathrm{root}}$ reveals the common root and both root
+colourings, but neither missing-$x$ process.  Define the root-good event
+\[
+ \mathcal R_T:=
+ \left\{
+ N_S(s)\ge as\text{ for every }R_0\le s\le\lambda_T
+ \right\}
+ \cap\{D\in[-w,w]^2\}.
+\]
+It is $\mathcal F_{\mathrm{root}}$-measurable.  If both completions satisfy
+$B_T$, then, in completion $h$, the root labels $c,y,z$ partition $S$.
+Consequently, for $R_0\le s\le\lambda_T$,
+\[
+ N_S(s)
+ =N_{c,h}(s)+N_{y,h}(s)+N_{z,h}(s)
+ \ge3\lfloor\alpha s\rfloor
+ \ge as
+\]
+by \eqref{eq:profile-dominates}.  Moreover
+$D_h=Y_h-Z_h\in[-w,w]$.  Hence
+$B_T^{(1)}\cap B_T^{(2)}\subseteq\mathcal R_T$, and
+Lemma~\ref{lem:two-pivot}, with $Q=[-w,w]^2$, gives
+\begin{equation}\label{eq:root-good-probability}
+ \Pp(\mathcal R_T)\le C_0w^2
+\end{equation}
+for an absolute constant $C_0$.
+
+For $h=1,2$, let $\mathcal X_h\subseteq\cB(T)\setminus S$ be the primes
+assigned to the missing $x$-petal in completion $h$.  By
+\eqref{eq:missing-probability}, for every fixed realization of
+$\mathcal F_{\mathrm{root}}$ the indicators
+\[
+ \left(
+ \1_{\{p\in\mathcal X_h\}}:
+ p\in\cB(T)\setminus S,\ h\in\{1,2\}
+ \right)
+\]
+are mutually independent and satisfy
+\[
+ \Pp(p\in\mathcal X_h\mid\mathcal F_{\mathrm{root}})=\frac1{3p}.
+\]
+Indeed, conditional on $S$, the two completions are independent, and
+within each completion the colouring variables on $S$ and the
+missing-$x$ variables on $\cB(T)\setminus S$ are disjoint independent
+factors.  Thus further conditioning on the two root colourings leaves the
+two missing processes independent and leaves each with exactly the
+product law used in Lemma~\ref{lem:missing-pivot}.
+
+The variables $Y_h,Z_h$ are $\mathcal F_{\mathrm{root}}$-measurable.  On
+$\mathcal R_T$, define the corresponding
+$\mathcal F_{\mathrm{root}}$-measurable interval
+\begin{equation}\label{eq:missing-target}
+ I_h:=[\max(Y_h,Z_h)-w,\ \min(Y_h,Z_h)+w],
+\end{equation}
+and define $I_h:=\{0\}$ off $\mathcal R_T$.  On $\mathcal R_T$ one has
+$|Y_h-Z_h|\le w$, so $I_h$ is nonempty and
+\[
+ |I_h|=2w-|Y_h-Z_h|\le2w.
+\]
+The range condition in $B_T^{(h)}$ forces $X_h\in I_h$, whereas its
+$x$-profile at $R_0$ forces
+\[
+ N_{x,h}(R_0)\ge\lfloor\alpha R_0\rfloor=24\ge1.
+\]
+Put
+\[
+ E_h:=\{X_h\in I_h,\ N_{x,h}(R_0)\ge1\}.
+\]
+We have the explicit event inclusion
+\begin{equation}\label{eq:second-moment-event-inclusion}
+ B_T^{(1)}\cap B_T^{(2)}
+ \subseteq\mathcal R_T\cap E_1\cap E_2.
+\end{equation}
+All the other window and profile requirements in
+$B_T^{(1)}\cap B_T^{(2)}$ have been discarded on the right; because an
+upper bound is sought, this only enlarges the event.
+
+After conditioning on $\mathcal F_{\mathrm{root}}$, the root $S$ and the
+two intervals $I_h$ are fixed.  On $\mathcal R_T$ their lengths are at
+most $2w$.  The uniform one-copy estimate in
+Lemma~\ref{lem:missing-pivot} and the conditional independence of
+$\mathcal X_1,\mathcal X_2$ therefore give
+\[
+ \Pp(E_1\cap E_2\mid\mathcal F_{\mathrm{root}})
+ =\prod_{h=1}^2
+   \Pp(E_h\mid\mathcal F_{\mathrm{root}})
+ \le C_1^2w^2
+\]
+on $\mathcal R_T$.  Finally,
+\eqref{eq:second-moment-event-inclusion}, the tower property, and
+\eqref{eq:root-good-probability} yield
+\begin{align*}
+ \Pp(B_T^{(1)}\cap B_T^{(2)})
+ &\le
+ \E\!\left[
+  \1_{\mathcal R_T}
+  \Pp(E_1\cap E_2\mid\mathcal F_{\mathrm{root}})
+ \right]\\
+ &\le C_1^2w^2\Pp(\mathcal R_T)
+ \le C_0C_1^2w^4.
+\end{align*}
+This proves the upper bound in \eqref{eq:second-moment}.
+\end{proof}
+
+\begin{proposition}[Uniform rooted category balance]
+\label{prop:rooted-balance}
+There is a constant $K<\infty$ with the following uniformity property.
+For every function $\eta(T)$ satisfying \eqref{eq:slow-eta}, and all
+sufficiently large $T$,
+\begin{equation}\label{eq:rooted-L2}
+ \E_{S\sim\mu_{\cB(T)}}
+ \left(\frac{g_T(S)}{\beta_T}\right)^2
+ \le K.
+\end{equation}
+The constant $K$ is independent of $T$, of $\eta$, of the choice of a band
+at a later stage, and of the later integers $H$ and $M$.
+\end{proposition}
+
+\begin{proof}
+Corollary~\ref{cor:rooted-second-moment} gives a constant $C_2$ such that
+the numerator in
+\[
+ \E\left(\frac{g_T}{\beta_T}\right)^2
+ =\frac{\E g_T^2}{\beta_T^2}
+\]
+is at most $C_2w^4$.  Proposition~\ref{prop:first-moment} gives a constant
+$c_1>0$, independent of $T$ and $\eta$, such that
+$\beta_T\ge c_1w^2$.  Therefore
+\[
+ \E\left(\frac{g_T}{\beta_T}\right)^2
+ \le\frac{C_2}{c_1^2}.
+\]
+Take $K=C_2/c_1^2$.  All structural and buffer constants were fixed before
+$T$ and $\eta$ varied, so this $K$ has the asserted uniformity.
+\end{proof}
+
+\section{Flattening by alternative bands}\label{sec:flattening}
+
+The conditioned law on one band has a uniformly bounded $L^2$ density, but
+Proposition~\ref{prop:joint-prefix} needs every word marginal to be close to
+the ambient product law in $L^1$.  We obtain that stronger conclusion by
+letting each cube coordinate choose its active band uniformly among many
+independent alternatives.
+
+\begin{proposition}[Alternative-band flattening]
+\label{prop:alternative-bands}
+Fix positive integers $H,M$.  For each $1\le i\le H$, let
+\[
+ \cB_{i,1},\ldots,\cB_{i,M}
+\]
+be mutually disjoint bands of the form
+$\cB_{i,j}=\cB(T_{i,j})$.  Choose a balancing parameter
+$\eta_{i,j}>0$ for each band, put
+\begin{equation}\label{eq:alternative-band-data}
+ w_{i,j}:=\frac{\eta_{i,j}}{T_{i,j}},
+\end{equation}
+and let $B_{i,j}$ denote the event \eqref{eq:target-event} with
+$(T,\eta,w)$ replaced by
+$(T_{i,j},\eta_{i,j},w_{i,j})$.  Assume that every $T_{i,j}$ is in the
+valid range of Sections~\ref{sec:firstmoment}--\ref{sec:secondmoment}, that
+the same constant $K$ in \eqref{eq:rooted-L2} works on all these bands, and
+that $\eta_{i,j}\le\eta_*$ for all $i,j$.  Let $E$ be any finite prime set
+containing all $HM$ bands.
+
+Then there is a probability law on dimension-$H$ pair-product cubes in
+$2^E$ such that:
+\begin{enumerate}[label=(\roman*)]
+ \item every petal is nonempty;
+ \item for every word $\omega$, if $G_\omega$ is the density of its
+       marginal relative to $\mu_E$, then
+       \begin{equation}\label{eq:flattened-L1}
+        \E_{\mu_E}|G_\omega-1|
+        \le H\sqrt{\frac KM};
+       \end{equation}
+ \item every sampled cube satisfies
+       \begin{equation}\label{eq:flattened-balance}
+        \left|
+        \log d(S_\omega)
+        -\frac1{3^H}\sum_{\tau\in\F_3^H}\log d(S_\tau)
+        \right|
+        \le H\eta_*
+       \end{equation}
+       for every word $\omega$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For every group $i$, choose independently an active index
+$J_i$ uniformly from $\{1,\ldots,M\}$.  On the active band
+$\cB_{i,J_i}$, sample the five-state law conditioned on its event
+$B_{i,J_i}$.
+Put its $c$-labelled primes into the common support and use its
+$x,y,z$ labels as the three petals of coordinate $i$.  On every inactive
+band, select each prime with probability $1/(p+1)$ and put every selected
+prime into the common support.  Do the same for primes of $E$ outside all
+candidate bands.  All choices on disjoint bands are independent.
+
+The bands are disjoint, so petals from different coordinates are disjoint.
+Within an active band, the five-state law gives mutually disjoint petals.
+Finally, the profile at $R_0$ supplies at least
+$\lfloor\alpha R_0\rfloor=24$ points in each petal.  Thus the construction
+is a genuine pair-product cube and proves (i).
+
+We next compute a word marginal.  Fix one group $i$ and one of the three
+coordinate states selected by the word.  For candidate band $j$, write
+$g_{i,j}(S):=\Pp(B_{i,j}\mid S^{(x)}=S)$ and
+$\beta_{i,j}:=\Pp(B_{i,j})$, as in
+\eqref{eq:rooted-functions}.
+
+We verify here that this density is the same for all three states.  For
+$r\in\{x,y,z\}$, put
+\[
+ g_{i,j}^{(r)}(S)
+ :=\Pp(B_{i,j}\mid S^{(r)}=S),
+ \qquad S\subseteq\cB_{i,j},
+\]
+so $g_{i,j}=g_{i,j}^{(x)}$.  A permutation of the labels $x,y,z$ that
+sends $x$ to $r$ preserves both the five-state law and $B_{i,j}$ and sends
+$S^{(x)}$ to $S^{(r)}$.  Hence, for every
+$S\subseteq\cB_{i,j}$,
+\[
+ \Pp(B_{i,j}\cap\{S^{(r)}=S\})
+ =\Pp(B_{i,j}\cap\{S^{(x)}=S\}).
+\]
+Every state has marginal law $\mu_{\cB_{i,j}}$, so
+\[
+ \Pp(S^{(r)}=S)=\Pp(S^{(x)}=S)
+ =\mu_{\cB_{i,j}}(S)>0.
+\]
+Dividing the preceding joint-probability identity by this common marginal
+gives
+\[
+ g_{i,j}^{(r)}(S)=g_{i,j}^{(x)}(S)=g_{i,j}(S).
+\]
+Bayes' formula therefore gives, for each of the three possible states,
+\begin{equation}\label{eq:all-state-density}
+ \frac{\dd\,\operatorname{Law}(S^{(r)}\mid B_{i,j})}
+      {\dd\mu_{\cB_{i,j}}}(S)
+ =\frac{g_{i,j}(S)}{\beta_{i,j}}.
+\end{equation}
+
+Relative to the product support law on all $M$ bands in group $i$, the
+word-selected state density is consequently exactly
+\begin{equation}\label{eq:one-group-density}
+ G_i=\frac1M\sum_{j=1}^M\frac{g_{i,j}}{\beta_{i,j}}.
+\end{equation}
+Indeed, conditional on $J_i=j$, every inactive band has density one, while
+the active state has density $g_{i,j}/\beta_{i,j}$ by
+\eqref{eq:all-state-density}; averaging over $j$ gives
+\eqref{eq:one-group-density}.
+
+Under the ambient product law, the $M$ summands in
+\eqref{eq:one-group-density} are independent, have mean one, and have
+second moment at most $K$.  Cross terms vanish after centering, so
+\begin{equation}\label{eq:average-variance}
+ \E(G_i-1)^2
+ =\frac1{M^2}
+ \sum_{j=1}^M
+ \E\left(\frac{g_{i,j}}{\beta_{i,j}}-1\right)^2
+ =\frac1{M^2}
+ \sum_{j=1}^M
+ \left[
+  \E\left(\frac{g_{i,j}}{\beta_{i,j}}\right)^2-1
+ \right]
+ \le\frac KM.
+\end{equation}
+The groups are independent.  Therefore the density of the full word is
+\[
+ G_\omega=\prod_{i=1}^H G_i.
+\]
+The telescoping identity
+\[
+ \prod_{i=1}^HG_i-1
+ =
+ \sum_{i=1}^H(G_i-1)\prod_{k<i}G_k
+\]
+together with independence, $\E G_k=1$, and Cauchy--Schwarz gives
+\begin{align*}
+ \E|G_\omega-1|
+ &\le
+ \sum_{i=1}^H
+ \E|G_i-1|\prod_{k<i}\E G_k\\
+ &\le
+ \sum_{i=1}^H\sqrt{\E(G_i-1)^2}
+ \le H\sqrt{\frac KM}.
+\end{align*}
+This proves (ii).
+
+It remains to check balance.  On an active band $(i,j)$ of scale
+$T_{i,j}$, after
+removing the common $c$-contribution, the three normalized logarithmic
+contributions are
+\[
+ Y+Z,\qquad X+Z,\qquad X+Y.
+\]
+Their pairwise differences are $X-Y,X-Z,Y-Z$.  On $B_{i,j}$ each has
+absolute value at most $w_{i,j}$, so the corresponding actual logarithms
+have range at most
+$T_{i,j}w_{i,j}=\eta_{i,j}\le\eta_*$.  Two words differ in at most this amount in each of
+the $H$ coordinates; hence all word logarithms have range at most
+$H\eta_*$.  Their arithmetic mean is the logarithm of the geometric mean
+of the word products and lies between the minimum and maximum.  This proves
+\eqref{eq:flattened-balance}.
+\end{proof}
+
+\section{Band placement and completion of the proof}
+\label{sec:completion}
+
+We now place finitely many candidate bands inside the prime set used in the
+squarefree capacity.  The order of limits is
+\[
+ H\ \text{first},\qquad M\ \text{second},\qquad
+ y\to\infty\ \text{last}.
+\]
+
+For $y>\e^\e$, put
+\begin{equation}\label{eq:final-prime-set}
+ E_y:=\{p:\log y<p\le y\},
+ \qquad L:=\log y.
+\end{equation}
+Fix $H,M$, and for $1\le j\le HM$ define
+\begin{equation}\label{eq:band-exponents}
+ b_j:=\frac12\vartheta^{\,2(j-1)}
+\end{equation}
+and
+\begin{equation}\label{eq:placed-bands}
+ \cB_j:=
+ \left\{
+ p:\e^{L^{\vartheta b_j}}<p\le\e^{L^{b_j}}
+ \right\}.
+\end{equation}
+Assign bands $(i-1)M+1,\ldots,iM$ to the $i$th coordinate group.
+
+These bands are pairwise disjoint.  Indeed,
+\[
+ b_{j+1}=\vartheta^2b_j<\vartheta b_j,
+\]
+so the upper endpoint of $\cB_{j+1}$ is smaller than the lower endpoint of
+$\cB_j$.  They also lie in $E_y$ for all sufficiently large $y$.  Their
+upper endpoints are below $y$ because $b_j\le1/2<1$, while for the smallest
+fixed exponent $b_{HM}>0$,
+\[
+ L^{\vartheta b_{HM}}>\log L
+\]
+eventually.  Thus the lower endpoint of every band exceeds
+$\e^{\log L}=L=\log y$.
+
+Use the common balancing parameter
+\begin{equation}\label{eq:final-eta}
+ \eta_y:=\frac1{\log\log y}.
+\end{equation}
+For band $j$, its scale in \eqref{eq:band-definitions} is
+$T_j=L^{b_j}$; define
+\begin{equation}\label{eq:placed-window-width}
+ w_j:=\frac{\eta_y}{T_j}.
+\end{equation}
+Thus, in the notation of Proposition~\ref{prop:alternative-bands},
+\begin{equation}\label{eq:placed-group-indexing}
+ \begin{aligned}
+  \cB_{i,j}&:=\cB_{(i-1)M+j},&
+  T_{i,j}&:=T_{(i-1)M+j},\\
+  w_{i,j}&:=w_{(i-1)M+j},&
+  \eta_{i,j}&:=\eta_y
+ \end{aligned}
+ \qquad(1\le i\le H,\ 1\le j\le M).
+\end{equation}
+The slow-decay condition holds because
+\[
+ \eta_y=\frac{b_j}{\log T_j}\longrightarrow0,
+ \qquad
+ \frac{\log(1/\eta_y)}{\log T_j}
+ =
+ \frac{\log\log\log y}{b_j\log\log y}
+ \longrightarrow0.
+\]
+Since $HM$ is fixed and $b_{HM}>0$, one threshold
+$y_0(H,M)$ makes every estimate in
+Sections~\ref{sec:firstmoment}--\ref{sec:secondmoment} valid simultaneously
+on all candidate bands; increase this threshold, if necessary, so that
+$H\eta_y\le1$, as required by Proposition~\ref{prop:joint-prefix}.
+Proposition~\ref{prop:rooted-balance} supplies the
+same constant $K$ for every band.  Moreover, on band $j$,
+\[
+ T_jw_j=\eta_y,
+\]
+so its actual logarithmic balance error is at most $\eta_y$.
+
+Apply Proposition~\ref{prop:alternative-bands} on the finite set $E_y$.
+Primes in inactive bands and outside all candidate bands are sampled into
+the common support with their product probabilities, exactly as in that
+proposition.  Thus the ambient word law is $\mu_{E_y}$.  The resulting cube
+law has
+\[
+ \eps_{H,M}=H\sqrt{\frac KM},
+ \qquad
+ \zeta_y=H\eta_y
+\]
+in Proposition~\ref{prop:joint-prefix}.  Hence
+\begin{equation}\label{eq:final-capacity-bound}
+ \frac{I_{E_y}^{\mathrm{sf}}}{Z_{E_y}}
+ \le
+ 3\kappacap^H+
+ C\left(
+ H\sqrt{\frac KM}+H\eta_y
+ \right)
+\end{equation}
+for an absolute constant $C$.
+
+We now execute the stated order of limits.  Given $\eps>0$, first choose
+$H$ so that
+\[
+ 3\kappacap^H<\frac{\eps}{3};
+\]
+this is possible because $\kappacap<1$.  Keeping $H$ fixed, choose $M$ so
+large that
+\[
+ CH\sqrt{\frac KM}<\frac{\eps}{3}.
+\]
+Finally keep $H,M$ fixed and let $y\to\infty$ until
+$CH\eta_y<\eps/3$.  Equation~\eqref{eq:final-capacity-bound} then gives,
+for every sufficiently large $y$,
+\[
+ 0\le\frac{I_{E_y}^{\mathrm{sf}}}{Z_{E_y}}<\eps.
+\]
+Thus the limsup is at most $\eps$.  Since $\eps>0$ was arbitrary and the
+ratio is nonnegative, we have proved
+\begin{equation}\label{eq:capacity-vanishes}
+ \frac{I_{E_y}^{\mathrm{sf}}}{Z_{E_y}}\longrightarrow0.
+\end{equation}
+
+The least prime in $E_y$ exceeds $\log y\to\infty$.  Thus
+\eqref{eq:capacity-vanishes} verifies both hypotheses of
+Corollary~\ref{cor:capacity-target}.  That corollary yields
+$f(N)=o(N)$ and completes the proof of Theorem~\ref{thm:main}.
+
+\section{Conclusion}
+
+The proof separates the problem into three reusable interfaces.  The
+finite-prime envelope and unit-exponent deletion convert integer density
+into a normalized squarefree capacity.  Joint-prefix transference converts
+flat balanced pair-product cubes into a cap-set saving.  Finally, the
+prime-band construction provides those cubes: the Poisson anchor argument
+gives the first moment, the discrete canonical pivots give the matching
+second moment, and alternative bands flatten the conditioned marginals.
+The order $H$, then $M$, then $y$ closes these interfaces without requiring
+any quantitative rate for $f(N)/N$.
+
+\appendix
+\section{Numerical Verification}\label{app:verification}
+
+A companion numerical verifier is supplied with the paper as
+\texttt{numerical\_verifier.py}.  It can be run with
+\begin{center}
+\texttt{python3 numerical\_verifier.py}.
+\end{center}
+
+The verifier certifies the explicit finite numerical and combinatorial
+comparisons appearing in the proof.  More precisely, it verifies:
+\begin{itemize}
+ \item the squarefree product-law and unit-deletion normalizations;
+ \item the substitution in the cap-set constant;
+ \item the explicit structural, survival, buffer, and anchor constants;
+ \item the five-state and conditional missing-petal probabilities;
+ \item atom-by-atom finite tests of factorial insertion;
+ \item all nine-mark rank counts and all noncollinear $2\times2$ mark
+       matrices;
+ \item the elementary balance identities and separation of the candidate
+       bands.
+\end{itemize}
+
+The program uses only the Python standard library.  Rational identities are
+checked exactly with \texttt{Fraction} arithmetic, and comparisons involving
+$\log 3$ use a rigorous rational interval obtained from the
+$\operatorname{atanh}$ series with an explicit remainder bound.  No binary
+floating-point arithmetic or random simulation is used.  The optional flag
+\texttt{--self-test} additionally exhausts small valuation models,
+squarefree set systems, and pair-product cubes as regression checks.
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{AbbottGardner}
+H.~L. Abbott and B.~Gardner,
+\newblock An extremal problem in number theory,
+\newblock \emph{Canadian Mathematical Bulletin} \textbf{10} (1967),
+173--177.
+\newblock \url{https://doi.org/10.4153/CMB-1967-015-8}
+
+\bibitem{Bloom536}
+T.~F. Bloom,
+\newblock \emph{Erd\H{o}s Problem \#536},
+\newblock Erd\H{o}s Problems, accessed 13 July 2026.
+\newblock \url{https://www.erdosproblems.com/536}
+
+\bibitem{EllenbergGijswijt}
+J.~S. Ellenberg and D.~Gijswijt,
+\newblock On large subsets of $\mathbb F_q^n$ with no three-term arithmetic
+progression,
+\newblock \emph{Annals of Mathematics} \textbf{185} (2017), 339--343.
+\newblock \url{https://doi.org/10.4007/annals.2017.185.1.8}
+
+\bibitem{Erdos1964}
+P.~Erd\H{o}s,
+\newblock On a problem in elementary number theory and a combinatorial
+problem,
+\newblock \emph{Mathematics of Computation} \textbf{18} (1964), 644--646.
+\newblock \url{https://doi.org/10.2307/2002950}
+
+\bibitem{IwaniecKowalski}
+H.~Iwaniec and E.~Kowalski,
+\newblock \emph{Analytic Number Theory},
+\newblock American Mathematical Society Colloquium Publications, vol.~53,
+American Mathematical Society, Providence, RI, 2004.
+
+\bibitem{MontgomeryVaughan}
+H.~L. Montgomery and R.~C. Vaughan,
+\newblock \emph{Multiplicative Number Theory I: Classical Theory},
+\newblock Cambridge Studies in Advanced Mathematics, vol.~97,
+Cambridge University Press, Cambridge, 2007.
+
+\bibitem{MontgomeryVaughanLargeSieve}
+H.~L. Montgomery and R.~C. Vaughan,
+\newblock The large sieve,
+\newblock \emph{Mathematika} \textbf{20} (1973), 119--134.
+\newblock \url{https://doi.org/10.1112/S0025579300004708}
+
+\end{thebibliography}
+
+\end{document}
