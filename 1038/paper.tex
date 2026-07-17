@@ -62,10 +62,11 @@ A Proposed Complete Solution to Erd\H{o}s Problem 1038
 
 \begin{abstract}
 Let $f$ range over the nonconstant monic real polynomials whose zeros all
-belong to $[-1,1]$.  We determine the infimum and supremum of the Lebesgue
-measure of $\{x\in\R:|f(x)|<1\}$.  The supremum is $2\sqrt2$.  The
-infimum is a uniquely determined constant $L$, characterized below as the
-minimum of a one-variable function, with numerical value
+belong to $[-1,1]$.  Tao proved that the supremum of the Lebesgue measure
+of $\{x\in\R:|f(x)|<1\}$ is $2\sqrt2$.  We give a computer-assisted
+determination of the infimum.  It is a uniquely determined constant $L$,
+characterized below as the minimum of a one-variable function, with
+numerical value
 \[
  L=1.834430475762661\ldots.
 \]
@@ -77,6 +78,7 @@ outward interval arithmetic in one companion Python file.  An explicit
 positive-platform approximation proves sharpness.  Every finite polynomial
 satisfies the lower inequality strictly, so the infimum is not attained;
 the supremum is attained by $(x^2-1)^m$ for every $m\ge1$.
+This proposed solution was found by GPT-5.6.
 \end{abstract}
 
 \section{Introduction and statement of the result}
@@ -87,21 +89,36 @@ Erd\H{o}s, Herzog, and Piranian asked for the two extremal values of
 \]
 when $f$ is a nonconstant monic polynomial with all of its zeros real and
 contained in $[-1,1]$~\cite[p.~131]{EHP1958}; see also the modern
-formulation~\cite{Bloom1038}.  We give a computer-assisted determination of both
-extrema.  The proof of the supremum follows the expansive-rearrangement
-argument in Tao's note~\cite{Tao1038}; we include the full argument and
-independently certify its three scalar inequalities.  The lower bound and
-the sharp limiting construction are proved in
-Sections~\ref{sec:reduction}--\ref{sec:recovery} below.
+formulation~\cite{Bloom1038}.  Tao subsequently determined the sharp upper
+extremum~\cite{Tao1038}; his updated note also gives the equality
+characterization for probability measures
+\cite[Theorem~2.1]{Tao1038Updated}.  We use this result in
+Section~\ref{sec:supremum} and concentrate on the lower extremum.
 
-The endpoint-atom reductions and the one-cut limiting candidate were also
-developed in the public discussion surrounding the
-problem~\cite{Bloom1038Discussion}.  The new burden addressed here is the global
-lower comparison for every finite root configuration, together with one
-exhaustive certificate for the remaining parameter inequalities.  Thus we
-do not present the supremum argument or the initial numerical candidate as
-new; the claimed result is the complete lower-bound closure and its
-reproducible verification.
+Tao's updated note also established the first structural reductions for the
+lower problem~\cite[Section~3]{Tao1038Updated}, partly by adapting an
+argument of Erd\H{o}s, Herzog, and Piranian~\cite[Theorem~1]{EHP1958}.
+It gives the componentwise barycentric reduction for a relaxed minimizer,
+orients the configuration by its mean, normalizes a principal atom at an
+endpoint with mass at least one half, and then develops a constant-potential
+one-cut candidate together with a formal dual-measure ansatz
+\cite[Section~4]{Tao1038Updated}; see also the accompanying discussion
+\cite{Bloom1038Discussion}.  The resulting candidate has length about
+$1.835$.  The same note isolates the remaining difficulty as controlling
+the additional exceptional set that arises in the general multi-component
+case~\cite[pp.~11--12]{Tao1038Updated}.
+
+The present argument begins from these reductions.  For finite polynomials,
+Lemma~\ref{lem:atomize} gives a simultaneous empirical version of the
+barycentric collapse and records the one-cluster-per-component conclusion.
+The main contribution is then a global comparison for every finite atomized
+configuration.  Quantitative residual-radius estimates are combined with a
+convex supporting inequality for the exact main width, an
+endpoint-corrected adjoint, and a quantile-block reduction.  A circle
+rearrangement theorem and a uniform interval certificate complete the
+comparison.  Finally, an exact analysis of the one-cut family identifies
+the constant $L$, and a positive-platform empirical approximation proves
+sharpness.
 
 Let $\mathcal P$ be the set of all nonconstant monic real polynomials whose
 zeros, counted with multiplicity, lie in $[-1,1]$, and put
@@ -113,23 +130,21 @@ For $0<q<3-2\sqrt2$ define
  H(q)=\frac{2q}{(1+q)^2},\qquad
  s(q)=\frac{1-q}{1+q},\qquad
  A(q)=\frac{\log H(q)}{\log q}.
-\tag{1.1}
 \]
 Let $q_s$ be the unique solution in $(0,3-2\sqrt2)$ of
 $A(q_s)=s(q_s)$.  For
 $0<q\le q_s$, let $u_-(q)$ be the unique solution of
 \[
  A(q)\log\frac{u-q}{|1-qu|}=\log u
-\tag{1.2}
 \]
 in $u>q^{-1}$.  For $0<q<q_s$, let $u_+(q)$ be the unique nontrivial
-solution of (1.2) in $1<u<q^{-1}$.  At $q=q_s$ set $u_+(q_s)=1$ by
+solution of the same equation in $1<u<q^{-1}$.  At $q=q_s$ set $u_+(q_s)=1$ by
 continuity.  Define
-\[
+\begin{equation}
  \Lambda(q)=H(q)\left(u_-(q)+u_-(q)^{-1}
                          -u_+(q)-u_+(q)^{-1}\right).
-\tag{1.3}
-\]
+\label{eq:1.3}
+\end{equation}
 
 \begin{theorem}[Main theorem]\label{thm:main}
 The function $\Lambda$ has a unique minimizer $q_*$ on $(0,q_s]$.  If
@@ -137,7 +152,6 @@ $L=\Lambda(q_*)$, then
 \[
  \boxed{\inf_{f\in\mathcal P}|E_f|=L,
         \qquad \sup_{f\in\mathcal P}|E_f|=2\sqrt2.}
-\tag{1.4}
 \]
 The infimum is not attained.  The supremum is attained by
 $(x^2-1)^m$ for every integer $m\ge1$.
@@ -173,12 +187,12 @@ and hence
  \Lambda'(q)
  =H'(q)\bigl(W(u_-)-W(u_+)\bigr)
  +H(q)\bigl(W'(u_-)u_-'-W'(u_+)u_+'\bigr).
-\tag{1.5}
 \]
 First one isolates $q_s$, equivalently as the unique zero of the strictly
-decreasing function in (6.4).  For $0<q<q_s$, one isolates the two
+decreasing function in \eqref{eq:6.4}.  For $0<q<q_s$, one isolates the two
 nondegenerate roots of $F(q,u)=0$; at $q=q_s$, one has $u_+=1$ exactly,
-and the regularized variable $y=(\log u_+)^2$ in (6.12)--(6.12b) gives
+and the regularized variable $y=(\log u_+)^2$ in the regularized soft-edge
+equations \eqref{eq:6.12} and \eqref{eq:6.12b} gives
 the continuous soft-edge branch.  One then isolates the unique root
 $q_*$ of $\Lambda'(q)=0$ and evaluates $\Lambda(q_*)$.  Certified
 bisection or interval Newton iteration, applied to the nondegenerate or
@@ -192,14 +206,13 @@ Put $A_*=A(q_*)$, $s_*=s(q_*)$, and $a_*=2s_*^2-1$.  Then
  \mu_*=A_*\delta_{-1}+
  \frac{t+1-2A_*s_*}
  {\pi(t+1)\sqrt{(t-a_*)(1-t)}}\1_{[a_*,1]}(t)\dd t.
-\tag{1.6}
 \]
 Its negative-potential component has endpoints
-\[
+\begin{equation}
  \alpha_*=s_*^2-H(q_*)\bigl(u_-(q_*)+u_-(q_*)^{-1}\bigr),\qquad
  \beta_*=s_*^2-H(q_*)\bigl(u_+(q_*)+u_+(q_*)^{-1}\bigr),
-\tag{1.7}
-\]
+\label{eq:1.7}
+\end{equation}
 and $\beta_*-\alpha_*=L$.
 
 We briefly describe the proof and its trust boundary.  A polynomial is first
@@ -215,9 +228,8 @@ one-cut family identifies $L$, and positive-platform empirical measures
 approach it from above.
 
 The analytic reductions, including all limiting and strictness arguments,
-are proved in the paper.  Three explicitly stated certificates remain: the
-global one-cut minimization, the uniform parameter cover, and the scalar
-signs in the upper-bound argument.  The single companion file
+are proved in the paper.  Two explicitly stated certificates remain: the
+global one-cut minimization and the uniform parameter cover.  The single companion file
 \texttt{numerical\_verifier.py} checks precisely those claims with outward
 rounding; it does not search for a proof and it aborts whenever a required
 sign cannot be resolved.  Appendix~\ref{app:verification} records the exact
@@ -229,7 +241,6 @@ For a probability measure $\mu$ on $[-1,1]$ write
 \[
  V_\mu(x)=\int\log|x-t|\dd\mu(t),\qquad
  E_\mu=\{x:V_\mu(x)<0\}.
-\tag{2.1}
 \]
 If $f(x)=\prod_{j=1}^n(x-r_j)$ and
 $\mu_f=n^{-1}\sum_j\delta_{r_j}$, then
@@ -239,6 +250,13 @@ $t\in[-1,1]$.  We call a measure of the form $\mu_f$ an
 \emph{empirical measure}; its atom masses are positive rational numbers
 whose sum is one.
 
+Tao's componentwise barycentric reduction is formulated for a
+variance-minimizing relaxed minimizer~\cite[Section~3]{Tao1038Updated}.
+For the finite polynomial problem it is useful to have the following
+simultaneous empirical version.  It collapses all components at once,
+controls the sublevel set globally, and records the resulting
+one-cluster-per-component structure.
+
 \begin{lemma}[Simultaneous component atomization]\label{lem:atomize}
 Let $\mu$ be an empirical root measure and write the finite union of
 components of $E_\mu$ as $\bigsqcup_j I_j$.  In every $I_j$, replace all
@@ -246,7 +264,6 @@ root mass by an atom of the same mass at its barycenter.  If $\widetilde
 \mu$ is the resulting empirical measure, then
 \[
  E_{\widetilde\mu}\subset E_\mu.
-\tag{2.2}
 \]
 Every component of $E_{\widetilde\mu}$ contains exactly one distinct root
 cluster.
@@ -277,7 +294,7 @@ mass in $I_j$ by its barycenter raises the contribution of that mass to the
 potential at $x$.  All roots belong to $E_\mu$ because the potential is
 $-\infty$ at a root, so these replacements account for the entire measure.
 Doing them simultaneously gives
-$V_{\widetilde\mu}(x)\ge V_\mu(x)\ge0$, proving (2.2).
+$V_{\widetilde\mu}(x)\ge V_\mu(x)\ge0$, proving the asserted inclusion.
 
 Inside an old component $I_j$, the new potential has only one pole $c_j$.
 On each of $(a_j,c_j)$ and $(c_j,b_j)$ it is strictly concave, tends to
@@ -286,13 +303,21 @@ $(a_j,c_j)$, a concave function has convex superlevel sets; equivalently,
 once it becomes negative while moving from $a_j$ toward $c_j$, it cannot
 become nonnegative again.  Its negative set on that side is therefore the
 interval adjacent to $c_j$; the same holds on the right.  The two pieces
-form one component containing $c_j$.  By (2.2), the complementary gaps
+form one component containing $c_j$.  By this inclusion, the complementary gaps
 between distinct old components remain nonnegative, so different new
 components cannot merge.  Thus every new component contains exactly one
 root cluster.
 \end{proof}
 
 \subsection{Orientation and endpoint normalization}
+
+We next place the configuration in the endpoint normalization used by the
+global comparison.  The underlying mean-orientation and endpoint-mass
+argument is due to Tao~\cite[Lemma~3.2 and the discussion following
+it]{Tao1038Updated}, adapting Erd\H{o}s, Herzog, and Piranian
+\cite[Theorem~1]{EHP1958}.  We keep track of the inclusion
+$(-1,0)\subset E_\mu$, the translated support, and the degenerate boundary
+case $\beta=0$ needed for finite configurations.
 
 We henceforth replace $\mu_f$ by the atomized measure from
 Lemma~\ref{lem:atomize}.  This can only decrease the sublevel set, so a
@@ -313,7 +338,6 @@ so $|x-t|\le1-xt$.  Jensen gives
 \[
  V_\mu(x)\le\int\log(1-xt)\dd\mu(t)
  \le\log(1-xm)\le0.
-\tag{2.3}
 \]
 The inequality is strict.  Indeed, equality in Jensen for the strictly
 concave function $u\mapsto\log u$ forces $1-xt$ to be constant
@@ -323,7 +347,6 @@ $\delta_0$ the first inequality is strict whenever $-1<x<0$.
 Thus
 \[
  (-1,0)\subset E_\mu.
-\tag{2.4}
 \]
 
 Let $c$ be the unique root cluster in the component containing
@@ -339,7 +362,7 @@ $m-c-1\le -c-1\le0$, because $m\le0$ and $c\ge-1$.  Denote the translated
 measure temporarily by $\mu^{\rm tr}$.
 
 Let $r_0$ be the right endpoint of the main component before this
-translation.  By (2.4),
+translation.  Since $(-1,0)\subset E_\mu$, one has
 $r_0\ge0$.  If $r_0-c<1$, the distance from $r_0$ to the main cluster is
 strictly less than one.  Every residual cluster lies to the right of that
 component, hence in $[r_0,1]$, and its distance from $r_0$ is at most one.
@@ -348,7 +371,6 @@ less than one, contradicting $\exp V_\mu(r_0)=1$ for the unshifted measure.
 Consequently
 \[
  \beta=r_0-c-1\ge0.
-\tag{2.5}
 \]
 We now rename $\mu^{\rm tr}$ as $\mu$.  After translation, the main atom is
 at $-1$, the translated right boundary
@@ -360,7 +382,6 @@ weighted AM--GM gives
  \le\int|\beta-t|\dd\mu(t)
  \le A(1+\beta)+(1-A)(1-\beta)
  =1+(2A-1)\beta.
-\tag{2.6}
 \]
 If $\beta>0$, this proves $A\ge1/2$.  If $\beta=0$, equality in the
 geometric--arithmetic mean chain forces every distance from $\beta$ to a
@@ -370,34 +391,34 @@ $-A+(1-A)\le0$, again $A\ge1/2$.
 
 If $A=1$, the sublevel interval is $(-2,0)$ and has length $2>L$.
 Assume henceforth $B=1-A>0$, and write
-\[
+\begin{equation}
  k=\frac AB\ge1,\qquad
  \mu=A\delta_{-1}+B\sum_{i=1}^Nq_i\delta_{t_i},
  \quad 0\le t_1<\cdots<t_N\le1,
  \quad\sum_iq_i=1.
-\tag{2.7}
-\]
+\label{eq:2.7}
+\end{equation}
 In the shifted spatial coordinate $x_{\rm new}=x_{\rm old}+1$, put
 $d_i=1+t_i\in[1,2]$.  Addition of this translation and division of the
 potential by the positive number $B$ do not change its sign, and give
-\[
+\begin{equation}
  W(x)=k\log|x|+\sum_iq_i\log|x-d_i|.
-\tag{2.8}
-\]
+\label{eq:2.8}
+\end{equation}
 Let $M_k$ be the width of the component of $\{W<0\}$ containing zero and
 define
-\[
+\begin{equation}
  R_i=\exp\left[-\frac1{q_i}\left(k\log d_i+
               \sum_{j\ne i}q_j\log|d_i-d_j|\right)\right].
-\tag{2.9}
-\]
+\label{eq:2.9}
+\end{equation}
 
 \begin{lemma}[Local component radius]\label{lem:radius}
 The component containing $d_i$ has width at least $2R_i$.  Hence
-\[
+\begin{equation}
  |E_\mu|\ge \J_k:=M_k+2\sum_iR_i.
-\tag{2.10}
-\]
+\label{eq:2.10}
+\end{equation}
 \end{lemma}
 
 \begin{proof}
@@ -414,7 +435,7 @@ $(0,1)$, while atomization puts the residual cluster $d_i$ in a different
 component; hence $\ell_i\ge1>0$.  The second assertion follows
 by differentiating twice after the self-pole has been removed.
 
-The boundary equations and (2.9) are
+The boundary equations and \eqref{eq:2.9} are
 \[
  H_i(\ell_i)=-q_i\log s,\quad
  H_i(r_i)=-q_i\log u,\quad
@@ -436,14 +457,13 @@ $h'(w)=\log((1-w)/w)+(1-2w)/(w(1-w))$ is positive on
 $(0,1/2)$ and changes sign by symmetry at $1/2$; hence
 $w^{1-w}(1-w)^w\le1/2$.  Thus $T\ge2R_i$.  The main component and all
 residual components are pairwise disjoint, so adding their lengths proves
-(2.10).
+\eqref{eq:2.10}.
 \end{proof}
 
 \begin{lemma}[Endpoint window]\label{lem:window}
 Let $\rho(k)\in(0,1)$ be the unique solution of
 \[
  \rho(k)^k(2+\rho(k))=1.
-\tag{2.11}
 \]
 Then $M_k\ge1+\rho(k)$, and $\rho(k)\ge\sqrt2-1$ for $k\ge1$.
 \end{lemma}
@@ -461,7 +481,7 @@ For $0<r<\rho(k)$,
  W(-r)\le k\log r+\log(2+r)<0.
 \]
 Thus $(-\rho(k),1)$ lies in the main component.  At $k=1$,
-$\rho(1)=\sqrt2-1$; for fixed $0<\rho<1$, the left side of (2.11)
+$\rho(1)=\sqrt2-1$; for fixed $0<\rho<1$, the left side of the defining equation for $\rho(k)$
 decreases as $k$ increases, so its solution increases.
 \end{proof}
 
@@ -471,11 +491,10 @@ The following argument is important because it does not use a
 fixed-endpoint or unrestricted Bojanov comparison.
 
 \begin{proposition}[Small endpoint-to-residual ratio]\label{prop:lowk}
-For every atomized configuration (2.8) with
+For every atomized configuration \eqref{eq:2.8} with
 $1\le k\le K:=29/20$,
 \[
  \sum_iR_i>\frac13,\qquad \J_k>2.
-\tag{3.1}
 \]
 \end{proposition}
 
@@ -486,14 +505,12 @@ $y_i=2-d_i\ge0$ and $\bar y=\sum_iq_i y_i$.  Jensen's inequality gives
 \[
  0\le k\log b+\sum_iq_i\log(d_i-b)
  \le k\log b+\log(2-\bar y-b).
-\tag{3.2}
 \]
 In particular $b^k(2-b)\ge1$.  If $b<1$, then
 $b^k(2-b)\le b(2-b)<1$, a contradiction.  Thus $b\ge1$ and
 \[
  \bar y\le2-b-b^{-k}
  \le\eps_K:=2-(K+1)K^{-K/(K+1)}.
-\tag{3.3}
 \]
 Indeed, $b\ge1$ and $k\le K$ imply $b^{-k}\ge b^{-K}$, so
 $2-b-b^{-k}\le2-b-b^{-K}$.  The derivative of the latter function is
@@ -502,7 +519,6 @@ that point, and is negative after it.  This proves the displayed maximum.
 We now prove the exact rational bound
 \[
  0<\eps_K<\frac1{25}.
-\tag{3.4}
 \]
 Positivity follows because the derivative at $b=1$ is $K-1>0$.
 Furthermore
@@ -526,7 +542,7 @@ $z=(29/49)(3/8)$.  Hence
 \]
 so the last rational inequality says
 $(K+1)K^{-K/(K+1)}>49/25$.  Therefore
-$\eps_K=2-(K+1)K^{-K/(K+1)}<1/25$, proving (3.4).
+$\eps_K=2-(K+1)K^{-K/(K+1)}<1/25$, proving the claimed bound.
 
 Put $Q=\sum_iq_i^2$ and $t=1-Q=2\sum_{i<j}q_iq_j$.  For $t>0$,
 concavity of the logarithm and $|d_i-d_j|=|y_i-y_j|\le y_i+y_j$ yield
@@ -535,19 +551,17 @@ concavity of the logarithm and $|d_i-d_j|=|y_i-y_j|\le y_i+y_j$ yield
 &\le t\log\left(\frac{2\sum_{i<j}q_iq_j|d_i-d_j|}{t}\right)\\
 &\le t\log\left(\frac{2\sum_iq_i(1-q_i)y_i}{t}\right)
  \le t\log\frac{2\eps_K}{t}.
-\tag{3.5}
 \end{align*}
 For $t=0$ the pair sums are empty and the terms involving
 $t\log(a/t)$ are defined by continuity as zero.
 
-The definition (2.9) gives the exact identity
+The definition \eqref{eq:2.9} gives the exact identity
 \[
  \sum_iq_i^2\log R_i
  =-k\sum_iq_i\log d_i
   -2\sum_{i<j}q_iq_j\log|d_i-d_j|.
-\tag{3.6}
 \]
-Because $d_i\le2$, (3.5)--(3.6), followed by weighted AM--GM with
+Because $d_i\le2$, combining the preceding estimate with this identity, and then applying weighted AM--GM with
 weights $q_i^2/Q$, gives, with $S=\sum_iR_i$,
 \[
  S\ge\sum_i\frac{q_i^2}{Q}R_i
@@ -557,13 +571,11 @@ Equivalently,
 \[
  (1-t)\log(3S)
  \ge\log3-k\log2-t\log\frac{6\eps_K}{t}.
-\tag{3.7}
 \]
-The elementary maximum $t\log(a/t)\le a/e$, (3.4), and
+The elementary maximum $t\log(a/t)\le a/e$, the bound $\eps_K<1/25$, and
 $e>1+1+1/2+1/6=8/3$ show
 \[
  t\log\frac{6\eps_K}{t}<\frac9{100}.
-\tag{3.8}
 \]
 Finally, the positive atanh series gives
 \[
@@ -579,9 +591,8 @@ Hence
 \[
  \log3-\frac{29}{20}\log2
  >\frac{1469}{16200}=\frac9{100}+\frac{11}{16200}.
-\tag{3.9}
 \]
-Equations (3.7)--(3.9) imply
+Combining the last three estimates gives
 $(1-t)\log(3S)>11/16200$.  Since $1-t=Q=\sum_iq_i^2>0$, this gives
 $S>1/3$.  By
 Lemma~\ref{lem:window},
@@ -593,18 +604,24 @@ because $\sqrt2>4/3$.
 
 \section{Constant-platform references and convex calibration}
 
+After translation and normalization by the residual mass, Tao's flat
+one-cut candidate becomes the reference family used below
+\cite[Section~4]{Tao1038Updated}.  We retain the mass ratio and the support
+endpoint as independent parameters, allowing a nonzero platform.  This
+two-parameter family provides the flexibility needed for a uniform
+comparison with arbitrary finite multi-component configurations.
+
 Fix $k\ge1$ and $1\le a<2$, put $I=[a,2]$, and define
 \[
  c=\frac{a+2}{2},\qquad r=\frac{2-a}{2},\qquad H=\frac r2=\frac{2-a}{4}.
-\tag{4.1}
 \]
 The equilibrium probability of $I$ and the balayage of $\delta_0$ onto
 $I$ are
-\[
+\begin{equation}
  \dd e_I(d)=\frac{\dd d}{\pi\sqrt{(d-a)(2-d)}},\qquad
  \dd\omega_{0,I}(d)=\frac{\sqrt{2a}}d\,\dd e_I(d).
-\tag{4.2}
-\]
+\label{eq:4.2}
+\end{equation}
 These are the standard interval equilibrium and balayage
 formulas~\cite[Chapters I--II]{SaffTotik1997}.  They can also be checked directly:
 with $d=c-r\cos\theta$, $\dd e_I=\dd\theta/\pi$, and the Cauchy transform
@@ -613,39 +630,38 @@ and the difference of its logarithmic potential from $\log d$ is constant
 on $I$.
 
 Define the reference probability
-\[
+\begin{equation}
  \eta_{k,a}=(k+1)e_I-k\omega_{0,I}.
-\tag{4.3}
-\]
+\label{eq:4.3}
+\end{equation}
 Thus
-\[
+\begin{equation}
  \dd\eta_{k,a}(d)=
  \left(k+1-\frac{k\sqrt{2a}}d\right)
  \frac{\dd d}{\pi\sqrt{(d-a)(2-d)}}.
-\tag{4.4}
-\]
+\label{eq:4.4}
+\end{equation}
 The coefficient in parentheses is increasing, so $\eta_{k,a}\ge0$ if
 and only if
-\[
+\begin{equation}
  a\ge2\left(\frac{k}{k+1}\right)^2.
-\tag{4.5}
-\]
+\label{eq:4.5}
+\end{equation}
 Indeed, its minimum occurs at $d=a$ and is nonnegative precisely when
-$k+1\ge k\sqrt{2/a}$, which is equivalent to (4.5).  It has total mass
+$k+1\ge k\sqrt{2/a}$, which is equivalent to \eqref{eq:4.5}.  It has total mass
 $(k+1)-k=1$.  Let
 \[
  D_0(a)=\frac{a+2+2\sqrt{2a}}4.
 \]
 On $I$, the equilibrium potential is $\log H$, while the balayage
 potential is $\log d+\log H-\log D_0(a)$.  Hence
-\[
+\begin{equation}
  k\log d+\int_I\log|d-e|\dd\eta_{k,a}(e)=C(k,a),
-\tag{4.6}
-\]
+\label{eq:4.6}
+\end{equation}
 where
 \[
  C(k,a)=\log H+k\log D_0(a).
-\tag{4.7}
 \]
 No sign assumption on $C(k,a)$ is made.
 
@@ -655,29 +671,33 @@ Let
 \]
 Assume, as will be certified uniformly below, that the main component has
 simple crossings
-\[
+\begin{equation}
  x_-<0<x_+<a,\qquad W_0'(x_-)<0<W_0'(x_+).
-\tag{4.8}
-\]
+\label{eq:4.8}
+\end{equation}
 Set
 \[
  \sigma_-=-\frac1{W_0'(x_-)},\quad
  \sigma_+=\frac1{W_0'(x_+)},\quad
  K_\pm=\sqrt{(a-x_\pm)(2-x_\pm)},
-\tag{4.9}
 \]
 so $\sigma_->0$ and $\sigma_+>0$, and put
 \[
  D=\frac{\sigma_-K_-}{a-x_-}+\frac{\sigma_+K_+}{a-x_+}.
 \]
-The adjoint measure is
-\[
+Tao proposed a formal dual measure with the same rational-square-root
+structure for the one-component problem~\cite[pp.~10--11]{Tao1038Updated}.
+For a general calibrated reference, define the corresponding adjoint
+measure by
+\begin{equation}
  d\xi(d)=
  \frac{D-\sigma_-K_-/(d-x_-)-\sigma_+K_+/(d-x_+)}
  {\pi\sqrt{(d-a)(2-d)}}\dd d.
-\tag{4.10}
-\]
-If $N(d)$ denotes the numerator in (4.10), then the definition of $D$
+\label{eq:4.10}
+\end{equation}
+The exact endpoint correction needed for finite multi-component targets is
+proved below.
+If $N(d)$ denotes the numerator in \eqref{eq:4.10}, then the definition of $D$
 gives $N(a)=0$, while
 \[
  N'(d)=\frac{\sigma_-K_-}{(d-x_-)^2}
@@ -685,7 +705,7 @@ gives $N(a)=0$, while
 \]
 Thus $\xi$ is positive on every nonempty subinterval of $(a,2]$.
 Moreover $N(d)=O(d-a)$ at $a$ and is bounded at $2$, so the square-root
-singularities in (4.10) are integrable and $\xi$ is a finite measure.
+singularities in \eqref{eq:4.10} are integrable and $\xi$ is a finite measure.
 
 \subsection{Convexity of the exact main width}
 
@@ -704,16 +724,15 @@ width of the component containing zero for
 \]
 For any nondecreasing quantile $S:[0,1]\to[1,2]$, define, for
 $y<\operatorname*{ess\,inf}S$,
-\[
+\begin{equation}
  \Psi_S(y)=y\exp\left(\frac1k\int_0^1
         \log\left(1-\frac{y}{S(u)}\right)\dd u\right),\qquad
  R(S)=\exp\left(-\frac1k\int_0^1\log S(u)\dd u\right).
-\tag{4.11}
-\]
+\label{eq:4.11}
+\end{equation}
 If $W_S(y)=k\log|y|+\int_0^1\log|y-S(u)|\dd u$, direct expansion gives
 \[
  \frac1kW_S(y)=\log\frac{|\Psi_S(y)|}{R(S)}.
-\tag{4.12}
 \]
 
 \begin{lemma}[Separation--contact criterion]\label{lem:separation}
@@ -729,7 +748,7 @@ and the latter value is the increasing real limit in the contact case.
 \end{lemma}
 
 \begin{proof}
-For $0<y<d_1$, logarithmic differentiation of (4.11) gives
+For $0<y<d_1$, logarithmic differentiation of \eqref{eq:4.11} gives
 \[
  \frac{\Psi_T'(y)}{\Psi_T(y)}
  =\frac1y-\frac1k\sum_i\frac{q_i}{d_i-y}=:G(y).
@@ -750,7 +769,8 @@ $\Psi_T(y)=-R(T)$ has exactly one negative solution.
 
 By atomization, the component containing zero and the component containing
 $d_1$ are distinct.  Therefore some point of $(0,d_1)$ has $W_T\ge0$.
-Equation (4.12) forces $R(T)\le\max_{(0,d_1)}\Psi_T=\Psi_T(y_c)$.
+The displayed relation between $W_T$, $\Psi_T$, and $R(T)$ forces
+$R(T)\le\max_{(0,d_1)}\Psi_T=\Psi_T(y_c)$.
 If the inequality is strict, $\Psi_T=R(T)$ has two positive solutions and
 $W_T>0$ precisely between them; the first is the right endpoint of the main
 component.  If equality holds, the solutions coalesce at $y_c$ and
@@ -761,20 +781,20 @@ the assertions about the endpoints and the inverse branch.
 
 \begin{lemma}[Convex supporting inequality]\label{lem:convex-support}
 Suppose that the reference $T_0$ is strictly separated and has the simple
-crossings in (4.8).  If $T$ is an atomized separated or contact
+crossings in \eqref{eq:4.8}.  If $T$ is an atomized separated or contact
 target and $v=T-T_0$, then the directional derivative of the reference
 width exists and
-\[
+\begin{equation}
  M_k(T)\ge M_k(T_0)+\dot M_k(T_0;v).
-\tag{4.13}
-\]
+\label{eq:4.13}
+\end{equation}
 \end{lemma}
 
 \begin{proof}
 We prove the global supporting inequality, rather than assume a formal
 first variation.  For a finite residual measure
 $\sum_iq_i\delta_{d_i}$ put $\alpha_i=q_i/k$, so
-$\sum_i\alpha_i=1/k$.  Formula (4.11) becomes
+$\sum_i\alpha_i=1/k$.  Formula \eqref{eq:4.11} becomes
 \[
  \Psi(y)=y\prod_i(1-y/d_i)^{\alpha_i},\qquad
  R=\prod_i d_i^{-\alpha_i}.
@@ -785,24 +805,24 @@ For real $y<d_1$, all factors $1-y/d_i$ are positive, and
 \]
 By Lemma~\ref{lem:separation}, the two main endpoints are $\Phi(-R)$ and
 $\Phi(R)$, with the stated contact convention.  Lagrange inversion gives
-\[
+\begin{equation}
  \Phi(z)=\sum_{n\ge1}a_nz^n,\qquad
  a_n=\frac1n[y^{n-1}]\prod_i(1-y/d_i)^{-n\alpha_i}.
-\tag{4.14}
-\]
+\label{eq:4.14}
+\end{equation}
 Consequently
-\[
+\begin{equation}
  M_k=\Phi(R)-\Phi(-R)=2\sum_{m\ge0}a_{2m+1}R^{2m+1}.
-\tag{4.15}
-\]
+\label{eq:4.15}
+\end{equation}
 More explicitly,
-\[
+\begin{equation}
  a_nR^n=\frac1n
  \sum_{r_1+\cdots+r_N=n-1}
  \prod_i\frac{(n\alpha_i)_{r_i}}{r_i!}
  d_i^{-(n\alpha_i+r_i)}.
-\tag{4.16}
-\]
+\label{eq:4.16}
+\end{equation}
 Here $(z)_0=1$ and
 $(z)_m=z(z+1)\cdots(z+m-1)$ for $m\ge1$ is the rising Pochhammer symbol.
 Every coefficient is nonnegative.  If
@@ -813,7 +833,7 @@ $v$,
  =\left(\sum_i\frac{\gamma_iv_i}{d_i}\right)^2
   +\sum_i\frac{\gamma_iv_i^2}{d_i^2}\ge0.
 \]
-Thus every finite odd partial sum in (4.15) is convex in the positive
+Thus every finite odd partial sum in \eqref{eq:4.15} is convex in the positive
 coordinates.  Repeating coordinates according to multiplicity gives the
 same statement on every common equal-mass quantile partition.
 
@@ -827,7 +847,7 @@ that the changing dimension causes no problem, define
  m_\ell(T)=\int_0^1T(u)^{-\ell}\dd u,
  \qquad R(T)=\exp\left(-\frac1k\int_0^1\log T(u)\dd u\right).
 \]
-The product in the coefficient formula (4.14) has the identity
+The product in the coefficient formula \eqref{eq:4.14} has the identity
 \[
  \prod_i(1-y/d_i)^{-nq_i/k}
  =\exp\left(\frac nk\sum_{\ell\ge1}
@@ -844,7 +864,7 @@ $R$, and their directional derivatives converge, because $T\ge1$ and
 It follows that every fixed odd truncation and its directional derivative
 converge as the mesh tends to zero.
 
-Let $S_m$ denote the sum of the terms in (4.15) through degree $2m+1$.
+Let $S_m$ denote the sum of the terms in \eqref{eq:4.15} through degree $2m+1$.
 Choose equal-mass step approximations $T_{0,N}$ to $T_0$, with $N$ a
 multiple of the common denominator of the target masses.  Repeat each
 target value on the same $N$ cells.  Finite-dimensional convexity gives
@@ -864,7 +884,7 @@ complex singularity intervenes, recall Pringsheim's
 theorem~\cite[Theorem IV.6]{FlajoletSedgewick2009}: a power series with
 nonnegative coefficients and finite radius of convergence is singular at
 the positive point equal to that radius.  The coefficients $a_n$ in
-(4.14) are nonnegative, while the positive real inverse branch is analytic
+\eqref{eq:4.14} are nonnegative, while the positive real inverse branch is analytic
 up to its first critical value.  Thus the reference level is strictly
 inside the disk of convergence.  On a smaller closed disk, the inverse
 series and its material derivative converge locally uniformly by the
@@ -885,7 +905,7 @@ the Abel width
  [\lambda R(T)]^{2m+1}.
 \]
 For each finite odd truncation, convexity follows because its monomials are
-precisely those in (4.16), multiplied by positive constants
+precisely those in \eqref{eq:4.16}, multiplied by positive constants
 $\lambda^{2m+1}$.  Apply the common-partition argument to that truncation
 and then let its degree tend to infinity.  Monotone convergence applies on
 the target side; at the strictly separated reference, both the value and
@@ -902,13 +922,13 @@ the monotone form of Abel's boundary theorem, and it also follows directly
 from monotone convergence of the nonnegative odd series.  Strict
 separation gives absolute convergence of the reference value and material
 derivative, so their limits may be taken term by term.  Letting
-$\lambda\uparrow1$ proves (4.13) in the contact case.
+$\lambda\uparrow1$ proves \eqref{eq:4.13} in the contact case.
 \end{proof}
 
 \subsection{The endpoint-corrected adjoint}
 
 The pairing with $\xi$ is not, in general, equal to the derivative in
-(4.13).  We now prove the exact endpoint correction and the one-sided
+\eqref{eq:4.13}.  We now prove the exact endpoint correction and the one-sided
 inequality that is needed.
 
 For $0\le s\le1$, set $T_s=T_0+s(T-T_0)$.  In the reference spatial
@@ -958,14 +978,13 @@ Then
  K_j=\frac{r(1-\rho_j^2)}{2\rho_j},\qquad
  P_\rho(\theta)=\frac{1-\rho^2}{1-2\rho\cos\theta+\rho^2}
  =1+2\sum_{n\ge1}\rho^n\cos(n\theta),
-\tag{4.17}
 \]
-and $K_j/(d-x_j)=P_{\rho_j}(\theta)$.  Thus (4.10) is
-\[
+and $K_j/(d-x_j)=P_{\rho_j}(\theta)$.  Thus \eqref{eq:4.10} is
+\begin{equation}
  d\xi=B(\theta)\frac{d\theta}{\pi},\qquad
  B(\theta)=D-\sum_j\sigma_jP_{\rho_j}(\theta),
-\tag{4.18}
-\]
+\label{eq:4.18}
+\end{equation}
 with $D=\sum_j\sigma_jP_{\rho_j}(0)$.  This also proves $B(0)=0$ and
 $B(\theta)>0$ for $0<\theta\le\pi$.
 
@@ -976,7 +995,7 @@ the integral gives
  g(d)=\frac{k v(d)}d+\pv\int_I
  \frac{v(d)-v(e)}{d-e}\dd\eta(e).
 \]
-Differentiating (4.6) with respect to its spatial variable gives
+Differentiating \eqref{eq:4.6} with respect to its spatial variable gives
 \[
  \frac kd+\pv\int_I\frac1{d-e}\dd\eta(e)=0.
 \]
@@ -985,13 +1004,11 @@ display cancels every term containing $v(d)$ and gives
 \[
  g(d)=\pv\int_I\frac{v(e)}{e-d}\dd\eta(e)
      =\pv\int_I\frac{F(e)}{e-d}\dd e_I(e).
-\tag{4.19}
 \]
 At the two exterior crossings, ordinary differentiation and implicit
 differentiation give
 \[
  \dot M_k=-\sum_j\sigma_j\int_I\frac{F(d)}{d-x_j}\dd e_I(d).
-\tag{4.20}
 \]
 
 Expand $F(c-r\cos\theta)=f_0+2\sum_{n\ge1}f_n\cos(n\theta)$, first as a
@@ -1003,7 +1020,6 @@ transform identity
  \pv\frac1\pi\int_0^\pi
  \frac{\cos(n\phi)}{\cos\theta-\cos\phi}\dd\phi
  =-U_{n-1}(\cos\theta)
-\tag{4.21}
 \]
 follows from the zero transform of the constant function, the case $n=1$,
 and the cosine recurrence.  Moreover
@@ -1013,7 +1029,6 @@ and the cosine recurrence.  Moreover
  \dfrac{1+\rho^2-2\rho^{n+1}}{1-\rho^2},&n\text{ odd},\\[2mm]
  \dfrac{2\rho(1-\rho^n)}{1-\rho^2},&n\text{ even}.
  \end{cases}
-\tag{4.22}
 \]
 This is obtained by inserting
 $U_{2m}=1+2\sum_{\ell=1}^m\cos(2\ell\theta)$ and
@@ -1024,13 +1039,14 @@ We spell out the remaining coefficient calculation.  Put
  U_{n-1}(\cos\theta)\dd\theta
  =\begin{cases}1,&n\text{ odd},\\0,&n\text{ even},\end{cases}
 \]
-and let $S_n(\rho)$ denote the left side of (4.22).  Equations
-(4.18), (4.19), and (4.21) give
+and let $S_n(\rho)$ denote the preceding Poisson integral.  The angular
+density for $\xi$, the Hilbert-transform representation of $g$, and the
+preceding finite-transform identity give
 \[
  \int_Ig\dd\xi=-\frac2r\sum_{n\ge1}f_n
  \left(D\varepsilon_n-\sum_j\sigma_jS_n(\rho_j)\right).
 \]
-Poisson orthogonality and (4.20) give, on the other hand,
+Poisson orthogonality and the displayed first-variation formula give, on the other hand,
 \[
  \dot M_k=-\sum_j\frac{\sigma_j}{K_j}
  \left(f_0+2\sum_{n\ge1}f_n\rho_j^n\right).
@@ -1053,7 +1069,7 @@ If $n$ is odd, use
  D=\sum_j\sigma_jP_{\rho_j}(0)
  =\sum_j\sigma_j\frac{1+2\rho_j+\rho_j^2}{1-\rho_j^2}
 \]
-and the odd line of (4.22).  The coefficient becomes
+and the odd case of the Poisson integral above.  The coefficient becomes
 \[
  \frac{2D}{r}-\frac2r\sum_j\sigma_j
  \frac{1+\rho_j^2}{1-\rho_j^2}
@@ -1065,16 +1081,16 @@ Finally $d(\pi)=2$, and therefore
 \]
 The three coefficient formulas are exactly those of $-\Gamma F(2)$.
 Thus
-\[
+\begin{equation}
  \boxed{\dot M_k-\int_Ig\dd\xi
  =-F(2)\sum_j\frac{\sigma_j}{K_j}
  =-a_\pi v(2)\left(\frac{\sigma_-}{K_-}
                     +\frac{\sigma_+}{K_+}\right).}
-\tag{4.23}
-\]
+\label{eq:4.23}
+\end{equation}
 
 For an atomic target, $v$ is piecewise $C^1$ in the reference coordinate,
-with finitely many jumps.  Apply (4.23) to the Poisson--Abel regularization
+with finitely many jumps.  Apply \eqref{eq:4.23} to the Poisson--Abel regularization
 $F_\lambda=f_0+2\sum\lambda^nf_n\cos(n\theta)$.  For fixed
 $\lambda<1$, the identity first holds for finite cosine truncations and
 then for $F_\lambda$ by absolute convergence.  As $\lambda\uparrow1$, the
@@ -1143,20 +1159,19 @@ The last two bounds are integrable, $B(\theta)=O(\theta^2)$ at zero, and
 $B$ is bounded at $\pi$.  Away from the finitely many jumps the displayed
 series converge pointwise as $\lambda\uparrow1$; the logarithmic estimates
 give uniform integrability on the omitted neighborhoods.  Hence the
-pairings converge in $L^1(B(\theta)\dd\theta)$, which passes (4.23) to the
+pairings converge in $L^1(B(\theta)\dd\theta)$, which passes \eqref{eq:4.23} to the
 target velocity.
 Since the
 top target quantile is $d_N\le2$,
 \[
  v(2)=d_N-2\le0,\qquad
  \dot M_k\ge\int_Ig\dd\xi.
-\tag{4.24}
 \]
-Combining (4.13) and (4.24) gives the corrected supporting inequality
-\[
+Combining this one-sided derivative estimate with \eqref{eq:4.13} gives the corrected supporting inequality
+\begin{equation}
  M_k(T)\ge M_k(T_0)+\int_Ig\dd\xi.
-\tag{4.25}
-\]
+\label{eq:4.25}
+\end{equation}
 \end{proof}
 
 \subsection{The block inequality}
@@ -1176,12 +1191,12 @@ Thus
  =\int_I\varphi(F_0(d))\dd\xi(d)
 \]
 for every bounded Borel function $\varphi$.  Put
-\[
+\begin{equation}
  r_i=\widehat\xi(I_i),\qquad
  \E(I_i)=\int_{I_i}\int_{I_i}
  \log|T_0(u)-T_0(v)|\dd v\dd\widehat\xi(u).
-\tag{4.26}
-\]
+\label{eq:4.26}
+\end{equation}
 These mixed logarithmic integrals are absolutely convergent.  Indeed, in
 angular coordinates
 \[
@@ -1211,7 +1226,6 @@ For $u\in I_i$, every off-block target difference and reference
 difference has the same sign.  The tangent inequality
 \[
  \frac{y-x}{x}\ge\log y-\log x\qquad(x,y>0)
-\tag{4.27}
 \]
 applies to their absolute values and to the external-field coordinates.
 Indeed, writing $g(u)$ as shorthand for $g(T_0(u))$, the unreduced first
@@ -1222,58 +1236,53 @@ variation is
  \frac{[T(u)-T(v)]-[T_0(u)-T_0(v)]}
       {T_0(u)-T_0(v)}\dd v.
 \]
-For $v\in I_j$, $j\ne i$, (4.27) gives
+For $v\in I_j$, $j\ne i$, the tangent inequality gives
 \[
  \frac{(d_i-d_j)-[T_0(u)-T_0(v)]}{T_0(u)-T_0(v)}
  \ge\log|d_i-d_j|-\log|T_0(u)-T_0(v)|.
 \]
 For $v\in I_i$ the target difference is zero, so the quotient equals
-$-1$ almost everywhere.  Applying (4.27) also to $d_i/T_0(u)$ and
+$-1$ almost everywhere.  Applying the same inequality also to $d_i/T_0(u)$ and
 integrating the preceding bounds yields
 \begin{align*}
 g(u)\ge{}&k\log d_i-k\log T_0(u)
  +\sum_{j\ne i}q_j\log|d_i-d_j|\\
 &-\int_{(0,1)\setminus I_i}\log|T_0(u)-T_0(v)|\dd v-q_i.
 \end{align*}
-Now (2.9) makes the first and third terms equal to
-$-q_i\log R_i$, while the platform identity (4.6) supplies exactly the
+Now \eqref{eq:2.9} makes the first and third terms equal to
+$-q_i\log R_i$, while the platform identity \eqref{eq:4.6} supplies exactly the
 remaining constant $-C$.  Therefore
 \[
  g(u)\ge-q_i\log R_i-C-q_i
  +\int_{I_i}\log|T_0(u)-T_0(v)|\dd v.
-\tag{4.28}
 \]
-Integrating, summing, and using (4.25) yields
+Integrating, summing, and using \eqref{eq:4.25} yields
 \[
  \J_k\ge M_0+\sum_i\left\{
  r_i[-q_i\log R_i-C-q_i]+\E(I_i)+2R_i\right\},
-\tag{4.29}
 \]
 where $M_0=M_k(T_0)$.  As a function of $R_i>0$, the expression in braces
 has derivative $-q_ir_i/R_i+2$ and positive second derivative
 $q_ir_i/R_i^2$.  Its unique minimum is therefore
 \[
  \E(I_i)-q_ir_i\log\frac{q_ir_i}{2}-Cr_i,
-\tag{4.30}
 \]
 attained at $R_i=q_ir_i/2$.  Here $r_i>0$, because $\xi$ is positive on
 every nonempty subinterval away from the single endpoint $a$.  Put
 \[
  R_0=\xi(I)=\widehat\xi((0,1)),\qquad
  C_{\rm eff}=C+\frac{L-M_0}{R_0}.
-\tag{4.31}
 \]
 $R_0$ is strictly positive.  It follows that the interval inequalities
-\[
+\begin{equation}
  \boxed{\E(I')\ge qr\log\frac{qr}{2}+C_{\rm eff}r}
-\tag{4.32}
-\]
+\label{eq:4.32}
+\end{equation}
 for every nonempty quantile interval $I'\subset(0,1)$ (where
 $q=|I'|$ and $r=\widehat\xi(I')$) imply, after summing over the target
 blocks and using $\sum_i r_i=R_0$,
 \[
  \J_k\ge M_0+(C_{\rm eff}-C)R_0=L.
-\tag{4.33}
 \]
 This is the conclusion of the proposition.
 \end{proof}
@@ -1288,18 +1297,18 @@ Use the angular coordinate $d=c-r\cos\theta$ and write
 \]
 The function $d(\theta)$ is increasing.  The density factor
 $A(d)=k+1-k\sqrt{2a}/d$ is increasing in $d$, so $A(\theta)$ is
-increasing.  Moreover, (4.18) writes $B$ as a positive constant minus
+increasing.  Moreover, \eqref{eq:4.18} writes $B$ as a positive constant minus
 positive multiples of $P_\rho(\theta)$, and every $P_\rho$ decreases on
 $[0,\pi]$; hence $B(\theta)$ is also increasing.  Put
 $a_\pi=A(\pi)>0$, $b_\pi=B(\pi)>0$.  For an angular interval $J$ define
-\[
+\begin{equation}
  Q=\int_J\frac{A(\theta)}{a_\pi}\dd\theta,\qquad
  R=\int_J\frac{B(\theta)}{b_\pi}\dd\theta.
-\tag{5.1}
-\]
+\label{eq:5.1}
+\end{equation}
 Its physical masses are $q=a_\pi Q/\pi$ and $r'=b_\pi R/\pi$.  We use
 $\E(J)$ for the mixed energy obtained by restricting the inner
-$\eta$-integration and the outer $\xi$-integration in (4.26) to the
+$\eta$-integration and the outer $\xi$-integration in \eqref{eq:4.26} to the
 corresponding reference quantile interval.
 
 \begin{theorem}[Circle block inequality]\label{thm:circle-block}
@@ -1328,7 +1337,6 @@ The chord identity is
 \[
  \frac{|d(\theta)-d(\phi)|}{H}
  =|e^{i\theta}-e^{i\phi}|\,|e^{i\theta}-e^{-i\phi}|.
-\tag{5.2}
 \]
 Let $K(u)=\log|e^{iu}-1|$, and let
 $\T=\R/(2\pi\Z)$ carry ordinary, nonnormalized Lebesgue measure.  On the
@@ -1337,21 +1345,21 @@ representative interval $[-\pi,\pi]$, extended periodically, define
  f(\theta)=\1_J(|\theta|)\frac{A(|\theta|)}{a_\pi},\qquad
  g(\theta)=\1_J(|\theta|)\frac{B(|\theta|)}{b_\pi}.
 \]
-Because $A$ and $B$ are increasing, $0\le f,g\le1$, and (5.1) gives
+Because $A$ and $B$ are increasing, $0\le f,g\le1$, and \eqref{eq:5.1} gives
 \[
  \int_\T f(\theta)\dd\theta=2Q,\qquad
  \int_\T g(\theta)\dd\theta=2R.
 \]
 Splitting each circle integral into its positive and negative halves, the
 four sign choices give two copies of $K(\theta-\phi)$ and two copies of
-$K(\theta+\phi)$.  Hence (5.2) gives
-\[
+$K(\theta+\phi)$.  Hence the chord identity gives
+\begin{equation}
  \frac1{QR}\int_J\int_J\frac{AB}{a_\pi b_\pi}
  \log\frac{|d(\theta)-d(\phi)|}{H}\dd\theta\dd\phi
  =\frac1{2QR}\int_\T\int_\T f(\theta)g(\phi)
  K(\theta-\phi)\dd\theta\dd\phi.
-\tag{5.3}
-\]
+\label{eq:5.3}
+\end{equation}
 
 Set $\mathcal L(u)=\log2-K(u)=-\log\sin(|u|/2)$ for $|u|\le\pi$.
 It is nonnegative, integrable, even, and decreasing in $|u|$.  The circle
@@ -1392,18 +1400,16 @@ Define their normalized energy by
  K(\theta-\phi)\dd\phi\dd\theta
  =-\sum_{n\ge1}
  \frac{\sin(nQ)\sin(nR)}{n^3QR}.
-\tag{5.4}
 \]
 The series follows by first integrating the absolutely convergent Abel
 series $-\sum_{n\ge1}\lambda^n\cos(nu)/n$ and then letting
 $\lambda\uparrow1$ by dominated convergence for the integrable logarithmic
-kernel.  Therefore the left side of (5.3) is at
+kernel.  Therefore the left side of \eqref{eq:5.3} is at
 least $2\cA(Q,R)$.  If $x_n(Q)=\sin(nQ)/(nQ)$, then termwise subtraction
 gives
 \[
  2\cA(Q,R)-\cA(Q,Q)-\cA(R,R)
  =\sum_{n\ge1}\frac{(x_n(Q)-x_n(R))^2}{n}\ge0.
-\tag{5.5}
 \]
 Furthermore
 \[
@@ -1414,15 +1420,14 @@ Thus
  h(Q):=\cA(Q,Q)-\log(Q/\pi)
  =\log(2\pi)-\frac32
  +2\int_0^1(1-x)\log\frac{\sin(Qx)}{Qx}\dd x.
-\tag{5.6}
 \]
 The function $p(u)=\sin u-u\cos u$ satisfies $p(0)=0$ and
 $p'(u)=u\sin u>0$ on $(0,\pi)$; hence
 $(\sin u/u)'=-p(u)/u^2<0$.  It follows that $h$ decreases on
-$(0,\pi]$.  Formula (5.4) gives $\cA(\pi,\pi)=0$, and therefore
+$(0,\pi]$.  The series for $\cA$ displayed above gives $\cA(\pi,\pi)=0$, and therefore
 $h(\pi)=0$ and $h(Q)\ge0$.
 
-Returning to the physical masses in (5.1), equation (5.3) and the arc
+Returning to the physical masses in \eqref{eq:5.1}, equation \eqref{eq:5.3} and the arc
 comparison give
 \[
  \frac{\E(J)}{qr'}\ge \log H+2\cA(Q,R).
@@ -1434,7 +1439,7 @@ Also
  \qquad
  \frac{C_{\rm eff}}q=\frac{\pi C_{\rm eff}}{a_\pi Q}.
 \]
-Substituting (5.5) and
+Substituting the square-completion identity above and
 $\cA(Q,Q)=\log(Q/\pi)+h(Q)$, and then cancelling the factors
 $QR/\pi^2$, gives the exact lower bound
 \begin{align}
@@ -1442,36 +1447,40 @@ $QR/\pi^2$, gives the exact lower bound
 \ge{}&\log\frac{2H}{a_\pi b_\pi}+h(Q)+h(R)\\
 &+\sum_{n\ge1}\frac{(x_n(Q)-x_n(R))^2}{n}
 -\frac{\pi C_{\rm eff}}{a_\pi Q}.
-\tag{5.7}
+\label{eq:5.7}
 \end{align}
-This formula includes all factors of $2$ and $\pi$.  It reduces (4.32) to
+This formula includes all factors of $2$ and $\pi$.  It reduces \eqref{eq:4.32} to
 explicit scalar inequalities on a rectangle of normalized masses.
 \end{proof}
 
 \section{The terminal one-cut family and the constant
 \texorpdfstring{$L$}{L}}\label{sec:onecut}
 
-The zero-platform subfamily of (4.3) admits a convenient parameter $q$.
-Set
-\[
+After undoing the shift and mass normalization, the zero-platform subfamily
+of \eqref{eq:4.3} is the one-cut family introduced in Tao's updated note
+\cite[Section~4]{Tao1038Updated}; see also the contemporaneous discussion
+\cite{Bloom1038Discussion}.  Tao's note identifies the same approximate
+candidate near $a=0.805$ and length $1.835$.  Here we reparametrize the
+family by $q$, derive its exterior equations in the normalization used by
+the global comparison, and certify the unique global minimum.  Set
+\begin{equation}
  s=\frac{1-q}{1+q},\qquad a^{\rm sh}=2s^2,\qquad
  H=\frac{2q}{(1+q)^2},\qquad
  D_0=\frac{2}{(1+q)^2}=\frac Hq.
-\tag{6.1}
-\]
+\label{eq:6.1}
+\end{equation}
 Then $C(k,a^{\rm sh})=0$ precisely when
-\[
+\begin{equation}
  k=k(q)=-\frac{\log H(q)}{\log(H(q)/q)},\qquad
  A=\frac{k}{1+k}=\frac{\log H(q)}{\log q}.
-\tag{6.2}
-\]
-Multiplying the residual probability (4.4) by $1-A$ and shifting back by
+\label{eq:6.2}
+\end{equation}
+Multiplying the residual probability \eqref{eq:4.4} by $1-A$ and shifting back by
 one gives the probability measure
 \[
  \mu_q=A(q)\delta_{-1}+
  \frac{t+1-2A(q)s(q)}
  {\pi(t+1)\sqrt{(t-a(q))(1-t)}}\1_{(a(q),1)}\dd t,
-\tag{6.3}
 \]
 where $a(q)=2s(q)^2-1$.  Its density is nonnegative if and only if
 $A(q)\le s(q)$, because its numerator is increasing and its value at the
@@ -1479,19 +1488,19 @@ left edge is $2s(s-A)$.
 
 Put $d(q)=\log(2/(1+q)^2)$ and $\tau=-\log q$.  Then
 $A=1-d/\tau$, and $A\le s$ is equivalent to
-\[
+\begin{equation}
  f(q)=(1+q)d(q)+2q\log q\ge0.
-\tag{6.4}
-\]
+\label{eq:6.4}
+\end{equation}
 Its derivative is
-\[
+\begin{equation}
  f'(q)=d(q)+2\log q
  =\log\frac{2q^2}{(1+q)^2}<0
 \quad(0<q<3-2\sqrt2).
-\tag{6.5}
-\]
+\label{eq:6.5}
+\end{equation}
 Since $f(0+)=\log2>0$ and the certified endpoint evaluation at
-$3-2\sqrt2$ is negative, (6.4) has a unique zero $q_s$.
+$3-2\sqrt2$ is negative, \eqref{eq:6.4} has a unique zero $q_s$.
 
 We now derive the exterior equation rather than merely recording it.  For
 the shifted support $[2s^2,2]$ one has
@@ -1523,14 +1532,13 @@ Using $\log H+k\log D_0=C=0$ and collecting logarithms, we obtain
 Since $A=k/(k+1)$, the exterior zero equation is exactly
 \[
  F_q(u):=A(q)\log\frac{u-q}{|1-qu|}-\log u=0.
-\tag{6.6}
 \]
 On $1<u<q^{-1}$,
-\[
+\begin{equation}
  F_q'(u)=\frac{qu^2-B(q)u+q}{u(u-q)(1-qu)},
  \quad B(q)=1+q^2-A(q)(1-q^2).
-\tag{6.7}
-\]
+\label{eq:6.7}
+\end{equation}
 For $q<q_s$, $A<s$ and hence $B>2q$.  The numerator has two reciprocal
 positive roots.  More precisely, its value at $u=1$ is $2q-B<0$, whereas
 at $u=q^{-1}$ it is
@@ -1538,12 +1546,12 @@ at $u=q^{-1}$ it is
  \frac{1+q^2-B}{q}=\frac{A(1-q^2)}q>0.
 \]
 Since the product of the two roots is one, exactly one critical point lies
-in $(1,q^{-1})$.  The denominator in (6.7) is positive there, so
+in $(1,q^{-1})$.  The denominator in \eqref{eq:6.7} is positive there, so
 $F_q$ decreases before that point and increases afterward.  Because
 $F_q(1)=0$ and $F_q(u)\to+\infty$ as $u\uparrow q^{-1}$, there is exactly
 one nontrivial root $u_+\in(1,q^{-1})$.
 
-At $q=q_s$ one has $A=s$ and $B=2q$, so the numerator in (6.7) is
+At $q=q_s$ one has $A=s$ and $B=2q$, so the numerator in \eqref{eq:6.7} is
 $q(u-1)^2$.  Thus the nontrivial root merges with $u=1$, which justifies
 the continuous definition $u_+(q_s)=1$.  On $u>q^{-1}$,
 \[
@@ -1554,9 +1562,9 @@ exactly one root $u_->q^{-1}$.
 
 The shifted spatial coordinate used above is
 $x^{\rm sh}=1+s^2-H(u+u^{-1})$.  After subtracting one, the root
-$u_-$ gives the left endpoint and $u_+$ the right endpoint in (1.7).
+$u_-$ gives the left endpoint and $u_+$ the right endpoint in \eqref{eq:1.7}.
 Subtracting those two endpoint formulas gives exactly $\Lambda(q)$ in
-(1.3).
+\eqref{eq:1.3}.
 
 \subsection{Certified global minimization}
 
@@ -1568,7 +1576,6 @@ $\Lambda'<0$ before it and $\Lambda'>0$ after it.  The enclosures in
 Theorem~\ref{thm:main} hold.  In addition,
 \[
  0.123630684649383<q_s<0.123630684649384.
-\tag{6.8}
 \]
 \end{certificate}
 
@@ -1579,34 +1586,33 @@ equations and their differentiated forms.  Near $q=0$, set
  \varrho=(-\log q)^{-1},\qquad z_\pm=qu_\pm.
 \]
 Then
-\[
+\begin{equation}
  G_\pm(\varrho,z)=A\log\frac{z-q^2}{|1-z|}-\log z-d(q)=0,
-\tag{6.9}
-\]
+\label{eq:6.9}
+\end{equation}
 with $0<z_+<1<z_-$.  The length is
-\[
+\begin{equation}
  \Lambda=\frac{2(z_--z_+)}{(1+q)^2}
  +\frac{2q^2}{(1+q)^2}\left(\frac1{z_-}-\frac1{z_+}\right).
-\tag{6.10}
-\]
+\label{eq:6.10}
+\end{equation}
 At $\varrho=0$, $(z_+,z_-)=(1/2,3/2)$.  On the complete tail
-$0\le\varrho\le0.02$, direct interval substitution into (6.9), the strict
+$0\le\varrho\le0.02$, direct interval substitution into \eqref{eq:6.9}, the strict
 $G_z$ signs, and implicit differentiation give
 \[
  -0.788<\frac{d\Lambda}{d\varrho}<-0.737.
-\tag{6.11}
 \]
 To verify the stated continuation at $\varrho=0$, note that
-$q=e^{-1/\varrho}\to0$, $A=1-\varrho d(q)\to1$, and (6.9) tends to
+$q=e^{-1/\varrho}\to0$, $A=1-\varrho d(q)\to1$, and \eqref{eq:6.9} tends to
 $-\log(2|1-z|)=0$.  Its two solutions are exactly $z=1/2$ and $z=3/2$.
 
 At the soft edge, put $x=\log u_+$ and $y=x^2$.  After division by the
 identically present root $x=0$, the plus equation is
-\[
+\begin{equation}
  D(q,y)=A-1+2A\sum_{n\ge1}q^n
  \frac{\sinh(n\sqrt y)}{n\sqrt y}=0.
-\tag{6.12}
-\]
+\label{eq:6.12}
+\end{equation}
 For an exact, nonsingular evaluation of this series, define
 \[
 \begin{aligned}
@@ -1618,7 +1624,6 @@ For an exact, nonsingular evaluation of this series, define
  \operatorname{atanhc}(w)&=\frac{\operatorname{atanh}\sqrt w}{\sqrt w}
        =\sum_{m\ge0}\frac{w^m}{2m+1},
 \end{aligned}
-\tag{6.12a}
 \]
 with the continuous values
 $C(0)=S(0)=\operatorname{atanhc}(0)=1$.  Since
@@ -1630,20 +1635,20 @@ and
  2\operatorname{atanh}\frac{q\sinh x}{1-q\cosh x}
  =\log\frac{1-qe^{-x}}{1-qe^x},
 \]
-the series in (6.12) is exactly
+the series in \eqref{eq:6.12} is exactly
 $b(q,y)\operatorname{atanhc}(w(q,y))$.  Thus the expression
 actually evaluated is
-\[
+\begin{equation}
  D(q,y)=A(q)-1+2A(q)b(q,y)\operatorname{atanhc}(w(q,y)).
-\tag{6.12b}
-\]
+\label{eq:6.12b}
+\end{equation}
 In particular
 \[
  D(q,0)=A(q)\frac{1+q}{1-q}-1,
 \]
 which vanishes exactly when $A(q)=s(q)$, that is, at $q=q_s$.  The
 certificate proves $D_y>0$ on the soft chart and $0\le w<0.03$.  It
-evaluates the three positive series in (6.12a) through $m=32$ and appends
+evaluates the three positive series displayed above through $m=32$ and appends
 explicit one-sided remainder bounds, including bounds for their first
 derivatives.
 
@@ -1653,9 +1658,8 @@ then encloses $z_\pm(\varrho)$, after which
 \[
  z'=-G_\varrho/G_z,\qquad
  z''=-\frac{G_{\varrho\varrho}+2G_{\varrho z}z'+G_{zz}(z')^2}{G_z}
-\tag{6.13}
 \]
-is substituted into (6.10).  No floating-point root is accepted without
+is substituted into \eqref{eq:6.10}.  No floating-point root is accepted without
 these sign and Newton checks.
 
 The next two terminating decimals are retained at full precision because
@@ -1695,14 +1699,14 @@ Continuity gives a stationary
 point between them, and strict convexity gives at most one stationary
 point in the entire tube.  The signs on the adjacent charts therefore
 show that it is the unique stationary point on $(0,q_s]$ and is the global
-minimum.  Outward substitution into (6.10) gives tighter boxes for $q_*$
+minimum.  Outward substitution into \eqref{eq:6.10} gives tighter boxes for $q_*$
 and $L$; rounding their endpoints outward gives the more readable
 enclosures in Theorem~\ref{thm:main}.
 
-Finally, (6.5) proves that the function in (6.4) is strictly decreasing.
+Finally, \eqref{eq:6.5} proves that the function in \eqref{eq:6.4} is strictly decreasing.
 Opposite endpoint signs on
 $[c_s-10^{-48},c_s+10^{-48}]$ therefore isolate its unique zero $q_s$
-and give (6.8).  The endpoint soft chart is evaluated on the slightly
+and give the stated enclosure for $q_s$.  The endpoint soft chart is evaluated on the slightly
 larger interval through $c_s+10^{-48}$ and is then intersected with
 $q\le q_s$; thus the isolation box does not create a coverage gap.  All
 these checks are implemented by the one-cut section of
@@ -1712,7 +1716,7 @@ these checks are implemented by the one-cut section of
 \section{Uniform certified calibration for all remaining
 \texorpdfstring{$k$}{k}}\label{sec:calibration}
 
-We now certify (4.32).  The formulas below also specify every scalar that
+We now certify \eqref{eq:4.32}.  The formulas below also specify every scalar that
 enters the program.
 
 For $x<a$ put
@@ -1720,17 +1724,15 @@ For $x<a$ put
  K_x=\sqrt{(a-x)(2-x)},\qquad
  \rho_x=\frac{r}{c-x+K_x},\qquad
  \rho_0=\frac{c-\sqrt{2a}}r.
-\tag{7.1}
 \]
 The exterior reference potential and its derivative are
-\begin{align}
+\begin{align*}
 W_0(x)&=k\log|x|+\log\frac{c-x+K_x}{2}
-       -2k\log(1-\rho_0\rho_x),\tag{7.2}\\
+       -2k\log(1-\rho_0\rho_x),\\
 W_0'(x)&=\frac{k}{x}-\frac1{K_x}
  +\frac{2k\rho_0\rho_x}{K_x(1-\rho_0\rho_x)}.
-\tag{7.3}
-\end{align}
-These follow from the Poisson expansion of (4.4).  More explicitly, for
+\end{align*}
+These follow from the Poisson expansion of \eqref{eq:4.4}.  More explicitly, for
 $x<a$ the two Poisson sums are
 \[
 \begin{aligned}
@@ -1741,19 +1743,19 @@ $x<a$ the two Poisson sums are
      +2\log(1-\rho_0\rho_x).
 \end{aligned}
 \]
-Substitution in $\eta=(k+1)e_I-k\omega_{0,I}$ gives (7.2).
-Furthermore $K_x'=-(c-x)/K_x$ and $\rho_x'=\rho_x/K_x$, which gives
-(7.3) by direct differentiation.  At the crossings define
+Substitution in $\eta=(k+1)e_I-k\omega_{0,I}$ gives the displayed formula for
+$W_0$.  Differentiating it, using $K_x'=-(c-x)/K_x$ and
+$\rho_x'=\rho_x/K_x$, gives the displayed formula for $W_0'$.  At the crossings define
 $\rho_\pm=\rho_{x_\pm}$.  Then
 \begin{align}
-a_\pi&=1+\frac{2k\rho_0}{1+\rho_0},\tag{7.4}\\
+a_\pi&=1+\frac{2k\rho_0}{1+\rho_0},\notag\\
 b_\pi&=\frac{4\sigma_-\rho_-}{1-\rho_-^2}
-      +\frac{4\sigma_+\rho_+}{1-\rho_+^2},\tag{7.5}\\
+      +\frac{4\sigma_+\rho_+}{1-\rho_+^2},\notag\\
 R_0&=\frac{2\sigma_-\rho_-}{1-\rho_-}
-      +\frac{2\sigma_+\rho_+}{1-\rho_+},\tag{7.6}\\
+      +\frac{2\sigma_+\rho_+}{1-\rho_+},\notag\\
 Q_{\max}&=\frac\pi{a_\pi},\qquad
 R_{\max}=\frac{\pi R_0}{b_\pi}.
-\tag{7.7}
+\label{eq:7.7}
 \end{align}
 To derive these identities, evaluate
 $A(\pi)=k+1-k\sqrt{2a}/2$ and express the result through $\rho_0$.
@@ -1763,23 +1765,23 @@ Next use
 \qquad
  \frac1\pi\int_0^\pi P_\rho(\theta)\dd\theta=1
 \]
-in (4.18).  This gives (7.4)--(7.6).  Finally, (5.1) applied to the
-full angular interval gives (7.7).
+in \eqref{eq:4.18}.  This gives the first three identities in the preceding
+display.  Finally, \eqref{eq:5.1} applied to the full angular interval gives
+\eqref{eq:7.7}.
 
 For the affine range, $C_{\rm eff}<0$.  Put
 \[
  \mathcal B=\log\frac{2H}{a_\pi b_\pi}
               +h(Q_{\max})+h(R_{\max}),\qquad
  P=-\frac{\pi C_{\rm eff}}{a_\pi}>0.
-\tag{7.8}
 \]
 Write $\operatorname{sinc}x=\sin(x)/x$ for $x\ne0$ and
-$\operatorname{sinc}0=1$.  Keeping the $n=1$ square in (5.7), it is
+$\operatorname{sinc}0=1$.  Keeping the $n=1$ square in \eqref{eq:5.7}, it is
 sufficient to prove
-\[
+\begin{equation}
  \mathcal B+\frac P Q+(\operatorname{sinc}Q-\operatorname{sinc}R)^2>0
-\tag{7.9}
-\]
+\label{eq:7.9}
+\end{equation}
 on $0<Q\le Q_{\max}$, $0<R\le R_{\max}$.  If $Q\le R_{\max}$, the
 left side is at least $\mathcal B+P/R_{\max}$.  The sinc function is
 strictly decreasing on $(0,\pi)$ because
@@ -1789,7 +1791,6 @@ $R_{\max}\le Q\le Q_{\max}$, monotonicity gives the lower bound
 \[
  \mathcal B+\frac P Q+
  (\operatorname{sinc}Q-\operatorname{sinc}R_{\max})^2.
-\tag{7.10}
 \]
 The derivative certified negative on 32 $Q$-subintervals is
 \[
@@ -1797,13 +1798,13 @@ The derivative certified negative on 32 $Q$-subintervals is
  +2\bigl(\operatorname{sinc}Q-\operatorname{sinc}R_{\max}\bigr)
        \operatorname{sinc}'Q.
 \]
-It is then enough to check (7.10) at $Q_{\max}$.  For $h$, the verifier
+It is then enough to evaluate this lower bound at $Q_{\max}$.  For $h$, the verifier
 uses
-\[
+\begin{equation}
  \cA(Q,Q)=-\sum_{n=1}^{80}\frac{\sin^2(nQ)}{n^3Q^2}+\mathcal R_{80},
  \qquad -\frac1{2\cdot80^2Q^2}\le\mathcal R_{80}\le0.
-\tag{7.11}
-\]
+\label{eq:7.11}
+\end{equation}
 On the constant-edge range, the square sum is discarded and it suffices to
 check $\mathcal B+P/Q_{\max}>0$.
 
@@ -1827,7 +1828,7 @@ $[k(26631/10^6),\,\infty)$
 \end{tabular}
 \end{center}
 Here the margin is a rigorous lower bound for the normalized left side of
-(4.32), namely the left side of (5.7).  In particular the four ranges
+\eqref{eq:4.32}, namely the left side of \eqref{eq:5.7}.  In particular the four ranges
 overlap and cover every $k\ge29/20$.
 \end{certificate}
 \end{samepage}
@@ -1837,30 +1838,29 @@ For the first two rows the choices are
 \[
  a(k)=\frac{1153}{500}-\frac k4,\qquad
  a(k)=\frac95,
-\tag{7.12}
 \]
 respectively.  Each rational $k$-slab is evaluated with outward Arb balls.
 At both slab endpoints, point roots merely propose intervals; opposite
 $W_0$ endpoint signs, the strict $W_x$ sign, and the interval sign of
 $x'=-W_k/W_x$ prove that the root box contains the unique branch for the
-whole slab.  The program then checks (4.5), $\xi>0$, $C_{\rm eff}<0$,
-(7.7), and the scalar reductions (7.9)--(7.11).  An unresolved sign aborts.
+whole slab.  The program then checks \eqref{eq:4.5}, $\xi>0$, $C_{\rm eff}<0$,
+\eqref{eq:7.7}, and the scalar reductions \eqref{eq:7.9}--\eqref{eq:7.11}.  An unresolved sign aborts.
 
-For the last two rows use (6.1)--(6.2).  The map $k(q)$ is strictly
+For the last two rows use \eqref{eq:6.1}--\eqref{eq:6.2}.  The map $k(q)$ is strictly
 decreasing.  Indeed, with $d(q)=\log(2/(1+q)^2)$,
 \[
  k(q)=-\frac{\log q}{d(q)}-1,\qquad
  k'(q)=-\frac{(1+q)d(q)+2q\log q}
  {q(1+q)d(q)^2}<0
 \]
-for $0<q<q_s$, by (6.4).  Also $d(q)\to\log2$ and
+for $0<q<q_s$, by \eqref{eq:6.4}.  Also $d(q)\to\log2$ and
 $-\log q\to\infty$ as $q\downarrow0$, so $k(q)\to\infty$.  The refined
 certificate covers
 \[
  26631/10^6\le q\le41542/10^6,
 \]
 and proves $k(41542/10^6)<21/5$.  It keeps both self-gaps $h(Q)$ and
-$h(R)$ in (5.7).  The simple terminal certificate covers
+$h(R)$ in \eqref{eq:5.7}.  The simple terminal certificate covers
 $0<q\le26631/10^6$; it proves the denominator corresponding to
 $2H/(a_\pi b_\pi)$ is strictly below one.  In the terminal family
 $C=0$, while Certificate~\ref{comp:onecut} gives $M_0\ge L$.
@@ -1886,7 +1886,7 @@ Apply Lemma~\ref{lem:atomize}.  Its new sublevel set is contained in the
 old one, so it suffices to bound the atomized polynomial.  The normalization
 of Section~\ref{sec:reduction} either has $A=1$, in which case the length
 is $2>L$ by the enclosure in Theorem~\ref{thm:main}, or gives
-(2.7)--(2.10) with $k\ge1$.
+\eqref{eq:2.7}--\eqref{eq:2.10} with $k\ge1$.
 
 For $1\le k\le29/20$, Proposition~\ref{prop:lowk} gives
 $\J_k>2>L$.  For $k\ge29/20$, choose the reference from
@@ -1907,9 +1907,13 @@ atomization, proving $|E_f|>L$.
 
 \section{Sharp recovery and nonattainment}\label{sec:recovery}
 
-We construct finite polynomials whose lengths tend to $L$.  Directly
-discretizing the zero platform (1.6) would create small additional negative
-components, so we first insert a positive buffer.
+We now pass from the one-cut probability measure introduced in
+\cite[Section~4]{Tao1038Updated} to actual finite polynomials.  This recovery
+step is needed because the zero-platform candidate is continuous rather
+than empirical.  Tao's lower-semicontinuity statement
+\cite[Lemma~1.1]{Tao1038Updated} gives only one side of the limiting
+inequality and does not rule out small satellite components created by a
+direct discretization.  We therefore first insert a positive buffer.
 
 \begin{lemma}[Positive-platform approximation]\label{lem:positive-buffer}
 There are probabilities $\mu_A$ on $[-1,1]$, indexed by
@@ -1930,7 +1934,6 @@ $A_*$ define
 \quad
  \rho_A(t)=\frac{t+1-2As}
  {\pi(t+1)\sqrt{(t-a)(1-t)}}.
-\tag{9.1}
 \]
 Let $\dd\omega(t)=\dd t/[\pi\sqrt{(t-a)(1-t)}]$.  The elementary arcsine
 integrals
@@ -1961,16 +1964,16 @@ V_A'(z)
 &=\frac{1-2As/(z+1)}{S(z)}.
 \end{align*}
 Thus, off the support,
-\[
+\begin{equation}
  V_A'(z)=\frac{1-2As/(z+1)}{S(z)}.
-\tag{9.2}
-\]
+\label{eq:9.2}
+\end{equation}
 We also compute the platform value.  The probability
 \[
  \dd\omega_{-1}(t)=\frac{2s}{t+1}\dd\omega(t)
 \]
 is the balayage of $\delta_{-1}$ onto $[a,1]$.  Translating the interval
-identities (4.2)--(4.6), or equivalently inserting their Poisson series,
+identities \eqref{eq:4.2}--\eqref{eq:4.6}, or equivalently inserting their Poisson series,
 gives for $x\in[a,1]$
 \[
  \int\log|x-t|\dd\omega(t)=\log\frac{1-a}{4},\qquad
@@ -1978,34 +1981,34 @@ gives for $x\in[a,1]$
 \]
 Because $\mu_A=\omega+A(\delta_{-1}-\omega_{-1})$, subtraction gives the
 constant platform value
-\[
+\begin{equation}
  C(A)=\log\frac{1-a}{4}-A\log q_*.
-\tag{9.3}
-\]
+\label{eq:9.3}
+\end{equation}
 At $A=A_*$ this is zero by $A_*\log q_*=\log H(q_*)$ and
 $(1-a)/4=H(q_*)$.  Since $\log q_*<0$, $C(A)>0$ for $A>A_*$.
 
 We record the complete zero count.  For $x<a$, the chosen branch has
-$S(x)<0$.  On $(-\infty,-1)$, the numerator $x+1-2As$ of (9.2) is
+$S(x)<0$.  On $(-\infty,-1)$, the numerator $x+1-2As$ of \eqref{eq:9.2} is
 negative and $(x+1)S(x)>0$, so $V_A'<0$.  The potential decreases from
 $+\infty$ to $-\infty$ and has one simple zero.  On $(-1,a)$ the
 derivative changes from positive to negative only at $x_0=2As-1<a$
 (because $A<s$).  The potential rises from $-\infty$, then decreases to
 the positive value $C(A)$, so it has exactly one simple zero, on the rising
-branch.  On $(1,\infty)$, (9.2) is positive and there is no further zero.
+branch.  On $(1,\infty)$, \eqref{eq:9.2} is positive and there is no further zero.
 Thus $E_{\mu_A}$ is one interval and its zero set consists of two points.
 
 At $A=A_*$ this is exactly the terminal potential with $q=q_*$.  The
 coordinate calculation in Section~\ref{sec:onecut} identifies its two crossings with
-$u_-(q_*)$ and $u_+(q_*)$, hence with the two endpoints in (1.7); their
+$u_-(q_*)$ and $u_+(q_*)$, hence with the two endpoints in \eqref{eq:1.7}; their
 distance is $L$.  Since $q_*<q_s$, the derivative signs proved after
-(6.7) show that both crossings are simple.  As $A\downarrow A_*$,
-(9.2)--(9.3) vary jointly in $C^1$ on neighborhoods of those crossings.
+\eqref{eq:6.7} show that both crossings are simple.  As $A\downarrow A_*$,
+\eqref{eq:9.2}--\eqref{eq:9.3} vary jointly in $C^1$ on neighborhoods of those crossings.
 The implicit-function theorem therefore gives
-\[
+\begin{equation}
  |E_{\mu_A}|\longrightarrow L.
-\tag{9.4}
-\]
+\label{eq:9.4}
+\end{equation}
 \end{proof}
 
 We now pass from $\mu_A$ to polynomials.  We use two elementary convergence
@@ -2016,7 +2019,6 @@ If $\nu_n\Rightarrow\nu$ are probabilities on $[-1,1]$, then for every
 bounded interval $B$,
 \[
  \norm{V_{\nu_n}-V_\nu}_{L^1(B)}\longrightarrow0.
-\tag{9.5}
 \]
 \end{lemma}
 
@@ -2032,7 +2034,8 @@ so that
 \]
 Weak convergence gives $\int\phi_j\dd\nu_n\to\int\phi_j\dd\nu$.
 After integrating the displayed finite-rank approximation against
-$\nu_n$ and $\nu$, the limsup in (9.5) is at most $2\eps$.  Let
+$\nu_n$ and $\nu$, the limsup of the $L^1$-distance in the lemma statement
+is at most $2\eps$.  Let
 $\eps\downarrow0$.
 \end{proof}
 
@@ -2065,246 +2068,58 @@ by working on this fixed interval.  The zero set of the positive-buffer
 potential has measure zero, so the second lemma gives
 $|E_{f_n}|\to|E_{\mu_A}|$.  Choose $A_m\downarrow A_*$ and then one
 empirical approximation for each $m$ with length error below $1/m$.
-Together with (9.4), this produces polynomials with $|E_f|\to L$.
+Together with \eqref{eq:9.4}, this produces polynomials with $|E_f|\to L$.
 Theorem~\ref{thm:lower} says every finite polynomial has length strictly
 larger than $L$, so the infimum is not attained.
 
 \section{The supremum}\label{sec:supremum}
 
-This section reconstructs Tao's expansive-quantile proof of the sharp upper
-bound~\cite{Tao1038}.  We include all analytic steps so that the only
-computer-assisted input is the three scalar signs in
-Certificate~\ref{cert:upper-scalars}.
+The upper extremum was determined by Tao~\cite{Tao1038}.  His updated note
+states the result for arbitrary probability measures supported on an
+interval of length two, together with the equality characterization
+\cite[Theorem~2.1]{Tao1038Updated}.  The proof proceeds by duality and an
+expansive-quantile rearrangement, followed by three explicit trial measures;
+the parameters in the latter two are credited there to AlphaEvolve
+\cite[p.~5]{Tao1038Updated}.  Since this argument is independent of the
+lower-bound analysis, we use Tao's theorem directly and record only its
+specialization to empirical root measures.
 
-Put
+\begin{theorem}[Sharp upper bound; Tao]\label{thm:upper}
+Every $f\in\mathcal P$ satisfies $|E_f|\le2\sqrt2$.  Equality holds if and
+only if
 \[
- U_\mu(x)=-V_\mu(x)=\int\log\frac1{|x-t|}\dd\mu(t).
-\tag{10.1}
+ f(x)=(x^2-1)^m
 \]
-
-\begin{lemma}[Duality]\label{lem:duality}
-Let $\mu$ be supported on a compact interval $K$.  If a nonzero finite
-positive compactly supported measure $\nu$ satisfies $U_\nu(t)<0$ for
-every $t\in K$, then $\supp\nu$ is not contained in
-$\{U_\mu\ge0\}$.
-\end{lemma}
-
-\begin{proof}
-On the product of the two compact supports, the kernel
-$\log(1/|x-t|)$ is bounded below.  Add a constant to make it nonnegative
-and apply Tonelli; after subtracting the same finite constant from both
-iterated integrals,
-\[
- \int U_\mu\dd\nu=\int U_\nu\dd\mu.
-\]
-If $\supp\nu\subset\{U_\mu\ge0\}$, the left side is nonnegative,
-whereas the right side is strictly negative.  Indeed, $U_\nu$ is finite
-and bounded below on $K$ and is negative at every point; the measurable
-sets $\{U_\nu\le-1/m\}$ exhaust $K$, so one of them has positive
-$\mu$-measure.  The possible diagonal value $+\infty$ is harmless under
-Tonelli and is excluded on the right by the hypothesis $U_\nu<0$ on $K$.
-\end{proof}
-
-Fix $f\in\mathcal P$ and set $\mu=\mu_f$.  Then
-$\{U_\mu>0\}=E_f$, while
-\[
- \{U_\mu\ge0\}=\{x:|f(x)|\le1\}
-\]
-is a nonempty compact set: it is closed, contains every root, and is
-contained in $[-2,2]$.  Assume for contradiction that
-$|\{U_\mu>0\}|>B$, where $B=2\sqrt2$.  Let
-$[t_0-1,t_0+1]$ be a length-two interval containing the roots, and let
-$M_-,M_+$ be the extreme points of $\{U_\mu\ge0\}$.  Its span is at least
-the measure of its subset $\{U_\mu>0\}$ and is therefore greater than
-$B$.  Reflection lets us
-assume $t_0-M_->\sqrt2$.  Translate $M_-$ to zero.  Then
-\[
- t_0>\sqrt2,\qquad M_+>B,\qquad t_0-1>0.
-\tag{10.2}
-\]
-The point $0$ lies strictly to the left of the root interval because
-$t_0>\sqrt2$, so $U_\mu$ is continuous near $0$.  Extremality gives
-$U_\mu(0)\ge0$; a strict inequality would persist on a short interval to
-the left, contradicting the definition of $M_-$.  Hence $U_\mu(0)=0$.
-If $t_0-1>1$, every root is more than
-one unit from zero, giving $U_\mu(0)<0$; hence
-\[
- \sqrt2<t_0\le2.
-\tag{10.3}
-\]
-
-Set $a=t_0-1$ and $S=\{U_\mu>0\}\cap[a,\infty)$.  The part of the
-positive set to the left of $a$ has measure at most $a$, so
-$|S|>B-a$.  For $y\ge a$ let $F(y)=|S\cap[a,y]|$ and, for
-$0\le u\le B-a$, define the right quantile
-\[
- \phi(a+u)=\inf\{y\ge a:F(y)>u\}.
-\tag{10.4}
-\]
-The set in (10.4) is nonempty even at $u=B-a$, because $|S|>B-a$.
-Since
-\[
- F(y)=\int_a^y\1_S(x)\dd x,
-\]
-$F$ is continuous, nondecreasing, and $1$-Lipschitz.  Put
-$y_u=\phi(a+u)$.  By the definition of the infimum, $F(y)\le u$ for
-$a\le y<y_u$, whereas there are points $z_n\downarrow y_u$ with
-$F(z_n)>u$.  Continuity, together with $F(a)=0$ when $y_u=a$, therefore
-gives $F(y_u)=u$.  Moreover, for every $\eps>0$ one may choose
-$z\in(y_u,y_u+\eps)$ with $F(z)>u$; then
-\[
- |S\cap(y_u,z]|=F(z)-F(y_u)>0,
-\]
-so $y_u\in\overline S$.  If $0\le u<v\le B-a$, the inclusion
-$\{F>v\}\subset\{F>u\}$ gives $y_u\le y_v$, and the $1$-Lipschitz
-property gives
-\[
- v-u=F(y_v)-F(y_u)\le y_v-y_u.
-\]
-Thus the generalized inverse is expansive:
-\[
- \phi(s')-\phi(s)\ge s'-s\quad(a\le s\le s'\le B).
-\tag{10.5}
-\]
-Moreover, $u=F(y_u)\le y_u-a$ shows
-$\phi(a+u)=y_u\ge a+u$, so $\phi\ge\mathrm{id}$.  We have also proved
-$\phi([a,B])\subset\overline S\subset
-\{U_\mu\ge0\}$.  Extend $\phi$ by $\phi(s)=s$ for $s<a$ and by
-$\phi(s)=\phi(B)+(s-B)$ for $s>B$.  The resulting monotone map remains
-expansive across both junctions and tends to $\pm\infty$ at the two ends.
-
-For $t\in[a,t_0+1]$, choose a generalized inverse $s_0$ so that
-\[
- \phi(s_0-)\le t\le\phi(s_0+).
-\]
-Such an $s_0$ exists by monotonicity and the two infinite end limits.  It
-cannot be below $a$, where $\phi$ is the identity, and
-$\phi\ge\mathrm{id}$ implies $s_0\le t$; hence
-$a\le s_0\le t\le t_0+1$.  If $s<s_0$, expansiveness and the left
-inequality for $s_0$ give
-$t-\phi(s)\ge\phi(s_0-)-\phi(s)\ge s_0-s$.  If $s>s_0$, the right
-inequality gives
-$\phi(s)-t\ge\phi(s)-\phi(s_0+)\ge s-s_0$.  Thus
-\[
- |t-\phi(s)|\ge|s_0-s|.
-\tag{10.6}
-\]
-Since $a>0$, the extension fixes $0$, and the argument above gives
-$U_\mu(0)=0$.  Therefore, with $K_\mu=\{U_\mu\ge0\}$,
-\[
- \phi(\{0\}\cup[a,B])
- \subset\{0\}\cup\overline S\subset K_\mu.
-\]
-The set $K_\mu$ is closed.  Hence every finite measure $\nu$ supported on
-$\{0\}\cup[a,B]$ satisfies $\supp(\phi_\#\nu)\subset K_\mu$.
-Consequently, if such a positive measure $\nu$ satisfies
-$U_\nu<0$ on $[a,t_0+1]$, then
-\[
- U_{\phi_\#\nu}(t)\le U_\nu(s_0)<0
-\]
-on the entire root interval.  This contradicts Lemma~\ref{lem:duality}.
-The integrated kernel inequality is justified
-at a jump of $\phi$ by first truncating the logarithmic kernel above and
-then using monotone convergence.  Equivalently, the single point
-$s=s_0$ has no $\nu$-mass, since $U_\nu(s_0)<0$ is finite.  It remains
-to construct $\nu$.
-
-Put
-\[
- F_0(x)=x-x\log|x|,\qquad F_0(0)=0,\qquad
- F_0'(x)=\log(1/|x|).
-\]
-The following three choices cover (10.3).  Every terminating decimal below
-denotes the exact rational number represented by that decimal.
-
-\paragraph{Case 1: $\sqrt2<t_0\le1.7624$.}
-Take $\nu=\delta_0+C\delta_B$.  Its potential is convex on the root
-interval, because
-\[
- U_\nu''(t)=\frac1{t^2}+\frac{C}{(B-t)^2}>0.
-\]
-A convex function lies below the chord joining its endpoint values, so it
-is negative throughout if it is negative at both endpoints.
-At $a=t_0-1$ this requires
-\[
- C>\frac{\log(1/a)}{\log(B-a)},
-\]
-and at $t_0+1$ it requires
-\[
- C<\frac{\log(t_0+1)}{\log(1/(B-t_0-1))}.
-\]
-All denominators are positive.  Such $C$ exists exactly when
-\[
- \log\frac1{t_0-1}\log\frac1{B-t_0-1}
- <\log(t_0+1)\log(B-t_0+1).
-\tag{10.7}
-\]
-
-\paragraph{Case 2: $1.7987\le t_0\le2$.}
-Take
-\[
- \nu=\delta_0+0.7233\,\1_{[2.268742,B]}(x)\dd x.
-\]
-The support lies in $\{0\}\cup[a,B]$.  Its potential is
-\[
- -\log t+0.7233\{F_0(B-t)-F_0(2.268742-t)\},
-\tag{10.8}
-\]
-which is strictly negative for every $t\ge0.7987$.
-
-\paragraph{Case 3: $1.7624<t_0<1.7987$.}
-Take
-\[
- \nu=\delta_0+0.192829\,\1_{[1.63,B]}\dd x
- +0.224\,\1_{[1.919,B]}\dd x+0.155\delta_B.
-\]
-The endpoint atom $B$ lies strictly to the right of the root interval.
-The required potential is
-\begin{align}
--\log t&+0.192829\{F_0(B-t)-F_0(1.63-t)\}\notag\\
-&+0.224\{F_0(B-t)-F_0(1.919-t)\}
--0.155\log|B-t|,
-\tag{10.9}
-\end{align}
-and is strictly negative on $0.7624\le t\le2.7987$.
-
-\begin{certificate}[The three upper scalar inequalities]\label{cert:upper-scalars}
-Inequality (10.7) holds on $(\sqrt2,1.7624]$; (10.8) is negative on the
-stated half-line; and (10.9) is negative on the stated compact interval.
-\end{certificate}
-
-\begin{proof}
-Decimal coefficients are parsed from strings into outward intervals, and
-all domain endpoints are protected by explicit overlaps.  Near
-$t_0=\sqrt2$, the difference in (10.7) is even about $\sqrt2$, has value and first derivative
-zero there, and its second derivative is less than $-0.059$.  Adaptive
-interval boxes cover the remaining range, with every upper bound below
-$-6\cdot10^{-8}$.  For (10.8), adaptive boxes cover the finite range
-through the exact rational endpoint $383/100>B+1$; beyond it
-every distance is at least one and the $-\log t$ term is strict.  Every
-finite upper bound is below $-10^{-9}$.  For (10.9), all interval upper
-bounds are below $-10^{-4}$.  The artificial case junctions are enlarged by
-$10^{-12}$, so no decimal conversion can leave a gap.  The executable proof
-is the upper-scalar section of \texttt{numerical\_verifier.py}.
-\end{proof}
-
-\begin{theorem}[Sharp upper bound]\label{thm:upper}
-Every $f\in\mathcal P$ satisfies $|E_f|\le2\sqrt2$, and equality holds for
-$f=(x^2-1)^m$, $m\ge1$.
+for some integer $m\ge1$.
 \end{theorem}
 
 \begin{proof}
-The preceding contradiction applies to the arbitrary polynomial fixed
-above and proves $|E_f|\le2\sqrt2$.  For $f=(x^2-1)^m$,
+Let $r_1,\ldots,r_n$ be the zeros of $f$, repeated according to
+multiplicity, and let
 \[
- |f(x)|<1\iff |x^2-1|<1,
+ \mu_f=\frac1n\sum_{j=1}^n\delta_{r_j},\qquad
+ U_{\mu_f}(x)=\int\log\frac1{|x-t|}\dd\mu_f(t).
 \]
-whose measure is $2\sqrt2$.
+Then $\mu_f$ is a probability measure supported on $[-1,1]$ and
+\[
+ U_{\mu_f}(x)=\frac1n\log\frac1{|f(x)|},\qquad
+ E_f=\{x:U_{\mu_f}(x)>0\}.
+\]
+Tao's theorem~\cite[Theorem~2.1]{Tao1038Updated}, applied with $t_0=0$,
+therefore gives $|E_f|\le2\sqrt2$.
+
+If equality holds, the equality statement in Tao's theorem gives
+\[
+ \mu_f=\frac12\delta_{-1}+\frac12\delta_1.
+\]
+Thus $n=2m$ for some $m\ge1$, with $m$ roots at each endpoint; monicity
+then gives $f=(x^2-1)^m$.  Conversely, since $m>0$, for this polynomial
+\[
+ |f(x)|<1\quad\Longleftrightarrow\quad |x^2-1|<1,
+\]
+and the set on the right has Lebesgue measure $2\sqrt2$.
 \end{proof}
 
-Finally, for every nonconstant polynomial, $f-1$ and $f+1$ have only
-finitely many real zeros.  Thus replacing $|f|<1$ by $|f|\le1$ never
-changes the measured length.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Certificate~\ref{comp:onecut} proves the uniqueness of $q_*$ and the stated
@@ -2332,17 +2147,20 @@ More precisely, it verifies:
       Certificate~\ref{comp:onecut};
 \item every positivity, crossing, derivative, Fourier-tail, and scalar
       inequality in the exact parameter cover of
-      Certificate~\ref{comp:cover}; and
-\item the three scalar inequalities in
-      Certificate~\ref{cert:upper-scalars}.
+      Certificate~\ref{comp:cover}.
 \end{itemize}
 It never treats a sampled grid as a proof.
+
+The same file also contains a directed-interval re-verification of the three
+scalar inequalities appearing in Tao's upper-bound proof.  These routines
+rigorously recheck those inequalities but are not a logical input here,
+since Theorem~\ref{thm:upper} invokes Tao's cited theorem directly.
 
 The interval principle used is standard: an expression evaluated with
 directed outward rounding encloses the exact value for every point of its
 input box~\cite{MooreKearfottCloud2009}.  The affine and Fourier parts use
-Arb midpoint-radius balls~\cite{Johansson2017}.  The one-cut and upper
-scalar parts use directed interval operations for addition, multiplication,
+Arb midpoint-radius balls~\cite{Johansson2017}.  The one-cut and optional
+upper-scalar routines use directed interval operations for addition, multiplication,
 division, square root, exponential, logarithm, sine, and cosine.  The
 refined terminal trilogarithm is evaluated by Arb.  Every infinite Taylor
 or Fourier series has an explicit signed remainder bound.
@@ -2354,6 +2172,7 @@ Newton contraction have been proved.  Adjacent parameter boxes have shared
 or overlapping exact endpoints, and decimal conversions are enlarged
 outward.  Thus the proof-relevant output consists of rigorous enclosures and
 signs, not unverified floating-point approximations.
+
 \begin{thebibliography}{99}
 
 \bibitem{EHP1958}
@@ -2379,6 +2198,13 @@ T. Tao,
 unpublished note on the sharp upper bound in Erd\H{o}s Problem 1038,
 20 December 2025.
 \url{https://terrytao.wordpress.com/wp-content/uploads/2025/12/erdos-1038.pdf}
+
+\bibitem{Tao1038Updated}
+T. Tao,
+\emph{Superlevel sets of logarithmic potentials},
+unpublished note concerning Erd\H{o}s Problem 1038,
+27 December 2025.
+\url{https://terrytao.wordpress.com/wp-content/uploads/2025/12/erdos-1038-2.pdf}
 
 \bibitem{Baernstein1989}
 A. Baernstein II,
