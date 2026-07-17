@@ -1,0 +1,44 @@
+name: Erdos 486 Lean CI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "486/lean/**"
+      - ".github/workflows/erdos486-lean.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "486/lean/**"
+      - ".github/workflows/erdos486-lean.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: erdos486-lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject proof placeholders
+        working-directory: 486/lean
+        shell: bash
+        run: |
+          if grep -InE \
+            '(^|[^[:alnum:]_])(sorry|admit|axiom|sorryAx)([^[:alnum:]_]|$)|by_contra\?' \
+            Erdos486.lean Erdos486/*.lean; then
+            echo "Proof placeholder found."
+            exit 1
+          fi
+
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: 486/lean
+          build: true
+          use-mathlib-cache: true
