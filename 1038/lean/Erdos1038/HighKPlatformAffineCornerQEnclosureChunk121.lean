@@ -1,0 +1,28 @@
+import Erdos1038.HighKPlatformAffineTableData
+import Erdos1038.HighKPlatformAffineSemanticCorner
+import Erdos1038.KernelDecision
+
+/-! Generated affine qOuter semantic enclosure for cell 121. -/
+
+set_option warningAsError true
+set_option maxHeartbeats 4000000
+set_option maxRecDepth 100000
+
+namespace Erdos1038.HighKPlatformAffineCornerLeafCertificates
+
+open Erdos1038 RatInterval HighKIntervalExpr
+open Erdos1038.HighKPlatformFormula
+open Erdos1038.HighKPlatformAffineCell
+open Erdos1038.HighKPlatformAffineTableData
+open Erdos1038.HighKPlatformAffineSemanticCorner
+
+def qOuter_121 : RatInterval :=
+  ⟨2963219635431 / 1000000000000,
+    2977824870149 / 1000000000000⟩
+
+theorem qEnclosed_121 : EvalEnclosed
+    (data ⟨121, by decide⟩).boxes
+    (qmaxE scalarSqrtSteps .affine) qOuter_121 := by
+  exact evalEnclosed_of_check (by kernel_decide)
+
+end Erdos1038.HighKPlatformAffineCornerLeafCertificates

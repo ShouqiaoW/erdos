@@ -1,0 +1,183 @@
+name: Erdos 1038 Lean CI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "1038/lean/**"
+      - ".github/workflows/erdos1038-lean.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "1038/lean/**"
+      - ".github/workflows/erdos1038-lean.yml"
+  workflow_dispatch:
+    inputs:
+      full_kernel_audit:
+        description: Run the complete Lean kernel build on the high-memory runner
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: erdos1038-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-audit:
+    name: Source/layout audit (not a kernel build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enforce release layout and reject proof placeholders
+        working-directory: 1038/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -type f -iname 'README*' -print -quit | grep -q .; then
+            echo "README files are intentionally excluded from this release."
+            exit 1
+          fi
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          def code_only(source: str) -> str:
+              out: list[str] = []
+              i = 0
+              block_depth = 0
+              line_comment = False
+              string_literal = False
+              escaped = False
+              while i < len(source):
+                  if line_comment:
+                      if source[i] == "\n":
+                          line_comment = False
+                          out.append("\n")
+                      else:
+                          out.append(" ")
+                      i += 1
+                  elif block_depth:
+                      if source.startswith("/-", i):
+                          block_depth += 1
+                          out.extend("  ")
+                          i += 2
+                      elif source.startswith("-/", i):
+                          block_depth -= 1
+                          out.extend("  ")
+                          i += 2
+                      else:
+                          out.append("\n" if source[i] == "\n" else " ")
+                          i += 1
+                  elif string_literal:
+                      ch = source[i]
+                      out.append("\n" if ch == "\n" else " ")
+                      i += 1
+                      if escaped:
+                          escaped = False
+                      elif ch == "\\":
+                          escaped = True
+                      elif ch == '"':
+                          string_literal = False
+                  elif source.startswith("--", i):
+                      line_comment = True
+                      out.extend("  ")
+                      i += 2
+                  elif source.startswith("/-", i):
+                      block_depth = 1
+                      out.extend("  ")
+                      i += 2
+                  elif source[i] == '"':
+                      string_literal = True
+                      out.append(" ")
+                      i += 1
+                  else:
+                      out.append(source[i])
+                      i += 1
+              return "".join(out)
+
+          checks = {
+              "sorry": re.compile(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])"),
+              "admit": re.compile(r"(?<![A-Za-z0-9_])admit(?![A-Za-z0-9_])"),
+              "axiom": re.compile(r"(?<![A-Za-z0-9_])axiom(?![A-Za-z0-9_])"),
+              "unsafe": re.compile(r"(?<![A-Za-z0-9_])unsafe(?![A-Za-z0-9_])"),
+              "#eval": re.compile(r"#eval(?![A-Za-z0-9_])"),
+              "native_decide": re.compile(
+                  r"(?<![A-Za-z0-9_])native_decide(?![A-Za-z0-9_])"),
+              "by_contra?": re.compile(r"by_contra\?"),
+              "sorryAx": re.compile(r"(?<![A-Za-z0-9_])sorryAx(?![A-Za-z0-9_])"),
+              "Lean.ofReduceBool": re.compile(r"Lean\.ofReduceBool"),
+              "Lean.trustCompiler": re.compile(r"Lean\.trustCompiler"),
+          }
+          audit_allowlist = {
+              "sorryAx", "Lean.ofReduceBool", "Lean.trustCompiler"
+          }
+          failures: list[str] = []
+          paths = [Path("Erdos1038.lean"), *sorted(Path("Erdos1038").glob("*.lean"))]
+          for path in paths:
+              code = code_only(path.read_text())
+              for label, pattern in checks.items():
+                  if path.name == "FinalAxiomAudit.lean" and label in audit_allowlist:
+                      continue
+                  if match := pattern.search(code):
+                      line = code.count("\n", 0, match.start()) + 1
+                      failures.append(f"{path}:{line}: {label}")
+          if failures:
+              raise SystemExit("Disallowed Lean source constructs:\n" + "\n".join(failures))
+          PY
+  full-kernel-audit:
+    name: Full Lean kernel build and exact axiom audit (manual, high-memory)
+    needs: source-audit
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.full_kernel_audit }}
+    runs-on: [self-hosted, linux, x64, erdos1038-large]
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean and fetch the Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          lake-package-directory: 1038/lean
+          use-mathlib-cache: true
+          use-github-cache: false
+
+      - name: Prebuild numbered certificate modules in bounded batches
+        working-directory: 1038/lean
+        shell: bash
+        env:
+          BATCH_SIZE: "16"
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(
+            find Erdos1038 -regextype posix-extended -maxdepth 1 -type f \
+              -regex '.*/[^/]*[0-9]+\.lean' -print | sort -V
+          )
+          for ((offset = 0; offset < ${#files[@]}; offset += BATCH_SIZE)); do
+            targets=()
+            for file in "${files[@]:offset:BATCH_SIZE}"; do
+              module=${file%.lean}
+              targets+=("${module//\//.}")
+            done
+            lake build "${targets[@]}"
+            if [[ -d .lake/build/ir/Erdos1038 ]]; then
+              find .lake/build/ir/Erdos1038 -maxdepth 1 -type f \
+                -name '*.setup.json' -delete
+            fi
+          done
+
+      - name: Build the complete library
+        working-directory: 1038/lean
+        run: lake build Erdos1038
+
+      - name: Check the exact theorem axiom closure
+        working-directory: 1038/lean
+        shell: bash
+        run: |
+          lake env lean -DautoImplicit=false -DwarningAsError=true \
+            Erdos1038/FinalAxiomAudit.lean
