@@ -4966,7 +4966,8 @@ same box-independent coefficients of \(1/W\);
 \item if a set \(\mathcal R_n^{\rm guard}\) of at most
 \(O(yL^A)\) numerical guards
 is deleted before normalization, the change in every normalized
-one- or two-mark band operator used below is
+one- or two-mark prime-row operator, and hence in its harmonically
+averaged band operator, is
 \begin{equation}
  O_{B,W}\!\left(\frac{y^2L^{A+3}}n\right)=o_n(\alpha_0),
  \qquad \alpha_0\asymp\frac1{\log L}.
@@ -4989,20 +4990,181 @@ two factors has a uniform \(O_{B,W}(1/L)\) remainder.  The Stieltjes
 formula makes their leading physical average cancel in centered marked
 moments, while the common marked profile of the head cells makes the
 between-cell term cancel.  Combining this with
-\Cref{lem:marked-tilted-squarefree} and
-\Cref{lem:marked-product-weighted-power-transfer}, together with
-\eqref{eq:marked-compensated-power-relative} proves (ii).
+ \Cref{lem:marked-tilted-squarefree} and
+ \Cref{lem:marked-product-weighted-power-transfer}, together with
+ \eqref{eq:marked-compensated-power-relative} proves (ii).
+We shall also use the following component-level consequence of the same
+calculation.  Let \(\nu_{i,\xi}\) be the conditional law on the \(i\)-th
+exact component cell before the numerical guards are deleted.  Then,
+uniformly over the finitely many nonzero components and the fixed box,
+\begin{equation}
+ \sup_{i,i'}\left|
+  \mathbb E_{\nu_{i,\xi}}V_p-\mathbb E_{\nu_{i',\xi}}V_p
+ \right|\ll_{B,W}\frac1{pL}
+ \qquad(W<p\leq y).
+ \label{eq:marked-full-tilt-component-valuation-comparison}
+\end{equation}
+Indeed \eqref{eq:marked-full-valuation-cell-comparison} proves this before
+tilting.  For \(p^k\leq y^2\), the one-local specialization of the
+omitted-local-score expansion and exact fugacity restoration used in
+\Cref{lem:marked-product-weighted-power-transfer} writes every component
+mean as the same restored local model, with error
+\[
+ O_{B,W}\!\left(\frac1{p^kL}+\frac1n\right).
+\]
+Summing \(k\) gives \(O_{B,W}(1/(pL)+L/n)=O_{B,W}(1/(pL))\), since
+\(pL^2/n\leq yL^2/n=o(1)\).  The omitted powers are
+\(o(1/(pL))\) by the tail calculation immediately preceding
+\eqref{eq:marked-tilted-physical-full}.  A physical tilt is
+\(1+O_B(1/L)\), and a head tilt is constant on each exact component, so
+neither changes this comparison.  Thus
+\eqref{eq:marked-full-tilt-component-valuation-comparison} is a displayed
+consequence of (ii), rather than an implicit appeal to a common profile.
 
-Every cell has \(\Theta_W(n)\) candidates, and (i) makes the probability
-of a single candidate \(O_{B,W}(1/n)\).  Deleting the guards therefore
-changes the normalizing constant by \(O_{B,W}(yL^A/n)\).  For a
-one-mark row, a deleted integer contributes at most \(O(yL)\) after the
-prime-row normalization; for a two-mark operator it contributes at most
-\(O(yL^2)\), since \(v_p(m)\leq L/\log2\) and
-\(\sum_qv_q(m)\leq L/\log W\).  Multiplication by the deleted mass and
-allowing one further logarithm for normalization gives the bound in
+We first make the component-weight bookkeeping literal.  If the later
+construction prescribes weights \(\lambda_i\) for the individually
+guarded component laws, put
+\[
+ s_i:=\nu_i((\mathcal R_n^{\rm guard})^c),\qquad
+ \widetilde\lambda_i:=
+ \frac{\lambda_i/s_i}{\sum_j\lambda_j/s_j}.
+\]
+Every component has \(\Theta_W(n)\) candidates, so
+\[
+ 1-s_i\ll_W\frac{yL^A}{n}=o(1)
+\]
+uniformly in the fixed finite component family.  Hence all \(s_i\) are
+positive and the weights \(\widetilde\lambda_i\) remain in a fixed compact
+subset of the relative interior whenever the prescribed
+\(\lambda_i\)'s do.  The exact measure identity
+\begin{equation}
+ \left(\sum_i\widetilde\lambda_i\nu_i\right)
+       \left(\,\cdot\mid(\mathcal R_n^{\rm guard})^c\right)
+ =\sum_i\lambda_i
+       \nu_i\left(\,\cdot\mid(\mathcal R_n^{\rm guard})^c\right)
+ \label{eq:marked-guard-component-weight-identity}
+\end{equation}
+follows because the conditioned weight of component \(i\) on the left is
+\(\widetilde\lambda_is_i/\sum_j\widetilde\lambda_js_j=\lambda_i\).
+The identity remains exact after applying and normalizing the same
+positive exponential tilt on both sides.  We may therefore apply the
+pre-deletion estimates to the compact mixture with weights
+\(\widetilde\lambda_i\), and recover precisely the prescribed guarded
+mixture after conditioning.  This also covers the simpler case in which
+the guards are deleted directly from a globally weighted mixture.
+
+Let \(\nu_\xi\) denote the resulting pre-deletion tilted law,
+\(\widehat\nu_\xi\) the actual guarded tilted law, and put
+\[
+\delta_\xi:=\nu_\xi(\mathcal R_n^{\rm guard}).
+\]
+Every component cell has \(\Theta_W(n)\) candidates, and (i) makes the
+probability of a single candidate \(O_{B,W}(1/n)\).  Hence, uniformly on
+the fixed box,
+\begin{equation}
+ \delta_\xi\ll_{B,W}\frac{yL^A}{n}=o(1).
+ \label{eq:marked-guard-deleted-mass}
+\end{equation}
+We use the following elementary conditional-deletion identities.  If
+\(\mu\) is a probability law, \(G\) has \(\mu(G)=\delta<1\), and
+\(\widehat\mu=\mu(\,\cdot\mid G^c)\), then, for every bounded \(F\),
+\begin{equation}
+ \mathbb E_{\widehat\mu}F-\mathbb E_\mu F
+ =\frac{\delta\mathbb E_\mu F-\mathbb E_\mu(F\1_G)}{1-\delta},
+ \qquad
+ \left|\mathbb E_{\widehat\mu}F-\mathbb E_\mu F\right|
+ \leq\frac{2\delta}{1-\delta}\|F\|_\infty.
+ \label{eq:marked-conditional-deletion-expectation}
+\end{equation}
+Writing the covariance difference as
+\begin{align*}
+ \operatorname{Cov}_{\widehat\mu}(F,H)-\operatorname{Cov}_\mu(F,H)
+ &=\{\mathbb E_{\widehat\mu}(FH)-\mathbb E_\mu(FH)\}\notag\\
+ &\quad-\{\mathbb E_{\widehat\mu}F-\mathbb E_\mu F\}
+       \mathbb E_{\widehat\mu}H\notag\\
+ &\quad-\mathbb E_\mu F
+       \{\mathbb E_{\widehat\mu}H-\mathbb E_\mu H\}
+\end{align*}
+and applying \eqref{eq:marked-conditional-deletion-expectation} three
+times gives the explicit recentered bound
+\begin{equation}
+ \left|\operatorname{Cov}_{\widehat\mu}(F,H)
+       -\operatorname{Cov}_\mu(F,H)\right|
+ \leq\frac{6\delta}{1-\delta}\|F\|_\infty\|H\|_\infty.
+ \label{eq:marked-conditional-deletion-covariance}
+\end{equation}
+Thus both normalization and the two changes of means are included.
+
+Apply this with \(\mu=\nu_\xi\), \(G=\mathcal R_n^{\rm guard}\), and
+\(V_p=v_p(m)\).  On every candidate, for all sufficiently large \(n\),
+\begin{equation}
+ pV_p(m)\ll yL,
+ \qquad
+ \sum_{W<r\leq y}V_r(m)\leq\frac{\log m}{\log W}\ll_W L.
+ \label{eq:marked-guard-score-envelopes}
+\end{equation}
+Let
+\[
+ E^{\rm guard}_{pr}:=
+ \operatorname{Cov}_{\widehat\nu_\xi}(V_p,V_r)
+ -\operatorname{Cov}_{\nu_\xi}(V_p,V_r).
+\]
+For fixed \(p\), duality with
+\(H_b=\sum_r b_rV_r\), \(\|b\|_\infty\leq1\), followed by
+\eqref{eq:marked-conditional-deletion-covariance}--
+\eqref{eq:marked-guard-score-envelopes}, gives
+\begin{align}
+ p\sum_{W<r\leq y}|E^{\rm guard}_{pr}|
+ &=\sup_{\|b\|_\infty\leq1}
+      p\left|\operatorname{Cov}_{\widehat\nu_\xi}(V_p,H_b)
+             -\operatorname{Cov}_{\nu_\xi}(V_p,H_b)\right|\notag\\
+ &\ll_{B,W}\delta_\xi yL^2
+ \ll_{B,W}\frac{y^2L^{A+2}}n
+ \leq C_{B,W}\frac{y^2L^{A+3}}n.
+ \label{eq:marked-guard-explicit-prime-row}
+\end{align}
+The expectation bound in
+\eqref{eq:marked-conditional-deletion-expectation} proves the analogous
+one-mark estimate; replacing either \(V\) by \(I_p=\1_{p\mid m}\), or
+the second score by a bounded physical or finite-head score, only makes
+the envelope smaller.
+
+It remains to identify the norm after band aggregation.  For
+\(\|b\|_\infty\leq1\), the covariance-error contribution on band \(i\)
+is bounded exactly by
+\begin{align*}
+ \frac1{H_i}\left|\sum_{p\in\mathcal P_i}\sum_r
+       E^{\rm guard}_{pr}b_{j(r)}\right|
+ &\leq\frac1{H_i}\sum_{p\in\mathcal P_i}\frac1p
+       \left(p\sum_r|E^{\rm guard}_{pr}|\right)\\
+ &\leq\sup_u u\sum_r|E^{\rm guard}_{ur}|.
+\end{align*}
+Denote this raw normalized band covariance-error operator by
+\(E^{\rm guard}_{\rm band}\).  Thus harmonic averaging is a contraction
+of the normalized prime-row norm \eqref{eq:marked-row-norm}; the uniformly
+bounded arithmetic gauge projections do not alter its order.  For
+completeness, the sharp conjugation used later also follows from the
+displayed relative rate.  Put
+\(S_n=\operatorname{diag}(\alpha_0,\ldots,\alpha_s)\).  If
+\(\|q\|_\infty\leq1\), apply the raw row estimate to
+\(b_j=\alpha_jq_j\), for which \(\|b\|_\infty\leq1\).  Dividing output row
+\(i\) by \(\alpha_i\) gives
+\[
+ \left|\bigl(S_n^{-1}E^{\rm guard}_{\rm band}S_nq\bigr)_i\right|
+ \ll_{B,W}\frac{y^2L^{A+3}}{n\alpha_i}
+ \leq C_{B,W}\frac{y^2L^{A+3}}{n\alpha_0}=o(1).
+\]
+Indeed, once the cells are nonempty,
+\(\alpha_0<\delta<\alpha_j\) for every \(j\geq1\): the low cell is
+contained in \([t_0,\delta]\), every positive cell lies in
+\((\delta,1]\), and nonemptiness follows for the fixed finite permitted
+mesh from the prime number theorem.  Thus \(\alpha_0\) is the smallest
+cell center.  The arithmetic quantities \(H_i,\alpha_i\) are prime
+geometry and hence are unchanged by deleting candidates.  The gauge projections are uniformly
+bounded in this sharp norm by
+\eqref{eq:smooth-sharp-projection-convergence}.  This proves
 \eqref{eq:marked-guard-relative-low-error}.  Finally
-\(y^2L^{A+3}/n=n^{-5/9}L^{A+3}\), which remains \(o(1/\log L)\).
+\(y^2L^{A+3}/n=n^{-5/9}L^{A+3}=o(1/\log L)=o(\alpha_0)\).
 \end{proof}
  \section{The smooth-row bridge and exact finite-band fitting}
 \label{sec:smooth-bridge}
@@ -5822,16 +5984,48 @@ The second factor differs from the identity by an operator of
 series has norm at most two.  This proves the inverse assertion.
 \end{proof}
 
+\medskip\noindent\emph{Uniformity convention for the next two lemmas.}\quad
+The continuum constants used below depend only on \(U=9/2\), the
+regularity constant \(c_{\rm mesh}\), and a fixed upper bound for
+\(w:=\delta+\eta\); in particular they are chosen before \(W\), a tilt
+box, or a particular mesh is instantiated.  The constants multiplying
+the nonvanishing arithmetic errors \(W^{-1}\) are those already obtained
+in the marked estimates and are independent of every later tilt-box
+radius and mesh.  We first choose \(W\) large enough to absorb those
+terms and then choose \(w\) below the continuum smallness threshold, as
+required by the global order in
+\eqref{eq:upper-construction-nested-quantifiers}.  After a radius \(B\)
+and one permitted finite mesh \(\mathcal P\) have been fixed, the notation
+
+\[
+ r_{n;B,W,\mathcal P}=o_{n;B,W,\mathcal P}(1)
+\]
+
+means convergence uniformly for \(\xi\) in that \(B\)-box and uniformly
+over the unit ball of the vector norm occurring in the estimate.  For a
+quadratic-form estimate the unit ball means \(b^TDb\leq1\).  Its
+threshold may depend on \((B,W,\delta,\eta,\mathcal P)\); no uniform
+threshold over unbounded boxes or meshes varying with \(n\) is used.
+Finally, the continuum comparison object is itself
+\(B_{t_0,\mathcal P}\) with the same
+\(t_0=(\log W)/(\log y)\) as the arithmetic operator at that \(n\).
+Thus the argument compares two moving finite-dimensional objects at
+each \(n\), rather than claiming convergence to a single fixed band
+matrix.
+
 \begin{lemma}[Moving-low-cell arithmetic quotient]
 \label[lemma]{lem:arithmetic-band-quotient}
-Choose \(W\) sufficiently large and then \(\delta+\eta\) sufficiently
-small.  There are constants \(\kappa>0\) and \(C_W<\infty\), independent
-of the permitted regular mesh and of the radius \(B\) of a subsequently
-fixed compact effective-tilt box, with the following quantifiers: for
-every fixed \(B\) and every fixed permitted mesh \(\mathcal P\), there
-is \(n_0=n_0(B,W,\mathcal P)\) such that the conclusions below hold for
-all \(n\geq n_0\).  No common threshold over arbitrarily fine meshes or
-over unbounded boxes is asserted.  Then \(\Gamma_\xi\) is positive
+There are structural thresholds \(W_0<\infty\) and \(w_0>0\).
+Choose \(W\geq W_0\) and then fixed \(\delta,\eta>0\) with
+\(w:=\delta+\eta\leq w_0\).  There are constants \(\kappa>0\) and
+\(C_W<\infty\), independent of the permitted regular mesh and of the
+radius \(B\) of a subsequently fixed compact effective-tilt box, with
+the following quantifiers: for every fixed \(B\) and every fixed
+permitted mesh \(\mathcal P\), there is
+\(n_0=n_0(B,W,\delta,\eta,\mathcal P)\) such that the conclusions below
+hold for all \(n\geq n_0\) and every \(\xi\) in the \(B\)-box.  No common
+threshold over arbitrarily fine meshes or over unbounded boxes is
+asserted.  Then \(\Gamma_\xi\) is positive
 definite and
 \begin{align}
  b^T\mathcal C^Z_\xi b
@@ -5844,25 +6038,42 @@ definite and
  \right\|_{\ell^\infty\to\ell^\infty}&\ll_W1.
  \label{eq:smooth-arithmetic-Linf-inverse}
 \end{align}
-The constants are uniform as \(t_0\downarrow0\) and over all regular
-meshes satisfying \eqref{eq:smooth-regular-relative-mesh} with the stated
-upper mesh size.
+The constants \(\kappa,C_W\) are uniform as \(t_0\downarrow0\) and over
+all regular meshes satisfying
+\eqref{eq:smooth-regular-relative-mesh}; only the threshold \(n_0\) may
+depend on the particular fixed mesh and box.
 \end{lemma}
 
 \begin{proof}
-We first prove the continuum assertion with every object in the moving
-low-cell argument explicit.  From \eqref{eq:smooth-kernel-product},
+\emph{Step 1: the continuum inverse and form gap, uniformly in the
+moving low cell.}\quad
+This step contains no primes and no tilt parameter.  In particular its
+constants are independent of \(W,B,n\), and of the locations of the
+positive-cell endpoints subject to
+\eqref{eq:smooth-regular-relative-mesh}.
+Write \(f=J_{\mathcal P}b\).  Since \(h(s)=1+O(s)\) and
+\(|K(s,t)|\leq Cst\), direct harmonic averaging on
+\(I_0=[t_0,\delta]\) gives
 \begin{equation}
  (B_{t_0,\mathcal P}b)_0
  =\{1+O(\delta)\}b_0+
  O\!\left(\alpha_0^{(c)}\right)\|b\|_\infty;
  \label{eq:smooth-low-row}
 \end{equation}
-indeed the harmonic average of \(s\) on \(I_0\) is exactly
-\(\alpha_0^{(c)}\).  On a positive cell \(I_j\), the oscillation of
-\(A^{(t_0)}J_{\mathcal P}b\) is at most
-\(C\eta\|b\|_\infty\).  These are estimates in the ordinary supremum
-norm, the norm used in the contradiction.
+indeed
+\[
+ \frac1{H_0^{(c)}}\int_{I_0}s\,\frac{ds}{s}
+   =\alpha_0^{(c)},\qquad
+ \int_{t_0}^1t|f(t)|\,\frac{dt}{t}\leq\|b\|_\infty.
+\]
+The \(C^2\)-regularity of \(F\) also gives
+\[
+ |h'(s)|\leq C,\qquad |\partial_sK(s,t)|\leq Ct.
+\]
+Hence, on a positive relative cell \(I_j\), the oscillation of
+\(A^{(t_0)}f\) is at most \(C\eta\|b\|_\infty\).  These are ordinary
+supremum-norm estimates and their constants do not involve the growing
+harmonic mass \(H_0^{(c)}\).
 
 Suppose the projected inverse were not uniform.  There would be
 \(t_{0,\nu}\downarrow0\), permitted partitions, and gauge-fixed vectors
@@ -5878,9 +6089,17 @@ By \eqref{eq:smooth-continuum-gauge}, for bounded scalars
  =\beta_\nu\alpha^{(c)}+o_{\ell^\infty}(1).
  \label{eq:smooth-unprojected-compressed-equation}
 \end{equation}
-The bound on \(\beta_\nu\) follows by pairing with
-\(D_c\alpha^{(c)}\); the denominator is \(\gg1\) and the compressed
-operators are uniformly bounded.  Formula \eqref{eq:smooth-low-row}
+More explicitly, applying \(I-P_{\alpha,c}\) gives
+\[
+ \beta_\nu=
+ \frac{(\alpha^{(c)})^TD_c
+       B_{t_{0,\nu},\mathcal P_\nu}b_\nu}
+      {(\alpha^{(c)})^TD_c\alpha^{(c)}}+o(1).
+\]
+The denominator is bounded below by the cells meeting \([1/2,1]\), while
+\(\sum_jH_j^{(c)}\alpha_j^{(c)}=1-t_0\) and the compressed operators are
+uniformly bounded.  Hence \(\beta_\nu=O(1)\).  Formula
+\eqref{eq:smooth-low-row}
 now gives
 \begin{equation}
  |b_{\nu,0}|=O(\delta)+o(1).
@@ -5896,9 +6115,17 @@ On the low cell both sides are \(O(\delta)+o(1)\), by
 \eqref{eq:smooth-low-value-control} and
 \eqref{eq:smooth-kernel-product}, so the same estimate holds there.
 Extend the low value to \((0,t_{0,\nu})\) by
-\(b_{\nu,0}t/t_{0,\nu}\).  Its contribution to the full integral
-equation is \(O(t_{0,\nu})\), uniformly in \(s\).  For the resulting
-bounded function \(\widetilde f_\nu\),
+\(b_{\nu,0}t/t_{0,\nu}\).  For \(s\geq t_{0,\nu}\), the newly inserted
+integral term is bounded by
+\[
+ \int_0^{t_{0,\nu}}|K(s,t)|\,|b_{\nu,0}|
+       \frac{t}{t_{0,\nu}}\frac{dt}{t}
+ \ll |b_{\nu,0}|s t_{0,\nu}=O(t_{0,\nu}).
+\]
+For \(0<s<t_{0,\nu}\), the diagonal term is
+\(O(|b_{\nu,0}|)=O(\delta)+o(1)\), while the integral term is
+\(O(s)\); this is already within the error allowed below.  Thus, for
+the resulting bounded function \(\widetilde f_\nu\),
 \begin{equation}
  A\widetilde f_\nu=\beta_\nu t+O(\delta+\eta)+o(1)
  \quad\hbox{in }L^\infty.
@@ -5958,8 +6185,25 @@ Poisson--Dickman Poincar\'e
 inequality \eqref{eq:PD-Poincare} would put them \(o(1)\)-close to
 \(\operatorname{span}\{t\}\), while the gauge would force the scalar
 to be \(o(1)\), a contradiction.  This proves the continuum quadratic
-gap uniformly as the low endpoint moves to zero.
+gap uniformly as the low endpoint moves to zero.  We have therefore
+proved, with structural constants \(C_c<\infty\) and \(\kappa_c>0\),
+\begin{align}
+ \left\|\left(P_{\alpha,c}B_{t_0,\mathcal P}P_{\alpha,c}
+       \bigm|_{\mathcal G_c}\right)^{-1}\right\|_{\infty\to\infty}
+ &\leq C_c,\label{eq:smooth-continuum-band-inverse}\\
+ b^TD_cB_{t_0,\mathcal P}b
+ &\geq\kappa_c\,b^TD_cb\qquad(b\in\mathcal G_c).
+ \label{eq:smooth-continuum-band-gap}
+\end{align}
+Both constants are uniform for all sufficiently small \(t_0>0\), hence
+uniform as \(t_0\downarrow0\), and for every permitted regular mesh once
+\(w\leq w_0\).  This is precisely the range used because
+\(t_0=(\log W)/(\log y)\to0\).  These are the continuum results; no
+arithmetic object has yet been used.
 
+\medskip\noindent
+\emph{Step 2: arithmetic cell data and normalized operator
+convergence.}\quad
 We now give the discrete transfer rather than hiding it in a convergence
 phrase.  Put \(I_p=1_{p\mid m}\) and
 \(\Omega_i^{\rm sf}=\sum_{p\in\mathcal P_i}I_p\).  For a prime
@@ -6137,60 +6381,189 @@ fixed mesh.  Equation \eqref{eq:smooth-band-normalized-row-transfer}
 handles the remaining error \(E\).
 
 Fix one permitted positive-cell mesh; only its low endpoint now moves
-with \(n\).  First absorb by a Neumann-series argument all \(O(1/W)\)
-terms, including the squarefree diagonal correction and
-\eqref{eq:smooth-power-row-transfer}.  If the remaining discrete inverse
-failed, there would be gauge-fixed
-\(b_k\), \(\|b_k\|_\infty=1\), and scalars \(\beta_k=O(1)\) such that
-the unprojected normalized equation were
+with \(n\).  Define the \emph{leading} arithmetic band operator, before
+any marked, Bernoulli, prime-power, guard, or nuisance error is added, by
 \begin{equation}
- \mathsf E_{n_k}\mathsf A^{\rm sf}_{n_k,\xi_k}J_{n_k}b_k
- =\beta_k\alpha+e_k,\qquad
- \|e_k\|_\infty\longrightarrow0.
- \label{eq:smooth-discrete-singular-sequence}
+ (\widehat B_n^{(0)}b)_i:=\frac1{H_i}
+ \sum_{p\in\mathcal P_i}\frac1p\left\{
+ h(t_p)b_i+\sum_{\substack{W<q\leq y\\q\ne p}}
+       \frac{K(t_p,t_q)}q\,b_{j(q)}\right\}.
+ \label{eq:smooth-leading-arithmetic-band-operator}
 \end{equation}
-Equations \eqref{eq:smooth-normalized-prime-row-error},
-\eqref{eq:smooth-band-normalized-row-transfer}, and
-\eqref{eq:smooth-collective-compact-quadrature} turn this into
+The omitted \(p=q\) kernel diagonal has operator norm \(o_n(1)\):
 \[
- B_{t_{0,k},\mathcal P}b_k
- =\beta_k\alpha^{(c)}+o_{\ell^\infty}(1),\qquad
- (\alpha^{(c)})^TD_cb_k=o(1).
+ \max_i\frac1{H_i}\sum_{p\in\mathcal P_i}
+       \frac{|K(t_p,t_p)|}{p^2}=o_n(1).
 \]
-The first equality recovers every positive-cell diagonal value through
-the multiplier \(h\geq c>0\), and
-\eqref{eq:smooth-discrete-low-asymptotics} together with
-\eqref{eq:smooth-low-row} recovers the low value.  Thus the explicit
-linear extension used in
-\eqref{eq:smooth-full-reconstructed-equation} produces a continuum
-function with the continuum gauge.  The continuum inverse forces
-\(\|b_k\|_\infty=o(1)\), the desired contradiction.  For the quadratic
-statement, unit \(D\)-normalization and
-\eqref{eq:smooth-positive-cell-data-convergence}--
-\eqref{eq:smooth-low-cell-data-convergence} imply
-\(\|J_{\mathcal P}b\|_{L^2(dt/t)}^2=1+o(1)\).  Only the newly appended
-piece on \((0,t_0)\) has squared norm \(|b_0|^2/2=o(1)\); the norm of
-the full extension is therefore \(1+o(1)\), not \(o(1)\).  Moreover,
-\eqref{eq:smooth-compressed-form-identity}--
-\eqref{eq:smooth-full-compressed-form-comparison} compare its full
-quadratic form with the compressed continuum form.  The double
-quadrature above also gives the required form convergence, despite the
-growing low harmonic mass.  Indeed \(b^TDb=1\) implies
-\(|b_0|\leq H_0^{-1/2}\).  The low-input quadrature error is \(o_n(1)\)
-and is multiplied by \(b_0\); the normalized low-output error caused by
-the fixed Mertens constant is \(O_W(H_0^{-1})\), whose contribution to
-the form is
-\(H_0|b_0|O_W(H_0^{-1})=O_W(H_0^{-1/2})\).  On the finitely many
-positive cells, the \(D\)- and supremum norms are uniformly equivalent
-for the fixed mesh.  Hence, uniformly for \(b^TDb=1\),
+Indeed \(K(t,t)=O(t^2)\); on \(I_0\) the numerator is
+\(O_W((\log y)^{-2})\), and on a positive cell every prime tends to
+infinity.  Consequently the preceding double quadrature, the multiplier
+comparison, and \eqref{eq:smooth-two-projection-convergence} imply
 \begin{equation}
- b^TD\widehat B_nb-
+ \left\|P_{\alpha,n}\widehat B_n^{(0)}P_{\alpha,n}
+       -P_{\alpha,c}B_{t_0,\mathcal P}P_{\alpha,c}
+ \right\|_{\infty\to\infty}=o_{n;W,\mathcal P}(1).
+ \label{eq:smooth-leading-projected-operator-convergence}
+\end{equation}
+All operators in this display act on the common coordinate space; the
+two ranges are still different and are identified next.
+
+Put
+\[
+ \Phi_n:=P_{\alpha,n}|_{\mathcal G_c}:
+       \mathcal G_c\longrightarrow\mathcal G_n,\qquad
+ \varepsilon_n:=\|P_{\alpha,n}-P_{\alpha,c}\|_{\infty\to\infty}.
+\]
+For \(x\in\mathcal G_c\),
+\(\|\Phi_nx-x\|_\infty\leq\varepsilon_n\|x\|_\infty\).  Hence, if
+\(\varepsilon_n<1\), \(\Phi_n\) is injective; both gauge spaces have
+codimension one, so it is onto, and
+\begin{equation}
+ \|\Phi_n\|\leq1+\varepsilon_n,\qquad
+ \|\Phi_n^{-1}\|\leq(1-\varepsilon_n)^{-1}.
+ \label{eq:smooth-ordinary-gauge-isomorphism}
+\end{equation}
+If \(y=\Phi_nx\in\mathcal G_n\), the same calculation gives the
+ambient-space estimate
+\[
+ \|\Phi_n^{-1}y-y\|_\infty
+ =\|x-P_{\alpha,n}x\|_\infty
+ \leq\frac{\varepsilon_n}{1-\varepsilon_n}\|y\|_\infty.
+\]
+Pulling the left side of
+\eqref{eq:smooth-leading-projected-operator-convergence} back by \(\Phi_n\)
+therefore gives the following comparison.  Indeed, if
+\(\widehat T_n=P_{\alpha,n}\widehat B_n^{(0)}P_{\alpha,n}\) and
+\(T_c=P_{\alpha,c}B_{t_0,\mathcal P}P_{\alpha,c}\), then for
+\(x\in\mathcal G_c\)
+\[
+ \widehat T_n\Phi_nx-\Phi_nT_cx
+ =(\widehat T_n-T_c)\Phi_nx
+   +T_c(\Phi_n-I)x+(I-P_{\alpha,n})T_cx.
+\]
+The last two terms are \(O(\varepsilon_n)\|x\|_\infty\), because
+\(T_cx\in\mathcal G_c\) and the leading operators are uniformly bounded.
+Together with \eqref{eq:smooth-ordinary-gauge-isomorphism}, this gives
+\begin{equation}
+ \left\|\Phi_n^{-1}
+   \left(P_{\alpha,n}\widehat B_n^{(0)}P_{\alpha,n}
+       \bigm|_{\mathcal G_n}\right)\Phi_n
+  -P_{\alpha,c}B_{t_0,\mathcal P}P_{\alpha,c}
+       \bigm|_{\mathcal G_c}\right\|_{\infty\to\infty}=o_n(1).
+ \label{eq:smooth-pulled-ordinary-operator-convergence}
+\end{equation}
+The bounds in \eqref{eq:smooth-continuum-band-inverse} and a Neumann
+series now establish the leading arithmetic inverse, with norm at most
+\(2C_c\), for all sufficiently large \(n\).  Only \emph{after} this
+inverse has been obtained do we use
+\eqref{eq:smooth-normalized-prime-row-error},
+\eqref{eq:smooth-band-normalized-row-transfer}, and
+\eqref{eq:smooth-power-row-transfer}: choose \(W_0\) so that their
+box-independent \(O(1/W)\) operator norm, after multiplication by the
+uniformly bounded projections and gauge maps, is at most
+\((8C_c)^{-1}\), and then, for the fixed box and mesh, increase \(n_0\)
+until their vanishing remainders have the same bound.  A second Neumann
+series gives the projected inverse for the actual un-Schur covariance.
+This order removes any possibility of using an inverse to justify its
+own leading approximation.
+
+\medskip\noindent
+\emph{Step 3: quadratic-form convergence on the moving unit sphere.}\quad
+Let \(b^TDb=1\).  Then
+\[
+ |b_0|\leq H_0^{-1/2},\qquad
+ \sum_{j\geq1}H_j|b_j|^2\leq1.
+\]
+The norm comparison is now literal.  On positive cells the dimension is
+fixed, \(H_j\gg_{\delta,\eta,c_{\rm mesh}}1\), and
+\(H_j-H_j^{(c)}=o_n(1)\).  On the low cell,
+\[
+ |H_0-H_0^{(c)}|\,|b_0|^2
+       \ll_W H_0^{-1}=o_n(1).
+\]
+Thus
+\[
+ \|J_{\mathcal P}b\|_{L^2([t_0,1],dt/t)}^2=1+o_n(1).
+\]
+The extension on \((0,t_0)\) has squared norm
+\(|b_0|^2/2=o_n(1)\), so the full reconstructed norm is \(1+o_n(1)\).
+The same decomposition, with one factor \(t\), shows that an arithmetic
+gauge vector has continuum \(t\)-pairing \(o_n(1)\).
+
+We next compare the leading forms, splitting both prime indices into
+\(I_0\) and the positive cells.  The positive--positive block converges
+uniformly on the present unit sphere by the fixed finite-dimensional
+two-index quadrature.  For a block with one low index,
+\(|K(s,t)|\leq Cst\), Cauchy--Schwarz on the positive cells, and
+\(\sum_{p\in\mathcal P_0}t_p/p=O(\delta)\) give
+\[
+ |\mathscr K_{0,+}(b)|
+ \ll |b_0|\left(\sum_{p\in\mathcal P_0}\frac{t_p}{p}\right)
+       \sum_{j\geq1}|b_j|
+           \sum_{q\in\mathcal P_j}\frac{t_q}{q}
+ \ll H_0^{-1/2}=o_n(1).
+\]
+Here the last sum is uniformly bounded by Cauchy--Schwarz:
+\[
+ \sum_{j\geq1}H_j\alpha_j|b_j|
+ \leq\left(\sum_{j\geq1}H_j|b_j|^2\right)^{1/2}
+      \left(\sum_{j\geq1}H_j\alpha_j^2\right)^{1/2}
+ \ll1.
+\]
+The identical bound holds for the continuum low--positive block.  The
+two low--low blocks are each
+\[
+ O\!\left(|b_0|^2
+       \left(\sum_{p\in\mathcal P_0}\frac{t_p}{p}\right)^2\right)
+   +O\!\left(|b_0|^2
+       \left(\int_{I_0}dt\right)^2\right)
+ =O(H_0^{-1})=o_n(1).
+\]
+For the multiplier part, write \(h=1+(h-1)\).  The constant term leaves
+only \((H_0-H_0^{(c)})b_0^2=o(1)\) on the low row, and the remainder is
+handled by weighted Mertens summation because
+\((h(t)-1)/t\) extends continuously to \(t=0\).  The positive
+multiplier rows converge by ordinary cellwise quadrature.  Finally, the
+removed discrete \(p=q\) kernel diagonal is \(o_n(1)\) on the unit
+sphere by the estimate preceding
+\eqref{eq:smooth-leading-projected-operator-convergence}.  Combining
+these four estimates with
+\eqref{eq:smooth-compressed-form-identity}--
+\eqref{eq:smooth-full-compressed-form-comparison} proves, uniformly for
+\(b^TDb=1\),
+\begin{equation}
+ b^TD\widehat B_n^{(0)}b-
  \langle\widetilde f,A\widetilde f\rangle_{\mathcal H}=o_n(1),
  \label{eq:smooth-discrete-full-form-comparison}
 \end{equation}
-where \(\widehat B_n\) denotes the squarefree arithmetic band operator
-with its exact diagonal multiplier.  Thus both the norm and the
-quadratic form needed for the Poincar\'e gap have been transferred.
+where \(\widetilde f\) is the linear low extension of
+\(J_{\mathcal P}b\).  This explicitly proves both the norm and
+quadratic-form convergence needed for the Poincar\'e gap; no equivalence
+constant depending on \(H_0\) has been used.
+Indeed, if in addition \(b\in\mathcal G_n\), then the norm and gauge
+comparisons above give
+\[
+ \|\widetilde f\|_{\mathcal H}^2=1+o_n(1),\qquad
+ \langle\widetilde f,t\rangle_{\mathcal H}=o_n(1).
+\]
+Since \(\|t\|_{\mathcal H}^2=1/2\), the exact Hilbert-space projection
+formula yields
+\[
+ \inf_{\lambda\in\mathbb R}
+ \|\widetilde f-\lambda t\|_{\mathcal H}^2
+ =\|\widetilde f\|_{\mathcal H}^2
+   -\frac{|\langle\widetilde f,t\rangle_{\mathcal H}|^2}
+         {\|t\|_{\mathcal H}^2}
+ =1+o_n(1).
+\]
+Thus \eqref{eq:PD-Poincare} and
+\eqref{eq:smooth-discrete-full-form-comparison} give, for all
+sufficiently large \(n\),
+\begin{equation}
+ b^TD\widehat B_n^{(0)}b\geq\frac{\kappa_0}{2}\,b^TDb
+ \qquad(b\in\mathcal G_n).
+ \label{eq:smooth-leading-arithmetic-form-gap}
+\end{equation}
 To transfer every remaining arithmetic error literally, let
 \(R=(R_{ij})\) be any symmetric band covariance error satisfying
 \[
@@ -6217,10 +6590,15 @@ Replacing \(1_{p\mid m}\) by \(v_p(m)\) adds
 \end{equation}
 by \eqref{eq:marked-prime-power-aggregate}.  The constants
 \(C_{\rm sf},C_{\rm pow}\) are known before the compact ODE box is
-chosen.  We choose \(W\) so that their \(1/W\) contributions are below
-the continuum gap; after any fixed box is specified, the threshold for
-\(n\) absorbs the two vanishing remainders.
+chosen.  This is the estimate invoked only after the leading inverse in
+\eqref{eq:smooth-pulled-ordinary-operator-convergence} was established.
+The already chosen \(W\geq W_0\) makes its \(1/W\) contribution smaller
+than the reserved continuum inverse and form gaps; after a fixed box is
+specified, only the threshold for \(n\) is increased to absorb the
+vanishing remainder.
 
+\medskip\noindent
+\emph{Step 4: the finite nuisance block and its Schur perturbation.}\quad
 It remains to justify the joint Schur complement in
 \eqref{eq:smooth-joint-Schur-band-matrix}.  Every head pattern retains a
 fixed mass in each of two separated positive-length physical subpools.
@@ -6302,7 +6680,15 @@ only a constant factor.  Thus
  \|\nu_{n,\xi}-\nu_n\|_{\rm TV}=o_{n;B,W}(1).
 \]
 Every coordinate of \(Z\) is uniformly bounded and its dimension depends
-only on \(W\); hence
+only on \(W\).  If \(d_W=\dim Z\) and
+\(\max_\nu\|Z_\nu\|_\infty\leq M_W\), then for every Euclidean unit
+vector \(a\),
+\[
+ \left|\operatorname{Var}_{\nu_{n,\xi}}(a^TZ)
+       -\operatorname{Var}_{\nu_n}(a^TZ)\right|
+ \leq 6d_WM_W^2\|\nu_{n,\xi}-\nu_n\|_{\rm TV}.
+\]
+Taking the supremum over \(a\) gives
 \[
  \sup_{\xi\ \text{ in the fixed }B\text{-box}}
        \|\Gamma_{\xi,n}-\Gamma_{0,n}\|_{\mathrm{op}}
@@ -6316,7 +6702,8 @@ constant is involved.
 The constant score is absent: normalization has removed it, and one
 centered head indicator was deleted before \(\Gamma_\xi\) was formed.
 The head cross rows are
-\(O_W(1/L)\), and the physical cross row is given by the Stieltjes
+\(O_{B,W}(1/L)\) throughout the fixed box, and the physical cross row is
+given by the Stieltjes
 estimate \eqref{eq:marked-tilted-physical-full}.  Write
 \[
  U_\xi:=\operatorname{Cov}_\xi(\Omega,Z),\qquad
@@ -6329,6 +6716,14 @@ The actual block elimination is
  \label{eq:smooth-displayed-joint-block-elimination}
 \end{equation}
 The marked head/physical bounds give, for \(\|b\|_\infty\le1\),
+\[
+ |(U_\xi^Tb)_\nu|
+ \leq\sum_j|(U_\xi)_{j\nu}|\,|b_j|
+ \ll_{B,W}\frac1L\sum_jH_j
+ \ll_{B,W}\frac{\log L}{L}.
+\]
+Together with \(\|\Gamma_\xi^{-1}\|_{\rm op}\leq\gamma_W^{-1}\) this
+gives, row by row,
 \begin{equation}
  \left\|D^{-1}U_\xi\Gamma_\xi^{-1}U_\xi^Tb\right\|_\infty
  \ll_{B,W}\frac{\log L}{L^2},
@@ -6338,6 +6733,9 @@ because \(|(U_\xi)_{i\nu}|\ll_{B,W}H_i/L\) and
 \(\sum_jH_j\ll\log L\).  This is the promised normalized row estimate,
 with an explicit rate.
 
+\medskip\noindent
+\emph{Step 5: the exact physical direction and the full quotient
+form.}\quad
 The physical column is nevertheless responsible for the exact null
 relation, and we record it rather than discarding it as a small error.
 Let
@@ -6350,7 +6748,13 @@ For a statistic \(X\), put
 \(X^{\circ,\xi}:=X-\mathbb E_{\nu_{n,\xi}}X\).  This notation is
 distinct from the already defined baseline-centered head scores
 \(H_e^\circ\); changing their centering subtracts only a constant and
-therefore leaves the centered covariance span unchanged.  Then,
+therefore leaves the centered covariance span unchanged.  Every member
+of every active structured cell is \(y\)-smooth, so its logarithm is the
+sum of the \(p\leq y\) valuation terms.  Moreover, for each \(p\leq W\),
+the function \(v_p\) is constant on every exact head-pattern cell and
+hence is a linear combination of the retained head indicators and the
+deleted constant indicator.  After centering, the constant disappears
+and the whole \(p\leq W\) term lies in the centered head span.  Therefore,
 identically at finite \(n\),
 \begin{equation}
  T_y^{\circ,\xi}=
@@ -6475,6 +6879,29 @@ For prime coefficients \(c=(c_p)\), write the leading discrete form as
        \frac{K(t_p,t_r)c_pc_r}{pr}.
  \label{eq:smooth-leading-minimizer-form}
 \end{equation}
+The continuum double integral contains its diagonal as a measure-zero
+set, whereas the finite prime double sum in the quadrature temporarily
+contains \(p=r\).  The difference is
+\begin{equation}
+ \Delta_{\rm diag}(c):=
+ \sum_{W<p\leq y}\frac{K(t_p,t_p)c_p^2}{p^2}=o_n(1)
+ \qquad\bigl(\mathfrak d_n(b)=1\bigr).
+ \label{eq:smooth-minimizer-kernel-diagonal}
+\end{equation}
+To verify this uniformly, on the positive cells \(p\geq y^\delta\), so
+\[
+ \sum_{t_p>\delta}\frac{|K(t_p,t_p)|c_p^2}{p^2}
+ \ll y^{-\delta}\sum_{t_p>\delta}\frac{c_p^2}{p}=o(1).
+\]
+On \(I_0\), \(c_p=b_0-\mu_*t_p\), where
+\(|b_0|=O(H_0^{-1/2})\) and \(\mu_*=O_{\delta,\eta}(1)\).  Since
+\[
+ \sum_{p>W}\frac{t_p^2}{p^2}
+   =O_W((\log y)^{-2}),\qquad
+ \sum_{p>W}\frac{t_p^4}{p^2}
+   =O_W((\log y)^{-4}),
+\]
+and \(K(t,t)=O(t^2)\), the low-cell contribution is \(o(1)\) as well.
 The two-index quadrature proved in
 \eqref{eq:smooth-collective-compact-quadrature}--
 \eqref{eq:smooth-discrete-full-form-comparison} applies also to
@@ -6528,7 +6955,14 @@ averaging, gives the corresponding prime-level guard estimate
  \ll_{B,W}\frac{y^2L^{A+3}}n=o_n(1)
  \label{eq:smooth-guard-prime-row-error}
 \end{equation}
-for the fixed exponent \(A\) in that corollary.  Hence
+for the fixed exponent \(A\) in that corollary.  Explicitly, a deleted
+integer satisfies the two score envelopes
+\eqref{eq:marked-guard-score-envelopes}.  Taking the signs of the
+covariance differences as the coefficient vector \(b\) in
+\eqref{eq:marked-guard-explicit-prime-row}, the exact conditional
+covariance identity \eqref{eq:marked-conditional-deletion-covariance}
+gives \(O_{B,W}(y^2L^{A+2}/n)\), which is stronger than the displayed
+bound.  Hence
 \eqref{eq:smooth-minimizer-prime-row-error} applies to guarded deletions
 as well as to the analytic covariance remainders.
 Therefore the squarefree and prime-power remainders in
@@ -6595,13 +7029,15 @@ is exactly \eqref{eq:smooth-arithmetic-Poincare}; no gap on
 \(\mathcal G_n\) has been used as a substitute for the full quotient
 inequality.
 
-The inverse assertion is a separate projected statement.  The continuum
-inverse argument in
-\eqref{eq:smooth-discrete-singular-sequence}--
-\eqref{eq:smooth-power-row-transfer} gives the projected
+The inverse assertion is a separate projected statement.  The
+gauge isomorphism
+\eqref{eq:smooth-ordinary-gauge-isomorphism}, the pulled comparison
+\eqref{eq:smooth-pulled-ordinary-operator-convergence}, and the two
+successive Neumann steps following that display give the projected
 \(\ell^\infty\)-inverse for the actual un-Schur band covariance
-\(C_\xi\), after the two box-independent \(1/W\) errors have been
-absorbed.  Apply
+\(C_\xi\).  Its norm is bounded independently of the later box and
+mesh; only the threshold for the vanishing arithmetic remainder depends
+on them.  Apply
 \Cref{lem:stable-projected-Schur-perturbation} with
 \(P=P_{\alpha,n}\) and
 \(E=U_\xi\Gamma_\xi^{-1}U_\xi^T\).
@@ -6651,6 +7087,9 @@ For the continuum cells we use the distinct notation
 
 \begin{lemma}[Weighted discrete quotient inverse]
 \label[lemma]{lem:smooth-weighted-discrete-inverse}
+Assume that \(W\geq W_0\) and
+\(w=\delta+\eta\leq w_0\) have been chosen as in
+\Cref{lem:arithmetic-band-quotient}.
 Let
 \[
  \mathsf B^Z_\xi:=D^{-1}\mathcal C^Z_\xi/q_n,
@@ -6670,8 +7109,7 @@ then
 \end{equation}
 Here \(C_{\sharp}\) depends on the displayed right-side constant \(C\)
 and the continuum operator, but not on \(W\), the compact tilt radius,
-or the permitted fine mesh once \(W\) exceeds the fixed absorption
-threshold.
+or the permitted fine mesh once \(W\geq W_0\).
 This is uniform in the moving cutoff, every permitted regular mesh, all
 sufficiently large \(n\), and every fixed compact effective-tilt box, in
 the precise sense that the constant is independent of the mesh and box
@@ -6680,6 +7118,7 @@ radius, while the threshold for \(n\) may depend on
 \end{lemma}
 
 \begin{proof}
+\emph{Step 1: a sharp continuum inverse.}\quad
 We first prove the continuum assertion, using only the continuum gauge
 \(\mathcal G_c\), centers \(\alpha^{(c)}\), and harmonic matrix \(D_c\).
 For a band vector define the
@@ -6695,29 +7134,76 @@ Thus
  \label{eq:smooth-sharp-reconstruction-isometry}
 \end{equation}
 including on the moving low cell.  If a uniform continuum inverse did
-not exist, there would be permitted meshes and vectors
-\(q\in\mathcal G_c\) such that, after normalization,
-\(\|q\|_{\sharp,c}=1\) while the right side of the projected compressed
-equation is \(o(\alpha_j^{(c)})\) in every row.  As in
-\eqref{eq:smooth-unprojected-compressed-equation}, for a bounded scalar
-\(\beta\),
+not exist, there would be a sequence of moving cutoffs and permitted
+meshes, numbers \(\varepsilon_\nu\downarrow0\), and
+\(q_\nu\in\mathcal G_{c,\nu}\) such that
+\[
+ \|q_\nu\|_{\sharp,c}=1,\qquad
+ \max_j\frac{|[P_{\alpha,c}B_{t_0,\mathcal P}q_\nu]_j|}
+                  {\alpha_j^{(c)}}\leq\varepsilon_\nu.
+\]
+As in \eqref{eq:smooth-unprojected-compressed-equation}, there is a
+bounded scalar \(\beta_\nu\) such that
 \begin{equation}
- (B_{t_0,\mathcal P}q)_j
- =\beta\alpha_j^{(c)}+o(\alpha_j^{(c)}).
+ (B_{t_0,\mathcal P}q_\nu)_j
+ =\beta_\nu\alpha_j^{(c)}+r_{\nu,j},\qquad
+ |r_{\nu,j}|\leq\varepsilon_\nu\alpha_j^{(c)}.
  \label{eq:smooth-weighted-unprojected-equation}
 \end{equation}
-On a positive relative cell,
-\(|t/\alpha_j^{(c)}-1|\ll\eta\).  On the low cell, harmonic centering
-gives
+Here one may take
 \[
- \frac1{H_0^{(c)}}\int_{I_0}
-   \left(\frac{t}{\alpha_0^{(c)}}-1\right)\frac{dt}{t}=0.
+ r_\nu=P_{\alpha,c}B_{t_0,\mathcal P}q_\nu,\qquad
+ \beta_\nu=
+ \frac{(\alpha^{(c)})^TD_cB_{t_0,\mathcal P}q_\nu}
+      {(\alpha^{(c)})^TD_c\alpha^{(c)}}.
 \]
-Using \(h(t)=1+O(t)\) and \(|K(s,t)|\ll st\), replacement of the step
-function by \eqref{eq:smooth-linear-cell-reconstruction} changes the low
-averaged equation by \(O(w\alpha_0^{(c)})\), and changes a positive row,
-after division by its center, by \(O(w)\).  More precisely, uniformly
-over the permitted meshes,
+The denominator is bounded below uniformly by the cells meeting
+\([1/2,1]\).  Also
+\(\|q_\nu\|_\infty\leq\|q_\nu\|_{\sharp,c}=1\),
+\(\sum_jH_j^{(c)}\alpha_j^{(c)}=1-t_0\), and the compressed continuum
+operators are uniformly bounded.  Hence \(|\beta_\nu|\leq C\), with \(C\)
+independent of the moving cutoff and mesh.
+For the local estimates below write \(q=q_\nu\),
+\(\beta=\beta_\nu\), and suppress \(\nu\) from the cell data.  Put
+\(x_j=q_j/\alpha_j^{(c)}\) and, on \(I_j\), set
+\[
+ d(t):=(J_{\mathcal P}^\sharp-J_{\mathcal P})q(t)
+      =x_j(t-\alpha_j^{(c)}).
+\]
+Then \(\|x\|_\infty=\|q\|_{\sharp,c}\) and, exactly on every cell,
+\begin{equation}
+ \int_{I_j}d(t)\,\frac{dt}{t}=0.
+ \label{eq:smooth-sharp-cell-centering}
+\end{equation}
+For the multiplier part the constant value
+\(h(\alpha_j^{(c)})\) therefore cancels.  On a positive relative cell,
+Lipschitz continuity of \(h\), the mesh bounds, and
+\(\alpha_j^{(c)}\asymp\inf I_j\) give
+\[
+ \frac1{H_j^{(c)}}\left|
+ \int_{I_j}h(t)d(t)\,\frac{dt}{t}\right|
+ \leq C\eta\alpha_j^{(c)}\|q\|_{\sharp,c}.
+\]
+On \(I_0\), use \(h(t)=1+O(t)\) and the two explicit estimates
+\[
+ \frac1{H_0^{(c)}}\int_{I_0}(t-\alpha_0^{(c)})\,\frac{dt}{t}=0,
+ \qquad
+ \frac1{H_0^{(c)}}\int_{I_0}|t-\alpha_0^{(c)}|\,\frac{dt}{t}
+ \leq2\alpha_0^{(c)}.
+\]
+They give an \(O(\delta\alpha_0^{(c)})\|q\|_{\sharp,c}\) low multiplier
+error.  For the integral part, \(|K(s,t)|\leq Cst\) gives
+\[
+ \left|\frac1{H_i^{(c)}}\int_{I_i}\int_{t_0}^1
+       K(s,t)d(t)\,\frac{dt}{t}\frac{ds}{s}\right|
+ \leq C\alpha_i^{(c)}\|q\|_{\sharp,c}
+       \sum_k\int_{I_k}|t-\alpha_k^{(c)}|\,dt.
+\]
+The low summand is \(O(\delta^2)\).  On the regular positive cells the
+sum is \(O(\eta)\): each summand is
+\(O(\eta^2(\inf I_k)^2)\), and comparison with the corresponding
+geometric Riemann sum gives \(O(\eta)\).  Hence, uniformly over all
+permitted meshes,
 \begin{equation}
  \max_j\frac{\left|
    [E_{\mathcal P}A^{(t_0)}(J_{\mathcal P}^\sharp-J_{\mathcal P})q]_j
@@ -6727,8 +7213,20 @@ over the permitted meshes,
 \end{equation}
 If
 \(G(s)=A^{(t_0)}J_{\mathcal P}^\sharp q(s)/s\), then
-\eqref{eq:smooth-weighted-kernel-axis} gives
-\(\operatorname{osc}_{I_0}G=O(\delta)\).  Moreover,
+\eqref{eq:smooth-weighted-kernel-axis}, \(h\in C^1\), and the fact that
+\(J_{\mathcal P}^\sharp q(t)/t=x_j\) is constant on each cell give
+\[
+ \operatorname{osc}_{I_0}G\leq C\delta\|q\|_{\sharp,c},\qquad
+\operatorname{osc}_{I_j}G\leq C\eta\|q\|_{\sharp,c}\quad(j\geq1).
+\]
+Moreover, since
+\(H_j^{(c)}\alpha_j^{(c)}=|I_j|\), for every cell
+\begin{equation}
+ (E_{\mathcal P}A^{(t_0)}J_{\mathcal P}^\sharp q)_j
+ =\alpha_j^{(c)}\frac1{|I_j|}\int_{I_j}G(s)\,ds.
+ \label{eq:smooth-sharp-average-to-pointwise}
+\end{equation}
+In particular, on the low cell,
 \[
  (E_{\mathcal P}A^{(t_0)}J_{\mathcal P}^\sharp q)_0
  =\alpha_0^{(c)}\frac1{\delta-t_0}
@@ -6754,15 +7252,26 @@ At \(s=0\), the quotient kernel is interpreted by
 \eqref{eq:smooth-weighted-kernel-axis}.  Hence
 \eqref{eq:smooth-weighted-reconstructed-equation} holds on all of
 \((0,1]\) for the full operator, with the same \(O(w)+o(1)\) right
-side.  Pairing this full equation with \(t\) gives
-\(\beta=O(w)+o(1)\).  The \(X_t\) inverse
+side.  Put \(e(t)=A\widetilde f(t)/t-\beta\).  Self-adjointness and
+\(At=0\) give the exact identity
+\[
+ 0=\langle t,A\widetilde f\rangle_{\mathcal H}
+  =\frac{\beta}{2}+\int_0^1t\,e(t)\,dt.
+\]
+Hence \(|\beta|\leq\|e\|_\infty=O(w)+o(1)\).  The \(X_t\) inverse
 \eqref{eq:PD-weighted-inverse} then puts the reconstruction within
 \(O(w)+o(1)\) of \(\lambda t\).  Since
-\((\alpha^{(c)})^TD_cq=0\), averaging
-\(q_j/\alpha_j^{(c)}=\lambda+O(w)+o(1)\) against the positive weights
-\(H_j^{(c)}(\alpha_j^{(c)})^2\) gives
-\(\lambda=O(w)+o(1)\).  Once the previously fixed \(w=\delta+\eta\)
-is sufficiently small, this contradicts
+\((\alpha^{(c)})^TD_cq=0\), this means exactly
+\[
+ 0=\sum_jH_j^{(c)}(\alpha_j^{(c)})^2
+       \frac{q_j}{\alpha_j^{(c)}}.
+\]
+The total weight in this sum is bounded below by a structural positive
+constant: the cells contained in \([1/2,1]\) have centers at least
+\(1/2\) and total harmonic mass bounded below.  Averaging
+\(q_j/\alpha_j^{(c)}=\lambda+O(w)+o(1)\) against these positive weights
+therefore gives \(\lambda=O(w)+o(1)\).  Once the structural threshold
+\(w_0\) is sufficiently small, this contradicts
 \(\|q\|_{\sharp,c}=1\).  Equivalently, with
 \begin{equation}
  \Pi_c:=S_c^{-1}P_{\alpha,c}S_c,\qquad
@@ -6778,6 +7287,8 @@ that
  \label{eq:smooth-continuum-sharp-inverse}
 \end{equation}
 
+\medskip\noindent
+\emph{Step 2: arithmetic cell data and sharp \(h,K\) quadrature.}\quad
 The arithmetic transfer must be relative.  If
 \(\|b\|_\sharp\leq1\), then \(|b_{j(q)}|\leq\alpha_{j(q)}\ll t_q\) on
 positive cells, while on the low cell
@@ -6857,13 +7368,54 @@ conjugated discrete kernel, with the diagonal temporarily inserted, is
        \varkappa(t_p,t_q).
  \label{eq:smooth-sharp-kernel-entry}
 \end{equation}
-The outer measure in this display is a probability measure, because
-\(H_i\alpha_i=\sum_{p\in\mathcal P_i}t_p/p\).  Weighted Mertens
-summation therefore converges uniformly against the continuous kernel
-\(\varkappa\).  On the moving input cell the inner weighted mass is
-\(H_0\alpha_0=\delta-t_0+o(1)\), while the prefactor
-\(\alpha_0\to0\); on a positive input cell ordinary fixed-cell
-quadrature applies.  This proves convergence of every kernel entry.
+To see every normalization, introduce the probability measures
+\begin{align*}
+ \rho_{j,n}
+ &:=\frac1{H_j\alpha_j}
+       \sum_{p\in\mathcal P_j}\frac{t_p}{p}\,\delta_{t_p},&
+ \rho_{j,c}
+ &:=\frac1{H_j^{(c)}\alpha_j^{(c)}}
+       \1_{I_j}(t)\,dt,
+\end{align*}
+and retain
+\(\omega_{n,j}=H_j\alpha_j^2\),
+\(\omega_{c,j}=H_j^{(c)}(\alpha_j^{(c)})^2\).
+Because \(H_j\alpha_j=\sum_{p\in\mathcal P_j}t_p/p\) and
+\(H_j^{(c)}\alpha_j^{(c)}=|I_j|\), these are indeed probability
+measures.  Formula \eqref{eq:smooth-sharp-kernel-entry} is exactly
+\begin{equation}
+ \omega_{n,k}\iint\varkappa(s,t)\,
+       d\rho_{i,n}(s)d\rho_{k,n}(t),
+ \label{eq:smooth-sharp-kernel-probability-entry}
+\end{equation}
+and its continuum counterpart is the same expression with \(n\)
+replaced by \(c\).
+
+The moving-low convergence follows from the uniform weighted prime
+count
+\begin{equation}
+ \sup_{t_0\leq x\leq1}\left|
+ \sum_{W<p\leq y^x}\frac{t_p}{p}-(x-t_0)\right|
+ =O_W((\log y)^{-1}).
+ \label{eq:smooth-weighted-prime-distribution}
+\end{equation}
+This is
+\(\sum_{p\leq X}(\log p)/p=\log X+O(1)\), divided by
+\(\log y\).  Stieltjes summation and uniform continuity of
+\(\varkappa\) therefore give
+\(\rho_{j,n}\Rightarrow\rho_{j,c}\), uniformly against all sections of
+\(\varkappa\), on every positive cell and also on
+\(I_0=[t_0,\delta]\).  On the low cell,
+\[
+ \omega_{n,0}=(H_0\alpha_0)\alpha_0=o_n(1),\qquad
+ \omega_{c,0}=(\delta-t_0)\alpha_0^{(c)}=o_n(1),
+\]
+whereas \(\omega_{n,k}-\omega_{c,k}=o_n(1)\) on every positive cell.
+Thus \eqref{eq:smooth-sharp-kernel-probability-entry} converges in all
+four low/positive orientations: a low input carries the vanishing
+factor \(\omega_{0,\bullet}\), and a low output is averaged against a
+probability measure.  In particular neither \(H_0\) nor
+\(\alpha_0^{-1}\) is lost.
 Removing the inserted diagonal changes the conjugated operator by at
 most
 \[
@@ -6874,15 +7426,22 @@ Indeed \(|K(t,t)|\ll t^2\).  On a positive cell its primes tend to
 infinity, while on the low cell
 \(t_p^2=(\log p)^2/(\log y)^2\) and
 \(\sum_{p>W}(\log p)^2/p^2<\infty\).
-For the diagonal multiplier, use \(h(t)=1+O(t)\),
-\eqref{eq:smooth-low-cell-data-convergence}, and ordinary positive-cell
-quadrature.  The dimension is fixed after the mesh is chosen, so the
+For the diagonal multiplier on \(I_0\), write
+\(h(t)=1+t\widetilde h(t)\), where \(\widetilde h\) is continuous.
+The constant part has average exactly one in both the arithmetic and
+continuum rows; \eqref{eq:smooth-weighted-prime-distribution} handles
+the remaining weighted average, together with
+\(H_0/H_0^{(c)}\to1\).  Ordinary Mertens quadrature applies on every
+positive cell.  The dimension is fixed after the mesh is chosen, so the
 entrywise convergence is exactly
 \eqref{eq:smooth-sharp-main-quadrature}.  Together with
 \eqref{eq:smooth-sharp-projection-convergence}, this also verifies the
 sharp convergence of the arithmetic and continuum gauges; no
 convergence of \(D\) to \(D_c\) is used.
 
+\medskip\noindent
+\emph{Step 3: the remaining sharp arithmetic errors and the nuisance
+Schur block.}\quad
 The Bernoulli diagonal correction, kept out of
 \(E^{\rm sf}_{pq}\) in the preceding off-diagonal calculation, satisfies
 \begin{equation}
@@ -6968,19 +7527,41 @@ Each is \(o_{n;B,W,\mathcal P}(1)\) uniformly in \(i\), by
 \eqref{eq:smooth-sharp-unweighted-power-bands},
 \(\sum_q|b_{j(q)}|/q\ll1\), and the fact that every positive-cell
 \(\alpha_i\) is bounded below by a fixed multiple of \(\delta\), whereas
-the low-cell value is \(\alpha_0\).  Finally the literal endpoints in
-all four directions obey the common relative bound
+the low-cell value is \(\alpha_0\).  We also keep the literal endpoints
+separate.  For \(\|b\|_\sharp\leq1\), the endpoint ledger
+\eqref{eq:marked-four-tail-endpoint-ledger} gives, orientation by
+orientation,
+\begin{align}
+ \frac{|E_i^{JI,\mathrm{end}}|}{\alpha_i}
+ &\ll_{B,W}\frac Ln\frac{\#\mathcal P_i}{H_i\alpha_i}
+       \sum_q|b_{j(q)}|
+ \ll_{B,W,\delta,\eta}\frac{y^2L}{n},\notag\\
+ \frac{|E_i^{IJ,\mathrm{end}}|}{\alpha_i}
+ &\ll_{B,W}\frac Ln\frac{\#\mathcal P_i}{H_i\alpha_i}
+       \sum_q|b_{j(q)}|
+ \ll_{B,W,\delta,\eta}\frac{y^2L}{n},\notag\\
+ \frac{|E_i^{JJ,\mathrm{end}}|}{\alpha_i}
+ &\ll_{B,W}\frac {L^2}n\frac{\#\mathcal P_i}{H_i\alpha_i}
+       \sum_q|b_{j(q)}|
+ \ll_{B,W,\delta,\eta}\frac{y^2L^2}{n},\notag\\
+ \frac{|E_i^{\mathrm{diag,end}}|}{\alpha_i}
+ &\ll_{B,W}\frac {L^2}n\frac{\#\mathcal P_i}{H_i}
+       \frac{|b_i|}{\alpha_i}
+ \ll_{B,W,\delta,\eta}\frac{yL^2}{n}.
+ \label{eq:smooth-sharp-four-endpoint-directions}
+\end{align}
+Indeed \(\#\mathcal P_i\leq y\),
+\(\sum_q|b_{j(q)}|\leq y\), and \(|b_i|\leq\alpha_i\).  Moreover,
+\(H_i\alpha_i=\sum_{p\in\mathcal P_i}t_p/p\) tends to \(\delta\) on
+the low cell and to \(|I_i|\) on each positive cell, while \(H_i\) is
+bounded below on every permitted cell.  Hence the four displays imply
+the common relative bound
 \begin{equation}
  \max_i\frac{|E_i^{\rm endpoint}|}{\alpha_i}
  \ll_{B,W,\mathcal P}\frac{y^2L^2}{n}
        =o_{n;B,W,\mathcal P}(1).
  \label{eq:smooth-sharp-four-power-endpoints}
 \end{equation}
-Indeed \(H_i\alpha_i=\sum_{p\in\mathcal P_i}t_p/p\), the low value is
-\(\delta+o(1)\), and the crude bounds
-\(\#\mathcal P_i\leq y\),
-\(\sum_q|b_{j(q)}|\leq y\) dominate every \(L/n\) or \(L^2/n\)
-endpoint in \eqref{eq:marked-four-tail-endpoint-ledger}.
 Thus all box dependence in the four directions is contained in one
 remainder
 \(\epsilon^{\sharp}_{B,W,\mathcal P}(n)\to0\) for each fixed mesh, and
@@ -7011,12 +7592,50 @@ Consequently
  =o_{n;B,W}(\alpha_i).
  \label{eq:smooth-sharp-head-physical-transfer}
 \end{equation}
-Thus the sharp discrete operator is a perturbation, in the sharp norm,
+For reference, the relative estimates just proved can be read in the
+following ledger; the displayed quantity is always the supremum over
+\(\|b\|_\sharp\leq1\):
+\[
+\begin{array}{c|c}
+ \text{source}&
+ \displaystyle\max_i |(E_nb)_i|/\alpha_i\\ \hline
+ \text{leading \(h,K\) quadrature}
+   &o_{n;W,\mathcal P}(1)\\
+ \text{squarefree marked off-diagonal}
+   &O_{B,W}(\log L/(\delta L))\\
+ \text{guard deletion}
+   &o_{n;B,W,\mathcal P}(1)\\
+ \text{squarefree Bernoulli diagonal}
+   &O(1/W)\\
+ \text{prime powers}
+   &C_{\rm pow}^{\sharp}/W+
+       \epsilon^\sharp_{B,W,\mathcal P}(n)\\
+ \text{head/physical Schur block}
+   &O_{B,W}(\log L/(\delta L^2))\\
+ \text{arithmetic/continuum projection}
+   &o_{n;W,\mathcal P}(1).
+\end{array}
+\]
+Thus every vanishing row error is \(o(\alpha_i)\), including the low
+row \(i=0\); no additive \(o(1)\) is divided by \(\alpha_0\) after the
+fact.  It follows that the sharp discrete operator is a perturbation, in
+the sharp norm,
 whose nonvanishing part is
 \((C_{\rm sf}+C_{\rm pow}^{\sharp})/W\), with every dependence on the
 later compact box and fixed mesh in a remainder tending to zero with
-\(n\).  We finish by identifying the two varying quotient spaces
-explicitly.  Put
+\(n\).  Equivalently, before either gauge projection is applied,
+\begin{equation}
+ \left\|S_n^{-1}\mathsf B^Z_\xi S_n
+       -S_c^{-1}B_{t_0,\mathcal P}S_c\right\|_{\infty\to\infty}
+ \leq\frac{C_{\rm sf}+C_{\rm pow}^{\sharp}}W
+       +o_{n;B,W,\mathcal P}(1).
+ \label{eq:smooth-unprojected-sharp-operator-comparison}
+\end{equation}
+
+\medskip\noindent
+\emph{Step 4: identification of the varying sharp gauges and transfer
+of the inverse.}\quad
+We finish by identifying the two quotient spaces explicitly.  Put
 \begin{align}
  \Pi_n&:=S_n^{-1}P_{\alpha,n}S_n,
  &\mathcal R_n&:=\operatorname{Ran}\Pi_n,\notag\\
@@ -7025,14 +7644,10 @@ explicitly.  Put
  &\mathcal T_c&:=\Pi_cS_c^{-1}B_{t_0,\mathcal P}S_c\Pi_c.
  \label{eq:smooth-two-sharp-projected-operators}
 \end{align}
-Equations \eqref{eq:smooth-sharp-projection-convergence},
-\eqref{eq:smooth-sharp-main-quadrature},
-\eqref{eq:smooth-sharp-squarefree-transfer},
-\eqref{eq:smooth-sharp-guard-deletion},
-\eqref{eq:smooth-sharp-squarefree-diagonal},
-\eqref{eq:smooth-sharp-power-transfer}, and
-\eqref{eq:smooth-sharp-head-physical-transfer} give the explicit
-operator comparison
+Equations \eqref{eq:smooth-sharp-projection-convergence} and
+\eqref{eq:smooth-unprojected-sharp-operator-comparison}, together with
+the uniform boundedness of the continuum operator, give the explicit
+projected comparison
 \begin{equation}
  \|\mathcal T_{n,\xi}-\mathcal T_c\|_{\infty\to\infty}
  \le \frac{C_{\rm sf}+C_{\rm pow}^{\sharp}}W
@@ -7040,19 +7655,48 @@ operator comparison
  \label{eq:smooth-two-sharp-operator-comparison}
 \end{equation}
 All operators in this display are extended to the full coordinate
-space by the displayed projections.  Since
-\(\|\Pi_n-\Pi_c\|_{\infty\to\infty}=o_n(1)\), the restriction
+space by the displayed projections.  Put
+\[
+ \varepsilon_n:=\|\Pi_n-\Pi_c\|_{\infty\to\infty}=o_n(1).
+\]
+The exact formulas preceding
+\eqref{eq:smooth-sharp-projection-convergence} show that both projections
+have kernel \(\operatorname{span}\{\mathbf1\}\) and hence rank \(s\).
+For \(x\in\mathcal R_c\), the restriction
 \[
  U_n:=\Pi_n|_{\mathcal R_c}:\mathcal R_c\longrightarrow\mathcal R_n
 \]
-is an isomorphism for all sufficiently large \(n\), with
-\(\|U_n\|+\|U_n^{-1}\|\le3\).  More precisely, under the ambient
-coordinate identification,
+satisfies
 \[
- \|U_n-I_{\mathcal R_c}\|_{\infty\to\infty}=o_n(1),\qquad
- \|U_n^{-1}-I_{\mathcal R_n}\|_{\infty\to\infty}=o_n(1).
+ \|U_nx-x\|_\infty
+ =\|(\Pi_n-\Pi_c)x\|_\infty
+ \leq\varepsilon_n\|x\|_\infty.
 \]
-Since \(\mathcal T_c\) is uniformly bounded, direct multiplication gives
+Thus \(U_n\) is injective when \(\varepsilon_n<1\), and equality of the
+two ranks makes it onto.  Moreover,
+\begin{equation}
+ \|U_n\|\leq1+\varepsilon_n,\qquad
+ \|U_n^{-1}\|\leq(1-\varepsilon_n)^{-1}.
+ \label{eq:smooth-sharp-range-isomorphism}
+\end{equation}
+If \(y=U_nx\in\mathcal R_n\), then, under the ambient coordinate
+identification,
+\[
+ \|U_n^{-1}y-y\|_\infty=\|x-\Pi_nx\|_\infty
+ \leq\frac{\varepsilon_n}{1-\varepsilon_n}\|y\|_\infty.
+\]
+For \(x\in\mathcal R_c\), the exact expansion inside \(U_n^{-1}\) is
+\[
+ \mathcal T_{n,\xi}U_nx-U_n\mathcal T_cx
+ =(\mathcal T_{n,\xi}-\mathcal T_c)U_nx
+   +\mathcal T_c(U_n-I)x
+   +(I-\Pi_n)\mathcal T_cx.
+\]
+The last two terms are each at most
+\(\varepsilon_n\|\mathcal T_c\|\,\|x\|_\infty\), up to the harmless
+factor \(1+\varepsilon_n\) in the first one.  Equations
+\eqref{eq:smooth-sharp-range-isomorphism} and
+\eqref{eq:smooth-two-sharp-operator-comparison} therefore give
 the pulled-back comparison
 \begin{equation}
  \left\|U_n^{-1}(\mathcal T_{n,\xi}|_{\mathcal R_n})U_n
@@ -7061,17 +7705,25 @@ the pulled-back comparison
        +o_{n;B,W,\mathcal P}(1).
  \label{eq:smooth-pulled-sharp-operator-comparison}
 \end{equation}
-Choose \(W\) so that the box-independent \(1/W\) term is smaller than
-\((4C_\sharp^{(0)})^{-1}\), and only then fix the compact box and mesh
-and take \(n\) large enough to absorb the remainder.  The Neumann
+We enlarge the structural threshold \(W_0\) once and for all, before the
+actual \(W\) is selected, so that the
+box-independent \(1/W\) term is smaller than
+\((4C_\sharp^{(0)})^{-1}\) for every \(W\geq W_0\).  Only after this
+choice are the compact box and mesh fixed and \(n\) taken large enough
+to absorb the remainder.  The Neumann
 series and \eqref{eq:smooth-continuum-sharp-inverse} now give
 \[
  \left\|(\mathcal T_{n,\xi}|_{\mathcal R_n})^{-1}\right\|_{\infty\to\infty}
  \le 2C_\sharp^{(0)}+o(1).
 \]
-Conjugating \eqref{eq:smooth-weighted-discrete-system} by \(S_n\)
-therefore yields
-\(\|q\|_\sharp\le C_\sharp w\), which is
+Finally put \(x=S_n^{-1}q\) and \(v=S_n^{-1}u\).  Because
+\(q,u\in\mathcal G_n\), the exact projection formula gives
+\(x,v\in\mathcal R_n\), and
+\eqref{eq:smooth-weighted-discrete-system} becomes
+\(\mathcal T_{n,\xi}x=v\).  The hypothesis gives
+\(\|v\|_\infty\leq Cw\), while
+\(\|x\|_\infty=\|q\|_\sharp\).  Applying the preceding inverse bound
+therefore yields \(\|q\|_\sharp\leq C_\sharp w\), which is
 \eqref{eq:smooth-weighted-discrete-conclusion}.  This also makes the
 order of the choices \(W\), box, mesh, and \(n\) explicit.
 \end{proof}
@@ -7166,59 +7818,313 @@ geometric mesh and applying Mertens gives
  V\asymp\delta^2+\eta^2\asymp w^2.
 \]
 
-Exact harmonic centering in each cell and
-\eqref{eq:smooth-kernel-product} give, on every positive row,
-\[
- \left|\left(D^{-1}
-       \operatorname{Cov}_\xi(\Omega,S_g)\right)_j\right|
-       \ll w\alpha_j.
-\]
-On the low row the product kernel gives the sharper calculation
+We next justify the sharp right-side estimate for the \emph{non-step}
+coefficient \(g_p=\alpha_{j(p)}-t_p\).  This does not follow merely by
+applying the preceding step-input operator estimate, since on the moving
+low cell one can have \(|g_p|\gg\alpha_0\).  All prime sums in this
+paragraph range over \(W<p\leq y\).  Put
+\begin{equation}
+ B_1(g):=\sum_p\frac{|g_p|}{p},\qquad
+ G_1(g):=\sum_p\frac{t_p|g_p|}{p},\qquad
+ B_2(g):=\sum_p\frac{|g_p|}{p^2},\qquad
+ G_2(g):=\sum_p\frac{t_p|g_p|}{p^2}.
+ \label{eq:smooth-raw-g-moment-ledger-definition}
+\end{equation}
+The cell moment calculations in
+\eqref{eq:smooth-low-V-constant}--
+\eqref{eq:smooth-positive-cell-moments}, followed by weighted Mertens
+summation, give
 \begin{align}
- \left|\left(D^{-1}
-       \operatorname{Cov}_\xi(\Omega,S_g)\right)_0\right|
- &\ll \frac1{H_0}\sum_{p\in\mathcal P_0}
-       \frac{t_p|g_p|}{p}
- +\alpha_0\sum_q\frac{t_q|g_q|}{q}
- +O_{B,W}(w/L)\notag\\
- &\ll w\alpha_0.
-\label{eq:smooth-compensated-low-row}
+ \|g\|_\infty&\ll w,&
+ B_1(g)&\ll w,&G_1(g)&\ll w,\notag\\
+ G_2(g)&\leq W^{-1}G_1(g)\ll w/W,
+ \label{eq:smooth-raw-g-first-moment-ledger}\\
+ \frac1{H_i}\sum_{p\in\mathcal P_i}
+       \frac{t_p|g_p|}{p}&\ll w\alpha_i
+       \qquad(0\leq i\leq s).
+ \label{eq:smooth-raw-g-local-product-moment}
 \end{align}
-The last error divided by \(w\alpha_0\) is
-\(O_{B,W}(\log L/(\delta L))=o(1)\), so this is the required relative
-low-row estimate.
-The finite head and physical Schur subtraction is relative on every row,
-not merely bounded in an unweighted norm.  Indeed the marked rows give
-\(\|(U_\xi)_{i,*}\|\ll_{B,W}H_i/L\), the preceding score estimates give
-\(\|\operatorname{Cov}_\xi(Z,S_g)\|\ll_{B,W}w\), and
-\eqref{eq:smooth-joint-head-physical-gap} gives
-\(\|\Gamma_\xi^{-1}\|\ll_W1\).  Therefore, uniformly on each fixed box,
+For the two unweighted reciprocal-square quantities needed below one has,
+for the fixed regular mesh,
+\begin{align}
+ B_2(g)&=O_W(\alpha_0)+o_n(\alpha_0),
+ \label{eq:smooth-raw-g-unweighted-square-sum}\\
+ d_i(g):=\frac1{H_i}\sum_{p\in\mathcal P_i}\frac{|g_p|}{p^2}
+       &=o_{n;W,\delta,\eta,\mathcal P}(w\alpha_i)
+       \quad\hbox{uniformly in }i.
+ \label{eq:smooth-raw-g-local-diagonal}
+\end{align}
+Here is the low-row calculation, where these assertions are not a
+consequence of a step bound.  Since \(|g_p|\leq\alpha_0+t_p\) on
+\(\mathcal P_0\),
+\begin{equation}
+ d_0(g)\leq
+ \frac{\alpha_0}{H_0}\sum_{p>W}\frac1{p^2}
+ +\frac1{H_0\log y}\sum_{p>W}\frac{\log p}{p^2}
+ =o_n(w\alpha_0).
+ \label{eq:smooth-raw-g-low-diagonal-calculation}
+\end{equation}
+Indeed, after division by \(w\alpha_0\), the two terms are respectively
+\(O_W((wH_0)^{-1})\) and
+\(O_W((w\delta\log y)^{-1})\).  The same estimate before division by
+\(H_0\) proves the low-cell contribution to
+\eqref{eq:smooth-raw-g-unweighted-square-sum}.  Every positive cell
+starts at \(y^\delta\), so its contribution to either display is
+exponentially small relative to \(\alpha_0\).  This proves
+\eqref{eq:smooth-raw-g-unweighted-square-sum}--
+\eqref{eq:smooth-raw-g-local-diagonal} without losing a factor
+\(\alpha_0^{-1}\).
+
+We now contract every covariance term against \(g\).  The leading
+squarefree band output is
 \[
+ R_i^{h,K}(g):=\frac1{H_i}\left\{
+  \sum_{p\in\mathcal P_i}\frac{h(t_p)g_p}{p}
+  +\sum_{p\in\mathcal P_i}\sum_{q\ne p}
+       \frac{K(t_p,t_q)g_q}{pq}\right\}.
+\]
+Exact harmonic centering gives
+\(\sum_{p\in\mathcal P_i}g_p/p=0\).  Since
+\(h(t)-1=O(t)\), \(|K(s,t)|\ll st\), and
+\(H_i^{-1}\sum_{p\in\mathcal P_i}t_p/p=\alpha_i\),
+\eqref{eq:smooth-raw-g-first-moment-ledger}--
+\eqref{eq:smooth-raw-g-local-product-moment} give
+\begin{equation}
+ \left|R_i^{h,K}(g)\right|
+ \ll \frac1{H_i}\sum_{p\in\mathcal P_i}
+          \frac{t_p|g_p|}{p}
+    +\alpha_iG_1(g)
+ \ll w\alpha_i.
+ \label{eq:smooth-raw-g-leading-band-row}
+\end{equation}
+In particular this includes the low-row estimate that was formerly
+implicit.  The squarefree marked error
+\eqref{eq:smooth-sharp-pointwise-squarefree-error} contracts to
+\begin{equation}
+ |R_i^{\rm sf,err}(g)|
+ \ll_{B,W}\frac{B_1(g)}L\ll_{B,W}\frac wL,
+ \qquad
+ \max_i\frac{|R_i^{\rm sf,err}(g)|}{w\alpha_i}
+ \ll_{B,W}\frac{\log L}{\delta L}=o(1).
+ \label{eq:smooth-raw-g-squarefree-error}
+\end{equation}
+The Bernoulli diagonal is bounded by \(d_i(g)\), hence is
+\(o(w\alpha_i)\) by
+\eqref{eq:smooth-raw-g-local-diagonal}.  Guard deletion is also
+relative: apply \eqref{eq:marked-guard-relative-low-error} to
+\(g/\|g\|_\infty\) and use \(\|g\|_\infty\ll w\).  Its output is
+therefore \(o(w\alpha_0)=o(w\alpha_i)\) on every row.
+
+For completeness, decompose \(V_p=I_p+J_p\) and use
+\eqref{eq:marked-product-JI}--
+\eqref{eq:marked-product-diagonal}.  The box-independent main terms in
+the four orientations satisfy the following bounds, where
+\(R_i^{JI},R_i^{IJ},R_i^{JJ},R_i^{\rm diag}\) denote their respective
+contributions to
+\((D^{-1}\operatorname{Cov}_\xi(\Omega,S_g))_i\):
+\begin{align}
+ |R_i^{JI}(g)|_{\rm main}
+ &\ll \frac1{H_i}\sum_{p\in\mathcal P_i}\frac{t_p}{p^2}\,G_1(g)
+      \ll\frac{w\alpha_i}{W},\notag\\
+ |R_i^{IJ}(g)|_{\rm main}
+ &\ll \frac1{H_i}\sum_{p\in\mathcal P_i}\frac{t_p}{p}\,G_2(g)
+      \ll\frac{w\alpha_i}{W},\notag\\
+ |R_i^{JJ}(g)|_{\rm main}
+ &\ll \frac1{H_i}\sum_{p\in\mathcal P_i}\frac{t_p}{p^2}\,G_2(g)
+      \ll\frac{w\alpha_i}{W^2},\notag\\
+ |R_i^{\rm diag}(g)|_{\rm main}
+ &\ll d_i(g)=o_n(w\alpha_i).
+ \label{eq:smooth-raw-g-four-power-main-directions}
+\end{align}
+Let \(\epsilon_0=\epsilon^{(0)}_{B,W}(n)\) be the pair remainder in
+\eqref{eq:marked-pair-error-explicit-rate}.  After division by
+\(w\alpha_i\), its four contractions are bounded, respectively, by
+\begin{equation}
+ \epsilon_0\frac1{H_i\alpha_i}
+       \sum_{p\in\mathcal P_i}\frac1{p^2}\frac{B_1(g)}w,
+ \quad
+ \epsilon_0\frac{B_2(g)}{w\alpha_i},
+ \quad
+ \epsilon_0\frac1{H_i\alpha_i}
+       \sum_{p\in\mathcal P_i}\frac1{p^2}\frac{B_2(g)}w,
+ \quad
+ \epsilon_0\frac{d_i(g)}{w\alpha_i}.
+ \label{eq:smooth-raw-g-four-power-error-directions}
+\end{equation}
+The first expression tends to zero by
+\eqref{eq:smooth-sharp-unweighted-power-bands} and
+\eqref{eq:smooth-raw-g-first-moment-ledger}; the third and fourth do so
+by \eqref{eq:smooth-raw-g-unweighted-square-sum}--
+\eqref{eq:smooth-raw-g-local-diagonal}.  For the second expression, the
+low row is \(O_W(\epsilon_0/w)\), while on every positive row
+\(\alpha_i\gg\delta\); it too tends to zero after the already chosen
+positive \(w\), \(W\), box, and mesh have been fixed.  This is threshold
+dependence only and creates no box-dependent main constant.  Finally,
+the literal endpoint terms obey
+\begin{equation}
+ \max_i\frac{|R_i^{\rm endpoint}(g)|}{w\alpha_i}
+ \ll_{B,W,\delta,\eta,\mathcal P}\frac{y^2L^2}{n}=o(1).
+ \label{eq:smooth-raw-g-four-power-endpoints}
+\end{equation}
+Indeed \(\#\mathcal P_i\leq y\),
+\(\sum_q|g_q|\ll wy\), and \(H_i\alpha_i\) tends to
+\(\delta\) on the low cell and is bounded below on every fixed positive
+cell.  Thus all \(JI,IJ,JJ\), diagonal, tail, endpoint, squarefree, and
+guard terms have now been contracted against the actual non-step score.
+
+The finite head and physical Schur subtraction is relative as well.  We
+record its raw nuisance vector here so it is not inferred from the later
+post-regression calculation.  Before guard deletion,
+\eqref{eq:marked-full-tilt-component-valuation-comparison} and centered
+component-weight cancellation give
+\[
+ |\operatorname{Cov}_\xi(H_\nu^\circ,S_g)|
+ \ll_{B,W}\frac1L\sum_p\frac{|g_p|}{p}
+ \ll_{B,W}\frac wL.
+\]
+The physical coordinate has the same bound by
+\eqref{eq:marked-tilted-physical-full}.  Since
+\(\|S_g\|_\infty\ll_WwL\),
+\eqref{eq:marked-guard-deleted-mass} and
+\eqref{eq:marked-conditional-deletion-covariance} show that guard
+deletion changes either covariance by
+\(O_{B,W}(wyL^{A+1}/n)=o_{n;B,W}(w/L)\).  Hence
+\begin{equation}
+ \|\operatorname{Cov}_\xi(Z,S_g)\|
+ \ll_{B,W}\frac wL+o_{n;B,W}(w/L).
+ \label{eq:smooth-raw-g-nuisance-vector}
+\end{equation}
+Together with
+\(\|(U_\xi)_{i,*}\|\ll_{B,W}H_i/L\),
+\eqref{eq:smooth-joint-head-physical-gap}, and
+\(\|\Gamma_\xi^{-1}\|\ll_W1\), this gives
+\begin{equation}
  \frac1{H_i}\left|
   \bigl(U_\xi\Gamma_\xi^{-1}
        \operatorname{Cov}_\xi(Z,S_g)\bigr)_i\right|
- \ll_{B,W}\frac wL=o_{n;B,W}(w\alpha_i),
-\]
-because \(\alpha_i\gg\delta\) on every positive row and
-\(\alpha_0\asymp\delta/\log L\) on the moving low row.  The same
-argument shows that the raw nuisance subtraction contributes only a
-vanishing relative remainder to the right side of the regression
-equation.
-Thus the right side of \eqref{eq:smooth-block-explicit-regression} is
-\(O(w\alpha_j)\) row by row.  Applying
+ \ll_{B,W}\frac w{L^2}+o_n(w/L^2)
+ =o_{n;B,W}(w\alpha_i).
+ \label{eq:smooth-raw-g-nuisance-Schur-row}
+\end{equation}
+
+Combining
+\eqref{eq:smooth-raw-g-leading-band-row}--
+\eqref{eq:smooth-raw-g-nuisance-Schur-row}, we have proved the explicit
+sharp ledger
+\begin{equation}
+ \max_i\frac{|(D^{-1}b^Z)_i|}{w\alpha_i}
+ \leq C_{\rm rhs}+\frac{C_{\rm pow}^{\rm raw}}W
+       +r_{n;B,W,\mathcal P},
+ \qquad r_{n;B,W,\mathcal P}\longrightarrow0.
+ \label{eq:smooth-raw-g-complete-sharp-ledger}
+\end{equation}
+Here \(C_{\rm rhs},C_{\rm pow}^{\rm raw}\) depend only on the structural Dickman
+and regular-mesh bounds; in particular they are independent of the later
+box radius and of the permitted mesh.  All dependence on the fixed box
+and mesh is confined to the vanishing remainder and its \(n\)-threshold.
+Moreover, \eqref{eq:smooth-sharp-projection-convergence} shows that
+\(S_n^{-1}P_{\alpha,n}S_n\) is uniformly bounded, so projecting the
+right side in \eqref{eq:smooth-block-explicit-regression} preserves this
+sharp estimate.  Increase only the corresponding \(n\)-threshold until
+\(r_{n;B,W,\mathcal P}\leq1\).  The right-side constant passed to the
+weighted inverse can therefore be chosen from \(C_{\rm rhs}\), the already fixed
+structural \(1/W_0\) bound, and one spare unit, independently of the
+actual \(W\), box radius, or permitted mesh.
+Applying
 \Cref{lem:smooth-weighted-discrete-inverse} gives
 \begin{equation}
  |q_0^{\rm reg}|\le C_{\sharp}w\alpha_0,\qquad
  |q_j^{\rm reg}|\le C_{\sharp}w\alpha_j\quad(j\geq1).
 \label{eq:smooth-regression-weighted-bound}
 \end{equation}
-Using this bound in the same marked-row calculation shows that the
-subsequent quotient correction also contributes only a vanishing
-relative nuisance remainder.
-Moreover \(a_Z=O_W(w)\), since \(\Gamma_\xi^{-1}=O_W(1)\) and the
-centered head/physical covariance with
-\(S_g-q^{\rm reg}\cdot\Omega\) is
-\(O_W(w)\).  Equations \eqref{eq:smooth-g-size} and
+We next prove, rather than assume, the sharper nuisance estimate needed
+for the lower Schur bound.  Put
+\[
+ P_{\rm med}:=S_g-q^{\rm reg}\!\cdot\Omega=\sum_pc_pV_p,
+ \qquad c_p=g_p-q_{j(p)}^{\rm reg}.
+\]
+Equations \eqref{eq:smooth-g-size} and
+\eqref{eq:smooth-regression-weighted-bound}, together with
+\(\sum_jH_j\alpha_j=O(1)\), give
+\begin{equation}
+ \|c\|_\infty\ll w,\qquad
+ \sum_p\frac{|c_p|}{p}\leq
+ \sum_p\frac{|g_p|}{p}
+ +\sum_jH_j|q_j^{\rm reg}|\ll w.
+ \label{eq:smooth-postband-coefficient-first-moment}
+\end{equation}
+Moreover, the quadratic coefficient bound used below is the direct
+calculation
+\begin{equation}
+ \sum_p\frac{c_p^2}{p}
+ \leq2V+2\sum_jH_j(q_j^{\rm reg})^2
+ \leq2V+2C_\sharp^2w^2\sum_jH_j\alpha_j^2
+ \ll w^2.
+ \label{eq:smooth-postband-coefficient-second-moment}
+\end{equation}
+
+First omit the numerical guards and decompose the full tilted mixture
+into its finitely many exact component cells \(C_a\), with weights
+\(\lambda_a\).  By
+\eqref{eq:marked-full-tilt-component-valuation-comparison}, for a fixed
+reference component one may write
+\[
+ \mathbb E_{C_a,\xi}V_p=m_p+e_a(p),
+ \qquad |e_a(p)|\ll_{B,W}\frac1{pL},
+\]
+uniformly in \(a,p\).  Each head indicator \(H_\nu^\circ\) is constant on
+\(C_a\); write that value as \(h_{\nu,a}\) and its mixture mean as
+\(\bar h_\nu\).  The law of total covariance and
+\(\sum_a\lambda_a(h_{\nu,a}-\bar h_\nu)=0\) give the exact cancellation
+\begin{align}
+ \operatorname{Cov}_\xi(H_\nu^\circ,P_{\rm med})
+ &=\sum_a\lambda_a(h_{\nu,a}-\bar h_\nu)
+       \sum_pc_p\{m_p+e_a(p)\}\notag\\
+ &=\sum_a\lambda_a(h_{\nu,a}-\bar h_\nu)
+       \sum_pc_pe_a(p)
+ \ll_{B,W}\frac1L\sum_p\frac{|c_p|}{p}
+ \ll_{B,W}\frac wL.
+ \label{eq:smooth-explicit-head-postband-cancellation}
+\end{align}
+The physical coordinate satisfies the same bound directly by
+\eqref{eq:marked-tilted-physical-full}:
+\begin{equation}
+ |\operatorname{Cov}_\xi(R,P_{\rm med})|
+ \leq\sum_p|c_p|\,|\operatorname{Cov}_\xi(R,V_p)|
+ \ll_{B,W}\frac wL.
+ \label{eq:smooth-explicit-physical-postband-cancellation}
+\end{equation}
+
+It remains to check that numerical guards do not destroy these
+cancellations.  Every coordinate of \(Z\) is bounded by a constant
+depending only on \(W\), while
+\[
+ \|P_{\rm med}\|_\infty\leq\|c\|_\infty
+       \sum_{W<p\leq y}V_p\ll_WwL.
+\]
+Equations \eqref{eq:marked-guard-deleted-mass} and
+\eqref{eq:marked-conditional-deletion-covariance} therefore show that
+guard deletion changes each covariance in
+\eqref{eq:smooth-explicit-head-postband-cancellation}--
+\eqref{eq:smooth-explicit-physical-postband-cancellation} by
+\[
+ O_{B,W}\!\left(\frac{wyL^{A+1}}n\right)
+ =o_{n;B,W}(w/L).
+\]
+Since \(\dim Z\) is fixed after \(W\), we have proved the vector estimate
+\begin{equation}
+ \left\|\operatorname{Cov}_\xi(Z,P_{\rm med})\right\|
+ \ll_{B,W}\frac wL+o_{n;B,W}(w/L).
+ \label{eq:smooth-explicit-postband-nuisance-vector}
+\end{equation}
+Together with \(\|\Gamma_\xi^{-1}\|\ll_W1\), this gives
+\[
+ \|a_Z\|=\|\Gamma_\xi^{-1}\operatorname{Cov}_\xi(Z,P_{\rm med})\|
+ \ll_{B,W}\frac wL+o_n(w/L)\leq C_Ww
+\]
+after increasing only the \(n\)-threshold for the already fixed box.
+Thus the nonvanishing comparison constant may still be chosen
+independently of the box radius.  Equations \eqref{eq:smooth-g-size} and
 \eqref{eq:smooth-regression-weighted-bound} imply all three bounds in
 \eqref{eq:smooth-compensated-coefficients}.  The constants used for the
 medium-prime vector are the Mertens main-term constants and the continuum
@@ -7299,7 +8205,9 @@ non-step coefficient.  On \(I_j\cap[t_0,1]\), put
  c_{\mathcal P}^{(c)}(t):=\alpha_j^{(c)}-t-q_j^{(c)},
 \]
 and extend its value at \(t_0\) linearly to \((0,t_0)\), exactly as in
-\eqref{eq:smooth-full-reconstructed-equation}.  Cellwise Mertens
+\eqref{eq:smooth-full-reconstructed-equation}; denote the resulting
+function on \((0,1]\) by
+\(\widetilde c_{\mathcal P}^{(c)}\).  Cellwise Mertens
 quadrature, \eqref{eq:smooth-two-cell-variances}, and
 \eqref{eq:smooth-regression-two-gauges-relative} first give
 \begin{equation}
@@ -7345,13 +8253,15 @@ quadratic form by \(o_n(w^2)\), by the calculation in
 \eqref{eq:PD-Poincare}, \eqref{eq:smooth-Schur-geometric-lower}, and
 \eqref{eq:smooth-two-cell-variances} give a fixed positive multiple of
 \(w^2\) before the following relative perturbations are subtracted.
-The finite nuisance Schur loss is, using the relative row estimate above,
+The finite nuisance Schur loss is, by
+\eqref{eq:smooth-explicit-postband-nuisance-vector} and
+\eqref{eq:smooth-joint-head-physical-gap},
 \[
  \operatorname{Cov}_\xi\!\left(Z,
        S_g-q^{\rm reg}\!\cdot\Omega\right)^T\Gamma_\xi^{-1}
  \operatorname{Cov}_\xi\!\left(Z,
        S_g-q^{\rm reg}\!\cdot\Omega\right)
- =O_W(w^2/L^2)+o_{n;B,W,\mathcal P}(w^2).
+ =O_{B,W}(w^2/L^2)+o_{n;B,W,\mathcal P}(w^2).
 \]
 Thus the continuum Poincar\'e gap is transferred at the relative
 \(w^2\) scale before the prime-power replacement is made.  The upper
@@ -7383,12 +8293,9 @@ where quantitative Mertens summation gives
 are included in this \(\varepsilon\); the cofactor margin
 \(n/y^4=n^{1/9}\) makes their total \(o_n(w^2)\) for the fixed mesh.
 For the nuisance block,
-\[
- \left|\operatorname{Cov}_\xi(Z,S_g-q^{\rm reg}\cdot\Omega)\right|
- \ll_W w/L+o_n(w).
-\]
-Together with \(\Gamma_\xi^{-1}=O_W(1)\) and the exact physical removal
-in \eqref{eq:smooth-physical-alpha-block-relation}, this gives
+\eqref{eq:smooth-explicit-postband-nuisance-vector}, the gap
+\(\Gamma_\xi^{-1}=O_W(1)\), and the exact physical removal in
+\eqref{eq:smooth-physical-alpha-block-relation} give
 \begin{equation}
                          E_{\rm head/phys}=o_n(w^2).
  \label{eq:smooth-relative-head-physical-error}
@@ -7454,14 +8361,92 @@ the compact box is known take \(n\) large enough to absorb
 \(\epsilon^{\rm rel}_{B,W,C_{\rm cmp}}(n)\); the lower Schur bound is
 then preserved.
 
-Finally, the squarefree diagonal term in the covariance with a fixed
-marked row is \(O(w/p)\).  The off-diagonal term is also \(O(w/p)\),
-because \(|K(t_p,t_q)|\ll t_pt_q\) and
-\(\sum_qt_q|c_q|/q\ll w\).  Formula
-\eqref{eq:smooth-JI-bound} and its transpose contribute
-\(O(w/p^2+w/(pW))+\epsilon_{B,W}(n)O(w/p)\), and the remaining power
-terms are smaller.  The nuisance regression contributes
-\(O_W(w/(pL))\) by the marked head/physical rows.  This proves
+Finally we verify the marked row without suppressing an orientation,
+diagonal, or endpoint term.  Fix \(W<p\leq y\); all covariances in the
+following calculation are under \(\nu_{n,\xi}\).  Since
+\(C_g=\sum_qc_qV_q-a_Z^TZ\), first consider the prime part.  The
+squarefree diagonal is \(O(|c_p|/p)=O(w/p)\).  For \(q\ne p\),
+\eqref{eq:smooth-arithmetic-kernel} and
+\eqref{eq:smooth-normalized-prime-row-error} give
+\begin{align}
+ \sum_{q\ne p}|c_q|\,
+       |\operatorname{Cov}(I_p,I_q)|
+ &\ll \frac{t_p}{p}\sum_q\frac{t_q|c_q|}{q}
+   +\frac{\|c\|_\infty}{p}
+       \left\{\frac{C_{\rm sf}}W+\epsilon^{\rm sf}_{B,W}(n)\right\}
+ \ll_{B,W}\frac wp.
+ \label{eq:smooth-compensated-squarefree-marked-row}
+\end{align}
+Here and below the threshold for the vanishing remainder may depend on
+the already fixed box.  The coefficient estimates
+\eqref{eq:smooth-compensated-coefficients} also imply
+\begin{equation}
+ \sum_q|c_q|\ll wy,\qquad
+ \sum_q\frac{t_q|c_q|}{q}\ll w,\qquad
+ \sum_q\frac{t_q|c_q|}{q^2}\ll\frac wW.
+ \label{eq:smooth-compensated-marked-row-coefficient-ledger}
+\end{equation}
+Using \(V=I+J\), the four estimates
+\eqref{eq:marked-product-JI}--\eqref{eq:marked-product-diagonal} now give
+the following separate contractions:
+\begin{align}
+ \sum_{q\ne p}|c_q|\,|\operatorname{Cov}(J_p,I_q)|
+ &\ll \frac w{p^2}+\epsilon_{B,W}(n)\frac w{p^2}
+       +\frac{wyL}{n},\notag\\
+ \sum_{q\ne p}|c_q|\,|\operatorname{Cov}(I_p,J_q)|
+ &\ll \frac w{pW}+\epsilon_{B,W}(n)\frac w{pW}
+       +\frac{wyL}{n},\notag\\
+ \sum_{q\ne p}|c_q|\,|\operatorname{Cov}(J_p,J_q)|
+ &\ll \frac w{p^2W}+\epsilon_{B,W}(n)\frac w{p^2W}
+       +\frac{wyL^2}{n},\notag\\
+ |c_p|\,|\operatorname{Var}(V_p)-\operatorname{Var}(I_p)|
+ &\ll \frac w{p^2}+\epsilon_{B,W}(n)\frac w{p^2}
+       +\frac{wL^2}{n}.
+ \label{eq:smooth-compensated-power-marked-row-ledger}
+\end{align}
+For the last line, \(J_p>0\) implies \(I_p=1\), whence
+\(|\operatorname{Var}(I_p+J_p)-\operatorname{Var}(I_p)|
+ \leq3\mathbb E J_p^2\); this is exactly the diagonal estimate in
+\eqref{eq:marked-product-diagonal}.  All endpoint terms in
+\eqref{eq:smooth-compensated-power-marked-row-ledger} are uniformly
+\(o(w/p)\), since
+\begin{equation}
+ \sup_{p\leq y}\frac{pyL^2}{n}
+ \leq\frac{y^2L^2}{n}=n^{-5/9}L^2=o(1).
+ \label{eq:smooth-compensated-marked-row-endpoints}
+\end{equation}
+Thus the full prime part of \(C_g\) contributes \(O_W(w/p)\), uniformly
+on the fixed box once its \(n\)-threshold is chosen.  We also spell out
+the nuisance marked family used here and later.  Before guard deletion,
+\eqref{eq:marked-full-tilt-component-valuation-comparison} and the same
+centered component-weight cancellation as in
+\eqref{eq:smooth-explicit-head-postband-cancellation} give
+\[
+ |\operatorname{Cov}(V_p,H_\nu^\circ)|\ll_{B,W}\frac1{pL}
+\]
+for every head coordinate, while
+\eqref{eq:marked-tilted-physical-full} gives this estimate for the
+physical coordinate.  Guard deletion changes either covariance by at
+most \(O_{B,W}(\delta_\xi L)\), by
+\eqref{eq:marked-conditional-deletion-covariance}.  Uniformly for
+\(p\leq y\),
+\[
+ \delta_\xi L\,(pL)\ll_{B,W}\frac{y^2L^{A+2}}n=o(1),
+\]
+so, in the fixed-dimensional Euclidean norm,
+\begin{equation}
+ \|\operatorname{Cov}_\xi(V_p,Z)\|\ll_{B,W}\frac1{pL}.
+ \label{eq:smooth-explicit-nuisance-marked-family}
+\end{equation}
+Since \(\|a_Z\|\ll_Ww\), it follows that
+\[
+ |\operatorname{Cov}(V_p,a_Z^TZ)|\ll_{B,W}\frac w{pL}
+ \ll_W\frac wp
+\]
+after increasing the threshold for the fixed box.
+Adding this nuisance row to
+\eqref{eq:smooth-compensated-squarefree-marked-row} and
+\eqref{eq:smooth-compensated-power-marked-row-ledger} proves
 \eqref{eq:smooth-compensated-marked-row}.
 \end{proof}
 
@@ -7633,33 +8618,157 @@ sequential nonlinear fit but the single block formula
 Thus the quotient and nuisance coordinates are continuously refitted
 whenever the slow coordinate moves.
 
-By \Cref{lem:arithmetic-band-quotient}, the first term
-\(A_\xi^{-1}v_{\mathscr Q}\) has bounded effective coefficients.
-\Cref{lem:augmented-bridge} says, in the block notation just used, that
+We now identify both terms involving \(A_\xi^{-1}\) with the operators
+estimated in the preceding lemmas.  This is an exact finite-dimensional
+calculation.  Let \(\mathbf Q:\mathbb R^s\to\mathcal G\) be the matrix
+whose columns are the vectors \(q^{(j)}\) in
+\eqref{eq:smooth-concrete-gauge-basis}; thus a concrete quotient
+coordinate \(x\) represents the actual band vector \(q=\mathbf Qx\).
+Set
+\begin{align*}
+ C_\xi&:=\operatorname{Cov}_\xi(\Omega,\Omega),&
+ U_\xi&:=\operatorname{Cov}_\xi(\Omega,Z),&
+ \Gamma_\xi&:=\operatorname{Cov}_\xi(Z,Z),\\
+ h_\xi&:=\operatorname{Cov}_\xi(\Omega,S_g),&
+ z_\xi&:=\operatorname{Cov}_\xi(Z,S_g),&
+ \overline C_\xi&:=C_\xi-U_\xi\Gamma_\xi^{-1}U_\xi^T.
+\end{align*}
+Thus \(\overline C_\xi=q_n^{-1}\mathcal C_\xi^Z\).  Literally in the
+concrete primal/dual coordinates of
+\eqref{eq:smooth-concrete-gauge-basis},
+\begin{equation}
+ A_\xi=
+ \begin{pmatrix}
+  \mathbf Q^TC_\xi\mathbf Q&\mathbf Q^TU_\xi\\
+  U_\xi^T\mathbf Q&\Gamma_\xi
+ \end{pmatrix},
+ \qquad
+ b_\xi=\binom{\mathbf Q^Th_\xi}{z_\xi}.
+ \label{eq:smooth-concrete-full-blocks}
+\end{equation}
+
+Let a joint right side be \((r_{\mathcal G},r_Z)\), and choose any
+\(r^\flat\in\mathbb R^{s+1}\) representing its quotient functional:
+\(r_{\mathcal G}(v)=v^Tr^\flat\) for \(v\in\mathcal G\).  Directly
+eliminating the nuisance variable in
+\(A_\xi(x,a)=(r_{\mathcal G},r_Z)\), with \(q=\mathbf Qx\), gives the
+equivalent pair of equations
+\begin{align}
+ a&=\Gamma_\xi^{-1}(r_Z-U_\xi^Tq),\notag\\
+ v^T\overline C_\xi q
+   &=v^T(r^\flat-U_\xi\Gamma_\xi^{-1}r_Z)
+                         \qquad(v\in\mathcal G).
+ \label{eq:smooth-exact-joint-block-elimination}
+\end{align}
+Since the Euclidean annihilator of \(\mathcal G\) is
+\(\operatorname{span}\{D\alpha\}\), the second line is, in turn,
+equivalent to the intrinsic projected equation
+\begin{equation}
+ P_{\alpha,n}D^{-1}\overline C_\xi P_{\alpha,n}q
+ =P_{\alpha,n}D^{-1}
+       (r^\flat-U_\xi\Gamma_\xi^{-1}r_Z),
+ \qquad q\in\mathcal G.
+ \label{eq:smooth-exact-projected-block-elimination}
+\end{equation}
+This equivalence uses the actual band values of \(q\); no norm of the
+coordinate matrix \(\mathbf Q\) or its inverse is introduced.
+
+Take first \((r^\flat,r_Z)=(h_\xi,z_\xi)\).  Equations
+\eqref{eq:smooth-exact-joint-block-elimination}--
+\eqref{eq:smooth-exact-projected-block-elimination} are then exactly
+\eqref{eq:smooth-block-explicit-regression} and
+\eqref{eq:smooth-post-Schur-score}.  If
+\(q^{\rm reg}=\mathbf Qx^{\rm reg}\), they prove, without an implicit
+coordinate identification,
+\begin{equation}
+ A_\xi^{-1}b_\xi=(x^{\rm reg},a_Z),\qquad
+ \sigma_\xi=\operatorname{Var}_\xi
+   (S_g-q^{\rm reg}\!\cdot\Omega-a_Z^TZ)
+ =\operatorname{Var}_\xi(C_g).
+ \label{eq:smooth-exact-full-regression-identification}
+\end{equation}
+The variance identity follows also by expanding the square and using the
+two normal equations in
+\eqref{eq:smooth-exact-joint-block-elimination}; thus it is an ordinary
+finite Schur complement, not an additional probabilistic assumption.
+
+For the actual fast target, \(v_{\mathscr Q}=(\tau_{\mathcal G},0)\),
+choose
 \[
- \sigma_\xi\asymp_Ww^2,\qquad
- \left|v_g-b_\xi^TA_\xi^{-1}v_{\mathscr Q}\right|\ll_Ww,
+ r^\flat=\frac L{q_n}\Delta=Dd_D.
 \]
-and that the prime coefficients of \(A_\xi^{-1}b_\xi\) are
-\(O(w\alpha_{j(p)})\), while its head/physical coefficients are
-\(O_W(w)\).  Hence \eqref{eq:smooth-full-block-inverse} gives
+Write \(A_\xi^{-1}v_{\mathscr Q}=(x^{(0)},a^{(0)})\) and put
+\(u^{(0)}=\mathbf Qx^{(0)}\in\mathcal G\).  The same exact elimination
+now reads
+\begin{equation}
+ P_{\alpha,n}D^{-1}\overline C_\xi P_{\alpha,n}u^{(0)}
+       =P_{\alpha,n}d_D,\qquad
+ a^{(0)}=-\Gamma_\xi^{-1}U_\xi^Tu^{(0)}.
+ \label{eq:smooth-fast-block-elimination}
+\end{equation}
+By \eqref{eq:smooth-arithmetic-Linf-inverse} and
+\(\|P_{\alpha,n}d_D\|_\infty\ll_W1\),
+\begin{equation}
+ \|u^{(0)}\|_\infty\ll_W1.
+ \label{eq:smooth-fast-quotient-bound}
+\end{equation}
+Moreover \(|(U_\xi)_{i,*}|\ll_{B,W}H_i/L\),
+\(\sum_iH_i\ll\log L\), and \(\|\Gamma_\xi^{-1}\|\ll_W1\).  Therefore
+\[
+ \|a^{(0)}\|\ll_{B,W}\frac{\log L}{L}=o_{n;B,W}(1).
+\]
+In particular the fast nuisance coefficient is bounded by an absolute
+multiple depending only on \(W\), after increasing the threshold for the
+already fixed box; its bound does not enter the choice of that box.
+
+We may now apply \Cref{lem:augmented-bridge} through the exact
+identification \eqref{eq:smooth-exact-full-regression-identification}.
+It gives
+\begin{equation}
+ \sigma_\xi\asymp_Ww^2,\qquad
+ |q_j^{\rm reg}|\ll w\alpha_j,\qquad
+ \|a_Z\|\ll_Ww,\qquad
+ \|c\|_\infty=\max_p|g_p-q_{j(p)}^{\rm reg}|\ll w.
+ \label{eq:smooth-full-regression-effective-bounds}
+\end{equation}
+The only nontrivial target pairing in the numerator of
+\eqref{eq:smooth-full-block-inverse} is now an exact dual pairing:
+\begin{align}
+ |b_\xi^TA_\xi^{-1}v_{\mathscr Q}|
+ &=|(A_\xi^{-1}b_\xi)^Tv_{\mathscr Q}|
+  =\left|\frac L{q_n}\sum_jq_j^{\rm reg}\Delta_j\right|\notag\\
+ &\ll_Ww\sum_jH_j\alpha_j\ll_Ww.
+ \label{eq:smooth-exact-slow-target-pairing}
+\end{align}
+Here the nuisance target is zero,
+\eqref{eq:smooth-band-target-envelope} bounds \(\Delta_j\), and
+\(\sum_jH_j\alpha_j=\sum_{W<p\leq y}t_p/p=O(1)\).
+Together with \(|v_g|\ll_Ww\), the first line of
+\eqref{eq:smooth-full-block-inverse} therefore gives
+\(|\dot\lambda|\ll_Ww^{-1}\).  Its second line, interpreted through
+\eqref{eq:smooth-exact-full-regression-identification} and
+\eqref{eq:smooth-fast-block-elimination}, is the exact pair
+\[
+ \dot u=u^{(0)}-\dot\lambda q^{\rm reg},\qquad
+ \dot a=a^{(0)}-\dot\lambda a_Z.
+\]
+Consequently, prime by prime,
+\begin{equation}
+ \dot u_{j(p)}+\dot\lambda g_p
+ =u^{(0)}_{j(p)}+\dot\lambda
+       (g_p-q_{j(p)}^{\rm reg})
+ =u^{(0)}_{j(p)}+\dot\lambda c_p.
+ \label{eq:smooth-exact-effective-prime-coefficient}
+\end{equation}
+Equations \eqref{eq:smooth-fast-quotient-bound},
+\eqref{eq:smooth-full-regression-effective-bounds}, and the bounds for
+\(\dot\lambda,a^{(0)}\) now prove
 \begin{equation}
  |\dot\lambda|\ll_Ww^{-1},\qquad
  \max_{W<p\le y}|\dot u_{j(p)}+\dot\lambda g_p|
        +\|\dot a\|+w|\dot\lambda|\leq C_*.
  \label{eq:smooth-effective-block-inverse-bound}
 \end{equation}
-For completeness, the only target pairing in the numerator which is not
-immediate from the displayed norms is also explicit.  If
-\(q^{\rm reg}\) is the quotient part of \(A_\xi^{-1}b_\xi\), then
-\[
- \left|(A_\xi^{-1}b_\xi)^Tv_{\mathscr Q}\right|
- =\left|\frac L{q_n}\sum_jq_j^{\rm reg}\Delta_j\right|
- \ll w\sum_jH_j\alpha_j\ll w.
-\]
-Here the \(Z\)-target is zero,
-\(|q_j^{\rm reg}|\le C_{\sharp}w\alpha_j\), and
-\(\sum_jH_j\alpha_j=\sum_{W<p\le y}t_p/p=O(1)\).
 The leading continuum blocks give a constant \(C_{{\rm inv},W}\) independent of
 the tilt box and the regular mesh.  Before this constant or the ODE box
 is introduced, \(W\) has already made the box-independent terms
@@ -7784,8 +8893,9 @@ coefficients, then
 This uses the diagonal multiplier, the product kernel
 \eqref{eq:smooth-kernel-product}, and the box-uniform full-valuation
 transfer \eqref{eq:smooth-power-row-transfer}.
-The second line follows from
-\eqref{eq:marked-tilted-physical-full}, and the third from
+The second line follows from the full head/physical marked family
+\eqref{eq:smooth-explicit-nuisance-marked-family} (whose physical
+coordinate is \eqref{eq:marked-tilted-physical-full}), and the third from
 \eqref{eq:smooth-compensated-marked-row}.  Multiplication by
 \(q_n/L\asymp N/L\) and integration over \(0\leq t\leq1\) show that the
 bridge changes every marked moment by
