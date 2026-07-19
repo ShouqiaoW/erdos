@@ -1,0 +1,1242 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xurl}
+\usepackage{authblk}
+\usepackage{xcolor}
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  unicode=true,
+  pdfauthor={Shouqiao Wang}
+]{hyperref}
+\hypersetup{pdftitle={A Proposed Solution to Erd\H{o}s Problem 788}}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\N}{\mathbb N}
+\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\calC}{\mathcal C}
+
+\title{A Proposed Solution to Erd\H{o}s Problem 788}
+\author{Shouqiao Wang}
+\affil{Columbia University}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For $n\ge1$, put
+\[
+ I_n=(n,2n)\cap\N,\qquad J_n=(2n,4n)\cap\N,
+\]
+let $f(n)$ be the largest integer $t$ such that every $B\subseteq J_n$
+admits a set $C\subseteq I_n$ with $c+c'\notin B$ for distinct
+$c,c'\in C$ and $|B|+|C|\ge t$.
+We prove that there is an absolute constant $c>0$ such that, for all
+sufficiently large $n$,
+\[
+ c\sqrt{n\log n}\le f(n)
+ \le n^{\frac12+O\!\left(
+   \left(\frac{\log\log n}{\log n}\right)^{1/3}\right)}.
+\]
+In particular, $f(n)=n^{1/2+o(1)}$, which gives an affirmative answer to
+the principal question for every sufficiently large $n$.
+
+The upper bound is obtained from a family of $p^{o(r)}$ surjective
+$\F_p$-linear maps $\F_p^{2r}\to\F_p^r$ which is a strong seeded
+extractor at min-entropy $r+o(r)$.  Taking the union of their kernels
+gives a palette of $p^{r+o(r)}$ group sums with independence number
+$p^{r+o(r)}$.  We give a self-contained mixed-alphabet Trevisan--RRV
+reconstruction argument establishing the extractor, and then lift the
+construction to ordinary integer sums while accounting for every base-$p$
+carry.  An ordered block design uses the unused suffix of each hybrid to
+pay for its overlap excess, which gives the stated quantitative rate.
+The lower bound follows from the sparse-neighborhood coloring
+theorem of Alon, Krivelevich, and Sudakov.
+This proposed solution was found by GPT-5.
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+Throughout, $\N=\{1,2,\ldots\}$, and all logarithms are natural unless a
+base is explicitly indicated.  For $n\in\N$, put
+\[
+ I_n=(n,2n)\cap\N,
+ \qquad
+ J_n=(2n,4n)\cap\N.
+\]
+For $B\subseteq J_n$, call $C\subseteq I_n$ \emph{$B$-admissible} if
+$c+c'\notin B$ whenever $c,c'\in C$ are distinct, and define
+\[
+ f(n)=\max\bigl\{t\in\mathbb Z:\ 
+ \text{every $B\subseteq J_n$ has a $B$-admissible $C$ with
+ $|B|+|C|\ge t$}\bigr\}.
+\]
+
+For a finite nonempty set $W$, write $U_W$ for its uniform distribution.
+For probability distributions $P,Q$ on the same finite set, write
+\[
+ \TV(P,Q)=\frac12\sum_x|P(x)-Q(x)|.
+\]
+When $Q$ has full support, also write
+\[
+ D(P\Vert Q)=\sum_x P(x)\log\frac{P(x)}{Q(x)}.
+\]
+This is Problem 788 in the Erd\H{o}s Problems collection
+\cite{ErdosProblems788}.  The collection cites Erd\H{o}s's 1973 survey
+\cite{Erdos1973}, which credits Choi's 1971 paper \cite{Choi1971} with
+raising the problem.
+
+Choi proved $f(n)\ll n^{3/4}$ and conjectured the bound
+$f(n)\ll_\varepsilon n^{1/2+\varepsilon}$ \cite{Choi1971}.  Baltz, Schoen, and Srivastav
+improved the upper bound to $f(n)\ll(n\log n)^{2/3}$
+\cite{BSS2000}.  The online problem record reports the subsequent bound
+$f(n)\le n^{3/5+o(1)}$, obtained by combining a random-Cayley-graph
+reduction with work of Alon and Pham
+\cite{ErdosProblems788,AlonPham2025}.  None of these
+upper bounds is used below; our construction directly gives the conjectured
+exponent for every sufficiently large interval length.
+
+Our main theorem gives a little more quantitative information than the
+requested exponent.
+
+\begin{theorem}[Main theorem]\label{thm:main}
+There are absolute constants $c,C>0$ such that, for all sufficiently
+large $n$,
+\[
+ c\sqrt{n\log n}\le f(n)
+ \le n^{\frac12+C\left(
+   \frac{\log\log n}{\log n}\right)^{1/3}}.
+\]
+Consequently
+\[
+ f(n)=n^{1/2+o(1)}.
+\]
+\end{theorem}
+
+\begin{remark}[Quantifiers in the upper bound]\label{rem:quantifiers}
+The theorem supplies a witness palette for every sufficiently large
+integer $n$, not merely along a subsequence.  Equivalently, for each fixed
+$\varepsilon>0$ and all sufficiently large $n$, one can choose a single
+$B\subseteq J_n$ such that every $B$-admissible $C\subseteq I_n$ obeys
+$|B|+|C|\le n^{1/2+\varepsilon}$.
+\end{remark}
+
+The two sides of the proof use different information.  The lower bound
+holds for every palette $B$.  For the upper bound we construct one palette,
+depending on $n$, by combining coding theory, weak designs, and an exact
+carry closure.
+
+The proof is organized as follows.  Section~\ref{sec:graph} converts the
+problem into an exact minimization involving the independence number of a
+sum graph.  Section~\ref{sec:lower} proves the universal lower bound.
+Section~\ref{sec:extractor} constructs and verifies a mixed-alphabet linear
+seeded extractor, using an ordered weak design whose overlap excess is paid
+for by the remaining hybrid coordinates;
+Section~\ref{sec:group-palette} converts its kernels into a finite-field sum
+palette.  Section~\ref{sec:carries} lifts that palette to ordinary integer
+sums without discarding any carry pattern.
+Section~\ref{sec:all-N} chooses the parameters uniformly for every interval
+length, and Section~\ref{sec:completion} translates the construction back
+to the original intervals and completes the proof.
+
+\section{Exact graph formulation}\label{sec:graph}
+
+For $s\in J_n$, let $M_s$ be the graph on $I_n$ whose edges are the
+unordered pairs $\{c,c'\}$ satisfying
+\[
+ c\ne c',\qquad c+c'=s.
+\]
+Each $M_s$ is a matching: after one endpoint is specified, the other is
+forced.  A possible equality $c=s-c$ creates no loop, since the problem
+only constrains distinct elements.  For $B\subseteq J_n$, put
+\[
+ G_B=\bigcup_{s\in B}M_s.
+\]
+
+\begin{proposition}[Min--max identity]\label{prop:minmax}
+For every $n\ge1$,
+\[
+ \boxed{\displaystyle
+ f(n)=\min_{B\subseteq J_n}\bigl(|B|+\alpha(G_B)\bigr).}
+\]
+Moreover, the minimum is unchanged if $B$ is required to consist only
+of sums of two distinct elements of $I_n$.
+\end{proposition}
+
+\begin{proof}
+A set $C\subseteq I_n$ is $B$-admissible exactly when it is independent
+in $G_B$.  Thus, for fixed $B$, the largest possible value of
+$|B|+|C|$ is $|B|+\alpha(G_B)$.  An integer $t$ has the universal
+property in the definition of $f(n)$ exactly when
+\[
+ t\le |B|+\alpha(G_B)\qquad\text{for every }B\subseteq J_n.
+\]
+The family of choices of $B$ is finite, so taking the largest such $t$
+gives the displayed minimum.
+
+If $s$ is not the sum of two distinct elements of $I_n$, then $M_s$ is
+empty.  Deleting such an $s$ from $B$ leaves $G_B$ unchanged and decreases
+$|B|$.  Hence no minimizer needs an unattainable sum.
+\end{proof}
+
+It will be useful to normalize the vertices.  Put
+\[
+ N=n-1,\qquad [N]_0=\{0,1,\ldots,N-1\}.
+\]
+Write $c=n+1+x$.  Then
+\[
+ c+c'=2n+2+x+y.
+\]
+For $N\ge2$, the sums of two distinct members of $[N]_0$ are exactly
+\[
+ \{1,2,\ldots,2N-3\}.
+\]
+For $A\subseteq\{1,\ldots,2N-3\}$, let $H_A$ be the graph on $[N]_0$
+in which distinct $x,y$ are adjacent exactly when $x+y\in A$.  Translation
+identifies $H_A$ with $G_B$ for
+\[
+ B=2n+2+A\subseteq\{2n+3,\ldots,4n-3\}\subseteq J_n.
+\]
+We will construct and estimate $H_A$ and translate back only at the end.
+If $b=|A|$, then
+\begin{equation}\label{eq:max-degree}
+ \Delta(H_A)\le b,
+\end{equation}
+because each selected sum supplies at most one neighbor of any fixed
+vertex.
+
+\section{Universal lower bounds}\label{sec:lower}
+
+We first record an elementary bound which makes the square-root scale
+visible.
+
+\begin{lemma}[Edge sums control chromatic number]\label{lem:chromatic}
+Let a simple graph have distinct real labels on its vertices, and suppose
+that its edges use $b$ distinct sums of endpoint labels.  Then
+\[
+ \chi(G)\le \left\lfloor\frac{b+3}{2}\right\rfloor.
+\]
+\end{lemma}
+
+\begin{proof}
+Put $k=\chi(G)$ and pass to a vertex-minimal induced subgraph $K$ with
+chromatic number $k$.  Then $\delta(K)\ge k-1$.  Let $u$ and $v$ be the
+least and greatest labels in $K$.  The at least $k-1$ sums on edges
+incident with $u$ are distinct and at most $u+v$.  The at least $k-1$
+sums on edges incident with $v$ are distinct and at least $u+v$.  The
+two collections intersect in at most the one value $u+v$.  Hence
+$b\ge2k-3$, which is equivalent to the assertion.
+\end{proof}
+
+Taking the largest color class in $H_A$, where $b=|A|$, gives
+\[
+ \alpha(H_A)\ge
+ \left\lceil\frac{N}{\lfloor(b+3)/2\rfloor}\right\rceil.
+\]
+Optimizing this elementary expression yields, for $N\ge4$,
+\[
+ b+\alpha(H_A)\ge \lceil\sqrt{8N}\rceil-3.
+\]
+The case $b=0$ gives the value $N$ and cannot minimize when $N\ge4$
+(the choice $A=\{N-1\}$ has $b=1$ and gives
+$1+\lceil N/2\rceil\le N$).  For $b\ge1$ the
+relevant values are $b=2q-3$, and
+\[
+ \min_{q\ge2}\left(2q-3+\left\lceil\frac Nq\right\rceil\right)
+ =\lceil\sqrt{8N}\rceil-3.
+\]
+For completeness, put $t=\lceil\sqrt{8N}\rceil$.  The inequality
+$2q+N/q\ge\sqrt{8N}$ gives the lower direction.  Conversely,
+\[
+ \max_{q\in\mathbb Z}q(t-2q)=\left\lfloor\frac{t^2}{8}\right\rfloor
+ \ge N.
+\]
+For $N\ge4$ a maximizing positive integer $q$ can be chosen with $q\ge2$;
+then $N/q\le t-2q$ and hence
+$2q+\lceil N/q\rceil\le t$.  This proves the identity.
+This already proves $f(n)\ge2\sqrt{2n}-O(1)$.  We next gain a logarithmic
+factor.
+
+\begin{lemma}[Triangle sum triples]\label{lem:triangles}
+If $H_A$ uses $b$ selected sums and has $T$ triangles, then
+\[
+ T\le\binom b3.
+\]
+\end{lemma}
+
+\begin{proof}
+A triangle with vertices $x,y,z$ has the three pairwise distinct edge
+sums
+\[
+ x+y,\qquad x+z,\qquad y+z.
+\]
+Their unordered set determines the triangle: if the three incident sums
+are denoted by $s_{xy},s_{xz},s_{yz}$, then
+\[
+ x=\frac{s_{xy}+s_{xz}-s_{yz}}2,
+ \quad
+ y=\frac{s_{xy}+s_{yz}-s_{xz}}2,
+ \quad
+ z=\frac{s_{xz}+s_{yz}-s_{xy}}2.
+\]
+Equivalently, from an unordered triple $\{a,b,c\}$ one recovers the
+unordered vertex set
+\[
+ \left\{\frac{a+b-c}{2},\frac{a+c-b}{2},\frac{b+c-a}{2}\right\}.
+\]
+Thus triangles inject into the three-element subsets of $A$.
+\end{proof}
+
+We use the following conservative form of a theorem of Alon,
+Krivelevich, and Sudakov
+\cite[Theorem~1.1]{AKS1999}.
+
+\begin{theorem}[Sparse-neighborhood coloring theorem, safe form]\label{thm:aks}
+There is an absolute $K>0$ with the following property.  If a graph has
+maximum degree at most $d$ and every vertex neighborhood spans at most
+$d^2/F$ edges, where $2\le F\le d^2$, then
+\[
+ \chi(G)\le K\frac d{\log F}.
+\]
+\end{theorem}
+
+The closed endpoint $F=d^2$ follows from the usual strict-range formulation
+by applying it with $F'=d^2/2$ and changing the absolute constant; bounded
+$d$ is absorbed by greedy coloring.
+The primary statement calls $d$ the maximum degree.  If that convention
+is read as requiring equality rather than an upper bound, one may adjoin
+a disjoint star $K_{1,d}$: this makes the maximum degree exactly $d$,
+adds no edges to any neighborhood, and does not affect the coloring bound
+for the original component.
+
+\begin{proposition}[Universal lower bound]\label{prop:loglower}
+There is an absolute $c>0$ such that, for every sufficiently large $N$
+and every $A\subseteq\{1,\ldots,2N-3\}$,
+\[
+ |A|+\alpha(H_A)\ge c\sqrt{N\log N}.
+\]
+Consequently $f(n)\gg\sqrt{n\log n}$.
+\end{proposition}
+
+\begin{proof}
+Write $b=|A|$.  For a vertex $v$, let $t_v$ be the number of edges
+spanned by its neighborhood, equivalently the number of triangles
+containing $v$.  Lemma~\ref{lem:triangles} gives
+\[
+ \sum_v t_v=3T\le3\binom b3\le\frac{b^3}{2}.
+\]
+Therefore the set
+\[
+ U=\left\{v:t_v\le\frac{b^3}{N}\right\}
+\]
+has at least $N/2$ vertices.  The induced graph $H=H_A[U]$ has maximum
+degree at most $b$, and every neighborhood in $H$ spans at most $b^3/N$
+edges.
+
+Suppose $2\le b\le N/2$, and put
+\[
+ F_0=\min\left\{b^2,\frac Nb\right\}\ge2.
+\]
+In either case $b^3/N\le b^2/F_0$.  Applying
+Theorem~\ref{thm:aks} to $H$ and taking a largest color class gives
+\begin{equation}\label{eq:alphalower}
+ \alpha(H_A)\ge
+ c_0\frac Nb\log\!\left(\min\left\{b^2,\frac Nb\right\}\right)
+\end{equation}
+for an absolute $c_0>0$.
+
+Now split into three ranges.  If $b\ge\sqrt{N\log N}$, the palette
+itself proves the result.  If $b<N^{1/4}$, the maximum-degree bound
+\eqref{eq:max-degree}, followed by greedy coloring, gives
+\[
+ \alpha(H_A)\ge\frac{N}{b+1}\gg\sqrt{N\log N}.
+\]
+In the remaining range
+\[
+ N^{1/4}\le b<\sqrt{N\log N},
+\]
+we have
+\[
+ \min\left\{b^2,\frac Nb\right\}
+ \ge\sqrt{\frac{N}{\log N}},
+\]
+and hence its logarithm is at least $(1/3)\log N$ for large $N$.
+Equation~\eqref{eq:alphalower} now yields
+\[
+ b+\alpha(H_A)\ge b+c_1\frac{N\log N}{b}
+ \ge2\sqrt{c_1N\log N}.
+\]
+The cases $b=0,1$ are covered by the maximum-degree estimate.  The claim
+for $f$ follows from Proposition~\ref{prop:minmax}.
+\end{proof}
+
+\section{A linear seeded extractor over a growing odd field}
+\label{sec:extractor}
+
+The upper bound rests on the following finite-field statement.  All
+logarithms used in min-entropy in this section are to base $p$.
+
+\begin{theorem}[Linear extractor family]\label{thm:linear-family}
+Let $p$ run through odd primes and let $r\to\infty$ in such a way that
+\[
+ \bigl(\log(pr)\bigr)^2\log\bigl(2+\log(pr)\bigr)
+ =o(r\log p).
+\]
+Then there are integers $d,s=o(r)$ and an indexed family
+\[
+ \{F_y:\F_p^{2r}\to\F_p^r:y\in\mathcal Y\},
+ \qquad |\mathcal Y|\le p^d,
+\]
+such that every $F_y$ is surjective and $\F_p$-linear, and every random
+variable $X$ on $\F_p^{2r}$ with
+\[
+ H_{\infty,p}(X):=-\log_p\max_x\Pr[X=x]\ge r+s
+\]
+satisfies
+\[
+ \frac1{|\mathcal Y|}\sum_{y\in\mathcal Y}
+ \TV(F_y(X),U_{\F_p^r})<\frac13.
+\]
+More quantitatively, there is an auxiliary integer
+$\ell=O(\log(pr))$ for which one may take
+\[
+ d,s=O\left(
+ \frac{\ell\sqrt r+\ell^2\log(\ell+1)}{\log p}
+ +\log_p(pr)+1\right).
+\]
+The family is indexed: repeated maps are allowed.
+\end{theorem}
+
+The construction is a mixed-alphabet adaptation of the linear form of
+Trevisan's extractor \cite{Trevisan2001} and the weak-design
+reconstruction analysis of Raz, Reingold, and Vadhan \cite{RRV2002}.
+The code and every fixed-seed output map are $\F_p$-linear, but code
+coordinates and seed coordinates are indexed by binary strings.  This
+decoupling is useful: an overlap of $t$ seed bits has $2^t$ possible inputs,
+independently of the growing output alphabet.  We prove the required code,
+design, and reconstruction statements with this distinction explicit.
+
+The proof proceeds in four stages.  We first construct a short linear code,
+and then a binary weak design controlling its overlap moments.  A hybrid
+argument and reconstruction count combine these objects into a strong linear
+extractor.  Finally we choose the parameters and discard rank-deficient seeds;
+Section~\ref{sec:group-palette} turns the retained maps into a sum palette by
+taking the union of their kernels.
+
+\subsection{A short linear list-decodable code}
+
+We identify a word of length $2^\ell$ with a function
+$\{0,1\}^\ell\to\F_p$.  Agreement always means the fraction of coordinates
+on which two words have the same symbol.
+
+\begin{lemma}[Short binary-coordinate linear code]\label{lem:code}
+Let $p$ be a prime, $m\ge1$, and $0<\eta<1/2$.  There exist a positive integer
+$\ell$ and an injective $\F_p$-linear map
+\[
+ \mathcal E:\F_p^m\longrightarrow
+ \F_p^{\{0,1\}^\ell}
+\]
+such that, for every word $Q:\{0,1\}^\ell\to\F_p$,
+\[
+ \#\left\{x\in\F_p^m:
+ \Pr_{z\sim U_{\{0,1\}^\ell}}[\mathcal E(x)(z)=Q(z)]
+ >\frac1p+\eta\right\}
+ \le J:=\frac2{\eta^2}+1.
+\]
+One can arrange
+\begin{equation}\label{eq:code-length}
+ 2^\ell\le \frac{C_0m\log p}{\eta^4}
+\end{equation}
+for an absolute constant $C_0$.
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+ \tau=\frac{p\eta^2}{2(p-1)},
+ \qquad \Delta=1-\frac1p-\tau.
+\]
+We first find a linear code of relative distance at least $\Delta$.  Write
+\[
+ H_p(a)=a\log_p(p-1)-a\log_p a-(1-a)\log_p(1-a)
+\]
+for the $p$-ary entropy function, with the usual continuous extension at
+the endpoints.  Then
+\[
+ 1-H_p(\Delta)=\frac{D(P\Vert U_{\F_p})}{\log p},
+\]
+where
+\[
+ P=\left(\frac1p+\tau,
+ \frac1p-\frac{\tau}{p-1},\ldots,
+ \frac1p-\frac{\tau}{p-1}\right).
+\]
+The total variation distance between $P$ and $U_{\F_p}$ is $\tau$.  Pinsker's
+inequality, with natural logarithms \cite{CoverThomas2006}, gives
+\[
+ 1-H_p(\Delta)\ge\frac{2\tau^2}{\log p}.
+\]
+
+Let $R=2^\ell$ be the least power of $2$ strictly exceeding
+\[
+ \frac{(m+1)\log p}{2\tau^2}.
+\]
+The displayed quantity exceeds $1$, so $\ell\ge1$.
+Choose an $R\times m$ matrix $T$ uniformly over $\F_p$.  For every fixed
+nonzero $x$, the word $Tx$ is uniform on $\F_p^R$.  The standard $p$-ary
+Hamming-ball estimate \cite{CoverThomas2006} is exact in the form
+\[
+ \sum_{0\le j\le aR}\binom Rj(p-1)^j\le p^{RH_p(a)}
+ \qquad\left(0<a\le1-\frac1p\right).
+\]
+Indeed, with $z=a/((p-1)(1-a))\le1$, the left side is at most
+$z^{-aR}(1+(p-1)z)^R=p^{RH_p(a)}$.  Taking $a=\Delta$ and using
+the preceding Pinsker bound show that
+\[
+ \Pr\bigl[\operatorname{wt}(Tx)<\Delta R\bigr]
+ \le p^{-R(1-H_p(\Delta))}.
+\]
+A union bound over fewer than $p^m$ nonzero $x$ is strictly below one.
+We may therefore fix $T$ for which every nonzero codeword has relative
+weight at least $\Delta$.  This also makes $T$ injective.  Index the $R$
+coordinates by $\{0,1\}^\ell$ and call the resulting encoder $\mathcal E$.
+The choice of $R$, the formula for $\tau$, and rounding to the next power
+of $2$ give, explicitly,
+\[
+ R\le 2\frac{(m+1)\log p}{2\tau^2}
+ \le\frac{8m\log p}{\eta^4},
+\]
+which proves \eqref{eq:code-length}.
+
+It remains to prove the list bound.  Represent the $p$ symbols by unit
+vectors $v_a$ forming a regular simplex:
+\[
+ \langle v_a,v_b\rangle=
+ \begin{cases}
+ 1,&a=b,\\
+ -1/(p-1),&a\ne b.
+ \end{cases}
+\]
+Represent a word by the normalized concatenation of its simplex vectors.
+Two words with agreement fraction $a$ then have inner product
+\[
+ \frac{pa-1}{p-1}.
+\]
+Suppose $L$ codewords agree with $Q$ on more than $1/p+\eta$ of the
+coordinates.  Let their unit vectors be $u_1,\ldots,u_L$, and let $w$ be
+the vector of $Q$.  By this identity,
+\[
+ \langle u_i,w\rangle>\gamma:=\frac{p\eta}{p-1}.
+\]
+The minimum distance gives, for $i\ne j$,
+\[
+ \langle u_i,u_j\rangle\le
+ \beta:=\frac{p\tau}{p-1}=\frac{\gamma^2}{2}.
+\]
+Cauchy--Schwarz now implies
+\[
+ L^2\gamma^2
+ <\left\langle\sum_i u_i,w\right\rangle^2
+ \le\left\|\sum_i u_i\right\|^2
+ \le L+L(L-1)\beta.
+\]
+Thus
+\[
+ L\le\frac{1-\beta}{\gamma^2-\beta}
+ \le\frac2{\gamma^2}\le\frac2{\eta^2},
+\]
+as required.
+\end{proof}
+
+\subsection{An ordered binary weak design}
+
+\begin{lemma}[Suffix-slack design]\label{lem:design}
+For all integers $\ell,r\ge1$, there are an integer $D$ and
+$\ell$-subsets $S_1,\ldots,S_r\subseteq[D]$ such that, for every $i$,
+\begin{equation}\label{eq:weak-design}
+ e_i:=\sum_{j<i}\left(2^{|S_i\cap S_j|}-1\right)\le r-i,
+\end{equation}
+and
+\[
+ D=O\left(\ell\sqrt r+\ell^2\log(\ell+1)\right).
+\]
+The implied constant is absolute, and the sets and their ordering may be
+chosen deterministically from $(r,\ell)$.
+\end{lemma}
+
+\begin{proof}
+Partition the $r$ rows into consecutive blocks.  If $R_b$ rows remain
+before block $b$, put
+\[
+ m_b=\left\lceil\frac{R_b}{2}\right\rceil,
+ \qquad
+ R_{b+1}=\left\lfloor\frac{R_b}{2}\right\rfloor.
+\]
+Thus $R_{b+1}\ge m_b-1$.  Give different blocks disjoint seed-coordinate
+universes.
+
+For a block of size $m=m_b$, let $q$ be the least prime at least
+\[
+ Q=\max\{2,\ell,\lceil\sqrt m\rceil\}.
+\]
+Bertrand's postulate gives $q<2Q$ \cite{HardyWright2008}.  Choose an
+$\ell$-set $X\subseteq\F_q$ and use the universe $X\times\F_q$.
+There are $q^2\ge m$ affine functions $x\mapsto ax+b$; select any $m$
+distinct ones and associate to $(a,b)$ its graph
+\[
+ S_{a,b}=\{\,(x,ax+b):x\in X\,\}.
+\]
+Two distinct affine graphs meet in at most one point.
+
+Let a row have zero-based local index $t$ in its block and one-based global
+index $i$.  Rows in earlier blocks have disjoint universes and contribute
+zero to the excess in \eqref{eq:weak-design}.  Each of the $t$ earlier
+block-mates contributes at most $2^1-1=1$.  Moreover, the exact number of
+global rows after this row is
+\[
+ r-i=(m_b-t-1)+R_{b+1}.
+\]
+Consequently
+\[
+ e_i\le t\le m_b-1\le R_{b+1}\le r-i.
+\]
+This includes the final global row, for which the last block has size one
+and the excess is zero.
+
+The universe of block $b$ has size
+\[
+ \ell q=O\bigl(\ell\max\{\ell,\sqrt{m_b}\}\bigr).
+\]
+The block sizes decrease geometrically, so
+$\sum_b\sqrt{m_b}=O(\sqrt r)$.  Once $m_b<\ell^2$, only
+$O(\log(\ell+1))$ nonempty blocks remain, each using $O(\ell^2)$
+coordinates.  The disjoint union of the block universes therefore has the
+claimed size; identify it with $[D]$.  Taking the least eligible prime and
+the first affine functions in lexicographic order makes the construction
+deterministic.
+\end{proof}
+
+The subtracted $1$ in \eqref{eq:weak-design} isolates the unavoidable
+baseline: even disjoint sets contribute $2^0=1$ to the reconstruction
+count.  Equivalently,
+\[
+ \sum_{j<i}2^{|S_i\cap S_j|}\le r-1.
+\]
+The remaining $r-i$ output coordinates will pay for the overlap excess at
+hybrid row $i$.
+
+\subsection{The reconstruction argument}
+
+Fix
+\begin{equation}\label{eq:eps-h-eta}
+ \varepsilon=\frac1{20},\qquad
+ h=\frac{\varepsilon}{r(p-1)},\qquad
+ \eta=\frac h2.
+\end{equation}
+Apply Lemma~\ref{lem:code} with input dimension $2r$, and let
+$\mathcal E$ be the resulting encoder, with coordinate set $\{0,1\}^\ell$
+and list size $J=2/\eta^2+1$.  Apply Lemma~\ref{lem:design} with these
+values of $\ell$ and $r$.
+Put
+\[
+ d=\left\lceil D\log_p2\right\rceil,
+\]
+so that the binary seed set has size $2^D\le p^d$.  For
+$x\in\F_p^{2r}$ and $y\in\{0,1\}^D$, define
+\begin{equation}\label{eq:ext-definition}
+ \Ext(x,y)_i=\mathcal E(x)(y|_{S_i}),
+ \qquad 1\le i\le r.
+\end{equation}
+The coordinates of each $S_i$ are read in increasing order.
+
+\begin{proposition}[Extractor inequality]\label{prop:extractor}
+Suppose the integer $s$ satisfies
+\begin{equation}\label{eq:s-threshold}
+ s\ge d+\left\lceil\log_p\frac{4J}{h}\right\rceil+2,
+ \qquad r+s\le2r.
+\end{equation}
+If $X$ is any random variable on $\F_p^{2r}$ with
+$H_{\infty,p}(X)\ge r+s$, and $Y$ is uniform on $\{0,1\}^D$ independently
+of $X$, then
+\begin{equation}\label{eq:strong-ext}
+ \TV\bigl((Y,\Ext(X,Y)),(Y,U_{\F_p^r})\bigr)\le\varepsilon.
+\end{equation}
+Here the copy of $U_{\F_p^r}$ on the right is independent of $Y$.
+For each fixed seed $y$, the map $x\mapsto\Ext(x,y)$ is
+$\F_p$-linear with codomain $\F_p^r$.
+\end{proposition}
+
+\begin{proof}
+Write $Z=\Ext(X,Y)=(Z_1,\ldots,Z_r)$ and suppose that
+\eqref{eq:strong-ext} fails.  Define the hybrids
+\[
+ \mathsf H_i=(Y,Z_1,\ldots,Z_i,U_{i+1},\ldots,U_r),
+ \qquad 0\le i\le r,
+\]
+where the displayed $U_j$ are independent uniform symbols, also
+independent of $(X,Y,Z)$.  The triangle inequality gives
+an $i$ such that
+\[
+ \mathbb E_{(Y,Z_{<i})}
+ \TV\bigl(\mathcal L(Z_i\mid Y,Z_{<i}),U_{\F_p}\bigr)
+ >\frac{\varepsilon}{r}.
+\]
+For a distribution $\mu$ on $\F_p$,
+\[
+ \max_a\mu(a)-\frac1p
+ \ge\frac{\TV(\mu,U_{\F_p})}{p-1},
+\]
+because the total positive deviation is the total variation distance and
+has at most $p-1$ positive summands.  At every context choose a most
+likely symbol.  The preceding inequality produces a deterministic
+predictor
+\[
+ \mathcal P:\{0,1\}^D\times\F_p^{i-1}\to\F_p
+\]
+such that
+\[
+ \Pr[\mathcal P(Y,Z_{<i})=Z_i]>\frac1p+h.
+\]
+The index $i$ and the predictor $\mathcal P$ may depend on the fixed law of
+$X$, but from now on they are fixed and do not depend on the point $x$.
+
+For fixed $x$, let $q_x$ be the success probability in the preceding
+predictor bound over $Y$, with $Z=\Ext(x,Y)$, and put
+\[
+ \mathcal B=\left\{x:q_x>\frac1p+\frac h2\right\}.
+\]
+Since $q_x\le1$, averaging that predictor bound gives
+\begin{equation}\label{eq:bad-mass-lower}
+ \Pr[X\in\mathcal B]>\frac h2.
+\end{equation}
+Indeed, if $\theta=\Pr[X\in\mathcal B]$, then
+\[
+ \frac1p+h<\mathbb E q_X
+ \le\frac1p+\frac h2+
+ \theta\left(1-\frac1p-\frac h2\right),
+\]
+which implies $\theta>h/2$.
+
+We now count $\mathcal B$.  Fix $x\in\mathcal B$.  Regard a binary assignment
+on $S_i$ as a code coordinate in $\{0,1\}^\ell$, using the increasing order
+on $S_i$.  By averaging over the seed coordinates outside $S_i$, we obtain a fixing
+$a\in\{0,1\}^{[D]\setminus S_i}$ for which the predictor agrees with the
+word $\mathcal E(x)$ on more than a $1/p+h/2=1/p+\eta$ fraction of
+assignments $z\in\{0,1\}^{S_i}$.
+
+After this outside fixing, the earlier output
+$\mathcal E(x)(y|_{S_j})$ is a function of only the
+$|S_i\cap S_j|$ overlap coordinates of $z$.  We may enumerate every such
+function: a function $\{0,1\}^t\to\F_p$ has $p^{2^t}$ possibilities.  Thus
+the number of descriptions consisting of the outside fixing and all
+earlier-output functions is at most
+\begin{align*}
+ 2^{D-\ell}\prod_{j<i}p^{2^{|S_i\cap S_j|}}
+ &\le p^{d+\sum_{j<i}2^{|S_i\cap S_j|}}\\
+ &=p^{d+(i-1)+e_i}
+ \le p^{d+r-1}.
+\end{align*}
+For a description $\mathcal D=(a,(g_j)_{j<i})$ and an assignment
+$z\in\{0,1\}^{S_i}$, let $y(a,z)$ be the unique seed whose restrictions to
+$S_i$ and $[D]\setminus S_i$ are respectively $z$ and $a$, and define
+\[
+ Q_{\mathcal D}(z)=\mathcal P\bigl(
+ y(a,z),(g_j(z|_{S_i\cap S_j}))_{j<i}\bigr).
+\]
+Via the increasing-order identification
+$\{0,1\}^{S_i}\cong\{0,1\}^\ell$, this is one received word
+$Q_{\mathcal D}:\{0,1\}^\ell\to\F_p$.  For each
+$x\in\mathcal B$, the description obtained above gives a word $Q_{\mathcal D}$
+which agrees with $\mathcal E(x)$ on more than a $1/p+\eta$ fraction of
+coordinates.  Thus $x$ belongs to the agreement list of at least one
+counted description.  Lemma~\ref{lem:code} bounds every such list by
+$J$, so
+\[
+ |\mathcal B|\le Jp^{d+r-1}.
+\]
+The min-entropy assumption now gives
+\begin{align*}
+ \Pr[X\in\mathcal B]
+ &\le p^{-r-s}|\mathcal B|\\
+ &\le Jp^{d-s-1}<\frac h4,
+\end{align*}
+where \eqref{eq:s-threshold} gives explicitly
+\[
+ Jp^{d-s-1}
+ \le Jp^{-\lceil\log_p(4J/h)\rceil-3}
+ \le\frac{h}{4p^3}<\frac h4.
+\]
+This
+contradicts \eqref{eq:bad-mass-lower}, proving \eqref{eq:strong-ext}.
+
+Finally, for fixed $y$, every coordinate in \eqref{eq:ext-definition} is
+one coordinate of the $\F_p$-linear encoding $\mathcal E$.  The tuple of
+the $r$ selected coordinates is therefore $\F_p$-linear.  Surjectivity is
+not asserted yet; it is enforced below.
+\end{proof}
+
+\subsection{Parameters and surjectivity}
+
+From Lemma~\ref{lem:code}, \eqref{eq:eps-h-eta}, and the input dimension
+$2r$,
+\[
+ 2^\ell=O\bigl(r\log p\,(pr)^4\bigr).
+\]
+Therefore
+\begin{equation}\label{eq:ell-bound}
+ \ell=O(\log(pr)).
+\end{equation}
+Lemma~\ref{lem:design} gives
+\[
+ D=O\left(\ell\sqrt r+\ell^2\log(\ell+1)\right)
+\]
+and therefore
+\[
+ d=O\left(
+ \frac{\ell\sqrt r+\ell^2\log(\ell+1)}{\log p}+1\right).
+\]
+Also
+\[
+ \log_p(4J/h)=O(1+\log_p(pr)),
+\]
+so \eqref{eq:s-threshold} holds with
+\[
+ s=O\left(
+ \frac{\ell\sqrt r+\ell^2\log(\ell+1)}{\log p}
+ +\log_p(pr)+1\right).
+\]
+The growth hypothesis in Theorem~\ref{thm:linear-family}, together with
+\eqref{eq:ell-bound}, makes both $d$ and $s$ equal to $o(r)$.
+Indeed, if $u=\log(pr)$ and $\lambda=\log p$, then
+\[
+ \left(\frac{u}{\lambda\sqrt r}\right)^2
+ =\frac{u^2}{r\lambda^2}=o(1),
+ \qquad
+ \frac{u^2\log(2+u)}{r\lambda}=o(1),
+\]
+while $\log_p(pr)/r=o(1)$.  These three estimates control respectively
+the $\ell\sqrt r$, $\ell^2\log(\ell+1)$, and remaining terms above.
+For the first estimate, use the second one together with
+$\lambda\ge\log3$ and $\log(2+u)>1$.
+This verifies all parameter claims in
+Theorem~\ref{thm:linear-family}, except surjectivity.
+
+The full set of $2^D$ binary seeds is an indexed family of linear maps.  Apply
+Proposition~\ref{prop:extractor} to the source $U_{\F_p^{2r}}$.
+For any source $X$, the joint distance in \eqref{eq:strong-ext} is exactly
+the fixed-seed average
+\[
+ \TV\bigl((Y,\Ext(X,Y)),(Y,U_{\F_p^r})\bigr)
+ =\frac1{2^D}\sum_{y\in\{0,1\}^D}
+ \TV(\Ext(X,y),U_{\F_p^r}).
+\]
+If a seed map has rank $t<r$, its output is uniform on a $p^t$-element
+subspace, and therefore
+\[
+ \TV(\Ext(U_{\F_p^{2r}},y),U_{\F_p^r})
+ =1-p^{t-r}\ge1-\frac1p.
+\]
+If $b$ is the fraction of rank-deficient seeds, \eqref{eq:strong-ext}
+gives
+\[
+ b\le\frac{\varepsilon}{1-1/p}\le\frac3{40}.
+\]
+Retain the good seeds, with their original multiplicities, and put the
+uniform distribution on this retained index set $\mathcal Y$.  For each
+$y\in\mathcal Y$, set
+\[
+ F_y(x)=\Ext(x,y).
+\]
+Then $|\mathcal Y|\le p^d$, every $F_y$ is surjective, and for every
+source covered by Proposition~\ref{prop:extractor},
+\[
+ \frac1{|\mathcal Y|}\sum_{y\in\mathcal Y}
+ \TV(F_y(X),U_{\F_p^r})
+ \le\frac{\varepsilon}{37/40}=\frac2{37}<\frac13.
+\]
+This completes the proof of Theorem~\ref{thm:linear-family}.
+
+\section{From the extractor to a finite-field sum palette}
+\label{sec:group-palette}
+
+Put
+\[
+ G=\F_p^{2r},\qquad V=\F_p^r,
+\]
+and let the maps $F_y:G\to V$ be those of
+Theorem~\ref{thm:linear-family}.  Define
+\[
+ S=\bigcup_{y\in\mathcal Y}\ker F_y\subseteq G.
+\]
+Let $\Gamma_S$ be the simple graph on $G$ in which distinct $x,x'$ are
+adjacent exactly when $x+x'\in S$.
+
+\begin{proposition}[Group palette]\label{prop:group-palette}
+With $d,s=o(r)$ as above,
+\[
+ |S|\le p^{r+d},
+ \qquad
+ \alpha(\Gamma_S)<p^{r+s}.
+\]
+\end{proposition}
+
+\begin{proof}
+Every retained map is surjective, so every kernel has size $p^r$.
+The definition of $S$ therefore gives
+\[
+ |S|\le|\mathcal Y|p^r\le p^{r+d}.
+\]
+
+Suppose that $A\subseteq G$ is independent.  Fix $y\in\mathcal Y$.  If
+$z\ne0$ and both $z$ and $-z$ occur in $F_y(A)$, choose $a,a'\in A$ with
+$F_y(a)=z$ and $F_y(a')=-z$.  Since $p$ is odd, $z\ne-z$, so $a\ne a'$;
+but then $a+a'\in\ker F_y\subseteq S$, a contradiction.  The zero fibre
+contains at most one member of $A$, because two distinct members of that
+fibre would also have their sum in $\ker F_y$.  The nonzero elements of
+$V$ form $(p^r-1)/2$ antipodal pairs.  Hence
+\[
+ |F_y(A)|\le\frac{p^r+1}{2}.
+\]
+
+Any distribution $P$ supported on $T\subseteq V$ satisfies
+\[
+ \TV(P,U_V)\ge1-\frac{|T|}{|V|},
+\]
+by testing the event $T$.  If $|A|\ge p^{r+s}$ and $X$ is uniform on
+$A$, then $H_{\infty,p}(X)\ge r+s$, while the preceding support bound gives,
+for every retained seed,
+\[
+ \TV(F_y(X),U_V)
+ \ge\frac{p^r-1}{2p^r}\ge\frac13.
+\]
+This contradicts Theorem~\ref{thm:linear-family}.  Therefore
+$|A|<p^{r+s}$.
+\end{proof}
+
+The zero-fibre argument is where the absence of loops must be handled
+carefully: it forbids two distinct zero-fibre points, but it does not
+forbid a single point $a$ merely because $2a\in S$.
+
+\section{Carry closure and ordinary integer sums}\label{sec:carries}
+
+Set
+\[
+ M=p^{2r}
+\]
+and identify $[M]_0$ with $\F_p^{2r}$ by the base-$p$ digit bijection
+\[
+ \psi(x)=(x_0,\ldots,x_{2r-1}),
+ \qquad x=\sum_{i=0}^{2r-1}x_i p^i.
+\]
+For $u\in\F_p^{2r}$, define its ordinary carry fibre by
+\begin{equation}\label{eq:carry-fibre}
+ \calC(u)=\{x+x':0\le x,x'<M,\ \psi(x)+\psi(x')=u\},
+\end{equation}
+where addition inside $\psi(x)+\psi(x')$ is coordinatewise modulo $p$.
+
+\begin{lemma}[Carry count]\label{lem:carry}
+For every $u\in\F_p^{2r}$,
+\[
+ |\calC(u)|\le2^{2r}.
+\]
+\end{lemma}
+
+\begin{proof}
+In the ordinary addition of $x$ and $x'$, let $c_i\in\{0,1\}$ be the
+carry entering digit $i$, with $c_0=0$, and let $c_{2r}$ be the final
+carry.  Once $u$ and the vector
+\[
+ (c_1,\ldots,c_{2r})\in\{0,1\}^{2r}
+\]
+are fixed, the $i$th ordinary output digit is forced to be
+$(u_i+c_i)\bmod p$, and the final digit is $c_{2r}$.  Thus the resulting
+integer sum is uniquely determined.  Some carry vectors may be
+inconsistent with any pair of summands, which only reduces the count.
+\end{proof}
+
+Define the integer palette
+\[
+ B_M=\bigcup_{u\in S}\calC(u)\subseteq\{0,\ldots,2M-2\}.
+\]
+Lemma~\ref{lem:carry} and Proposition~\ref{prop:group-palette} give
+\[
+ |B_M|\le2^{2r}p^{r+d}.
+\]
+Let $K_{B_M}$ be the simple graph on $[M]_0$ in which distinct integers
+$x,x'$ are adjacent when $x+x'\in B_M$.  If $x,x'$ form an edge of
+$\Gamma_S$ under the digit bijection, then
+$\psi(x)+\psi(x')\in S$, so the carry-fibre definition
+\eqref{eq:carry-fibre} and the definition of $B_M$ place their ordinary sum
+in $B_M$.  Therefore $K_{B_M}$ contains the group
+graph and
+\[
+ \alpha(K_{B_M})\le p^{r+s}.
+\]
+No carry has been discarded, and only pairs of distinct vertices are
+used in this graph comparison.
+
+\section{Parameters for every interval length}\label{sec:all-N}
+
+We now choose the field and dimension separately for each $N$.  This
+also gives the quantitative error term in Theorem~\ref{thm:main}.  Let
+$N$ be sufficiently large, put
+\[
+ L=\log N,
+ \qquad
+ \lambda_0=\left(\frac{L}{\log L}\right)^{1/3},
+ \qquad
+ P=\left\lceil\exp(\lambda_0)\right\rceil,
+\]
+and choose a prime $p\in[P,2P]$, which exists by Bertrand's postulate
+\cite{HardyWright2008}.
+Set
+\begin{equation}\label{eq:r-choice}
+ r=\left\lceil\frac{\log N}{2\log p}\right\rceil,
+ \qquad M=p^{2r}.
+\end{equation}
+Then $p$ is odd and tends to infinity, and
+\[
+ \lambda:=\log p=\lambda_0+O(1),
+ \qquad
+ r=\Theta(L/\lambda).
+\]
+Since $\log r=O(\log L)=o(\lambda)$, one has
+$\log(pr)=O(\lambda)$, and \eqref{eq:ell-bound} gives
+$\ell=O(\lambda)$.  Moreover,
+\[
+ \bigl(\log(pr)\bigr)^2\log\bigl(2+\log(pr)\bigr)
+ =O(\lambda^2\log\lambda)=o(L),
+\]
+whereas $r\log p=\Theta(L)$.  Thus the hypothesis of
+Theorem~\ref{thm:linear-family} holds with room to spare.
+The design construction and the quantitative bounds in that theorem give
+\[
+ \begin{aligned}
+ D
+ &=O\left(\lambda\sqrt{L/\lambda}
+          +\lambda^2\log\lambda\right)
+  =O\left(L^{2/3}(\log L)^{1/3}\right),\\
+ d,s
+ &=O\left(L^{1/3}(\log L)^{2/3}\right),\\
+ \frac dr,\frac sr
+ &=O\left(\left(\frac{\log L}{L}\right)^{1/3}\right).
+ \end{aligned}
+\]
+Also, by the ceiling in \eqref{eq:r-choice},
+\[
+ N\le M<Np^2.
+\]
+
+Build the $M$-vertex palette $B_M$ above and restrict to the first $N$
+vertices.  Delete the normalized sums which cannot come from two distinct
+members of $[N]_0$ by putting
+\begin{equation}\label{eq:BN}
+ B_N=B_M\cap\{1,\ldots,2N-3\}.
+\end{equation}
+Let $\Gamma_N$ be the subgraph of $\Gamma_S$ induced by $[N]_0$.  Every edge of
+$\Gamma_N$ has ordinary sum in
+$B_M\cap\{1,\ldots,2N-3\}=B_N$, so
+\[
+ \Gamma_N\subseteq H_{B_N}.
+\]
+Therefore
+\[
+ \alpha(H_{B_N})\le\alpha(\Gamma_N)
+ \le\alpha(\Gamma_S)<p^{r+s}.
+\]
+Together with the palette-size bound, this gives
+\[
+ |B_N|\le2^{2r}p^{r+d},
+ \qquad
+ \alpha(H_{B_N})\le p^{r+s}.
+\]
+
+We estimate these expressions relative to $N$.  Put $\lambda=\log p$.
+By \eqref{eq:r-choice}, $r=L/(2\lambda)+O(1)$.  At these parameters the
+bounds for $d$ and $s$ give
+$d\lambda,s\lambda=O(D+\log(pr))=O(D+\lambda)$, so
+\begin{align*}
+ \frac{\log(2^{2r}p^{r+d})}{L}
+ &=\frac{2r\log 2}{L}+\frac{(r+d)\lambda}{L}
+  \le\frac12+O\left(\frac1\lambda+\frac DL+\frac\lambda L\right),\\
+ \frac{\log(p^{r+s})}{L}
+ &\le\frac12+O\left(\frac DL+\frac\lambda L\right).
+\end{align*}
+Here the carry factor contributes
+$2r\log2/L=(\log2)/\lambda+O(L^{-1})$, and the ceiling in
+\eqref{eq:r-choice} contributes $O(\lambda/L)$.  By the choices above,
+\[
+ \frac1\lambda,\frac DL,\frac\lambda L
+ =O\left(\left(\frac{\log L}{L}\right)^{1/3}\right).
+\]
+Therefore, for an absolute constant $C_1$ and all sufficiently large $N$,
+\begin{equation}\label{eq:BN-final}
+ \begin{aligned}
+ |B_N|&\le N^{\frac12+C_1
+   \left(\frac{\log\log N}{\log N}\right)^{1/3}},\\
+ \alpha(H_{B_N})&\le N^{\frac12+C_1
+   \left(\frac{\log\log N}{\log N}\right)^{1/3}}.
+ \end{aligned}
+\end{equation}
+
+\section{Completion of the proof}\label{sec:completion}
+
+Take $N=n-1$ and the normalized palette $B_N$ from
+\eqref{eq:BN}.  Select the original sums
+\[
+ B=\{\,2n+2+a:a\in B_N\,\}.
+\]
+Because $1\le a\le2N-3=2n-5$, this is a subset of
+\[
+ \{2n+3,\ldots,4n-3\}\subseteq J_n.
+\]
+The translation $x\mapsto n+1+x$ identifies the graph generated by $B_N$
+on $[N]_0$ with $G_B$ on $I_n$.  Hence \eqref{eq:BN-final} gives
+\[
+ |B|+\alpha(G_B)
+ \le n^{\frac12+O\!\left(
+   \left(\frac{\log\log n}{\log n}\right)^{1/3}\right)}.
+\]
+The factor $2$ from adding the two bounds contributes only
+\[
+ \frac{\log2}{\log n}
+ =o\left(\left(\frac{\log\log n}{\log n}\right)^{1/3}\right)
+\]
+to the exponent.  Replacing the scale $N=n-1$ by $n$ changes the exponent
+by a smaller amount.  These errors are absorbed in the displayed term.
+By Proposition~\ref{prop:minmax}, this is the desired upper bound for
+$f(n)$.  Proposition~\ref{prop:loglower} supplies the lower bound, and
+Theorem~\ref{thm:main} follows.
+
+For clarity about the quantifiers, the construction above chooses one
+set $B$ for each $n$.  The preceding estimate for
+$|B|+\alpha(G_B)$ therefore holds with $\alpha(G_B)$ replaced by
+$|C|$ for \emph{every} $B$-admissible $C$.  Since the entire exponent
+correction displayed above tends to zero, it is smaller than $\varepsilon$
+for sufficiently large $n$.  This proves the stated assertion for every
+fixed $\varepsilon>0$ and every sufficiently large $n$, not merely along a
+subsequence.
+
+\section{Concluding remarks}
+
+The proof separates three interfaces that are easy to conflate.  The
+extractor has $p$-ary linear outputs but binary code coordinates and a
+binary seed; the weak-design overlap moment is therefore $2^t$, not $p^t$.
+Ordering the design sets exposes a further resource: at hybrid row $i$, the
+remaining $r-i$ output coordinates pay for the excess above the unavoidable
+baseline overlap.
+The union of the resulting kernels controls finite-field sum graphs, and
+the carry closure in Section~\ref{sec:carries} then transfers that control
+to ordinary integer addition.  Keeping these interfaces explicit yields
+the quantitative exponent correction
+$O((\log\log n/\log n)^{1/3})$.
+
+The argument determines the exponent of $f(n)$ but not its finer order of
+growth.  The universal lower bound is $\Omega(\sqrt{n\log n})$, whereas the
+constructed upper bound is
+\[
+ \sqrt n\,\exp\!\bigl(
+ O((\log n)^{2/3}(\log\log n)^{1/3})\bigr).
+\]
+Closing this remaining subpolynomial gap would require a sharper palette,
+a stronger universal lower bound, or both.
+
+\begingroup
+\small
+\begin{thebibliography}{99}
+
+\bibitem{ErdosProblems788}
+T.~F. Bloom,
+\newblock Erd\H{o}s Problem \#788,
+\newblock \url{https://www.erdosproblems.com/788},
+\newblock accessed July 18, 2026.
+
+\bibitem{Erdos1973}
+P.~Erd\H{o}s,
+\newblock Problems and results on combinatorial number theory,
+\newblock in \emph{A Survey of Combinatorial Theory}
+(J.~N. Srivastava et al., eds.; Proc. Internat. Sympos.,
+Colorado State Univ., Fort Collins, 1971),
+North-Holland, 1973, pp.~117--138,
+\newblock \href{https://doi.org/10.1016/B978-0-7204-2262-7.50017-X}
+{doi:10.1016/B978-0-7204-2262-7.50017-X}.
+
+\bibitem{Choi1971}
+S.~L.~G. Choi,
+\newblock On a combinatorial problem in number theory,
+\newblock \emph{Proc. London Math. Soc.} (3) \textbf{23} (1971), 629--642,
+\newblock \href{https://doi.org/10.1112/plms/s3-23.4.629}
+{doi:10.1112/plms/s3-23.4.629}.
+
+\bibitem{BSS2000}
+A.~Baltz, T.~Schoen, and A.~Srivastav,
+\newblock Probabilistic construction of small strongly sum-free sets via
+large Sidon sets,
+\newblock \emph{Colloq. Math.} \textbf{86}, no.~2 (2000), 171--176,
+\newblock \href{https://doi.org/10.4064/cm-86-2-171-176}
+{doi:10.4064/cm-86-2-171-176}.
+
+\bibitem{AlonPham2025}
+N.~Alon and H.~T. Pham,
+\newblock Random Cayley graphs and random sumsets,
+\newblock arXiv:2509.02561, 2025,
+\newblock \url{https://arxiv.org/abs/2509.02561}.
+
+\bibitem{AKS1999}
+N.~Alon, M.~Krivelevich, and B.~Sudakov,
+\newblock Coloring graphs with sparse neighborhoods,
+\newblock \emph{J. Combin. Theory Ser. B} \textbf{77} (1999), 73--82,
+\newblock \href{https://doi.org/10.1006/jctb.1999.1910}
+{doi:10.1006/jctb.1999.1910}.
+
+\bibitem{RRV2002}
+R.~Raz, O.~Reingold, and S.~Vadhan,
+\newblock Extracting all the randomness and reducing the error in
+Trevisan's extractors,
+\newblock \emph{J. Comput. System Sci.} \textbf{65} (2002), 97--128,
+\newblock \href{https://doi.org/10.1006/jcss.2002.1824}
+{doi:10.1006/jcss.2002.1824}.
+
+\bibitem{Trevisan2001}
+L.~Trevisan,
+\newblock Extractors and pseudorandom generators,
+\newblock \emph{J. ACM} \textbf{48} (2001), 860--879,
+\newblock \href{https://doi.org/10.1145/502090.502099}
+{doi:10.1145/\allowbreak 502090.502099}.
+
+\bibitem{CoverThomas2006}
+T.~M. Cover and J.~A. Thomas,
+\newblock \emph{Elements of Information Theory}, 2nd ed.,
+Wiley-Interscience, Hoboken, NJ, 2006.
+
+\bibitem{HardyWright2008}
+G.~H. Hardy and E.~M. Wright,
+\newblock \emph{An Introduction to the Theory of Numbers}, 6th ed.,
+revised by D.~R. Heath-Brown and J.~H. Silverman,
+Oxford University Press, Oxford, 2008.
+
+\end{thebibliography}
+\endgroup
+
+\end{document}
