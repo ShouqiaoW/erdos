@@ -17,10 +17,12 @@
   linkcolor=blue!55!black,
   citecolor=blue!55!black,
   urlcolor=blue!55!black,
-  unicode=true,
-  pdftitle={A Proposed Solution to Erdős Problem 1002},
-  pdfauthor={Shouqiao Wang}
+  unicode=true
 ]{hyperref}
+\hypersetup{
+  pdftitle={A Proposed Solution to Erd\H{o}s Problem 1002},
+  pdfauthor={Shouqiao Wang}
+}
 \usepackage{enumitem}
 
 \numberwithin{equation}{section}
@@ -97,7 +99,7 @@ This proposed solution was found by GPT-5.6.
 \section{Introduction}
 
 Throughout, all logarithms are natural, and \(\Leb\) denotes Lebesgue
-measure.  Erd\H{o}s asked whether the random variables
+measure.  Erd\H{o}s asked \cite[p.~63]{Erdos1964} whether the random variables
 \[
  S_N(\alpha):=\sum_{k=1}^{N}\left(\frac12-\{k\alpha\}\right),
  \qquad f_N(\alpha):=\frac{S_N(\alpha)}{\log N},
@@ -813,16 +815,24 @@ When \(x\le\sqrt {y_{\rm CK}}\), their elementary formula
   +O(x^4+xy_{\rm CK}\log x)
 \]
 is \(O(Kx^2)\).  When
-\(\sqrt {y_{\rm CK}}<x\le K/(\log K)^{B_{\rm tail}}\), apply
-part~(ii) of their theorem with the displayed substitution.  Its two
-range hypotheses are checked separately:
+\(\sqrt {y_{\rm CK}}<x\le T:=K/(\log K)^{B_{\rm tail}}\), apply
+part~(ii) of their theorem with the displayed substitution.  We verify
+both of its range hypotheses, including the lower logarithmic margin.
+Since \(B_{\rm CK}=11\), \(B_{\rm tail}>30\), and \(x\le T\),
 \[
- x\le K\le y_{\rm CK},
- \qquad
- y_{\rm CK}<x^2\le x^2(\log x)^{B_{\rm CK}}
+ x(\log x)^{2B_{\rm CK}}
+ \le T(\log T)^{22}
+ \le K(\log K)^{22-B_{\rm tail}}
+ \le 2K=y_{\rm CK}
 \]
-for all sufficiently large \(K\); bounded remaining values are absorbed
-in the constant.  The function denoted by \(\kappa\) in that theorem
+for all sufficiently large \(K\).  Since
+\(x>\sqrt {y_{\rm CK}}\), we also have
+\[
+ y_{\rm CK}<x^2\le x^2(\log x)^{B_{\rm CK}}.
+\]
+The bounded remaining values of \(K\) are absorbed in the constant.
+Moreover, \(\log(xy_{\rm CK})\asymp\log x\asymp\log K\) throughout
+this range.  The function denoted by \(\kappa\) in that theorem
 satisfies \(\sup_{u\in\R}|\kappa(u)|<\infty\), so its main term is
 \(O(y_{\rm CK}x^2)=O(Kx^2)\).  Its error relative to
 \(y_{\rm CK}x^2\) is
@@ -1690,7 +1700,20 @@ one, and pairing \(q\) with \(-q\) gives
  =O_p(q^{-2}).
 \]
 Thus the paired tails are absolutely summable, and Abel's theorem
-applies to the resulting convergent symmetric series.  We may therefore
+applies to the resulting convergent symmetric series.  To compare the
+literal Abel weights with a symmetrically weighted pairing, note that,
+for \(q>|p\alpha|\), the two weights are
+\(e^{-\lambda_{\rm A}q}e^{\pm\lambda_{\rm A}p\alpha}\).  Replacing both
+by \(e^{-\lambda_{\rm A}q}\) changes the paired tail by
+\[
+ O_p\!\left(
+ \lambda_{\rm A}\sum_{q\ge1}\frac{e^{-\lambda_{\rm A}q}}q
+ \right)
+ =O_p\!\left(\lambda_{\rm A}\log(2/\lambda_{\rm A})\right)=o(1).
+\]
+The symmetrically weighted paired series is dominated by its
+\(O_p(q^{-2})\) tail and therefore converges to the original symmetric
+principal value.  We may therefore
 first truncate each \(q\)-sum symmetrically and insert the Abel factor
 \(\exp(-\lambda_{\rm A}|p\alpha-q|)\), \(\lambda_{\rm A}>0\).  The sum is then finite and,
 after the truncation is removed, absolutely integrable.  The Fourier
@@ -1844,7 +1867,16 @@ We also record the high-frequency tail rather than subsume it in
 \eqref{eq:B0-block}.  Suppose that \(Q_K=\sqrt K>N\), equivalently
 \(K>N^2\).  For all sufficiently large \(N\), this implies \(T>N\):
 the function \(x/(\log x)^{B_{\rm tail}}\) is increasing in this range, and at
-\(x=N^2\) it is larger than \(N\).  Apply
+\(x=N^2\) it is larger than \(N\).
+Furthermore, once \(N\) is sufficiently large, the function
+\(x\mapsto(\log x)^{B_{\rm tail}+3/2}x^{-1/2}\) is decreasing on
+\([N^2,\infty)\).  Hence
+\[
+ \sup_{K\ge N^2}E_K
+ \le \frac{(\log N^2)^{B_{\rm tail}+3/2}}N=o(1),
+\]
+so every use of \(E_K=o(1)\) below is uniform over the high-frequency
+blocks.  Apply
 \eqref{eq:Rchi-vector-Abel} with \(U=N\).  Every \(x\le N\) lies below
 \(Q_K\), so \eqref{eq:Rchi-weight-envelope} and
 \eqref{eq:Rchi-low-finite-tail} give, for each fixed \(j>2\),
@@ -2598,14 +2630,18 @@ quantitative.  Put
 \]
 and set
 \[
- w_L=\E_{\nu_G}(w\mid\mathscr A_{b_L}),
+ w_L=\E_{\nu_G}(w\mid\mathscr A_{b_L}).
 \]
+We choose the version of this conditional expectation which is constant
+on each half-open depth-\(b_L\) cylinder and, at every rational endpoint,
+assign one of the two adjacent cylinder values.  The endpoints form a
+null set for both measures.
 A depth-\(b\) continued-fraction cylinder has length
 \[
  \frac1{Q_b(Q_b+Q_{b-1})}\le F_{b+1}^{-2}.
 \]
-Since \(w\) is Lipschitz and a conditional average lies between the
-minimum and maximum of \(w\) on the cylinder,
+Since \(w\) is Lipschitz and this cylinderwise conditional average lies
+between the minimum and maximum of \(w\) on the cylinder,
 \begin{equation}\label{eq:density-cylinder-approximation}
  \|w-w_L\|_\infty\ll F_{b_L+1}^{-2}=o(1).
 \end{equation}
@@ -2845,7 +2881,10 @@ Consequently,
 
 A finite regular continued-fraction word is determined by its reduced
 terminal convergent \(P/Q\), apart from the two usual terminal
-expansions.  Hence the number of all finite cylinders whose terminal
+expansions.  Indeed, the unique canonical expansion has last digit at
+least two, and its only alternative replaces the terminal digit \(a\)
+by \(a-1,1\); the Euclidean algorithm gives no other finite expansion.
+Hence the number of all finite cylinders whose terminal
 denominator is at most \(R\) is at most
 \[
  2\sum_{Q\le R}\varphi(Q)+O(1)\ll R^2.
@@ -3000,6 +3039,9 @@ the two functions agree on
 We now freeze this function on depth-\(m_s\) cylinders.  Let
 \(\mathscr C_{m_s}\) be the half-open continued-fraction cylinders of
 depth \(m_s\), which partition the irrational points up to a null set.
+We keep one fixed half-open endpoint convention and assign all rational
+endpoints arbitrarily; every identity in this paragraph is consequently
+an almost-everywhere identity, which is all that the integrals require.
 For every \(C\in\mathscr C_{m_s}\), choose
 an irrational representative \(\alpha_C\in C\), and write
 \[
@@ -3376,9 +3418,10 @@ gives, for every \(s_1,\ldots,s_q\ge0\),
 The right-hand side is the joint factorial moment of independent
 Poisson variables \(Z_i\) with means \(\Lambda(B_i)\).
 
-Let \(T_N=\sum_iX_{N,i}\).  Since \(T_N\) is bounded by a rare count
-of the form used in \eqref{eq:rare-factorial-bound}, for every fixed
-\(m\),
+Let \(T_N=\sum_iX_{N,i}\).  After reflecting every negative value
+window to its positive magnitude, \(T_N\) is bounded by a finite union
+of rare counts of the form used in \eqref{eq:rare-factorial-bound}.
+Consequently, for every fixed \(m\),
 \[
  \sup_N\E(T_N)_m<\infty,\qquad
  \sup_N\E T_N^m<\infty,
@@ -3403,18 +3446,21 @@ moments therefore yields
 \end{equation}
 
 For every finite union \(U\) of members of
-\(\mathscr R_\varepsilon\), the first factorial moment and
+\(\mathscr R_\varepsilon\), we have \(\Lambda(\partial U)=0\), and the
+first factorial moment and
 \eqref{eq:joint-poisson-counts} give
 \[
  \E\widetilde{\mathcal Q}_N(U)\longrightarrow\Lambda(U),\qquad
  \Pp\{\widetilde{\mathcal Q}_N(U)=0\}
  \longrightarrow e^{-\Lambda(U)},
 \]
-respectively.  Kallenberg's mean-and-void criterion
-\cite[Theorem~4.7]{Kallenberg}, applied to the countable dissecting
-semiring \(\mathscr R_\varepsilon\) on this locally compact
-second-countable space, therefore gives vague convergence to the
-Poisson process with intensity \(\Lambda\).  Notice also that the mean
+respectively.  Kallenberg's mean-and-void criterion states that these
+two limits on the finite unions of a countable dissecting semiring of
+continuity sets imply convergence to the Poisson random measure
+\cite[Theorem~4.7]{Kallenberg}.  Applied to
+\(\mathscr R_\varepsilon\) on this locally compact second-countable
+space, it therefore gives vague convergence to the Poisson process with
+intensity \(\Lambda\).  Notice also that the mean
 bound supplies local tightness directly: every compact set is covered
 by such a finite union \(U\), and
 \(\sup_N\E\widetilde{\mathcal Q}_N(U)<\infty\), so Markov's inequality
@@ -3434,9 +3480,14 @@ We give the time-change estimate at the level of test functions.  Let
 \]
 Extend \(f\) by zero outside a slightly larger compact time interval;
 then \(\omega_f(\delta)\to0\) as \(\delta\downarrow0\).
+Because the value projection of \(\operatorname{supp}f\) is compact in
+\(\R\setminus\{0\}\), choose a compact interval
+\(K_f\Subset(0,\infty)\) containing
+\[
+ \bigl\{|\xi|:(t,\xi,u)\in\operatorname{supp}f\bigr\}.
+\]
 Let \(R_L^{(f)}\) count all rare convergents with
-\(0\le n\le C_*L\) and value coordinate in a fixed compact interval
-containing the value projection of \(\operatorname{supp}f\).  This
+\(0\le n\le C_*L\) and magnitude \(L\theta_n\in K_f\).  This
 contains every index-time point relevant to \(f\).  It also contains
 every denominator-time point relevant to \(f\), because
 \(Q_n\ge F_{n+1}\) and \(Q_n<N\) imply \(n<C_*L\) for all sufficiently
@@ -3732,6 +3783,12 @@ T.~H. Chan and A.~V. Kumchev,
 On sums of Ramanujan sums,
 \emph{Acta Arith.} \textbf{152} (2012), 1--10,
 doi:10.4064/aa152-1-1.
+
+\bibitem{Erdos1964}
+P.~Erd\H{o}s,
+Problems and results on diophantine approximations,
+\emph{Compositio Math.} \textbf{16} (1964), 52--65,
+\url{https://www.numdam.org/item/CM_1964__16__52_0/}.
 
 \bibitem{GhoshKirsebomRoy}
 A.~Ghosh, M.~S. Kirsebom, and P.~Roy,
