@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "REPLACE_ME",
+  "toolchain": [],
+  "final_theorem": {
+    "status": "not_checked",
+    "declaration": null,
+    "file": null,
+    "trust_base": []
+  },
+  "items": [],
+  "admitted_or_unsafe": []
+}

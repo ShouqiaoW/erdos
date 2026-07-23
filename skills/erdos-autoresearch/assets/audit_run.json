@@ -1,0 +1,12 @@
+{
+  "audit_id": "AUDIT-0001",
+  "lane": "statement",
+  "candidate_generation": 1,
+  "final_claim": "CLM-0001",
+  "auditor": "TODO",
+  "independent": true,
+  "status": "pass",
+  "report_path": "audit/statement-report.md",
+  "report_sha256": "TODO",
+  "completed_at": "ISO-8601"
+}

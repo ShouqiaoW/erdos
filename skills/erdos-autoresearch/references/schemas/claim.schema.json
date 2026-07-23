@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "statement",
+    "role",
+    "status",
+    "dependencies",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "pattern": "^CLM-[0-9]{4,}$"
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "enum": [
+        "intermediate",
+        "final_affirmative"
+      ]
+    },
+    "status": {
+      "enum": [
+        "conjectured",
+        "tested",
+        "proved",
+        "refuted",
+        "machine_checked",
+        "withdrawn"
+      ]
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^CLM-[0-9]{4,}$"
+      }
+    },
+    "external_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EXT-[0-9]{4,}$"
+      }
+    }
+  }
+}

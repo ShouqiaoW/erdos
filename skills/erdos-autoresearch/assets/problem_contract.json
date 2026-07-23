@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "case_id": "REPLACE_ME",
+  "source": {
+    "uri": "",
+    "sha256": "",
+    "retrieved_at": "",
+    "published_or_updated_at": null
+  },
+  "canonical_statement": "TODO",
+  "interpretations": [],
+  "definitions": [],
+  "quantifier_matrix": [],
+  "allowed_outcomes": {
+    "affirmative": {
+      "enabled": true,
+      "statement": "TODO",
+      "obligations": []
+    },
+    "negative": {
+      "enabled": false,
+      "statement": "Counterexamples are diagnostic tools for intermediate claims, not a terminal outcome.",
+      "obligations": []
+    }
+  },
+  "non_solutions": [],
+  "traps": [],
+  "edge_cases": [],
+  "external_theorem_policy": [],
+  "release_obligations": [
+    "statement_fidelity",
+    "logical_closure",
+    "external_theorem_applicability",
+    "edge_cases",
+    "circularity",
+    "computational_reproducibility",
+    "formalization_scope",
+    "prior_art"
+  ],
+  "semantic_audits": []
+}

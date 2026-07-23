@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "audit_id",
+    "lane",
+    "candidate_generation",
+    "final_claim",
+    "auditor",
+    "independent",
+    "status",
+    "report_path",
+    "report_sha256",
+    "completed_at"
+  ],
+  "properties": {
+    "audit_id": {
+      "type": "string",
+      "pattern": "^AUDIT-[0-9]{4,}$"
+    },
+    "lane": {
+      "enum": [
+        "statement",
+        "quantifier",
+        "edge_case",
+        "dependency",
+        "external_theorem",
+        "counterexample",
+        "computation",
+        "formalization",
+        "clean_room",
+        "reproduction",
+        "prior_art"
+      ]
+    },
+    "candidate_generation": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "final_claim": {
+      "type": "string",
+      "pattern": "^CLM-[0-9]{4,}$"
+    },
+    "auditor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "independent": {
+      "const": true
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "report_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "completed_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

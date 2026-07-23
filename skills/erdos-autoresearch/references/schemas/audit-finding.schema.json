@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "finding_id",
+    "lane",
+    "severity",
+    "status",
+    "issue",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "finding_id": {
+      "type": "string",
+      "pattern": "^AUD-[0-9]{4,}$"
+    },
+    "severity": {
+      "enum": [
+        "fatal",
+        "major",
+        "minor",
+        "editorial"
+      ]
+    },
+    "status": {
+      "enum": [
+        "open",
+        "in_progress",
+        "resolved",
+        "invalidated",
+        "superseded"
+      ]
+    }
+  }
+}

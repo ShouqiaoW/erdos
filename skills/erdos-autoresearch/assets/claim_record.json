@@ -1,0 +1,14 @@
+{
+  "claim_id": "CLM-0001",
+  "statement": "TODO",
+  "role": "intermediate",
+  "status": "conjectured",
+  "route_id": null,
+  "dependencies": [],
+  "external_dependencies": [],
+  "proof_location": null,
+  "counterexample_location": null,
+  "machine_check": null,
+  "created_at": "ISO-8601",
+  "updated_at": "ISO-8601"
+}
