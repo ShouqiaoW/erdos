@@ -1,0 +1,50 @@
+name: Erdos 1002 Lean CI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "1002/lean/**"
+      - ".github/workflows/erdos1002-lean.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "1002/lean/**"
+      - ".github/workflows/erdos1002-lean.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: erdos1002-lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject proof escapes and placeholders
+        working-directory: 1002/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE --include='*.lean' \
+            '^[[:space:]]*(sorry|admit|axiom|opaque)([^[:alnum:]_]|$)|sorryAx|by_contra\?|^[[:space:]]*unsafe[[:space:]]+(theorem|def)([^[:alnum:]_]|$)|native_decide|Lean\.ofReduceBool|Lean\.trustCompiler' \
+            Erdos1002.lean Erdos1002 Audit.lean; then
+            echo "Proof escape or placeholder found."
+            exit 1
+          fi
+
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: 1002/lean
+          build: true
+          use-mathlib-cache: true
+
+      - name: Check public theorems and kernel dependencies
+        working-directory: 1002/lean
+        shell: bash
+        run: lake env lean Audit.lean
