@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Erdos Autoresearch Run Config",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "case_id",
+    "title",
+    "created_at",
+    "selection_mode",
+    "literature_mode",
+    "target_mode",
+    "budget",
+    "release"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9._-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selection_mode": {
+      "enum": [
+        "specified",
+        "autonomous"
+      ]
+    },
+    "literature_mode": {
+      "enum": [
+        "benchmark_blind",
+        "background_only",
+        "full_research"
+      ]
+    },
+    "target_mode": {
+      "const": "prove"
+    },
+    "budget": {
+      "type": "object",
+      "required": [
+        "minimum_research_hours",
+        "strategy_reset_rounds",
+        "maximum_active_routes",
+        "maximum_stagnant_rounds"
+      ],
+      "properties": {
+        "minimum_research_hours": {
+          "type": "number",
+          "minimum": 8
+        },
+        "strategy_reset_rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum_active_routes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum_stagnant_rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "probe_rounds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "require_clean_room_audit",
+        "require_prior_art_audit",
+        "require_reproducible_experiments",
+        "required_audit_lanes"
+      ],
+      "properties": {
+        "require_clean_room_audit": {
+          "const": true
+        },
+        "require_prior_art_audit": {
+          "const": true
+        },
+        "require_reproducible_experiments": {
+          "const": true
+        },
+        "required_audit_lanes": {
+          "type": "array",
+          "minItems": 11,
+          "uniqueItems": true,
+          "allOf": [
+            {
+              "contains": {
+                "const": "statement"
+              }
+            },
+            {
+              "contains": {
+                "const": "quantifier"
+              }
+            },
+            {
+              "contains": {
+                "const": "edge_case"
+              }
+            },
+            {
+              "contains": {
+                "const": "dependency"
+              }
+            },
+            {
+              "contains": {
+                "const": "external_theorem"
+              }
+            },
+            {
+              "contains": {
+                "const": "counterexample"
+              }
+            },
+            {
+              "contains": {
+                "const": "computation"
+              }
+            },
+            {
+              "contains": {
+                "const": "formalization"
+              }
+            },
+            {
+              "contains": {
+                "const": "clean_room"
+              }
+            },
+            {
+              "contains": {
+                "const": "reproduction"
+              }
+            },
+            {
+              "contains": {
+                "const": "prior_art"
+              }
+            }
+          ],
+          "items": {
+            "enum": [
+              "statement",
+              "quantifier",
+              "edge_case",
+              "dependency",
+              "external_theorem",
+              "counterexample",
+              "computation",
+              "formalization",
+              "clean_room",
+              "reproduction",
+              "prior_art"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

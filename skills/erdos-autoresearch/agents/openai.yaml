@@ -1,0 +1,9 @@
+interface:
+  display_name: "Erdős Autoresearch"
+  short_description: "Auditable long-horizon affirmative-proof research"
+  default_prompt: >
+    Use $erdos-autoresearch to pursue a complete affirmative proof under the
+    explicit existence premise for at least eight hours, returning only after
+    the candidate passes every audit and release gate.
+policy:
+  allow_implicit_invocation: false

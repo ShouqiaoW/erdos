@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "theorem_id",
+    "statement",
+    "source_uri",
+    "hypotheses",
+    "application_mapping",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "theorem_id": {
+      "type": "string",
+      "pattern": "^EXT-[0-9]{4,}$"
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "application_mapping": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "verified",
+        "rejected"
+      ]
+    }
+  }
+}
