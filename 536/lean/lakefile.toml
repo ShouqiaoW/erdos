@@ -1,0 +1,21 @@
+name = "erdos536"
+version = "0.1.0"
+defaultTargets = ["Erdos536"]
+
+[leanOptions]
+autoImplicit = false
+relaxedAutoImplicit = false
+warningAsError = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.27.0"
+
+[[require]]
+name = "PrimeNumberTheoremAnd"
+git = "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd.git"
+rev = "6757256b98b00b6afb0a7d3ef0313d2872801a70"
+
+[[lean_lib]]
+name = "Erdos536"

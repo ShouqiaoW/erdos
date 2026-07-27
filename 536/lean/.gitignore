@@ -1,0 +1,11 @@
+/.lake/
+/.elan/
+/.vscode/
+/.idea/
+*.olean
+*.ilean
+*.o
+*.a
+*.so
+*.trace
+.DS_Store
