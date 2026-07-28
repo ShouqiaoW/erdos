@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.BankMarkerDonorCombinatorics
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for marker--donor double counting and capacity -/
+
+#print axioms Erdos390.WholePaper.sum_bankDonorMultiplicity_eq_occurrenceTotal
+#print axioms Erdos390.WholePaper.bankMarkerOccurrenceTotal_le_mul_markerCount
+#print axioms Erdos390.WholePaper.bankOccurrenceCeilDiv_le_markerCount
+
+assert_no_sorry Erdos390.WholePaper.sum_bankDonorMultiplicity_eq_occurrenceTotal
+assert_no_sorry Erdos390.WholePaper.bankMarkerOccurrenceTotal_le_mul_markerCount
+assert_no_sorry Erdos390.WholePaper.bankOccurrenceCeilDiv_le_markerCount

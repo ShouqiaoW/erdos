@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperBridgePhysicalDivisorCovariance
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_guardedCell_fullTilt_divIndCovariance_sub_medium_le

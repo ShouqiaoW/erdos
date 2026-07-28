@@ -1,0 +1,18 @@
+import Erdos390.WholePaper.StationaryPrefixRealization
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom and sorry audit for fixed stationary-prefix realization. -/
+
+#print axioms Erdos390.WholePaper.infiniteAllocationPositiveSupport_sum
+#print axioms Erdos390.WholePaper.stationaryPrefixRawCount_normalized_tendsto
+#print axioms Erdos390.WholePaper.eventually_stationaryPrefixRawCount_sum_le
+#print axioms Erdos390.WholePaper.stationaryPrefixCount_distinguished_normalized_tendsto
+#print axioms Erdos390.WholePaper.eventually_stationaryPrefixPartition_nonempty
+#print axioms Erdos390.WholePaper.exists_stationaryPrefixParts
+
+assert_no_sorry Erdos390.WholePaper.infiniteAllocationPositiveSupport_sum
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixRawCount_normalized_tendsto
+assert_no_sorry Erdos390.WholePaper.eventually_stationaryPrefixRawCount_sum_le
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixCount_distinguished_normalized_tendsto
+assert_no_sorry Erdos390.WholePaper.eventually_stationaryPrefixPartition_nonempty
+assert_no_sorry Erdos390.WholePaper.exists_stationaryPrefixParts

@@ -1,0 +1,22 @@
+import Erdos390.WholePaper.TangentRequestSplitting
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for finite edge and label request counts -/
+
+#print axioms Erdos390.WholePaper.card_tangentSplitRequest
+#print axioms Erdos390.WholePaper.card_tangentSplitRequests
+#print axioms Erdos390.WholePaper.sum_tangentSplitRequestWeight
+#print axioms Erdos390.WholePaper.tangentSplitRequestWeight_mem_slackQuarter
+#print axioms Erdos390.WholePaper.sum_tangentSplitRequestWeight_mul_sub
+#print axioms Erdos390.WholePaper.tangentSplitUpdate_valuation
+#print axioms Erdos390.WholePaper.cast_tangentRequestTotal_le
+#print axioms Erdos390.WholePaper.cast_tangentIncidentRequestCount_le
+
+assert_no_sorry Erdos390.WholePaper.card_tangentSplitRequest
+assert_no_sorry Erdos390.WholePaper.card_tangentSplitRequests
+assert_no_sorry Erdos390.WholePaper.sum_tangentSplitRequestWeight
+assert_no_sorry Erdos390.WholePaper.tangentSplitRequestWeight_mem_slackQuarter
+assert_no_sorry Erdos390.WholePaper.sum_tangentSplitRequestWeight_mul_sub
+assert_no_sorry Erdos390.WholePaper.tangentSplitUpdate_valuation
+assert_no_sorry Erdos390.WholePaper.cast_tangentRequestTotal_le
+assert_no_sorry Erdos390.WholePaper.cast_tangentIncidentRequestCount_le

@@ -1,0 +1,5 @@
+import Erdos390.Full.PaperCanonicalActualMomentBoundsEventually
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.canonicalMassQuadratureBound
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.canonicalSecondMomentBound
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalActualMomentCutoff_eventually

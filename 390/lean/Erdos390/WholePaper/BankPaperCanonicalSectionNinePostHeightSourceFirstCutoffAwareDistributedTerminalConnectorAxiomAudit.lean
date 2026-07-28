@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstCutoffAwareDistributedTerminalConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: cutoff-aware distributed Section 9 terminal
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstCutoffAwareDistributedTerminal
+
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstCutoffAwareDistributedTerminal
+
+end Erdos390.WholePaper

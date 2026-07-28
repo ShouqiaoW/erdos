@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.UpperScale
+import Mathlib.Util.AssertNoSorry
+
+/-! Chunked transitive declaration audit for exact endpoint bounds. -/
+
+#print axioms Erdos390.WholePaper.two_mul_le_upperEndpoint
+#print axioms Erdos390.WholePaper.upperEndpoint_le_three_mul
+#print axioms Erdos390.WholePaper.upperEndpoint_sub_two_mul
+#print axioms Erdos390.WholePaper.eventually_upperScaledEndpoint_bounds
+#print axioms Erdos390.WholePaper.upperScaledEndpoint_excess_normalized_tendsto
+
+assert_no_sorry Erdos390.WholePaper.eventually_upperScaledEndpoint_bounds
+assert_no_sorry Erdos390.WholePaper.upperEndpoint_sub_two_mul
+assert_no_sorry Erdos390.WholePaper.upperScaledEndpoint_excess_normalized_tendsto

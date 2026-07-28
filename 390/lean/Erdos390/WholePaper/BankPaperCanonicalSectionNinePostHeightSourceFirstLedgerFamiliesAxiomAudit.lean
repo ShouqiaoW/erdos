@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstLedgerFamilies
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for total source-first ledger families
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstLedgerFamilies
+
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstLedgerFamilies
+
+end Erdos390.WholePaper

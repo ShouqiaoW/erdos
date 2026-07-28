@@ -1,0 +1,8 @@
+import Erdos390.Full.ContinuumProjectedResidualOrdinary
+
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.meanProjection_continuumSharp_eq_graph_add_residual
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.weightedMean_continuumSharp_eq_residual
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_center_mul_weightedMean_residual_le
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_center_mul_projectedResidual_le
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_center_mul_graph_le_of_projectedContinuum
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_center_mul_continuumSharp_le_of_projected

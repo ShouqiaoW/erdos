@@ -1,0 +1,26 @@
+import Erdos390.WholePaper.Nagura
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for the verified Nagura reductions -/
+
+#print axioms Erdos390.WholePaper.exists_prime_nagura_finite
+#print axioms Erdos390.WholePaper.exists_prime_nagura_medium
+#print axioms Erdos390.WholePaper.exists_prime_nagura_below_91639
+#print axioms Erdos390.WholePaper.eventually_primeCounting_nagura_difference_pos
+#print axioms Erdos390.WholePaper.eventually_primeCounting_six_fifths_difference_pos
+#print axioms Erdos390.WholePaper.eventually_exists_prime_nagura
+#print axioms Erdos390.WholePaper.exists_nagura_tail_cutoff
+#print axioms Erdos390.WholePaper.exists_prime_nagura_of_tail
+#print axioms Erdos390.WholePaper.consecutivePrime_ratio_of_naguraWitness
+#print axioms Erdos390.WholePaper.consecutivePrimes_ratio_finite
+
+assert_no_sorry Erdos390.WholePaper.exists_prime_nagura_finite
+assert_no_sorry Erdos390.WholePaper.exists_prime_nagura_medium
+assert_no_sorry Erdos390.WholePaper.exists_prime_nagura_below_91639
+assert_no_sorry Erdos390.WholePaper.eventually_primeCounting_nagura_difference_pos
+assert_no_sorry Erdos390.WholePaper.eventually_primeCounting_six_fifths_difference_pos
+assert_no_sorry Erdos390.WholePaper.eventually_exists_prime_nagura
+assert_no_sorry Erdos390.WholePaper.exists_nagura_tail_cutoff
+assert_no_sorry Erdos390.WholePaper.exists_prime_nagura_of_tail
+assert_no_sorry Erdos390.WholePaper.consecutivePrime_ratio_of_naguraWitness
+assert_no_sorry Erdos390.WholePaper.consecutivePrimes_ratio_finite

@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperBandQuadraticGeometry
+
+/-! Transitive axiom audit for the full arithmetic band quotient geometry. -/
+
+#print axioms Erdos390.Full.PaperBandQuadraticGeometry.primeCoefficientL2Sq_eq_data_primeNormSq
+#print axioms Erdos390.Full.PaperBandQuadraticGeometry.primePhysicalDistance_eq_data_primeNormSq
+#print axioms Erdos390.Full.PaperBandQuadraticGeometry.primeCoefficientL2Sq_le_physicalDistance_residualMinimizer
+#print axioms Erdos390.Full.PaperBandQuadraticGeometry.exists_primeReference_band_lower
+#print axioms Erdos390.Full.PaperBandQuadraticGeometry.exists_primeReference_fullQuotient_lower

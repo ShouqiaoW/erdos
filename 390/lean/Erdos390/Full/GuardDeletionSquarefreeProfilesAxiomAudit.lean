@@ -1,0 +1,7 @@
+import Erdos390.Full.GuardDeletionSquarefreeProfiles
+
+/-! Axiom audit for reciprocal signed profiles after literal guard deletion. -/
+
+#print axioms Erdos390.Full.GuardDeletionSquarefreeProfiles.exists_deleteGuards_squarefree_profiles
+#print axioms Erdos390.Full.GuardDeletionSquarefreeProfiles.remaining_tilt_squarefree_profiles
+#print axioms Erdos390.Full.SquarefreeCovarianceReference.sigmaMixture_squarefree_reference_entry_bound_of_squarefree_profiles

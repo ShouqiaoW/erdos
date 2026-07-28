@@ -1,0 +1,28 @@
+import Erdos390.WholePaper.FiniteAsymmetricLocalLemma
+import Mathlib.Util.AssertNoSorry
+
+/-! # Assumption audit for the finite asymmetric local lemma -/
+
+#print axioms Erdos390.WholePaper.avoidEvents_empty
+#print axioms Erdos390.WholePaper.avoidEvents_insert
+#print axioms Erdos390.WholePaper.measurableSet_avoidEvents
+#print axioms Erdos390.WholePaper.avoidEvents_anti
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma_conditionalBound
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma_lowerBound
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma_positive
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma_iInter_positive
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma_nonempty
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma_iInter_nonempty
+#print axioms Erdos390.WholePaper.finiteAsymmetricLocalLemma
+
+assert_no_sorry Erdos390.WholePaper.avoidEvents_empty
+assert_no_sorry Erdos390.WholePaper.avoidEvents_insert
+assert_no_sorry Erdos390.WholePaper.measurableSet_avoidEvents
+assert_no_sorry Erdos390.WholePaper.avoidEvents_anti
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma_conditionalBound
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma_lowerBound
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma_positive
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma_iInter_positive
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma_nonempty
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma_iInter_nonempty
+assert_no_sorry Erdos390.WholePaper.finiteAsymmetricLocalLemma

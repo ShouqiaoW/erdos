@@ -1,0 +1,79 @@
+name: Erdos 390 Lean CI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "390/lean/**"
+      - ".github/workflows/erdos390-lean.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "390/lean/**"
+      - ".github/workflows/erdos390-lean.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: erdos390-lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject release documentation and proof placeholders
+        working-directory: 390/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -type f -iname 'README*' -print -quit | grep -q .; then
+            echo "README files are intentionally excluded from this Lean release."
+            exit 1
+          fi
+          if grep -RInE --include='*.lean' \
+            '^[[:space:]]*(sorry|admit|axiom|opaque)([^[:alnum:]_]|$)|sorryAx|^[[:space:]]*unsafe[[:space:]]+(theorem|def)([^[:alnum:]_]|$)|by_contra\?' \
+            Erdos390 Erdos390.lean Audit.lean; then
+            echo "Proof placeholder or escape found."
+            exit 1
+          fi
+
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: 390/lean
+          build: true
+          use-mathlib-cache: true
+
+      - name: Build the complete proof umbrella
+        working-directory: 390/lean
+        run: lake build Erdos390.Full
+
+      - name: Check the final theorem axiom closure
+        working-directory: 390/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          audit_output="$(mktemp)"
+          trap 'rm -f "$audit_output"' EXIT
+          lake env lean -DwarningAsError=true Audit.lean \
+            -o .lake/build/lib/lean/Audit.olean 2>&1 | tee "$audit_output"
+          normalized_axioms="$(
+            tr '\n' ' ' < "$audit_output" |
+              sed -E 's/[[:space:]]+/ /g'
+          )"
+          expected="'Erdos390.WholePaper.bankPaperCanonicalSectionNinePostHeight_sourceFirstMainAsymptotic' depends on axioms: [propext, Classical.choice, Quot.sound]"
+          expected_bridge="'Erdos390.WholePaper.FormalConjecturesBridge.formalF_rhs' depends on axioms: [propext, Classical.choice, Quot.sound]"
+          if [[ "$normalized_axioms" != *"$expected"* ]]; then
+            echo "Unexpected final theorem axiom closure."
+            exit 1
+          fi
+          if [[ "$normalized_axioms" != *"$expected_bridge"* ]]; then
+            echo "Unexpected Formal Conjectures bridge axiom closure."
+            exit 1
+          fi

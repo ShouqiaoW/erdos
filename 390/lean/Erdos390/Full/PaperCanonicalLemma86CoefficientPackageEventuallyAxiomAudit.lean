@@ -1,0 +1,10 @@
+import Erdos390.Full.PaperCanonicalLemma86CoefficientPackageEventually
+
+/-! Transitive axiom audit for the canonical Lemma 8.6 coefficient package. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalPaperLemma86CoefficientCutoff_eventually
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_paperFineMesh_cutoff_eventually_canonical_actualBandRegression_coefficients_of_schurSplice
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandRegressionTarget_sharpNorm_le_of_row
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandRegression_sharpNorm_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandRegression_compensatedCoefficient_three_bounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalPaperGeometricCutoff_eventually

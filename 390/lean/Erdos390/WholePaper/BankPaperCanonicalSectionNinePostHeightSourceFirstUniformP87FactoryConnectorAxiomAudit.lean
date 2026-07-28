@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstUniformP87FactoryConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the source-first uniform P87 factory connector
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.BankPaperCanonicalSectionNinePostHeightSourceFirstUniformP87FactoryStatement
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstUniformP87Factory
+
+assert_no_sorry BankPaperRealization.BankPaperCanonicalSectionNinePostHeightSourceFirstUniformP87FactoryStatement
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstUniformP87Factory
+
+end Erdos390.WholePaper

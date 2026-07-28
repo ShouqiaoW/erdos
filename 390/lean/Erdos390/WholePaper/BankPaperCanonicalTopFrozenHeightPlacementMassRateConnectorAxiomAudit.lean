@@ -1,0 +1,10 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenHeightPlacementMassRateConnector
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for the height-only placement mass rate -/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalSymmetricHeightCellMassFamily_isBigO_secondOrderScale_div_L
+#print axioms Erdos390.WholePaper.BankPaperRealization.eventually_bankPaperCanonicalSymmetricHeightCellMassFamily_abs_two_le
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalSymmetricHeightCellMassFamily_isBigO_secondOrderScale_div_L
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.eventually_bankPaperCanonicalSymmetricHeightCellMassFamily_abs_two_le

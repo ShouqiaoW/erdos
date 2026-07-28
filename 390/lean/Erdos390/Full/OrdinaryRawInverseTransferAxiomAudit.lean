@@ -1,0 +1,3 @@
+import Erdos390.Full.OrdinaryRawInverseTransfer
+
+#print axioms Erdos390.Full.OrdinaryRawInverseTransfer.inverse_norm_le_of_reference

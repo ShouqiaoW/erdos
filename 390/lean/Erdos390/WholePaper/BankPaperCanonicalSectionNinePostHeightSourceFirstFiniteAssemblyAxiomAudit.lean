@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstFiniteAssembly
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for finite source-first post-height assembly
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeightBridgeInputsAt_of_preconstructedSource_and_postMargin
+
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeightBridgeInputsAt_of_preconstructedSource_and_postMargin
+
+end Erdos390.WholePaper

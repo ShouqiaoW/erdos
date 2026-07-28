@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperCanonicalTiltedPrefixRows
+
+/-! Transitive axiom audit for the canonical nuisance marked rows. -/
+
+#print axioms Erdos390.Full.PaperCanonicalTiltedPrefixRows.eventually_valuationEnvelope_bounds
+#print axioms Erdos390.Full.PaperCanonicalTiltedPrefixRows.eventually_bandPrime_mul_valuationEnvelope_le_yNat_sq
+#print axioms Erdos390.Full.PaperCanonicalTiltedPrefixRows.eventually_physicalBound_relativeSpan_le
+#print axioms Erdos390.Full.PaperCanonicalTiltedPrefixRows.PaperBridgeFit.BridgeData.exists_uniform_canonical_cellMediumLaw_tilted_valuation_prefix_rate_unrestricted
+#print axioms Erdos390.Full.PaperCanonicalTiltedPrefixRows.PaperBridgeFit.BridgeData.exists_uniform_canonical_cellMediumLaw_physical_valuation_rate_unrestricted

@@ -1,0 +1,30 @@
+import Erdos390.WholePaper.BankMarkerDonorCombinatorics
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for actual donor choice and orientation pools -/
+
+#print axioms Erdos390.WholePaper.bankChosenMarkerDonor_mem
+#print axioms Erdos390.WholePaper.bankChosenMarkerDonor_injective
+#print axioms Erdos390.WholePaper.bankMarkerDonorPairs_subset_eligible
+#print axioms Erdos390.WholePaper.card_bankMarkerDonorPairs
+#print axioms Erdos390.WholePaper.image_fst_bankMarkerDonorPairs
+#print axioms Erdos390.WholePaper.bankMarkerDonorPairs_injective_by_marker
+#print axioms Erdos390.WholePaper.bankOrientationPools_disjoint
+#print axioms Erdos390.WholePaper.bankOrientationPools_union
+#print axioms Erdos390.WholePaper.bankOrientationPools_card_balanced
+#print axioms Erdos390.WholePaper.bankOrientationPoolFirst_subset_eligible
+#print axioms Erdos390.WholePaper.bankOrientationPoolSecond_subset_eligible
+#print axioms Erdos390.WholePaper.bankOrientationPool_pair_eligible
+
+assert_no_sorry Erdos390.WholePaper.bankChosenMarkerDonor_mem
+assert_no_sorry Erdos390.WholePaper.bankChosenMarkerDonor_injective
+assert_no_sorry Erdos390.WholePaper.bankMarkerDonorPairs_subset_eligible
+assert_no_sorry Erdos390.WholePaper.card_bankMarkerDonorPairs
+assert_no_sorry Erdos390.WholePaper.image_fst_bankMarkerDonorPairs
+assert_no_sorry Erdos390.WholePaper.bankMarkerDonorPairs_injective_by_marker
+assert_no_sorry Erdos390.WholePaper.bankOrientationPools_disjoint
+assert_no_sorry Erdos390.WholePaper.bankOrientationPools_union
+assert_no_sorry Erdos390.WholePaper.bankOrientationPools_card_balanced
+assert_no_sorry Erdos390.WholePaper.bankOrientationPoolFirst_subset_eligible
+assert_no_sorry Erdos390.WholePaper.bankOrientationPoolSecond_subset_eligible
+assert_no_sorry Erdos390.WholePaper.bankOrientationPool_pair_eligible

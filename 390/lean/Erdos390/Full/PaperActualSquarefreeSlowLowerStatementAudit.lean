@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperActualSquarefreeSlowLower
+
+/-! Exact statement audit for the actual signed-profile squarefree bounds. -/
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actual_squarefree_reference_entry_bound_of_profiles
+#check Erdos390.Full.PaperBridgeFit.BridgeData.subtypeSquarefreeQuadratic_actual_eq_covariance
+#check Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualSquarefree_compensated_lower_of_profiles
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualSquarefree_compensated_upper_of_profiles
+#check Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualSquarefree_compensated_bounds_of_profiles

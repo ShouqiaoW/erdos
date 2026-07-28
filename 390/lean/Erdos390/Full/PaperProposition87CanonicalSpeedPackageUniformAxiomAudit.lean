@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperProposition87CanonicalSpeedPackage
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_speed_radius_with_canonicalTwoStage_bounds_uniformTypes

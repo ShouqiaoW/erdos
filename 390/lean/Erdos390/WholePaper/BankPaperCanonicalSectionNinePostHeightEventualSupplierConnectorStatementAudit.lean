@@ -1,0 +1,78 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightEventualSupplierConnector
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineActiveLedgerConnector
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineTopFrozenSourceCoreAlignmentConnector
+
+/-!
+# Statement audit: honest fresh post-height reduction boundary
+
+The declarations under audit stop at a finite local-input reduction.  They
+do not assert the synchronized Post-Hfit input or the analytic completion.
+
+The exact unresolved producer census is one coherent `J`/`S` construction
+on one guarded-tail family, including a fixed positive head exponent,
+uniform pre-height and post-height target margins, and the primitive
+rounded-source residual wiring.
+
+Every item in the second declaration census below is an already-exported
+producer and is therefore not a field of
+`BankPaperCanonicalSectionNinePostHeightPrimitiveGapsAt`.
+-/
+
+open Filter
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.ArithmeticBandGeometry
+open Erdos390.Full.HeadPattern
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+open Erdos390.Full.RegularMeshPrimeCutoffs
+open Erdos390.Full.RegularRelativeMesh
+
+noncomputable section
+
+namespace BankPaperRealization
+
+/-! ## New reduction declarations -/
+
+#check exists_uniform_bridge_guardedZeroCell_valuation_mean_paperRate
+#check BankPaperCanonicalSectionNinePostHeightPrimitiveGapsAt
+#check BankPaperCanonicalSectionNinePostHeightEventualCoherentBridgeSourceObligation
+#check BankPaperCanonicalSectionNinePostHeightLocalInputReductionAt
+#check bankPaperCanonicalSectionNinePostHeightLocalInputReduction_of_exportedFields
+
+/-! ## Existing source, rate, and ledger producers -/
+
+#check eventually_bankPaperCanonicalTopFrozenRoundedSelectorSourceState_of_residualInputs
+#check eventually_bankPaperCanonicalPostHfitBalancedAlpha_mem_Icc
+#check exists_paperParameters_eventually_bankPaperCanonicalPostHfitBalancedAlpha_mem_Icc
+#check exists_eventually_bankPaperCanonicalSectionNinePostHeightPlacedSelector_deficit_paperRate
+#check bankPaperCanonicalGuardedStructuredAdditivePlacementSelector_frozenAmbientWeight_eq_of_value
+#check bankPaperCanonicalSectionNinePostHeightPlaced_actualFrozenWeight_eq_roundedSource
+#check exists_eventually_bankPaperCanonical_activeLedger_of_q0_isBigO
+#check bankPaperCanonicalGuardedCellDensityFloor
+#check bankPaperCanonicalGuardedCellDensityFloor_pos
+#check bankPaperCanonicalGuardedCellDensityFloor_le
+#check eventually_roughCanonicalBalancedNonsmoothBounds
+
+end BankPaperRealization
+
+/-! ## Existing family, moment, mass, and P87 producers -/
+
+#check BankPaperCanonicalGuardedTailFamily
+#check Erdos390.Full.GuardSquarefreeErrorRate.eventually_guarded_rawCell_density
+#check eventually_bankPaperCanonical_actualMomentReady
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.actual_L1_bound_of_ready
+#check bankPaperCanonicalSectionEight_d_isBigO
+#check bankPaperCanonicalSectionEight_finalActiveMass_paperScaleLower
+#check bankPaperCanonicalSectionEight_physicalMeanError_isBigO
+#check eventually_one_le_bankPaperCanonicalSectionEight_finalActiveMass
+#check exists_bankPaperCanonical_actualBridge_q_upper_before_mesh_of_sectionEightLedger_scaledSeed
+#check BridgeData.canonical_proposition87_varyingActiveMassLiteralBandBalance
+#check BridgeData.eventually_canonical_exponential_slack_le_L
+
+end
+
+end Erdos390.WholePaper

@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstRichSourceWithFixedNumericalData
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the fixed-numerical-data rich source
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstRichSourceWithFixedNumericalData
+
+assert_no_sorry
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstRichSourceWithFixedNumericalData
+
+end Erdos390.WholePaper

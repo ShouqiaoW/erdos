@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperProposition87CanonicalTwoStageAssembly
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_physicallyCenteredFixedPartitionFit_of_canonicalTwoStageOutputs

@@ -1,0 +1,5 @@
+import Erdos390.Full.PaperNonstepPrimeMomentRate
+
+#print Erdos390.Full.PrimeSums.bandTReciprocalSquareSum
+#print Erdos390.Full.PrimeSums.bandTReciprocalSquareSum_le
+#print Erdos390.Full.PrimeSums.tendsto_bandTReciprocalSquareSum_zero

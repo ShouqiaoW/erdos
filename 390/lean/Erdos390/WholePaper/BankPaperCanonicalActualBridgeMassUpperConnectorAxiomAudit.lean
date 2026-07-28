@@ -1,0 +1,17 @@
+import Erdos390.WholePaper.BankPaperCanonicalActualBridgeMassUpperConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the actual bridge active-mass upper bound
+
+All three public declarations are printed and checked for proof
+placeholders.
+-/
+
+#print axioms Erdos390.WholePaper.BridgeData.q_eq_of_baseWeight_eq_scaledActiveSeed
+#print axioms Erdos390.WholePaper.bankPaperCanonical_actualBridge_q_isBigO_of_sectionEightLedger_scaledSeed
+#print axioms Erdos390.WholePaper.exists_bankPaperCanonical_actualBridge_q_upper_of_sectionEightLedger_scaledSeed
+
+assert_no_sorry Erdos390.WholePaper.BridgeData.q_eq_of_baseWeight_eq_scaledActiveSeed
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonical_actualBridge_q_isBigO_of_sectionEightLedger_scaledSeed
+assert_no_sorry Erdos390.WholePaper.exists_bankPaperCanonical_actualBridge_q_upper_of_sectionEightLedger_scaledSeed

@@ -1,0 +1,5 @@
+import Erdos390.Full.PaperProposition87MarkedProfilesMajorant
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedConstant_le_majorant
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedConstant_le_scaledMajorant
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedScaledMajorant_le_headMajorant

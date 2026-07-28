@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshLedgerPostMarginAssembly
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: source-first pre-mesh ledger/post-margin assembly
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshLedgerPostMarginAssembly
+
+assert_no_sorry
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshLedgerPostMarginAssembly
+
+end Erdos390.WholePaper

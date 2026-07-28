@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.GuardedBankSelection
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for explicit finite signed-bank selection -/
+
+#print axioms Erdos390.WholePaper.sum_signedBankSlotChange_of_choice
+#print axioms Erdos390.WholePaper.sum_embeddedSignedBankSlotChange_of_choice
+#print axioms Erdos390.WholePaper.exists_bounded_signedBankStateChoice
+#print axioms Erdos390.WholePaper.exists_bounded_embeddedBankStateChoice
+
+assert_no_sorry Erdos390.WholePaper.sum_signedBankSlotChange_of_choice
+assert_no_sorry Erdos390.WholePaper.sum_embeddedSignedBankSlotChange_of_choice
+assert_no_sorry Erdos390.WholePaper.exists_bounded_signedBankStateChoice
+assert_no_sorry Erdos390.WholePaper.exists_bounded_embeddedBankStateChoice

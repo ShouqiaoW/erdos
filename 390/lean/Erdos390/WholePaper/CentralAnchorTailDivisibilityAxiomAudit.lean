@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.CentralAnchorTailDivisibility
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for central-anchor tail divisibility -/
+
+#print axioms Erdos390.WholePaper.centralTailProduct_factorization
+#print axioms Erdos390.WholePaper.upperTailValuation_eq_centralTailProduct_factorization
+#print axioms Erdos390.WholePaper.centralAnchorDivisor_dvd_centralTailProduct_of_support_bounds
+#print axioms Erdos390.WholePaper.centralAnchorDivisor_dvd_upperTail_of_support_bounds
+#print axioms Erdos390.WholePaper.centralTailQuotient_mul_centralAnchorDivisor
+
+assert_no_sorry Erdos390.WholePaper.centralTailProduct_factorization
+assert_no_sorry Erdos390.WholePaper.upperTailValuation_eq_centralTailProduct_factorization
+assert_no_sorry Erdos390.WholePaper.centralAnchorDivisor_dvd_centralTailProduct_of_support_bounds
+assert_no_sorry Erdos390.WholePaper.centralAnchorDivisor_dvd_upperTail_of_support_bounds
+assert_no_sorry Erdos390.WholePaper.centralTailQuotient_mul_centralAnchorDivisor

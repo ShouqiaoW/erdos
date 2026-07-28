@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperActualCompensatedMarkedRowProfiles
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualCompensatedScore_markedRow_bound_of_profiles_and_weightedRow

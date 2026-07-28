@@ -1,0 +1,4 @@
+import Erdos390.Full.FiniteReversibleGraph
+
+#print axioms Erdos390.Full.FiniteReversibleGraph.weighted_sum_graphOperator_eq_zero
+#print axioms Erdos390.Full.FiniteReversibleGraph.meanProjection_graphOperator_eq

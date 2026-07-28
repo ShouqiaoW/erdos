@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperCanonicalPrimeRowResidualEventually
+
+/-! Transitive axiom audit for the relative literal prime-row terminal. -/
+
+#print axioms Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.abs_primeRowResidual_le_of_relative_quadrature
+#print axioms Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.exists_uniform_primeRowResidual_relative_bound
+#print axioms Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.exists_cutoff_eventually_primeRowResidual_le

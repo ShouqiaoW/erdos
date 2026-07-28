@@ -1,0 +1,9 @@
+import Erdos390.WholePaper.MovingLayerLowerBound
+
+/-! Transitive axiom audit for moving counts and the exact incidence terminal. -/
+
+#print axioms Erdos390.WholePaper.movingPrimeLayer_card_normalized_tendsto
+#print axioms Erdos390.WholePaper.movingPrimeUnion13_card_normalized_tendsto
+#print axioms Erdos390.WholePaper.movingPrimeUnion13_card_le_smallPrimeFactorizationSum
+#print axioms Erdos390.WholePaper.movingPrimeUnion13_card_le_factorialValuationSub
+#print axioms Erdos390.WholePaper.movingPrimeUnion13_card_le_factorialValuationSub_of_admissible

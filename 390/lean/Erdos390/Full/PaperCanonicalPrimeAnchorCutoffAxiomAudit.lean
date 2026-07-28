@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperCanonicalPrimeAnchorEventually
+
+#print axioms Erdos390.Full.MovingLowMomentQuadrature.fullLogReciprocalSumUniform_bound
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalPrimeAnchorCutoff_eventually

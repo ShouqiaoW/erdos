@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperProposition87CanonicalFeasibilitySlackEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_canonical_exponential_slack_le_L

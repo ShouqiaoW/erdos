@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperSelectedMeshSchurEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_exists_uniform_actualBandSchurEquiv_and_quadratic

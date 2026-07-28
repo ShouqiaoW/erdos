@@ -1,0 +1,20 @@
+import Erdos390.WholePaper.InfiniteAllocationCore
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom audit for the finite/tail allocation splice. -/
+
+#print axioms Erdos390.WholePaper.finiteAllocation_nonneg
+#print axioms Erdos390.WholePaper.infiniteAllocation_nonneg
+#print axioms Erdos390.WholePaper.infiniteAllocation_eq_zero_of_not_mem_allocationRange
+#print axioms Erdos390.WholePaper.infiniteAllocation_row_identity
+#print axioms Erdos390.WholePaper.tsum_finitePrimeRowLoad_eq
+#print axioms Erdos390.WholePaper.summable_finitePrimeRowLoad
+#print axioms Erdos390.WholePaper.allocationPrimeLoad_infiniteAllocation_eq
+
+assert_no_sorry Erdos390.WholePaper.finiteAllocation_nonneg
+assert_no_sorry Erdos390.WholePaper.infiniteAllocation_nonneg
+assert_no_sorry Erdos390.WholePaper.infiniteAllocation_eq_zero_of_not_mem_allocationRange
+assert_no_sorry Erdos390.WholePaper.infiniteAllocation_row_identity
+assert_no_sorry Erdos390.WholePaper.tsum_finitePrimeRowLoad_eq
+assert_no_sorry Erdos390.WholePaper.summable_finitePrimeRowLoad
+assert_no_sorry Erdos390.WholePaper.allocationPrimeLoad_infiniteAllocation_eq

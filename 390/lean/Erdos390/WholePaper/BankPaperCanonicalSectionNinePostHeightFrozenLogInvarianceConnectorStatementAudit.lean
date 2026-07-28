@@ -1,0 +1,42 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightFrozenLogInvarianceConnector
+
+/-!
+# Statement audit for post-height frozen-log invariance
+
+The declarations expose the arbitrary-seed pointwise cancellation, its
+finite logarithmic sum, and the literal rounded-source to post-height
+specialization.
+-/
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+open Erdos390.Full.PaperHeadSimplex
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check
+  bankPaperCanonicalGuardedStructuredAdditivePlacement_actualFrozenWeight_eq_source_of_arbitrarySeedReplacement
+#check
+  bankPaperCanonicalGuardedStructuredAdditivePlacement_frozenAmbientWeight_eq_source_of_arbitrarySeedReplacement
+#check
+  sum_bankPaperCanonicalGuardedStructuredAdditivePlacement_actualFrozenWeight_mul_log_eq_source_of_arbitrarySeedReplacement
+#check
+  bankPaperCanonicalGuardedStructuredAdditivePlacement_actualFrozenLogMass_eq_source_of_arbitrarySeedReplacement
+#check
+  bankPaperCanonicalSectionNinePostHeightPlaced_actualFrozenWeight_eq_roundedSource
+#check
+  sum_bankPaperCanonicalSectionNinePostHeightPlaced_actualFrozenWeight_mul_log_eq_roundedSource
+#check
+  bankPaperCanonicalSectionNinePostHeightPlaced_actualFrozenLogMass_eq_roundedSource
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

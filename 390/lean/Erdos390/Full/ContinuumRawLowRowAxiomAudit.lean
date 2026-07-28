@@ -1,0 +1,6 @@
+import Erdos390.Full.ContinuumRawLowRow
+
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_normalizedKernelCell_le_center_mul_length
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.sum_abs_normalizedKernelCell_le
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_normalizedDiagonalCell_sub_one_le
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.abs_rawContinuum_coordinate_le

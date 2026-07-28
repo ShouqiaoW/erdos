@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstMainAsymptoticConnector
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstMainAsymptoticConnectorStatementAudit
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstMainAsymptoticConnectorAxiomAudit
+import Erdos390.WholePaper.FormalConjecturesBridge
+import Erdos390.WholePaper.FormalConjecturesBridgeStatementAudit
+import Erdos390.WholePaper.FormalConjecturesBridgeAxiomAudit
+
+/-!
+# Whole-paper terminal umbrella
+
+This module exports the closed source-first proof of the paper's literal main
+asymptotic, its Formal Conjectures compatibility bridge, and the corresponding
+expanded-statement and transitive-axiom audits.
+-/

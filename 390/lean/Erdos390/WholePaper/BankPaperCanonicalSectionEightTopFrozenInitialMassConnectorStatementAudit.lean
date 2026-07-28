@@ -1,0 +1,46 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionEightTopFrozenInitialMassConnector
+
+/-!
+# Statement audit for the frozen-top initial-mass connector
+
+The census exposes the finite smooth-row support bounds, the balanced raw
+discrepancy estimate, the exact charged-ledger reduction, the family-facing
+actual selector-mass theorem, and the concrete scaled-seed constructor.
+-/
+
+open Filter Topology Asymptotics
+open scoped BigOperators
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+open Erdos390.Full.Scale
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalBalancedRawWeight
+#check paperFixedExceptionalFactors_completeLabelMultiplicity_one_eq_zero
+#check prechargeBaseState_completeLabelMultiplicity_one_eq_zero
+#check roughCanonicalGuardDeletedSmoothRow_subset_anchors
+#check guardedCentralAnchors_inter_rawSmoothRow_subset_smoothResidual
+#check roughCanonicalGuardDeletedSmoothRow_card_le_yNat
+#check abs_sum_roughCanonicalGuardDeletedSmoothRow_balancedRawWeight_le
+#check eventually_log_three_mul_natCast_le_five_log_yNat
+#check eventually_yNat_cast_le_secondOrderScale_div_L
+#check bankPaperCanonical_yNat_isBigO_secondOrderScale_div_L
+#check bankPaperCanonicalBalancedRawSmoothRowDiscrepancy_isBigO
+#check BankPaperCanonicalTopFrozenBalancedInitialRealization
+#check chargedSelectorMass_sub_height_eq_neg_balancedRawDiscrepancy_sub_deleted
+#check bankPaperCanonicalActualSelectorMassEstimate_of_topFrozenBalancedInitial
+#check bankPaperCanonicalTopFrozenBalancedInitialRealization_of_scaledSeed
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

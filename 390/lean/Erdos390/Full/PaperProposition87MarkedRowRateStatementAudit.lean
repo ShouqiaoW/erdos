@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperProposition87MarkedRowRate
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.eventually_sum_harmonicMass_le_twelve_logL
+#check Erdos390.Full.PaperBridgeFit.BridgeData.fastMarkedRowMajorant_le_of_harmonicMass
+#check Erdos390.Full.PaperBridgeFit.BridgeData.eventually_fastMarkedRowMajorant_le
+#check Erdos390.Full.PaperBridgeFit.BridgeData.eventually_slowMarkedRowCoefficient_le
+#check Erdos390.Full.PaperBridgeFit.BridgeData.eventually_twoStageMarkedRowReserves

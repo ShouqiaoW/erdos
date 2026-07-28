@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstRichSourceProducer
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the rich source-first producer
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstRichSourceFamilies
+
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstRichSourceFamilies
+
+end Erdos390.WholePaper

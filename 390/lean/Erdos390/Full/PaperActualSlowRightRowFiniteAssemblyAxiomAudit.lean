@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperActualSlowRightRowFiniteAssembly
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_actualSlowRightRow_le_of_profiles

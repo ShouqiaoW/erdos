@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.TailValuationTwoSided
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for the two-sided tail valuation bound -/
+
+#print axioms Erdos390.WholePaper.digits_sum_le_pred_mul_log2_add_one
+#print axioms Erdos390.WholePaper.factorialValuation_lower_cross
+#print axioms Erdos390.WholePaper.factorialValuationSub_lower_cross
+#print axioms Erdos390.WholePaper.factorialValuationSub_twoSided
+
+assert_no_sorry Erdos390.WholePaper.digits_sum_le_pred_mul_log2_add_one
+assert_no_sorry Erdos390.WholePaper.factorialValuation_lower_cross
+assert_no_sorry Erdos390.WholePaper.factorialValuationSub_lower_cross
+assert_no_sorry Erdos390.WholePaper.factorialValuationSub_twoSided

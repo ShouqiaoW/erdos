@@ -1,0 +1,6 @@
+import Erdos390.WholePaper.BankPaperCanonicalUpperConstructionReduction
+import Mathlib.Util.AssertNoSorry
+
+#print axioms Erdos390.WholePaper.bankPaper_isAdmissibleEndpoint_of_canonicalPostTangentCertificate
+
+assert_no_sorry Erdos390.WholePaper.bankPaper_isAdmissibleEndpoint_of_canonicalPostTangentCertificate

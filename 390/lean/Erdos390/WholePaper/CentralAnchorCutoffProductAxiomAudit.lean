@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.CentralAnchorCutoff
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for cutoff collision separation and exact products -/
+
+#print axioms Erdos390.WholePaper.prime_mul_cofactor_eq_of_centralAnchorCutoff
+#print axioms Erdos390.WholePaper.largeCentralAnchor_injOn_centralAnchorCutoff
+#print axioms Erdos390.WholePaper.largeCentralAnchors_card_centralAnchorCutoff
+#print axioms Erdos390.WholePaper.fullCentralAnchors_prod_centralAnchorCutoff
+#print axioms Erdos390.WholePaper.fullCentralAnchors_prod_canonical_centralAnchorCutoff
+
+assert_no_sorry Erdos390.WholePaper.prime_mul_cofactor_eq_of_centralAnchorCutoff
+assert_no_sorry Erdos390.WholePaper.largeCentralAnchor_injOn_centralAnchorCutoff
+assert_no_sorry Erdos390.WholePaper.largeCentralAnchors_card_centralAnchorCutoff
+assert_no_sorry Erdos390.WholePaper.fullCentralAnchors_prod_centralAnchorCutoff
+assert_no_sorry Erdos390.WholePaper.fullCentralAnchors_prod_canonical_centralAnchorCutoff

@@ -1,0 +1,12 @@
+import Erdos390.Full.PrimeSquarefreeDirichletGeometry
+
+/-! Transitive axiom audit for the literal prime-band Dirichlet geometry. -/
+
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.finiteReferenceQuadratic_eq_primeReferenceQuadratic
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.primeReferenceQuadratic_eq_entryQuadratic
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.primeReferenceQuadratic_eq_dirichlet_add_residual
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.abs_rowResidualContribution_le
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.primeReferenceQuadratic_lower_of_dirichlet_and_residual
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.weightedDistance_eq_primePhysicalDistance
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.anchor_edge_domination
+#print axioms Erdos390.Full.PrimeSquarefreeDirichletGeometry.exists_primeDirichlet_anchor_lower

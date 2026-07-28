@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperSelectedMeshActualFullProjectedInverseEventually
+
+/-! Transitive axiom audit for the selected-mesh actual-full terminal. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.multiAnchor_varyingInverseConstant_le
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_selectedDyadicMesh_eventually_canonical_projected_inverse
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_selectedDyadicMesh_eventually_actualFullProjected_inverse

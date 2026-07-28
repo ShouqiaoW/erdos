@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.CentralAnchorModificationAlgebra
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for finite central-cofactor modification -/
+
+#print axioms Erdos390.WholePaper.factorization_le_log_of_pos_le
+#print axioms Erdos390.WholePaper.centralAnchorDivisor_factorization_le_add_changed_cost
+#print axioms Erdos390.WholePaper.centralAnchorReserve_transfer_after_changed_cost
+
+assert_no_sorry Erdos390.WholePaper.factorization_le_log_of_pos_le
+assert_no_sorry Erdos390.WholePaper.centralAnchorDivisor_factorization_le_add_changed_cost
+assert_no_sorry Erdos390.WholePaper.centralAnchorReserve_transfer_after_changed_cost

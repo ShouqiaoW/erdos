@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperProposition87LiteralBandBalance
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonical_proposition87_literalBandBalance

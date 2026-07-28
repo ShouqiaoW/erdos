@@ -1,0 +1,8 @@
+import Erdos390.Full.RegularMeshActualMomentBoundsEventually
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.eventually_endpointMomentBounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.momentReady_of_endpointMomentBounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.actual_deviation_sup_le_scale
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.relative_row_inputs_of_actual_moment_bounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_actual_moment_bounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_regular_mesh_and_eventually_actual_moment_bounds

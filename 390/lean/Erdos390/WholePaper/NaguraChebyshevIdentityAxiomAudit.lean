@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.NaguraChebyshevIdentity
+import Mathlib.Util.AssertNoSorry
+
+/-! Axiom audit for Nagura's finite divisor identity. -/
+
+#print axioms Erdos390.WholePaper.naguraDivisorLogSum_eq_sum_log
+#print axioms Erdos390.WholePaper.naguraDivisorLogSum_eq_log_factorial
+#print axioms Erdos390.WholePaper.naguraChebyshevSum_eq_sum_log
+#print axioms Erdos390.WholePaper.naguraChebyshevSum_eq_log_factorial
+
+assert_no_sorry Erdos390.WholePaper.naguraDivisorLogSum_eq_sum_log
+assert_no_sorry Erdos390.WholePaper.naguraDivisorLogSum_eq_log_factorial
+assert_no_sorry Erdos390.WholePaper.naguraChebyshevSum_eq_sum_log
+assert_no_sorry Erdos390.WholePaper.naguraChebyshevSum_eq_log_factorial

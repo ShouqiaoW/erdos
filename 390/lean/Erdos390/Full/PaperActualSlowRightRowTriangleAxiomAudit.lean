@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperActualSlowRightRowTriangle
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_normalizedBandCovarianceRow_nuisanceResidual_slow_le_of_sharpRows

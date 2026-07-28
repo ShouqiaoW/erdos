@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalPreTangentSelector
+import Mathlib.Util.AssertNoSorry
+
+/-! # Assumption audit for the pre-tangent selector projections -/
+
+#print axioms Erdos390.WholePaper.BankPaperCanonicalRoundedSelectorTangentInput
+#print axioms Erdos390.WholePaper.BankPaperCanonicalSelectorRoundingTangentHandoff
+#print axioms Erdos390.WholePaper.bankPaperCanonicalRoundedSelectorTangentInput_selectorState
+#print axioms Erdos390.WholePaper.bankPaperCanonicalRoundedSelectorTangentInput_residualBounds
+
+assert_no_sorry Erdos390.WholePaper.BankPaperCanonicalRoundedSelectorTangentInput
+assert_no_sorry Erdos390.WholePaper.BankPaperCanonicalSelectorRoundingTangentHandoff
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalRoundedSelectorTangentInput_selectorState
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalRoundedSelectorTangentInput_residualBounds

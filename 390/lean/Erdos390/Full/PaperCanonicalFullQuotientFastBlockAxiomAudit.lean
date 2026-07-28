@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalFullQuotientFastBlock
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualFullQuotient_mainScore_of_all_residuals

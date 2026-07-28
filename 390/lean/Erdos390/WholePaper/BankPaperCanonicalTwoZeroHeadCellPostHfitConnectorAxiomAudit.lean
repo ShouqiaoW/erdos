@@ -1,0 +1,15 @@
+import Erdos390.WholePaper.BankPaperCanonicalTwoZeroHeadCellPostHfitConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the post-Hfit Section 8-to-9 connector
+
+The connector exports exactly two public theorems.  Both audit blocks below
+cover them in source order.
+-/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87EndpointSelector_of_localCanonical_structuredAdditivePlacement
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87EndpointSelector_of_localCanonical_structuredAdditivePlacement_splitSeed
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87EndpointSelector_of_localCanonical_structuredAdditivePlacement
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87EndpointSelector_of_localCanonical_structuredAdditivePlacement_splitSeed

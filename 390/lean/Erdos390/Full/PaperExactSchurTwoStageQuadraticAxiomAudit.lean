@@ -1,0 +1,13 @@
+import Erdos390.Full.PaperExactSchurTwoStageQuadratic
+
+/-! Axiom audit for the exact two-stage Schur quadratic attachment. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.weighted_pairing_projectRawBandVector
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_quadratic_eq_residualVariance
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_bilinear_eq_residualCovariance
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_quadratic_lower_of_inverse
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_quadratic_lower_of_inverse_arithmetic
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fastResidual_covariance_twoStageCompensated_eq_zero
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.covariance_fast_add_slow_twoStage
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exactSchur_quadratic_eq_fast_add_slow_twoStage
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exactSchurGap_of_fastSlow

@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperCanonicalNuisanceUniformFloor
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCoord_card_le_head_add_one
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.sqrt_nuisanceCoord_card_le_ceiling
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceStatisticCoefficient_le_ceiling
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceGeometryConstant_le_ceiling
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalEffectiveNuisanceGammaFloor_pos
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalEffectiveNuisanceGammaFloor_le

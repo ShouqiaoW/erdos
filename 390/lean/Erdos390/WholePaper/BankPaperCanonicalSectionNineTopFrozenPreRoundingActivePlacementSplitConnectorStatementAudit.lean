@@ -1,0 +1,24 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineTopFrozenPreRoundingActivePlacementSplitConnector
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check BankPaperCanonicalSectionNineTopFrozenSymmetricHeightSourceInputsAt.verifiedPlacement
+#check bankPaperCanonicalScaledActiveSeed_le_protected_add_symmetricRebalance
+#check bankPaperCanonicalActualActiveMeasureConstructor_preRounding_of_symmetricPlacement
+#check bankPaperCanonicalSectionNineTopFrozen_preRoundingActive_postRoundingPlacement_masses
+#check bankPaperCanonicalActualActiveMeasureConstructor_sectionNineTopFrozen_preRounding
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

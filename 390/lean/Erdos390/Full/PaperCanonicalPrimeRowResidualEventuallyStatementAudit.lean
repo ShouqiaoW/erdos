@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperCanonicalPrimeRowResidualEventually
+
+/-! Statement audit for the relative literal prime-row terminal. -/
+
+#check Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.abs_primeRowResidual_le_of_relative_quadrature
+#check Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.exists_uniform_primeRowResidual_relative_bound
+#check Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.tendsto_primeRowRelativeError_fixedCutoff
+#check Erdos390.Full.PaperCanonicalPrimeRowResidualEventually.exists_cutoff_eventually_primeRowResidual_le

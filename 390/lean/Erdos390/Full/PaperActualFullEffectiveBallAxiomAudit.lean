@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperActualFullEffectiveBall
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualFullProjectedEquiv_on_closedBall_of_box

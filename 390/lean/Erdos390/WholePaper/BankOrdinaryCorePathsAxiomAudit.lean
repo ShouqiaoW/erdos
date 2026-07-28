@@ -1,0 +1,19 @@
+import Erdos390.WholePaper.BankOrdinaryCorePaths
+
+/-! # Assumption audit for actual ordinary core paths -/
+
+#print axioms Erdos390.WholePaper.bankOrdinaryCoreStep_spec
+#print axioms Erdos390.WholePaper.bankOrdinaryCoreVertices_getLast?_eq_five
+#print axioms Erdos390.WholePaper.bankOrdinaryCoreVertices_isChain
+#print axioms Erdos390.WholePaper.bankOrdinaryFinitePathChange_telescope
+#print axioms Erdos390.WholePaper.bankOrdinaryFiniteFullPathChange_eq_neg_unit
+#print axioms Erdos390.WholePaper.bankOrdinaryCoreSourcesAtSmallScale_card_le
+#print axioms Erdos390.WholePaper.bankOrdinaryCoreSourcesAtLargeScale_card_le_two
+
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryCoreStep_spec
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryCoreVertices_getLast?_eq_five
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryCoreVertices_isChain
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryFinitePathChange_telescope
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryFiniteFullPathChange_eq_neg_unit
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryCoreSourcesAtSmallScale_card_le
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryCoreSourcesAtLargeScale_card_le_two

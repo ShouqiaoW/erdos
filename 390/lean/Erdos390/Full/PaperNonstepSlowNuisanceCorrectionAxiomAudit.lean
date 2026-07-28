@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperNonstepSlowNuisanceCorrection
+
+/-! Transitive axiom audit for the exact non-step nuisance correction. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceVector_slowScore_norm_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCoefficient_slowScore_norm_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_normalizedBandCovarianceRow_slow_nuisanceCorrection_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_normalizedBandCovarianceRow_slow_nuisanceCorrection_le_rate
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_normalizedBandCovarianceRow_nuisanceResidual_slow_le_of_raw

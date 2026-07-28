@@ -1,0 +1,9 @@
+import Erdos390.WholePaper.NoAdmissibleBelowTwoN
+
+/-! Transitive axiom audit for the complete endpoint exclusion below `2n`. -/
+
+#print axioms Erdos390.WholePaper.centralChoose_factorization_eq_one_of_mem_stationaryPrimeLayer
+#print axioms Erdos390.WholePaper.stationaryPrimeUnion13_card_normalized_tendsto
+#print axioms Erdos390.WholePaper.centralSmallPrimeValuationSum_normalized_tendsto
+#print axioms Erdos390.WholePaper.stationaryPrimeUnion13_card_le_centralSmallPrimeValuationSum
+#print axioms Erdos390.WholePaper.eventually_no_admissibleEndpoint_le_two_mul

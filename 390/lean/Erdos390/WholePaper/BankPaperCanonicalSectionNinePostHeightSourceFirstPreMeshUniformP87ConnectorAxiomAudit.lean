@@ -1,0 +1,20 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshUniformP87Connector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the source-first pre-mesh uniform P87 connector
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshUniformP87Statement
+#print axioms
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshUniformP87
+
+assert_no_sorry
+  BankPaperRealization.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshUniformP87Statement
+assert_no_sorry
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshUniformP87
+
+end Erdos390.WholePaper

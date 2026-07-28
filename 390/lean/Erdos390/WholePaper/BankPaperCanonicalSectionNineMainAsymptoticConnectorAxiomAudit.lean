@@ -1,0 +1,25 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineMainAsymptoticConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the Section 9 to main-asymptotic connector
+
+Both output interfaces and all five connector theorems are printed and
+checked by `assert_no_sorry`.
+-/
+
+#print axioms Erdos390.WholePaper.BankPaperCanonicalSectionNineOutputAtDepth
+#print axioms Erdos390.WholePaper.bankPaperCanonicalSectionNineOutputAtDepth_to_postTangentContinuation
+#print axioms Erdos390.WholePaper.mainNormalizedLimit_of_canonicalSectionNineOutput
+#print axioms Erdos390.WholePaper.mainAsymptotic_of_canonicalSectionNineOutput
+#print axioms Erdos390.WholePaper.BankPaperCanonicalSharpSectionNineOutput
+#print axioms Erdos390.WholePaper.mainNormalizedLimit_of_sharpCanonicalSectionNineOutput
+#print axioms Erdos390.WholePaper.mainAsymptotic_of_sharpCanonicalSectionNineOutput
+
+assert_no_sorry Erdos390.WholePaper.BankPaperCanonicalSectionNineOutputAtDepth
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalSectionNineOutputAtDepth_to_postTangentContinuation
+assert_no_sorry Erdos390.WholePaper.mainNormalizedLimit_of_canonicalSectionNineOutput
+assert_no_sorry Erdos390.WholePaper.mainAsymptotic_of_canonicalSectionNineOutput
+assert_no_sorry Erdos390.WholePaper.BankPaperCanonicalSharpSectionNineOutput
+assert_no_sorry Erdos390.WholePaper.mainNormalizedLimit_of_sharpCanonicalSectionNineOutput
+assert_no_sorry Erdos390.WholePaper.mainAsymptotic_of_sharpCanonicalSectionNineOutput

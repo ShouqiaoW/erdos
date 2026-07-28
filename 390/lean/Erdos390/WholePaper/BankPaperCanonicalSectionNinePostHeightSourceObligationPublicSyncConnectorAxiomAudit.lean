@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceObligationPublicSyncConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: public synchronization from the source obligation
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.eventually_bankPaperCanonicalSectionNinePostHeight_coherentBridgeSourceObligation_publicSync
+
+assert_no_sorry
+  BankPaperRealization.eventually_bankPaperCanonicalSectionNinePostHeight_coherentBridgeSourceObligation_publicSync
+
+end Erdos390.WholePaper

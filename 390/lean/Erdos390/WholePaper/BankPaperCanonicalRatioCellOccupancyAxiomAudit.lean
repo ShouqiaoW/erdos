@@ -1,0 +1,21 @@
+import Erdos390.WholePaper.BankPaperCanonicalRatioCellOccupancy
+import Mathlib.Util.AssertNoSorry
+
+/-! # Assumption audit for fixed-ratio PNT cell occupancy
+
+All six public theorems are printed and checked by `assert_no_sorry`.
+-/
+
+#print axioms Erdos390.WholePaper.eventually_primeCounting_fixedRatio_difference_pos
+#print axioms Erdos390.WholePaper.eventually_fixedRatio_primeCounting_lower
+#print axioms Erdos390.WholePaper.eventually_exists_prime_in_fixedRatio_interval
+#print axioms Erdos390.WholePaper.exists_fixedRatioPrimeIntervalOccupancy_cutoff
+#print axioms Erdos390.WholePaper.exists_fixedW_bankPaperCanonical_ratioCell_occupancy
+#print axioms Erdos390.WholePaper.exists_fixedW_bankPaperCanonical_ratioCellGeometry_spec
+
+assert_no_sorry Erdos390.WholePaper.eventually_primeCounting_fixedRatio_difference_pos
+assert_no_sorry Erdos390.WholePaper.eventually_fixedRatio_primeCounting_lower
+assert_no_sorry Erdos390.WholePaper.eventually_exists_prime_in_fixedRatio_interval
+assert_no_sorry Erdos390.WholePaper.exists_fixedRatioPrimeIntervalOccupancy_cutoff
+assert_no_sorry Erdos390.WholePaper.exists_fixedW_bankPaperCanonical_ratioCell_occupancy
+assert_no_sorry Erdos390.WholePaper.exists_fixedW_bankPaperCanonical_ratioCellGeometry_spec

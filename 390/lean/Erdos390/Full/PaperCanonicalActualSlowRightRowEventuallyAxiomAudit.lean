@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalActualSlowRightRowEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_cutoff_eventually_canonical_actualSlowRightRow

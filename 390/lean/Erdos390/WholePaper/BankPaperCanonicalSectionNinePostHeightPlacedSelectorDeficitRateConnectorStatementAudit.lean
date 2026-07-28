@@ -1,0 +1,36 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightPlacedSelectorDeficitRateConnector
+
+/-!
+# Statement audit: uniform post-height placed-selector deficit rate
+
+The exported conclusion is the exact pointwise field required by
+`BankPaperCanonicalSectionNinePostHeightDependentInputsAt.selectorDeficit`.
+The three implementation rates remain conclusions of existing theorems,
+not assumptions of the new connector.
+-/
+
+open Filter
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check BankPaperCanonicalSectionNinePostHeightDependentInputsAt.selectorDeficit
+#check exists_uniform_topFrozenRoundedSmoothSourceToGuardedValuationDefectBound_paperRate
+#check eventually_abs_roughCanonicalAggregateGuardedRawCorrectionValuationDefect_le_strictScale
+#check exists_uniform_sectionNinePostHeightPlacementValuationMoment_paperRate
+#check bankPaperCanonicalTopFrozenRoundedMediumPrimeImplementationRateInputs_of_smooth_aggregateGuardedRaw_and_placement
+#check abs_bankPaperCanonicalTopFrozenRoundedPostHfitStructuredPreSelector_deficit_le_scale_of_balancedComplete_and_implementation
+#check exists_eventually_bankPaperCanonicalSectionNinePostHeightPlacedSelector_deficit_paperRate
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

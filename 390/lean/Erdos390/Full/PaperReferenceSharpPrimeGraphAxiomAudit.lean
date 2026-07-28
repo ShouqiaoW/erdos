@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperReferenceSharpPrimeGraphStatementAudit
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.referenceSharpRow_eq_primeGraph_add_errors
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalSlowKappa_mul_compressedPrimeAnchor_le_edge
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_referenceSharpRow_sub_primeGraph_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_referenceSharpProjectedEquiv_of_primeGraph
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_structural_referenceSharpProjected_inverse_constants

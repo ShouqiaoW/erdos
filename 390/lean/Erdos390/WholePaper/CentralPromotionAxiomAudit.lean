@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.CentralPromotion
+
+/-! Transitive axiom audit for residual central promotion. -/
+
+#print axioms Erdos390.WholePaper.promotionExponent_spec
+#print axioms Erdos390.WholePaper.promotionExponent_minimal
+#print axioms Erdos390.WholePaper.promotedBlock_mem_centralInterval
+#print axioms Erdos390.WholePaper.promotionExponent_le_one_add_log2
+#print axioms Erdos390.WholePaper.centralPrimeBlock_le_two_mul
+#print axioms Erdos390.WholePaper.centralPromotionExponent_le_one_add_log2
+#print axioms Erdos390.WholePaper.promotedCentralFactor_mem_centralInterval
+#print axioms Erdos390.WholePaper.promotedCentralFactor_factorization_odd
+#print axioms Erdos390.WholePaper.promotedCentralFactor_factorization_cross
+#print axioms Erdos390.WholePaper.promotedCentralFactor_injective_on_positive_support

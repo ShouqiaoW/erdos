@@ -1,0 +1,10 @@
+import Erdos390.Full.PaperCanonicalActualMomentBoundsEventually
+
+/-! Statement audit for the canonical Lemma 8.6 geometric package. -/
+
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_actual_moment_bounds
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalActualPreliminaryMomentCutoff_eventually
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalActualUpperMomentCutoff_eventually
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_actual_upper_moment_bounds
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.variance_le_centerEnergy_of_canonical_anchor
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_lemma86_geometric_inputs

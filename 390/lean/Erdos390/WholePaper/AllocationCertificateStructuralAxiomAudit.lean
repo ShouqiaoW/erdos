@@ -1,0 +1,17 @@
+import Erdos390.WholePaper.AllocationCertificate
+
+/-! Transitive axiom and sorry audit for the structural certificate facts. -/
+
+#print axioms Erdos390.WholePaper.finiteAllocationCoordinates_nodup
+#print axioms Erdos390.WholePaper.finiteAllocationEntries_nodup
+#print axioms Erdos390.WholePaper.finiteAllocationSupport_card
+#print axioms Erdos390.WholePaper.finiteAllocation_support_valid
+#print axioms Erdos390.WholePaper.finiteAllocation_eq_zero_of_not_mem
+#print axioms Erdos390.WholePaper.finiteAllocation_pos_of_mem
+
+assert_no_sorry Erdos390.WholePaper.finiteAllocationCoordinates_nodup
+assert_no_sorry Erdos390.WholePaper.finiteAllocationEntries_nodup
+assert_no_sorry Erdos390.WholePaper.finiteAllocationSupport_card
+assert_no_sorry Erdos390.WholePaper.finiteAllocation_support_valid
+assert_no_sorry Erdos390.WholePaper.finiteAllocation_eq_zero_of_not_mem
+assert_no_sorry Erdos390.WholePaper.finiteAllocation_pos_of_mem

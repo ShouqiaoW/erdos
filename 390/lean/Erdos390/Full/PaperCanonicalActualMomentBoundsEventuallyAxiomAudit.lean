@@ -1,0 +1,10 @@
+import Erdos390.Full.PaperCanonicalActualMomentBoundsEventually
+
+/-! Transitive axiom audit for the canonical Lemma 8.6 geometric package. -/
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_actual_moment_bounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalActualPreliminaryMomentCutoff_eventually
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalActualUpperMomentCutoff_eventually
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_actual_upper_moment_bounds
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.variance_le_centerEnergy_of_canonical_anchor
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_lemma86_geometric_inputs

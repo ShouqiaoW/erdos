@@ -1,0 +1,8 @@
+import Erdos390.Full.CanonicalEndpointCenterEnvelopeEventually
+
+/-! Transitive axiom audit for the canonical reciprocal-centre envelope. -/
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.low_endpointContinuumMass_pos_le_logL
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_center_inverse_logL
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_center_lower_logL
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_low_center_lower_logL

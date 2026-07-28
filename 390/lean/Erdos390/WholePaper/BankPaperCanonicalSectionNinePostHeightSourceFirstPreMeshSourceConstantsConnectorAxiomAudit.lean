@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshSourceConstantsConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: source-input constants chosen before the final mesh
+-/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#print axioms
+  exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshSourceConstants
+
+assert_no_sorry
+  exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshSourceConstants
+
+end Erdos390.WholePaper.BankPaperRealization

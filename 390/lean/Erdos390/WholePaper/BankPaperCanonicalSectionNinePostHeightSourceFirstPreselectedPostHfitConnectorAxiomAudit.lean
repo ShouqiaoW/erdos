@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstPreselectedPostHfitConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the preselected Post-Hfit connector
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.bankPaperCanonicalSectionNinePostHeight_sourceFirstPreselectedPostHfitInput
+
+assert_no_sorry
+  BankPaperRealization.bankPaperCanonicalSectionNinePostHeight_sourceFirstPreselectedPostHfitInput
+
+end Erdos390.WholePaper

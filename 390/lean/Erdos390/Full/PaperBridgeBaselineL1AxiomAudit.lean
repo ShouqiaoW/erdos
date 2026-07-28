@@ -1,0 +1,14 @@
+import Erdos390.Full.PaperBridgeBaselineL1
+
+/-! Axiom audit for the actual-law baseline `L¹` bridge. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.guardedCell_expect_abs_scaledMediumScore_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.baseline_expect_abs_scaledMediumScore_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.baseline_expect_abs_scaledNuisanceScore_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.baseline_expect_abs_scaledBridgeScore_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.l1Distance_tiltedLaw_baseline_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.hi_le_physicalBound_of_fixedIntervals
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.effective_bounds_of_paperEffectiveSize
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceFineBaseline_weightL1Distance_eq_l1Distance
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.l1Distance_tiltedLaw_baseline_fixedIntervals_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceOperator_fixedIntervals_half_gap_of_bridgeL1

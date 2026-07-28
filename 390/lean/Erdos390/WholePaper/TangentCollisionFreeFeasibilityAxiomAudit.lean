@@ -1,0 +1,18 @@
+import Erdos390.WholePaper.TangentCollisionFreeFeasibility
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for collision-free tangent feasibility -/
+
+#print axioms Erdos390.WholePaper.tangentDelta_eq_weight_of_source
+#print axioms Erdos390.WholePaper.tangentDelta_eq_neg_weight_of_target
+#print axioms Erdos390.WholePaper.tangentUpdate_mem_unitInterval
+#print axioms Erdos390.WholePaper.tangentUpdate_source_margin
+#print axioms Erdos390.WholePaper.tangentUpdate_target_margin
+#print axioms Erdos390.WholePaper.tangentSplitUpdate_feasible_and_margin
+
+assert_no_sorry Erdos390.WholePaper.tangentDelta_eq_weight_of_source
+assert_no_sorry Erdos390.WholePaper.tangentDelta_eq_neg_weight_of_target
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_mem_unitInterval
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_source_margin
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_target_margin
+assert_no_sorry Erdos390.WholePaper.tangentSplitUpdate_feasible_and_margin

@@ -1,0 +1,20 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshSelectorProvider
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: source-first pre-mesh selector provider
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshPlacedSelectorCallback
+#print axioms
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshPlacedSelectorProvider
+
+assert_no_sorry
+  BankPaperRealization.BankPaperCanonicalSectionNinePostHeightSourceFirstPreMeshPlacedSelectorCallback
+assert_no_sorry
+  BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreMeshPlacedSelectorProvider
+
+end Erdos390.WholePaper

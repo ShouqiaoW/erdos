@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperProposition87SpeedRadius
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.twoStageCompensatedTargetBoundOrdinaryFast_le_w_mul
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.twoStage_uniform_speed_bounds_of_scaled_rows
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.twoStage_nuisance_speed_le_one_of_half_reserves
+#print axioms Erdos390.Full.PaperBridgeFit.exists_speed_and_fourfold_radius
+#print axioms Erdos390.Full.PaperBridgeFit.exists_speed_radius_before_vanishing_nuisance
+#print axioms Erdos390.Full.PaperBridgeFit.eventually_const_mul_vanishing_rate_le
+#print axioms Erdos390.Full.PaperBridgeFit.eventually_fixed_exponential_slack_le_L

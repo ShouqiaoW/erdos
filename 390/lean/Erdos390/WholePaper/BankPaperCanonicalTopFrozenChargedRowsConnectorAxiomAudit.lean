@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenChargedRowsConnector
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for frozen-top charged nonsmooth rows -/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_chargedNonsmoothRows_of_activeCapacity
+#print axioms BankPaperRealization.eventually_bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_chargedNonsmoothRows
+
+assert_no_sorry BankPaperRealization.bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_chargedNonsmoothRows_of_activeCapacity
+assert_no_sorry BankPaperRealization.eventually_bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_chargedNonsmoothRows
+
+end Erdos390.WholePaper

@@ -1,0 +1,30 @@
+import Erdos390.WholePaper.BankPaperCanonicalSmoothSourceGuardedRateClosure
+
+/-! # Statement audit for the exact smooth source-to-guarded reduction -/
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalRawSmoothBasePool_eq_zeroHeadStructuredCell
+#check roughCanonicalGuardedSmoothBasePool_eq_zeroHeadStructuredCell_sdiff
+#check bankPaperCanonicalLiteralActiveMass_scaledGuardedSmoothBase_eq
+#check bankPaperCanonicalScaledActiveValuationMoment
+#check bankPaperCanonicalGuardedSmoothBaseValuationMoment
+#check bankPaperCanonicalTopFrozenNearestIntegerValuationMoment
+#check sum_bankPaperCanonicalTopFrozenRoundedActiveSeed_mul_valuation_eq_scaled_add_nearestInteger
+#check not_roughCanonicalExceptionalLabel_one
+#check roughCanonicalTopFrozenRoundedSmoothSourceToGuardedValuationDefect_eq_roundedActive_sub_guardedBase
+#check roughCanonicalTopFrozenRoundedSmoothSourceToGuardedValuationDefect_eq_scaled_sub_guardedBase_add_nearestInteger
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

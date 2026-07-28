@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperActualLemma86WeightedRow
+
+/-! Statement audit for the finite weighted-row form of Lemma 8.6. -/
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualLemma86SlowConstantOfRow
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualCompensatedScore_variance_bounds_of_squarefree_and_weightedRow
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualCompensatedScore_lower_of_squarefree_and_weightedRow
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualTwoStageCompensatedVariance_lower_canonicalKappa_of_weightedRow
+#check Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualTwoStageCompensatedVariance_lower_of_weightedRow

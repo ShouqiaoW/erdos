@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSignedExceptionalFourFiveResidualBoundConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the unconditional signed exceptional four/five bound
+-/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#print axioms exists_eventually_roughCanonicalSignedExceptionalResidualBound_fourFive
+
+assert_no_sorry exists_eventually_roughCanonicalSignedExceptionalResidualBound_fourFive
+
+end Erdos390.WholePaper.BankPaperRealization

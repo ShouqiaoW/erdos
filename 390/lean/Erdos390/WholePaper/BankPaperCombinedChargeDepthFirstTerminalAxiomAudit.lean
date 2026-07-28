@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.BankPaperCombinedChargeDepthFirstTerminal
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for the depth-first combined-charge terminal -/
+
+#print axioms Erdos390.WholePaper.BankPaperCombinedChargeTerminalAtDepth
+#print axioms Erdos390.WholePaper.exists_depth_bankPaperCombinedChargeTerminal_uniform_deltaStar
+#print axioms Erdos390.WholePaper.exists_depth_bankPaperCombinedChargeTerminal_uniform_tangentChoice
+
+assert_no_sorry Erdos390.WholePaper.BankPaperCombinedChargeTerminalAtDepth
+assert_no_sorry Erdos390.WholePaper.exists_depth_bankPaperCombinedChargeTerminal_uniform_deltaStar
+assert_no_sorry Erdos390.WholePaper.exists_depth_bankPaperCombinedChargeTerminal_uniform_tangentChoice

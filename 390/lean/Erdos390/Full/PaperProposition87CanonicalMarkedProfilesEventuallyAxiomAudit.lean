@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperProposition87CanonicalMarkedProfilesEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalMovingPrimeMarkedRowCutoff
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_cutoff_eventually_canonical_movingPrime_markedRow_of_schurSplice

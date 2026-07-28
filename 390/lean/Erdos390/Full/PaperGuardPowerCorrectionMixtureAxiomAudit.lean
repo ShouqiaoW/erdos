@@ -1,0 +1,5 @@
+import Erdos390.Full.PaperGuardPowerCorrectionMixture
+
+#print axioms Erdos390.Full.PaperGuardCensus.powerCorrectionCovariance
+#print axioms Erdos390.Full.PaperGuardCensus.guardPowerCorrectionRowError_nonneg
+#print axioms Erdos390.Full.PaperGuardCensus.sum_abs_guardDeleted_powerCorrectionRow_sub_le

@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.UpperProductAssembly
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for exact upper product assembly -/
+
+#print axioms Erdos390.WholePaper.centralChoose_mul_centralTailProduct_eq_complementQuotient
+#print axioms Erdos390.WholePaper.central_union_tail_prod
+#print axioms Erdos390.WholePaper.hasComplementProduct_of_central_tail_assembly
+#print axioms Erdos390.WholePaper.isAdmissibleEndpoint_of_central_tail_assembly
+
+assert_no_sorry Erdos390.WholePaper.centralChoose_mul_centralTailProduct_eq_complementQuotient
+assert_no_sorry Erdos390.WholePaper.central_union_tail_prod
+assert_no_sorry Erdos390.WholePaper.hasComplementProduct_of_central_tail_assembly
+assert_no_sorry Erdos390.WholePaper.isAdmissibleEndpoint_of_central_tail_assembly

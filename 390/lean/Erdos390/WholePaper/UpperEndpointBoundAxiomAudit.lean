@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.UpperEndpointBound
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for pointwise upper endpoint bounds -/
+
+#print axioms Erdos390.WholePaper.mainError_normalized_le_of_admissible
+#print axioms Erdos390.WholePaper.f_le_of_fullCentralAnchors
+#print axioms Erdos390.WholePaper.mainError_normalized_le_of_fullCentralAnchors
+
+assert_no_sorry Erdos390.WholePaper.mainError_normalized_le_of_admissible
+assert_no_sorry Erdos390.WholePaper.f_le_of_fullCentralAnchors
+assert_no_sorry Erdos390.WholePaper.mainError_normalized_le_of_fullCentralAnchors

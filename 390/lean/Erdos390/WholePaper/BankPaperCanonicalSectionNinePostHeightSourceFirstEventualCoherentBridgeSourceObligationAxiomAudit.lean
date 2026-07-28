@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstEventualCoherentBridgeSourceObligation
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the source-first eventual coherent bridge obligation
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstEventualCoherentBridgeSourceObligation
+
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstEventualCoherentBridgeSourceObligation
+
+end Erdos390.WholePaper

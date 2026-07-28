@@ -1,0 +1,18 @@
+import Erdos390.WholePaper.ExactFinitePartition
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom and sorry audit for exact finite partitions. -/
+
+#print axioms Erdos390.WholePaper.exists_pairwiseDisjoint_finset_parts
+#print axioms Erdos390.WholePaper.exists_exactFinitePartition
+#print axioms Erdos390.WholePaper.sum_distinguishedRemainderCount
+#print axioms Erdos390.WholePaper.exists_exactFinitePartition_distinguishedRemainder
+#print axioms Erdos390.WholePaper.sum_scaledFloorCount_le
+#print axioms Erdos390.WholePaper.exists_exactFinitePartition_distinguishedScaledFloor
+
+assert_no_sorry Erdos390.WholePaper.exists_pairwiseDisjoint_finset_parts
+assert_no_sorry Erdos390.WholePaper.exists_exactFinitePartition
+assert_no_sorry Erdos390.WholePaper.sum_distinguishedRemainderCount
+assert_no_sorry Erdos390.WholePaper.exists_exactFinitePartition_distinguishedRemainder
+assert_no_sorry Erdos390.WholePaper.sum_scaledFloorCount_le
+assert_no_sorry Erdos390.WholePaper.exists_exactFinitePartition_distinguishedScaledFloor

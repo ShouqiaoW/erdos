@@ -1,0 +1,6 @@
+import Erdos390.Full.PaperActualSlowRightRowFiniteStatementAudit
+
+#print axioms Erdos390.Full.PaperBridgeFit.PaperActualSlowRightRowFinite.exists_F_lipschitz_unit
+#print axioms Erdos390.Full.PaperBridgeFit.PaperActualSlowRightRowFinite.expanded_exists_F_lipschitz_unit
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.referenceBandRow_bandCenter_le_of_rowResidual
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.expanded_referenceBandRow_bandCenter_le_of_rowResidual

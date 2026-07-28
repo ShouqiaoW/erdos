@@ -1,0 +1,22 @@
+import Erdos390.WholePaper.CentralAnchorExistence
+import Mathlib.Util.AssertNoSorry
+
+/-! Axiom audit for the concrete certificate surface. -/
+
+#print axioms Erdos390.WholePaper.stationaryPrefixDistinguished_mem
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.isCofactorChoice
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.anchors_eq
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.anchors_subset
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.anchors_prod
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.divisor_prime_support
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.divisor_reserve
+#print axioms Erdos390.WholePaper.CentralAnchorCertificate.divisor_dvd_tail
+
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixDistinguished_mem
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.isCofactorChoice
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.anchors_eq
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.anchors_subset
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.anchors_prod
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.divisor_prime_support
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.divisor_reserve
+assert_no_sorry Erdos390.WholePaper.CentralAnchorCertificate.divisor_dvd_tail

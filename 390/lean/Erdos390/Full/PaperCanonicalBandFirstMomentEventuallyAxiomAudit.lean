@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalBandFirstMomentEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_bandFirstMoment_le_two_log_four

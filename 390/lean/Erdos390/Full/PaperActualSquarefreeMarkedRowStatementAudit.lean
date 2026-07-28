@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperActualSquarefreeMarkedRow
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualSquarefreeMarkedRow_eq_sum
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualSquarefreeMarkedRow_sub_reference_le
+#check Erdos390.Full.PaperBridgeFit.BridgeData.referenceMarkedRow_le
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualSquarefreeMarkedRow_le_of_entrywise
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualSquarefreeEntry_bound_of_profiles
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualSquarefreeMarkedRow_le_of_profiles

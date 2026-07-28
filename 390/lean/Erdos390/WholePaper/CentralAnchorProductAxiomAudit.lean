@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.CentralAnchorProduct
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for the exact full central-anchor product -/
+
+#print axioms Erdos390.WholePaper.canonicalLargeCentralCofactor_isChoice
+#print axioms Erdos390.WholePaper.largeCentralAnchor_injOn
+#print axioms Erdos390.WholePaper.largeCentralAnchors_prod
+#print axioms Erdos390.WholePaper.residualPromotedFactors_disjoint_largeCentralAnchors
+#print axioms Erdos390.WholePaper.fullCentralAnchors_prod
+
+assert_no_sorry Erdos390.WholePaper.canonicalLargeCentralCofactor_isChoice
+assert_no_sorry Erdos390.WholePaper.largeCentralAnchor_injOn
+assert_no_sorry Erdos390.WholePaper.largeCentralAnchors_prod
+assert_no_sorry Erdos390.WholePaper.residualPromotedFactors_disjoint_largeCentralAnchors
+assert_no_sorry Erdos390.WholePaper.fullCentralAnchors_prod

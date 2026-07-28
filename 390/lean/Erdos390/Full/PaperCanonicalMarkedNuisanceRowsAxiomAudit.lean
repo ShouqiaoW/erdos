@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalMarkedNuisanceRows
+
+#print axioms Erdos390.Full.PaperCanonicalMarkedNuisanceRows.PaperBridgeFit.BridgeData.exists_uniform_canonical_tiltedLaw_nuisance_valuation_rate_on_effectiveBall

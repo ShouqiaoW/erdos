@@ -1,0 +1,6 @@
+import Erdos390.Full.PrimePowerLcmGeometry
+
+#print axioms Erdos390.Full.PrimePowerLcmGeometry.lcm_pow_pow_eq_pow_max
+#print axioms Erdos390.Full.PrimePowerLcmGeometry.sum_highExponents_pair_inv_lcm_eq_diagonalWeight
+#print axioms Erdos390.Full.PrimePowerLcmGeometry.sum_highExponents_pair_inv_lcm_le
+#print axioms Erdos390.Full.PrimePowerLcmGeometry.sum_highExponents_pair_inv_product_le

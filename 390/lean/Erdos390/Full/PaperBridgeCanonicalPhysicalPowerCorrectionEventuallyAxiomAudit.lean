@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperBridgeCanonicalPhysicalPowerCorrectionEventually
+
+/-! Axiom audit for the discharged canonical residual-physical row. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalPhysicalCellDensity_pos
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalPhysicalPowerCorrectionConstant_nonneg
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.tendsto_canonicalPhysicalPowerCorrectionEpsilon_mul_logL_sq_zero
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_eventually_canonicalPhysical_powerCorrection_row

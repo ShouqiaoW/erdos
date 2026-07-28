@@ -1,0 +1,10 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenEventualOrdinaryLogRateConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the eventual frozen-top ordinary-log rate
+-/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_eventually_bankPaperCanonicalTopFrozenRoundedPostHfitInitialSelector_ordinaryLogCompatibleUpTo_of_implementationRates
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_eventually_bankPaperCanonicalTopFrozenRoundedPostHfitInitialSelector_ordinaryLogCompatibleUpTo_of_implementationRates

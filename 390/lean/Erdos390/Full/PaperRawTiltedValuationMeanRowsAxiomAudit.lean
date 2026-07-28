@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperRawTiltedValuationMeanRows
+
+/-! Transitive axiom audit for the raw full-valuation component-mean row. -/
+
+#print axioms Erdos390.Full.PaperRawTiltedValuationMeanRows.PrimePowerTail.abs_expect_valuation_sub_cutoff_le_of_divisor_fallback_unrestricted
+#print axioms Erdos390.Full.PaperRawTiltedValuationMeanRows.sum_singleWeight_positiveExponents_le
+#print axioms Erdos390.Full.PaperRawTiltedValuationMeanRows.exists_uniform_fixedFinite_rawCell_tilted_valuation_mean_agreement_rate

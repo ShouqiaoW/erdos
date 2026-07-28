@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperCanonicalNonstepLocalDiagonalBridge
+
+/-! Axiom audit for both actual-scale and paper-scale BridgeData wrappers. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_cutoff_eventually_canonical_bandDeviationReciprocalSquare
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_cutoff_eventually_permitted_bandDeviationReciprocalSquare
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_global_cutoff_eventually_permitted_bandDeviationReciprocalSquare

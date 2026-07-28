@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperFinalFactorSetInterval
+import Mathlib.Util.AssertNoSorry
+
+/-! # Assumption audit for concrete final-set interval support -/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.chosenExactificationBank_subset_factorInterval
+#print axioms Erdos390.WholePaper.BankPaperRealization.baseExactificationBank_subset_factorInterval
+#print axioms Erdos390.WholePaper.selectedFactorSet_subset_factorInterval
+#print axioms Erdos390.WholePaper.BankPaperRealization.guardedFinalFactorSet_subset_factorInterval
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.chosenExactificationBank_subset_factorInterval
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.baseExactificationBank_subset_factorInterval
+assert_no_sorry Erdos390.WholePaper.selectedFactorSet_subset_factorInterval
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.guardedFinalFactorSet_subset_factorInterval

@@ -1,0 +1,22 @@
+import Erdos390.WholePaper.BankBottomMarkerPools
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for literal bottom marker pools -/
+
+#print axioms Erdos390.WholePaper.bankBottomOrientationIntervals_union
+#print axioms Erdos390.WholePaper.bankBottomOrientationIntervals_card_balanced
+#print axioms Erdos390.WholePaper.bankBottom_states_donor_mem_factorInterval
+#print axioms Erdos390.WholePaper.bankBottomDonor_threeToTwo_eq_upperState
+#print axioms Erdos390.WholePaper.bankBottomDonor_twoToOne_eq_upperState
+#print axioms Erdos390.WholePaper.bankBottomMarkerIntervals_disjoint
+#print axioms Erdos390.WholePaper.bankBottomOrientedMarkerIntervals_disjoint
+#print axioms Erdos390.WholePaper.bankBottomOrientedMarkerPrimes_disjoint
+
+assert_no_sorry Erdos390.WholePaper.bankBottomOrientationIntervals_union
+assert_no_sorry Erdos390.WholePaper.bankBottomOrientationIntervals_card_balanced
+assert_no_sorry Erdos390.WholePaper.bankBottom_states_donor_mem_factorInterval
+assert_no_sorry Erdos390.WholePaper.bankBottomDonor_threeToTwo_eq_upperState
+assert_no_sorry Erdos390.WholePaper.bankBottomDonor_twoToOne_eq_upperState
+assert_no_sorry Erdos390.WholePaper.bankBottomMarkerIntervals_disjoint
+assert_no_sorry Erdos390.WholePaper.bankBottomOrientedMarkerIntervals_disjoint
+assert_no_sorry Erdos390.WholePaper.bankBottomOrientedMarkerPrimes_disjoint

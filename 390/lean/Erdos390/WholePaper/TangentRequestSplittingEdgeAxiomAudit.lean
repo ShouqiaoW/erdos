@@ -1,0 +1,24 @@
+import Erdos390.WholePaper.TangentRequestSplitting
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for one-edge request splitting -/
+
+#print axioms Erdos390.WholePaper.tangentRequestCount_zero
+#print axioms Erdos390.WholePaper.one_le_tangentRequestCount
+#print axioms Erdos390.WholePaper.tangentRequestCount_pos
+#print axioms Erdos390.WholePaper.normalizedMass_le_tangentRequestCount
+#print axioms Erdos390.WholePaper.tangentRequestPieceMass_le
+#print axioms Erdos390.WholePaper.tangentMass_le_count_mul
+#print axioms Erdos390.WholePaper.cast_tangentRequestCount_le
+#print axioms Erdos390.WholePaper.cast_tangentRequestCount_lt
+#print axioms Erdos390.WholePaper.sum_tangentRequestPieceMass
+
+assert_no_sorry Erdos390.WholePaper.tangentRequestCount_zero
+assert_no_sorry Erdos390.WholePaper.one_le_tangentRequestCount
+assert_no_sorry Erdos390.WholePaper.tangentRequestCount_pos
+assert_no_sorry Erdos390.WholePaper.normalizedMass_le_tangentRequestCount
+assert_no_sorry Erdos390.WholePaper.tangentRequestPieceMass_le
+assert_no_sorry Erdos390.WholePaper.tangentMass_le_count_mul
+assert_no_sorry Erdos390.WholePaper.cast_tangentRequestCount_le
+assert_no_sorry Erdos390.WholePaper.cast_tangentRequestCount_lt
+assert_no_sorry Erdos390.WholePaper.sum_tangentRequestPieceMass

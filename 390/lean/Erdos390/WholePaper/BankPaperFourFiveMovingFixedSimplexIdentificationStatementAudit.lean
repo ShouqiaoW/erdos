@@ -1,0 +1,24 @@
+import Erdos390.WholePaper.BankPaperFourFiveMovingFixedSimplexIdentification
+
+/-! Statement audit for the exact moving/fixed simplex change of variables. -/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#check fourFiveSimplexAffineMap
+#check fourFiveSimplexAffineDerivative
+#check hasFDerivAt_fourFiveSimplexAffineMap
+#check fourFiveSimplexAffineMap_injective
+#check abs_det_fourFiveSimplexAffineDerivative
+#check sum_fourFiveSimplexAffineMap
+#check image_fourFiveClosedSimplex_affine_eq_movingSimplex
+#check fourFive_movingSimplexIntegrand_affine
+#check fourFiveLogarithmicMovingSimplexKernel_eq_fixedSimplexKernel
+#check fourFivePhysicalMovingSimplexLayer_zero_eq_fixed
+#check fourFivePhysicalMovingSimplexLayer_one_eq_fixed
+#check fourFivePhysicalMovingSimplexLayer_two_eq_fixed
+#check fourFivePhysicalMovingSimplexLayer_three_eq_fixed
+#check fourFiveMovingToFixedSimplexError_one_eq_zero
+#check fourFiveMovingToFixedSimplexError_two_eq_zero
+#check fourFiveMovingToFixedSimplexError_three_eq_zero
+
+end Erdos390.WholePaper.BankPaperRealization

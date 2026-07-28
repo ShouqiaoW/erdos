@@ -1,0 +1,31 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenRoundedSourceStateEventualConnector
+
+/-! # Statement audit for the eventual frozen-top rounded source state -/
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalSymmetricInitialCellMassFamily
+#check bankPaperCanonicalSymmetricInitialCellMassFamily_isLittleO
+#check eventually_bankPaperCanonicalSymmetricInitial_twoZeroHeadCell_rebalance_capacity
+#check bankPaperCanonicalTopFrozenRoundedSourceSelector_sub_qTildeSource_eq_ambient_sub
+#check sum_bankPaperCanonicalTopFrozenRoundedSourceSelector_mul_headValuation_eq_qTilde
+#check sum_bankPaperCanonicalTopFrozenRoundedSourceSelector_mul_factorization_eq_qTilde_of_yNat_lt
+#check bankPaperCanonicalTopFrozenRoundedSourceSelector_deficitSupportedOnPrimeBand_of_qTilde
+#check BankPaperCanonicalTopFrozenRoundedSourceResidualInputsAt
+#check bankPaperCanonicalTopFrozenRoundedSelectorSourceState_of_qTildeSource
+#check eventually_bankPaperCanonicalTopFrozenRoundedSelectorSourceState_of_residualInputs
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

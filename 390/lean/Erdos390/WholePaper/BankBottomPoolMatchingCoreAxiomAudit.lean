@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankBottomPoolMatching
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for poolwise finite matching -/
+
+#print axioms Erdos390.WholePaper.bankBottomPoolMatching_nonempty
+#print axioms Erdos390.WholePaper.bankBottomLabelRequest_injective
+#print axioms Erdos390.WholePaper.BankBottomPoolMatching.slotOfLabeledRequest_injective
+#print axioms Erdos390.WholePaper.BankBottomPoolMatching.matchedSlot_injective
+
+assert_no_sorry Erdos390.WholePaper.bankBottomPoolMatching_nonempty
+assert_no_sorry Erdos390.WholePaper.bankBottomLabelRequest_injective
+assert_no_sorry Erdos390.WholePaper.BankBottomPoolMatching.slotOfLabeledRequest_injective
+assert_no_sorry Erdos390.WholePaper.BankBottomPoolMatching.matchedSlot_injective

@@ -1,0 +1,5 @@
+import Erdos390.Full.OmittedScoreTilt
+
+set_option autoImplicit false
+
+#print axioms Erdos390.Full.FiniteProbability.l1Distance_exponentialTilt_le_of_bounded_score

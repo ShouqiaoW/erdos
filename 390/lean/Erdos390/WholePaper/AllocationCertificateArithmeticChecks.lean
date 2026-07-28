@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.AllocationCertificateRowChecks1
+import Erdos390.WholePaper.AllocationCertificateRowChecks2
+import Erdos390.WholePaper.AllocationCertificateRowChecks3
+import Erdos390.WholePaper.AllocationCertificateRowChecks4
+import Erdos390.WholePaper.AllocationCertificateCapacityChecks1
+import Erdos390.WholePaper.AllocationCertificateCapacityChecks2
+import Erdos390.WholePaper.AllocationCertificateCapacityChecks3
+import Erdos390.WholePaper.AllocationCertificateCapacityChecks4
+import Erdos390.WholePaper.AllocationCertificateOverlapChecks1
+import Erdos390.WholePaper.AllocationCertificateOverlapChecks2
+import Erdos390.WholePaper.AllocationCertificateOverlapChecks3
+import Erdos390.WholePaper.AllocationCertificateOverlapChecks4
+
+/-! Aggregates the bounded exact-arithmetic certificate batches. -/

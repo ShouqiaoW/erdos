@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperCanonicalPrimeGraphActualSchurEventuallyStatementAudit
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_cutoff_before_mesh_eventually_actualBandSchur_primeGraph_inverse
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_fineMesh_cutoff_eventually_actualBandSchur_primeGraph_inverse

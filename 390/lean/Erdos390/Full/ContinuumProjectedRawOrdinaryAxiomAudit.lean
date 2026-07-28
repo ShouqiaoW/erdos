@@ -1,0 +1,5 @@
+import Erdos390.Full.ContinuumProjectedRawOrdinary
+
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.weightedGaugeProjection_norm_le_of_moment_ratio
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.weightedGaugeProjection_scaledGraph_eq
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.rawOperator_eq_scaledGraph_add_residual

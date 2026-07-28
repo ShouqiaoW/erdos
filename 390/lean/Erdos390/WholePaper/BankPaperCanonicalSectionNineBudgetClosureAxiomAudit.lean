@@ -1,0 +1,21 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineBudgetClosure
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the canonical Section 9 budget closure
+
+All five public declarations are printed and checked for proof
+placeholders in source order.
+-/
+
+#print axioms Erdos390.WholePaper.exists_bankPaperCanonicalSectionNineBudgetCoreSynchronization
+#print axioms Erdos390.WholePaper.bankPaperCanonical_bridgeL_mul_secondOrderScale_eq
+#print axioms Erdos390.WholePaper.bankPaperCanonical_actualP87Scale_le_secondOrderScale_of_q_upper
+#print axioms Erdos390.WholePaper.BankPaperCanonicalSectionNineBudgetClosure
+#print axioms Erdos390.WholePaper.eventually_bankPaperCanonicalSectionNineBudgetClosure
+
+assert_no_sorry Erdos390.WholePaper.exists_bankPaperCanonicalSectionNineBudgetCoreSynchronization
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonical_bridgeL_mul_secondOrderScale_eq
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonical_actualP87Scale_le_secondOrderScale_of_q_upper
+assert_no_sorry Erdos390.WholePaper.BankPaperCanonicalSectionNineBudgetClosure
+assert_no_sorry Erdos390.WholePaper.eventually_bankPaperCanonicalSectionNineBudgetClosure

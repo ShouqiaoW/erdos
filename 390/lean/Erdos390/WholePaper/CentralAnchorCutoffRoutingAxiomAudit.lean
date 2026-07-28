@@ -1,0 +1,22 @@
+import Erdos390.WholePaper.CentralAnchorCutoff
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for cutoff routing and fixed-prefix cofactors -/
+
+#print axioms Erdos390.WholePaper.largeCentralPrime_div_le_fixedPrefix
+#print axioms Erdos390.WholePaper.largeCentralPrime_rowZero_or_fixedPrefix
+#print axioms Erdos390.WholePaper.largeCentralCofactor_le_fixedPrefix
+#print axioms Erdos390.WholePaper.largeCentralCofactor_eq_one_or_fixedPrefix
+#print axioms Erdos390.WholePaper.largeCentralPrime_gt_fixedPrefixCofactors
+#print axioms Erdos390.WholePaper.largeCentralCofactor_lt_marker
+#print axioms Erdos390.WholePaper.canonicalLargeCentralCofactor_isChoice_centralAnchorCutoff
+#print axioms Erdos390.WholePaper.canonicalLargeCentralCofactor_le_fixedPrefix
+
+assert_no_sorry Erdos390.WholePaper.largeCentralPrime_div_le_fixedPrefix
+assert_no_sorry Erdos390.WholePaper.largeCentralPrime_rowZero_or_fixedPrefix
+assert_no_sorry Erdos390.WholePaper.largeCentralCofactor_le_fixedPrefix
+assert_no_sorry Erdos390.WholePaper.largeCentralCofactor_eq_one_or_fixedPrefix
+assert_no_sorry Erdos390.WholePaper.largeCentralPrime_gt_fixedPrefixCofactors
+assert_no_sorry Erdos390.WholePaper.largeCentralCofactor_lt_marker
+assert_no_sorry Erdos390.WholePaper.canonicalLargeCentralCofactor_isChoice_centralAnchorCutoff
+assert_no_sorry Erdos390.WholePaper.canonicalLargeCentralCofactor_le_fixedPrefix

@@ -1,0 +1,6 @@
+import Erdos390.Full.FixedFiniteMixtureSignedSquarefree
+
+/-! Axiom audit for the signed finite-family marked-profile export. -/
+
+#print axioms Erdos390.Full.FixedFiniteMixtureSignedSquarefree.exists_boxIndependent_fixedFiniteMixture_signed_profiles
+#print axioms Erdos390.Full.SquarefreeReferenceOperatorIdentification.abs_sigmaMixture_squarefreeSharpRow_sub_arithmeticSharpOperator_le

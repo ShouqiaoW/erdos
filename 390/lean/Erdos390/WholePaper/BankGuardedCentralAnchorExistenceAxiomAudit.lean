@@ -1,0 +1,6 @@
+import Erdos390.WholePaper.BankGuardedCentralAnchorExistence
+import Mathlib.Util.AssertNoSorry
+
+#print axioms Erdos390.WholePaper.exists_eventually_bankGuardedCentralAnchorCertificate
+
+assert_no_sorry Erdos390.WholePaper.exists_eventually_bankGuardedCentralAnchorCertificate

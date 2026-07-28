@@ -1,0 +1,11 @@
+import Erdos390.Full.PaperBridgeNuisanceTiltFallback
+
+/-! Kernel-axiom audit for the localized physical/head bridge tilt. -/
+
+#print axioms Erdos390.Full.FiniteProbability.smallTiltLoss_le_eight_mul
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_expect_sub_expect_le_smallTiltLoss
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_covariance_sub_covariance_le_eight_mul
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.guardedCell_fullTilt_eq_medium_physicalTilt
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.cellMediumLaw_expect_divInd_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_guardedCell_fullTilt_expect_divInd_sub_medium_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_guardedCell_fullTilt_squarefreeCovariance_sub_medium_le

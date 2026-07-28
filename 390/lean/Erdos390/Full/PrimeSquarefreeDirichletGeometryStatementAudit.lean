@@ -1,0 +1,18 @@
+import Erdos390.Full.PrimeSquarefreeDirichletGeometry
+
+/-!
+# Statement audit for the literal prime-band Dirichlet geometry
+
+The final type exposes the actual prime band, interior-anchor membership and
+positive literal anchor mass.  It assumes neither a squarefree covariance
+lower bound nor an arithmetic inverse.
+-/
+
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.finiteReferenceQuadratic_eq_primeReferenceQuadratic
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.primeReferenceQuadratic_eq_entryQuadratic
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.primeReferenceQuadratic_eq_dirichlet_add_residual
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.abs_rowResidualContribution_le
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.primeReferenceQuadratic_lower_of_dirichlet_and_residual
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.weightedDistance_eq_primePhysicalDistance
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.anchor_edge_domination
+#check Erdos390.Full.PrimeSquarefreeDirichletGeometry.exists_primeDirichlet_anchor_lower

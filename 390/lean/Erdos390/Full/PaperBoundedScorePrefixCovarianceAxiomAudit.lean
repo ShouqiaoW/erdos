@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperBoundedScorePrefixCovariance
+
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_expect_sub_expect_le_of_bounded_score_moments
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_covariance_prefix_sub_covariance_le_of_bounded_score

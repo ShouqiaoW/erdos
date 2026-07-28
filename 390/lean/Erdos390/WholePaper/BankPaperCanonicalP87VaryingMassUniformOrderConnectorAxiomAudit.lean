@@ -1,0 +1,18 @@
+import Erdos390.WholePaper.BankPaperCanonicalP87VaryingMassUniformOrderConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for uniform-order varying-mass Proposition 8.7
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperCanonicalP87VaryingMassUniformOrderStatement
+#print axioms
+  bankPaperCanonicalP87VaryingActiveMassLiteralBandBalance_uniformOrder
+
+assert_no_sorry BankPaperCanonicalP87VaryingMassUniformOrderStatement
+assert_no_sorry
+  bankPaperCanonicalP87VaryingActiveMassLiteralBandBalance_uniformOrder
+
+end Erdos390.WholePaper

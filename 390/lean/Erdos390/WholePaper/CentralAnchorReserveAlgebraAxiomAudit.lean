@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.CentralAnchorReserveAlgebra
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for finite central-anchor reserve algebra -/
+
+#print axioms Erdos390.WholePaper.centralAnchorDivisor_factorization_le_upperTailValuation_of_slack
+#print axioms Erdos390.WholePaper.centralAnchorDivisor_factorization_add_reserve_le_upperTailValuation_of_slack
+#print axioms Erdos390.WholePaper.centralAnchorDivisor_dvd_upperTail_of_slack
+
+assert_no_sorry Erdos390.WholePaper.centralAnchorDivisor_factorization_le_upperTailValuation_of_slack
+assert_no_sorry Erdos390.WholePaper.centralAnchorDivisor_factorization_add_reserve_le_upperTailValuation_of_slack
+assert_no_sorry Erdos390.WholePaper.centralAnchorDivisor_dvd_upperTail_of_slack

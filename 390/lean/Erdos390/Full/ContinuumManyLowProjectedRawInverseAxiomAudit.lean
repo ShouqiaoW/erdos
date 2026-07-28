@@ -1,0 +1,4 @@
+import Erdos390.Full.ContinuumManyLowProjectedRawInverse
+
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.graphOperator_split_eq
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.ordinary_split_projected_raw_bound

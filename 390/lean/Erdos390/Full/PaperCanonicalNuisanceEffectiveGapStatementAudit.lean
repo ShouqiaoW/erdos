@@ -1,0 +1,6 @@
+import Erdos390.Full.PaperCanonicalNuisanceEffectiveGap
+
+open Erdos390.Full
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceOperator_effectiveBox_canonicalBaseline
+#check Erdos390.Full.PaperBridgeFit.BridgeData.canonicalEffectiveNuisanceGapProof

@@ -1,0 +1,8 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineTopFrozenFinalGeometryConnector
+import Mathlib.Util.AssertNoSorry
+
+/-! Axiom audit for the frozen-top Section 9 final-geometry connector. -/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalSectionNineFinalPayload_of_topFrozenRoundedPostHfit
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalSectionNineFinalPayload_of_topFrozenRoundedPostHfit

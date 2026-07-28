@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperActualSchurOrdinaryEndpointConnector
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualBandFull_ordinary_inverse_of_endpoint_reference
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_sameEquiv_ordinary_inverse_of_endpoint_reference

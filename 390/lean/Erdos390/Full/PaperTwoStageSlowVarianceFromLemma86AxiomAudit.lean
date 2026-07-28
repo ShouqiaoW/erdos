@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperTwoStageSlowVarianceFromLemma86
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualTwoStageCompensatedVariance_lower_of_squarefree_and_marked

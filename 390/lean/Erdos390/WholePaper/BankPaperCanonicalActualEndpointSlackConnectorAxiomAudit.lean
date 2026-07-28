@@ -1,0 +1,17 @@
+import Erdos390.WholePaper.BankPaperCanonicalActualEndpointSlackConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the actual P87 endpoint-slack connector
+
+The connector exports exactly three public theorems.  Both audit blocks
+below cover all three, in source order.
+-/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualSmoothProtectedWindow_of_reserve
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87EndpointSelector_smoothSlackLayers
+#print axioms Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualP87EndpointSelector_guardedSlackConstruction_of_reserve
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualSmoothProtectedWindow_of_reserve
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87EndpointSelector_smoothSlackLayers
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualP87EndpointSelector_guardedSlackConstruction_of_reserve

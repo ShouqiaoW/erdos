@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.CentralPromotionCostAsymptotic
+import Mathlib.Util.AssertNoSorry
+
+/-! Split transitive axiom and assertion audit for (4.11). -/
+
+#print axioms Chebyshev.eventually_primeCounting_le
+#print axioms Chebyshev.primeCounting_sub_theta_div_log_isBigO
+#print axioms Erdos390.WholePaper.residualPromotionCost_fixedCutoff_uniform_bound
+#print axioms Erdos390.WholePaper.residualPromotionCost_eventually_cast_le_mul
+#print axioms Erdos390.WholePaper.residualPromotionCost_eventually_le_ceil
+
+assert_no_sorry Chebyshev.eventually_primeCounting_le
+assert_no_sorry Chebyshev.primeCounting_sub_theta_div_log_isBigO
+assert_no_sorry Erdos390.WholePaper.residualPromotionCost_fixedCutoff_uniform_bound
+assert_no_sorry Erdos390.WholePaper.residualPromotionCost_eventually_cast_le_mul
+assert_no_sorry Erdos390.WholePaper.residualPromotionCost_eventually_le_ceil

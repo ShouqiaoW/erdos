@@ -1,0 +1,17 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenSourceFeasibilityReductionConnector
+
+/-! # Statement audit for frozen-top source feasibility reduction -/
+
+namespace Erdos390.WholePaper
+
+namespace BankPaperRealization
+
+#check roughCanonicalGuardedPostchargeRowCorrectedWeight_mem_unitInterval_of_twoSidedSlack
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_feasible_of_smooth_of_active
+#check bankPaperCanonicalTopFrozenRoundedSourceSelector_feasible_of_smooth_of_active
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_feasible_of_smooth_of_twoSidedSlack
+#check bankPaperCanonicalTopFrozenRoundedSourceSelector_feasible_of_smooth_of_twoSidedSlack
+
+end BankPaperRealization
+
+end Erdos390.WholePaper

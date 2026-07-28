@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstLedgerConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the exact source-first Section 8 ledger
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms bankPaperCanonicalSectionNinePostHeight_sourceFirstAnalyticLedger_of_actualData
+
+assert_no_sorry bankPaperCanonicalSectionNinePostHeight_sourceFirstAnalyticLedger_of_actualData
+
+end Erdos390.WholePaper

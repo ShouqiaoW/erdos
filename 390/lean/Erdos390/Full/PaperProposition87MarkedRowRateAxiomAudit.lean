@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperProposition87MarkedRowRate
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_sum_harmonicMass_le_twelve_logL
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fastMarkedRowMajorant_le_of_harmonicMass
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_fastMarkedRowMajorant_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_slowMarkedRowCoefficient_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.eventually_twoStageMarkedRowReserves

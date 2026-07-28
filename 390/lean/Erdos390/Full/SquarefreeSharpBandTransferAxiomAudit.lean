@@ -1,0 +1,9 @@
+import Erdos390.Full.SquarefreeReferenceOperatorIdentification
+
+/-! Axiom audit for the signed squarefree-to-band transfer. -/
+
+#print axioms Erdos390.Full.SquarefreeCovarianceReference.sigmaMixture_squarefree_reference_entry_bound
+#print axioms Erdos390.Full.SquarefreeSharpBandTransfer.abs_squarefreeSharpRow_sub_referenceSharpRow_le
+#print axioms Erdos390.Full.SquarefreeReferenceOperatorIdentification.referenceBandRow_eq_rawOperator
+#print axioms Erdos390.Full.SquarefreeReferenceOperatorIdentification.referenceSharpRow_eq_arithmeticSharpOperator
+#print axioms Erdos390.Full.SquarefreeReferenceOperatorIdentification.abs_sigmaMixture_squarefreeSharpRow_sub_arithmeticSharpOperator_le

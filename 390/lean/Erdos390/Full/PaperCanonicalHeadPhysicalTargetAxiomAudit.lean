@@ -1,0 +1,56 @@
+import Erdos390.Full.PaperCanonicalHeadPhysicalTarget
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom and proof-term audit for the canonical head and physical target
+
+Every explicit public declaration in the source is printed and checked for
+`sorry`.  The four source-private finite-mean helpers are covered transitively
+through the public `BridgeData` construction and its consequences.
+-/
+
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.zeroCoefficient
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.zeroCoefficient_margin
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_margin
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_pos
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_sum
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.exponent_cast_pos
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.exponent_activeMass_ne
+#print axioms Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_exponent_moment
+
+#print axioms Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget
+#print axioms Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.physicalSpan
+#print axioms Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.lower_minus_lt_upper_plus
+#print axioms Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.physicalSpan_pos
+#print axioms Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.tau
+#print axioms Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.tau_pos
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.barycentricTargetOfPaperData
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.barycentricTargetOfPaperData_headExponentMoment
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.barycentricTargetOfPaperData_cellMassMargin
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.paperMoment_physicalScore_zero_eq_mu_ofPaperData
+
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.zeroCoefficient
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.zeroCoefficient_margin
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_margin
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_pos
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_sum
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.exponent_cast_pos
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.exponent_activeMass_ne
+assert_no_sorry Erdos390.Full.PaperGuardCensus.HeadSimplexReserve.beta_exponent_moment
+
+assert_no_sorry Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget
+assert_no_sorry Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.physicalSpan
+assert_no_sorry Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.lower_minus_lt_upper_plus
+assert_no_sorry Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.physicalSpan_pos
+assert_no_sorry Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.tau
+assert_no_sorry Erdos390.Full.PaperGuardCensus.PhysicalInterpolationTarget.tau_pos
+
+assert_no_sorry Erdos390.Full.PaperBridgeFit.BridgeData.barycentricTargetOfPaperData
+assert_no_sorry Erdos390.Full.PaperBridgeFit.BridgeData.barycentricTargetOfPaperData_headExponentMoment
+assert_no_sorry Erdos390.Full.PaperBridgeFit.BridgeData.barycentricTargetOfPaperData_cellMassMargin
+assert_no_sorry Erdos390.Full.PaperBridgeFit.BridgeData.paperMoment_physicalScore_zero_eq_mu_ofPaperData

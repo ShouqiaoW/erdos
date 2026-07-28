@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.CentralAnchorCollision
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom audit for central-anchor collision guards. -/
+
+#print axioms Erdos390.WholePaper.prime_dvd_promotedCentralFactor
+#print axioms Erdos390.WholePaper.markerPrime_not_dvd_promotedCentralFactor
+#print axioms Erdos390.WholePaper.marker_mul_ne_promotedCentralFactor
+#print axioms Erdos390.WholePaper.markerPrime_ne_promotedCentralFactor
+#print axioms Erdos390.WholePaper.marker_mul_ne_markerPrime
+
+assert_no_sorry Erdos390.WholePaper.prime_dvd_promotedCentralFactor
+assert_no_sorry Erdos390.WholePaper.markerPrime_not_dvd_promotedCentralFactor
+assert_no_sorry Erdos390.WholePaper.marker_mul_ne_promotedCentralFactor
+assert_no_sorry Erdos390.WholePaper.markerPrime_ne_promotedCentralFactor
+assert_no_sorry Erdos390.WholePaper.marker_mul_ne_markerPrime

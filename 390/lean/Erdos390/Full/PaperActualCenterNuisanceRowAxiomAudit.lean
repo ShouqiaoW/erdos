@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperActualCenterNuisanceRow
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.bandCenterScore_eq_primeSum
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fullBandRow_bandCenter_eq_normalizedBandCovarianceRow
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceVector_bandCenterScore_norm_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCoefficient_bandCenterScore_norm_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_normalizedBandCovarianceRow_bandCenter_nuisanceCorrection_le

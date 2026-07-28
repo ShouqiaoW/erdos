@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalFullQuotientEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_structural_cutoff_eventually_canonical_actualFullQuotient

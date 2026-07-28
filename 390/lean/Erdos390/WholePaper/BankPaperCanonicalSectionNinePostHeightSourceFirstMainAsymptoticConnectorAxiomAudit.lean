@@ -1,0 +1,19 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstMainAsymptoticConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: source-first Section 9 main asymptotic
+
+The closed source-first theorem and each of the three terminal-to-main links
+used in its proof are printed and checked for hidden `sorry`.
+-/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstCutoffAwareDistributedTerminal
+#print axioms Erdos390.WholePaper.eventually_bankPaper_f_le_upperEndpoint_of_canonicalDistributedSectionNineTerminalAtDepth
+#print axioms Erdos390.WholePaper.mainAsymptotic_of_eventually_f_le_upperScaledEndpoint
+#print axioms Erdos390.WholePaper.bankPaperCanonicalSectionNinePostHeight_sourceFirstMainAsymptotic
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstCutoffAwareDistributedTerminal
+assert_no_sorry Erdos390.WholePaper.eventually_bankPaper_f_le_upperEndpoint_of_canonicalDistributedSectionNineTerminalAtDepth
+assert_no_sorry Erdos390.WholePaper.mainAsymptotic_of_eventually_f_le_upperScaledEndpoint
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalSectionNinePostHeight_sourceFirstMainAsymptotic

@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalRatioCellGeometryTrafficConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the ratio-cell geometry/traffic connector
+
+All three public theorems are printed and checked by `assert_no_sorry`.
+-/
+
+#print axioms Erdos390.WholePaper.tangentFixedRatioPrimeIntervalOccupied_mono_cutoff
+#print axioms Erdos390.WholePaper.tangentFixedRatioPrimeCountLower_mono_cutoff
+#print axioms Erdos390.WholePaper.exists_fixedW_bankPaperCanonical_ratioCellGeometryTraffic_spec
+
+assert_no_sorry Erdos390.WholePaper.tangentFixedRatioPrimeIntervalOccupied_mono_cutoff
+assert_no_sorry Erdos390.WholePaper.tangentFixedRatioPrimeCountLower_mono_cutoff
+assert_no_sorry Erdos390.WholePaper.exists_fixedW_bankPaperCanonical_ratioCellGeometryTraffic_spec

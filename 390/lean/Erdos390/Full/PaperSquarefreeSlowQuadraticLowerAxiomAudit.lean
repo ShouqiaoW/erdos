@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperSquarefreeSlowQuadraticLower
+
+/-! Transitive axiom audit for the finite squarefree slow geometry. -/
+
+#print axioms Erdos390.Full.PaperSquarefreeSlowQuadraticLower.primePhysicalDistance_compensated_eq_physicalSq
+#print axioms Erdos390.Full.PaperSquarefreeSlowQuadraticLower.abs_primeRowResidualContribution_le
+#print axioms Erdos390.Full.PaperSquarefreeSlowQuadraticLower.exists_primeReference_compensated_lower
+#print axioms Erdos390.Full.PaperSquarefreeSlowQuadraticLower.abs_subtypeSquarefreeQuadratic_sub_primeReference_le
+#print axioms Erdos390.Full.PaperSquarefreeSlowQuadraticLower.abs_primeReferenceQuadratic_le

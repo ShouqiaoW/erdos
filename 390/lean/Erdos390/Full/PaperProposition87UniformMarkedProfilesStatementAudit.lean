@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperProposition87UniformMarkedProfiles
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedConstant
+#check Erdos390.Full.PaperBridgeFit.BridgeData.uniform_vectorField_markedRow_on_effectiveBall_of_profiles

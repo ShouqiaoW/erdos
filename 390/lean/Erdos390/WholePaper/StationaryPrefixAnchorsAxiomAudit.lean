@@ -1,0 +1,18 @@
+import Erdos390.WholePaper.StationaryPrefixAnchors
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom and sorry audit for simultaneous prefix anchors. -/
+
+#print axioms Erdos390.WholePaper.exists_stationaryPrefixParts_on_finset
+#print axioms Erdos390.WholePaper.stationaryPrimeLayer_gt_cofactorRange
+#print axioms Erdos390.WholePaper.stationaryPrefixAnchor_mem_centralInterval
+#print axioms Erdos390.WholePaper.stationaryPrefixAnchor_injOn
+#print axioms Erdos390.WholePaper.stationaryPrefixAnchors_prod
+#print axioms Erdos390.WholePaper.StationaryPrefixPartition.anchor_certificate
+
+assert_no_sorry Erdos390.WholePaper.exists_stationaryPrefixParts_on_finset
+assert_no_sorry Erdos390.WholePaper.stationaryPrimeLayer_gt_cofactorRange
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixAnchor_mem_centralInterval
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixAnchor_injOn
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixAnchors_prod
+assert_no_sorry Erdos390.WholePaper.StationaryPrefixPartition.anchor_certificate

@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperProposition87MarkedTwoStage
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorField_markedRow_le_of_twoStage_rows

@@ -1,0 +1,56 @@
+import Erdos390.WholePaper.BankPaperFourFiveLastPrimeContinuumDecomposition
+
+/-! Expanded statement audit for the exact three-piece continuum bridge. -/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#check fourFiveRealLogCoordinate
+#check fourFivePrefixProductReal
+#check fourFivePrefixProductReal_pos
+#check fourFiveLastPrimePhysicalIntegral
+#check fourFiveLastPrimeIntegral_eq_physicalIntegral
+#check fourFiveOrderedLastPrimePhysicalLayer
+#check fourFiveOrderedLastPrimeIntegralLayer_eq_physicalLayer
+#check fourFivePhysicalActualMovingLayer
+#check fourFivePhysicalContinuumCellLayer
+#check fourFivePhysicalLebesgueCellLayer
+#check fourFiveLogarithmicMovingSimplex
+#check fourFiveLogarithmicMovingSimplexIntegrand
+#check fourFiveLogarithmicMovingSimplexKernel
+#check fourFivePhysicalMovingSimplexLayer
+#check fourFiveFixedContinuumLayer
+#check fourFivePhysicalContinuumCellLayer_zero_eq_lebesgue
+#check fourFivePhysicalContinuumCellLayer_one_eq_lebesgue
+#check fourFivePhysicalContinuumCellLayer_two_eq_lebesgue
+#check fourFivePhysicalContinuumCellLayer_three_eq_lebesgue
+#check abs_fourFivePhysicalMovingProductOne_sub_cell_le
+#check abs_fourFivePhysicalMovingProductTwo_sub_cell_le
+#check abs_fourFivePhysicalMovingProductThree_sub_cell_le
+#check fourFiveLastPrimePhysicalChangeError
+#check fourFiveLastPrimeCommonDomainError
+#check fourFiveLastPrimePhysicalChangeError_eq_commonDomainError
+#check fourFivePhysicalProductReplacementError
+#check fourFiveLebesgueCellAggregationError
+#check fourFiveMovingToFixedSimplexError
+#check fourFivePhysicalProductBudgetOverrun
+#check fourFiveExactContinuumBridgeCellError
+#check fourFivePhysicalActualMovingLayer_zero_eq_fixed
+#check fourFivePhysicalProductReplacementError_zero
+#check fourFiveLebesgueCellAggregationError_zero
+#check fourFiveMovingToFixedSimplexError_zero
+#check fourFivePhysicalProductBudgetOverrun_zero
+#check fourFiveExactContinuumBridgeCellError_zero
+#check fourFivePhysicalProductReplacementError_le_budget_add_overrun
+#check abs_fourFiveLastPrimeIntegralLayer_sub_fixedContinuumLayer_le_exact
+#check fourFiveLastPrimeToContinuumBridge_exactDecomposition
+#check fourFiveOrderedPrimeMixtureEstimate_of_exactContinuumDecomposition
+
+example {y A B : Nat} (hy : 2 <= y) (E M : Real) :
+    FourFiveLastPrimeToContinuumBridge y A B E M
+      (fourFiveExactContinuumBridgeCellError 0 y A B E M)
+      (fourFiveExactContinuumBridgeCellError 1 y A B E M)
+      (fourFiveExactContinuumBridgeCellError 2 y A B E M)
+      (fourFiveExactContinuumBridgeCellError 3 y A B E M) :=
+  fourFiveLastPrimeToContinuumBridge_exactDecomposition hy E M
+
+end Erdos390.WholePaper.BankPaperRealization

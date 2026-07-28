@@ -1,0 +1,6 @@
+import Erdos390.Full.PaperCanonicalNuisanceEffectiveGap
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.tiltedLaw_covariance_nuisanceStatistic
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalEffectiveNuisanceGamma_pos
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceOperator_effectiveBox_canonicalBaseline
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalEffectiveNuisanceGapProof

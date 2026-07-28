@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstActualData
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the source-first actual-data identities
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_actualActiveMeasureConstructor
+#print axioms BankPaperRealization.bankPaperCanonicalTopFrozenRounded_actualFrozenLogMass_eq_qTildeSource
+
+assert_no_sorry BankPaperRealization.bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_actualActiveMeasureConstructor
+assert_no_sorry BankPaperRealization.bankPaperCanonicalTopFrozenRounded_actualFrozenLogMass_eq_qTildeSource
+
+end Erdos390.WholePaper

@@ -1,0 +1,4 @@
+import Erdos390.WholePaper.FloatingRoundingStep
+
+#print axioms Erdos390.WholePaper.exists_floating_step
+assert_no_sorry Erdos390.WholePaper.exists_floating_step

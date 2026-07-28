@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.CentralPromotionCostAsymptotic
+import Mathlib.Util.AssertNoSorry
+
+/-! Split transitive axiom and assertion audit for finite promotion cost. -/
+
+#print axioms Erdos390.WholePaper.centralPromotionExponent_le_one_add_log2
+#print axioms Erdos390.WholePaper.residualCentralPrimes_exponent_pos
+#print axioms Erdos390.WholePaper.residualPromotionCost_cast_le_centralPromotionMajorant
+
+assert_no_sorry Erdos390.WholePaper.centralPromotionExponent_le_one_add_log2
+assert_no_sorry Erdos390.WholePaper.residualCentralPrimes_exponent_pos
+assert_no_sorry Erdos390.WholePaper.residualPromotionCost_cast_le_centralPromotionMajorant

@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstPreselectedPostLedgerConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit: preselected source-first post-ledger bridge
+-/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#print axioms
+  eventually_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreselectedPostLedgerBridgeInputs
+
+assert_no_sorry
+  eventually_bankPaperCanonicalSectionNinePostHeight_sourceFirstPreselectedPostLedgerBridgeInputs
+
+end Erdos390.WholePaper.BankPaperRealization

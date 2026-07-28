@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.BankAnchorGuardsFinite
+import Mathlib.Util.AssertNoSorry
+
+/-! Chunked transitive axiom audit for bottom and bundled collision terminals. -/
+
+#print axioms Erdos390.WholePaper.prefixReplacementAnchor_ne_rowZeroMarker
+#print axioms Erdos390.WholePaper.forcedThreeAnchor_ne_bottomStates
+#print axioms Erdos390.WholePaper.prefixReplacementAnchor_collisionFree
+
+assert_no_sorry Erdos390.WholePaper.prefixReplacementAnchor_ne_rowZeroMarker
+assert_no_sorry Erdos390.WholePaper.forcedThreeAnchor_ne_bottomStates
+assert_no_sorry Erdos390.WholePaper.prefixReplacementAnchor_collisionFree

@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenMassSynchronizationConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for frozen smooth-row mass synchronization
+-/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#print axioms bankPaperCanonicalInitialSmoothFrozenMass_eq_topFrozenSmoothFrozenMass_of_scaledSeed
+
+assert_no_sorry bankPaperCanonicalInitialSmoothFrozenMass_eq_topFrozenSmoothFrozenMass_of_scaledSeed
+
+end Erdos390.WholePaper.BankPaperRealization

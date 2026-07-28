@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperCanonicalPrimeAnchorEventually
+
+/-! Statement audit for the literal prime-anchor package. -/
+
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.anchorMass_canonicalPrimeAnchorSet_eq
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.epsilon_mul_anchorMass_le_centerEnergy
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalPrimeAnchorSet_mem_Icc
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.abs_canonical_mass_mul_center_sub_endpointContinuumMoment_le
+#check Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonicalPrimeAnchor

@@ -1,0 +1,4 @@
+import Erdos390.Full.FiniteProbabilityPowerCorrectionMixturePerturbation
+
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_sigmaMixture_powerCorrectionOrientations_sub_le
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_boundedValuationSigmaMixture_powerCorrection_sub_le

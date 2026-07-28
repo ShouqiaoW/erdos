@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperCanonicalActualFullQuotientNullIdentification
+
+/-! Transitive axiom audit for the exact-null and arbitrary-`mu` quotient terminals. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.physical_mul_add_headFunction_eq_inner_add_constant
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceResidualScore_primeLogScore_eq_const
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.primeValuationScore_residual_change_mu
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceResidualVariance_residual_independent_mu
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualResidualSchur_fullQuotient_Dgap_canonicalKappa_independent_mu

@@ -1,0 +1,5 @@
+import Erdos390.Full.PaperActualSchurOrdinaryRow
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_sub_full_norm_le_of_nuisanceCovarianceBounds_ordinary
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_sub_full_norm_le_of_marked_ordinary
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchur_inverse_norm_le_of_full_ordinary

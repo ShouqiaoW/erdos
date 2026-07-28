@@ -1,0 +1,8 @@
+import Erdos390.WholePaper.BankPaperCanonicalDistributedSectionNineAssembly
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for the finite distributed Section 9 assembly -/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_canonicalDistributedSectionNinePostTangentOutput_of_paperBudgets
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_canonicalDistributedSectionNinePostTangentOutput_of_paperBudgets

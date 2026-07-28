@@ -1,0 +1,11 @@
+import Erdos390.Full.PaperRawPrefixThirdCumulantFallback
+
+/-! Transitive axiom audit for the raw moving-prefix fallback. -/
+
+#print axioms Erdos390.Full.FiniteProbability.abs_covariance_divInd_prefix_le_of_reciprocal_expectation
+#print axioms Erdos390.Full.FiniteProbability.abs_covarianceThirdCentered_divInd_prefix_divInd_fallback_le
+#print axioms Erdos390.Full.FiniteProbability.abs_covarianceThirdCentered_divInd_prefix_divInd_coprime_fallback_le
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantFallback.exists_uniform_rawCell_divInd_fallback
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantFallback.exists_uniform_rawCell_thirdCumulant_lcm_chamber
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantFallback.exists_uniform_rawCell_samePrime_thirdCumulant_chamber
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantFallback.exists_uniform_rawCell_coprime_thirdCumulant_chamber

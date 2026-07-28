@@ -1,0 +1,5 @@
+import Erdos390.Full.PaperActualFullOrdinaryRowTransfer
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.squarefreeBandRow_sub_referenceBandRow_le_ordinary
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fullBandRow_sub_squarefreeBandRow_le_ordinary
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fullBandRow_sub_referenceBandRow_le_ordinary

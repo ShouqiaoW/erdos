@@ -1,0 +1,10 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineAbsorbed
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for the absorbed canonical Section 9 integration -/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.eventually_canonicalSectionNineCleanListLower_absorbed
+#print axioms Erdos390.WholePaper.BankPaperRealization.eventually_exists_canonicalSectionNinePostTangentOutput_absorbed
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.eventually_canonicalSectionNineCleanListLower_absorbed
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.eventually_exists_canonicalSectionNinePostTangentOutput_absorbed

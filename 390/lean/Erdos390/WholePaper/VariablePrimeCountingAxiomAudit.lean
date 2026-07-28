@@ -1,0 +1,4 @@
+import Erdos390.WholePaper.VariablePrimeCounting
+
+#print axioms Erdos390.WholePaper.SafePrimeCounting.primeCounting_movingEndpoint_normalized_tendsto
+assert_no_sorry Erdos390.WholePaper.SafePrimeCounting.primeCounting_movingEndpoint_normalized_tendsto

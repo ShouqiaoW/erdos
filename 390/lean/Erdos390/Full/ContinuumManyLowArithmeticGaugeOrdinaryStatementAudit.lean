@@ -1,0 +1,7 @@
+import Erdos390.Full.ContinuumManyLowArithmeticGaugeOrdinary
+
+open scoped BigOperators
+
+#check Erdos390.Full.ContinuumCellGraph.ArithmeticGaugeOrdinary.weightedGaugeProjection_norm_le_of_scaled_moment_ratio
+#check Erdos390.Full.ContinuumCellGraph.ArithmeticGaugeOrdinary.weightedGaugeProjection_sub_self_norm_le_of_rawWeightDefect
+#check Erdos390.Full.ContinuumCellGraph.ArithmeticGaugeOrdinary.IntervalMesh.ordinary_split_arithmetic_projected_raw_bound

@@ -1,0 +1,60 @@
+import Erdos390.WholePaper.BankPaperFourFiveMovingFaceCellOscillation
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#check fourFiveRealMovingFaceReciprocal
+#check fourFiveRealMovingFaceKernel
+#check fourFiveRealLogCoordinate_natCast
+#check fourFiveRealLogCoordinate_mono
+#check fourFiveRealMovingFaceReciprocal_mono
+#check fourFiveRealMovingFaceReciprocal_nonneg_le_one
+#check fourFiveRealMovingFaceKernel_nonneg_le_one
+#check measurable_fourFiveRealLogCoordinate
+#check measurable_fourFiveRealMovingFaceKernel
+#check measurable_fourFiveLogLogLebesgueDensity
+#check fourFiveRealMovingFaceKernel_natCast
+#check fourFiveMovingFaceStrictCell
+#check fourFiveMovingFaceStrictCellIndex
+#check fourFiveMovingFaceStrictCell_subsingleton
+#check fourFiveMovingFaceStrictCell_eq_index
+#check fourFiveMovingFaceCellOscillationEnvelope
+#check fourFiveMovingFaceInteriorCellOscillation
+#check fourFiveMovingFaceStrictCellCharge
+#check fourFiveMovingFaceCellOscillationEnvelope_eq_interior_add_strict
+#check fourFiveMovingFaceCellOscillationEnvelope_nonneg
+#check sum_fourFiveMovingFaceCellOscillationEnvelope_le_two
+#check sum_fourFiveMovingFaceInteriorCellOscillation_le_one
+#check sum_fourFiveMovingFaceStrictCellCharge_le_one
+#check abs_fourFiveMovingFaceKernel_nat_sub_real_le_envelope
+#check fourFiveLogLogCellMeshBound
+#check fourFiveLogLogCellMeshBound_pos
+#check fourFiveLogLogLebesgueDensity_le_meshBound
+#check fourFiveLogLogLebesgueCellAtom_le_meshBound
+#check fourFiveLogLogLebesgueCellAtom_nonneg
+#check sum_abs_fourFiveLogLogLebesgueCellAtom_eq_sum
+#check intervalIntegrable_fourFiveDensity_mul_realMovingFace_cell
+#check abs_fourFiveLogLogWeightedCellIntegral_le_atom_mul
+#check abs_sum_fourFiveLogLogWeightedCellIntegrals_le_mass_mul
+#check fourFiveMovingFaceLebesgueCellDefect
+#check fourFiveLebesgueCell_sample_sub_real_eq_defect
+#check abs_fourFiveMovingFaceLebesgueCellDefect_le
+#check fourFiveMovingFaceLebesgueCellDefectSum
+#check fourFiveMovingFaceInteriorLebesgueCellDefectSum
+#check fourFiveMovingFaceStrictLebesgueCellDefect
+#check fourFiveMovingFaceLebesgueCellDefectSum_eq_interior_add_strict
+#check abs_fourFiveMovingFaceInteriorLebesgueCellDefectSum_le
+#check abs_fourFiveMovingFaceStrictLebesgueCellDefect_le
+#check fourFiveMovingFaceRightEndpointCellSum
+#check fourFiveMovingFaceRealCellIntegralSum
+#check fourFiveMovingFaceRightEndpointCellSum_sub_real_eq_defectSum
+#check abs_fourFiveMovingFaceLebesgueCellDefectSum_le
+#check abs_fourFiveMovingFaceRightEndpointCellSum_sub_real_le
+
+example {A Y y : Nat} {u c : Real}
+    (hy : 2 <= y) (hyA : y <= A) (hAY : A <= Y) :
+    |fourFiveMovingFaceRightEndpointCellSum A Y y u c -
+        fourFiveMovingFaceRealCellIntegralSum A Y y u c| <=
+      2 * fourFiveLogLogCellMeshBound A :=
+  abs_fourFiveMovingFaceRightEndpointCellSum_sub_real_le hy hyA hAY
+
+end Erdos390.WholePaper.BankPaperRealization

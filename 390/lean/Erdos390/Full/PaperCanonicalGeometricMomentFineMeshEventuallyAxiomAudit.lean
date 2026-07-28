@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperCanonicalGeometricMomentFineMeshEventually
+
+/-! Transitive axiom audit for the final paper-scale geometric package. -/
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalPaperGeometricCutoff_eventually
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_fineMesh_cutoff_eventually_canonical_paper_geometric_inputs
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalPositiveVarianceCutoff_eventually
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalActualPreliminaryMomentCutoff_eventually

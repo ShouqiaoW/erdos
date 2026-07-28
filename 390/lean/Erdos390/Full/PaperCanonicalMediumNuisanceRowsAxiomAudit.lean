@@ -1,0 +1,11 @@
+import Erdos390.Full.PaperCanonicalMediumNuisanceRows
+
+/-! Axiom audit for the canonical raw-cell attachment of the medium rows. -/
+
+#print axioms Erdos390.Full.FiniteProbability.uniformOnFinset_exponentialTilt_expect_eq_of_finset_eq
+#print axioms Erdos390.Full.FiniteProbability.uniformOnFinset_exponentialTilt_covariance_eq_of_finset_eq
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.raw_deleteGuards_expect_eq_cellMediumLaw
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.raw_deleteGuards_covariance_eq_cellMediumLaw
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.cellMediumLaw_prefix_bound_of_raw_tilt
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.cellMediumLaw_divInd_profile_of_raw_tilt
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.medium_physical_and_pair_profiles_of_prefix_power_tail

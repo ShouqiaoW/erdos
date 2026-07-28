@@ -1,0 +1,7 @@
+import Erdos390.WholePaper.FloatingRounding
+
+#print axioms Erdos390.WholePaper.floating_rounding_with_frozen_coordinates
+#print axioms Erdos390.WholePaper.floating_rounding
+
+assert_no_sorry Erdos390.WholePaper.floating_rounding_with_frozen_coordinates
+assert_no_sorry Erdos390.WholePaper.floating_rounding

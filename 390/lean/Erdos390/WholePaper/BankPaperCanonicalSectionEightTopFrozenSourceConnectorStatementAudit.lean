@@ -1,0 +1,40 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionEightTopFrozenSourceConnector
+
+/-!
+# Statement audit for the Section 8 frozen-top source
+
+The declaration census exposes the finite `qTilde`-stage source, its
+pointwise guarded label-one identity, the two exact mass decompositions, and
+the normalized scaled-seed specialization.  No asymptotic closure theorem
+is part of this connector.
+-/
+
+open scoped BigOperators
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalSmoothTopWeight
+#check bankPaperCanonicalGlobalCorrectedOutsideSelectorWithTop
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop
+#check bankPaperCanonicalSmoothTopWeight_eq_rawWeight_of_mem_guardedSmoothRow_of_not_mem_broadPool
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_apply_of_mem_smoothRow
+#check sum_bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_smoothRow_eq_frozenRaw_add_activeMass
+#check roughHeadCompatibleRawWeight_split_protected_active_of_mem_guardedSmoothRow
+#check sum_roughHeadCompatibleRawWeight_split_protected_active_guardedSmoothRow
+#check sum_bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_smoothRow_eq_balancedRaw
+#check sum_bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_scaledSeed_smoothRow_eq_balancedRaw
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

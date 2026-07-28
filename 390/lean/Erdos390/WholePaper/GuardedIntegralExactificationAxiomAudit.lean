@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.GuardedIntegralExactification
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for the guarded integral exactification terminal -/
+
+#print axioms Erdos390.WholePaper.integralRoundingError_eq_zero_outside_prime_support
+#print axioms Erdos390.WholePaper.integralRoundingError_in_capacity_box
+#print axioms Erdos390.WholePaper.guarded_integral_exactification
+
+assert_no_sorry Erdos390.WholePaper.integralRoundingError_eq_zero_outside_prime_support
+assert_no_sorry Erdos390.WholePaper.integralRoundingError_in_capacity_box
+assert_no_sorry Erdos390.WholePaper.guarded_integral_exactification

@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperExactSchurRawSlow
+
+/-! Axiom audit for the exact raw-gauge/slow Schur attachment. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorScore_nuisanceEmbed_eq_nuisanceStatistic
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.crossCovarianceOperator_eq_nuisanceCovarianceVector_mainScore
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exactNuisanceRegression_eq_nuisanceCoefficient_mainScore
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorScore_exactSchurResidual_eq_nuisanceResidual_mainScore
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorScore_exactSchurResidual_fast_add_compensated

@@ -1,0 +1,25 @@
+import Erdos390.WholePaper.BankPaperCanonicalPrefixQuadrature
+import Mathlib.Util.AssertNoSorry
+
+/-! # Assumption audit for canonical prefix quadrature
+
+Both public definitions and all four public theorems in the module are
+printed and checked for `sorry`.  The imported uniform quadrature theorem is
+repeated as the sole analytic dependency.
+-/
+
+#print axioms Erdos390.Full.PrimeBandQuadrature.fullReciprocalSumUniform_bound
+#print axioms Erdos390.WholePaper.bankPaperCanonicalHarmonicPointwiseUpper
+#print axioms Erdos390.WholePaper.bankPaperCanonicalTangentPrimeLabel_mul_harmonicPointwiseUpper
+#print axioms Erdos390.WholePaper.bankPaperCanonicalHarmonicTailMajorant
+#print axioms Erdos390.WholePaper.tangentRatioCellTail_harmonicPointwiseUpper_le_fullReciprocalSum_sub
+#print axioms Erdos390.WholePaper.tangentRatioCellTail_harmonicPointwiseUpper_le_uniformMajorant
+#print axioms Erdos390.WholePaper.bankPaperCanonicalRoundedSelectorTangentInput_of_harmonicTailGeometry
+
+assert_no_sorry Erdos390.Full.PrimeBandQuadrature.fullReciprocalSumUniform_bound
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalHarmonicPointwiseUpper
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalTangentPrimeLabel_mul_harmonicPointwiseUpper
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalHarmonicTailMajorant
+assert_no_sorry Erdos390.WholePaper.tangentRatioCellTail_harmonicPointwiseUpper_le_fullReciprocalSum_sub
+assert_no_sorry Erdos390.WholePaper.tangentRatioCellTail_harmonicPointwiseUpper_le_uniformMajorant
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalRoundedSelectorTangentInput_of_harmonicTailGeometry

@@ -1,0 +1,11 @@
+import Erdos390.WholePaper.UpperTailValuationAsymptotic
+import Mathlib.Util.AssertNoSorry
+
+/-! Chunked transitive declaration audit for finite-prime reserves. -/
+
+#print axioms Erdos390.WholePaper.eventually_upperTailValuation_normalized_ge_on_finset
+#print axioms Erdos390.WholePaper.eventually_upperTailValuation_ge_mul_scale_on_finset
+#print axioms Erdos390.WholePaper.eventually_natCeil_reserve_le_upperTailValuation_on_finset
+#print axioms Erdos390.WholePaper.eventually_positive_natCeil_sub_slack_reserve_le_on_finset
+
+assert_no_sorry Erdos390.WholePaper.eventually_positive_natCeil_sub_slack_reserve_le_on_finset

@@ -1,0 +1,4 @@
+import Erdos390.Full.PaperBandBestDistance
+
+#print axioms Erdos390.Lemma84.WeightedBandData.bestBandDistance_eq_bandNormSq_gaugePart
+#print axioms Erdos390.Lemma84.WeightedBandData.bestBandDistance_eq_iInf

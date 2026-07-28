@@ -1,0 +1,12 @@
+import Erdos390.Full.FiniteProbabilityFixedBoxTaylor
+
+/-! Transitive axiom audit for the arbitrary-fixed-box Taylor layer. -/
+
+#print axioms Erdos390.Full.FiniteProbability.abs_exp_sub_one_le_fixedBox
+#print axioms Erdos390.Full.FiniteProbability.abs_exp_sub_one_sub_id_le_fixedBox
+#print axioms Erdos390.Full.FiniteProbability.exponentialDeviation_le_fixedBox_expect_abs
+#print axioms Erdos390.Full.FiniteProbability.abs_expect_exp_sub_one_sub_score_le_fixedBox
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_expect_sub_linearized_le_of_expect_bound_fixedBox
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_covariance_le_of_centeredTaylor_expect_bounds_fixedBox
+#print axioms Erdos390.Full.FiniteProbability.rawTiltPrefixTaylorBoundFixedBox_nonneg
+#print axioms Erdos390.Full.FiniteProbability.abs_exponentialTilt_covariance_nonneg_prefix_le_of_moments_fixedBox

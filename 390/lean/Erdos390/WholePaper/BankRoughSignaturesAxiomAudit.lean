@@ -1,0 +1,20 @@
+import Erdos390.WholePaper.BankRoughSignatures
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom audit for complete rough signatures and path row counts. -/
+
+#print axioms Erdos390.WholePaper.completeRoughSignature_apply
+#print axioms Erdos390.WholePaper.completeRoughLabel_factorization
+#print axioms Erdos390.WholePaper.completeRoughSignature_eq_iff_label_eq
+#print axioms Erdos390.WholePaper.completeSignatureMultiplicity_eq_labelMultiplicity
+#print axioms Erdos390.WholePaper.completeSignatureMultiplicity_indexedPathState
+#print axioms Erdos390.WholePaper.componentwise_signature_eq_implies_path_multiplicity_eq
+#print axioms Erdos390.WholePaper.componentwise_label_eq_implies_path_multiplicity_eq
+
+assert_no_sorry Erdos390.WholePaper.completeRoughSignature_apply
+assert_no_sorry Erdos390.WholePaper.completeRoughLabel_factorization
+assert_no_sorry Erdos390.WholePaper.completeRoughSignature_eq_iff_label_eq
+assert_no_sorry Erdos390.WholePaper.completeSignatureMultiplicity_eq_labelMultiplicity
+assert_no_sorry Erdos390.WholePaper.completeSignatureMultiplicity_indexedPathState
+assert_no_sorry Erdos390.WholePaper.componentwise_signature_eq_implies_path_multiplicity_eq
+assert_no_sorry Erdos390.WholePaper.componentwise_label_eq_implies_path_multiplicity_eq

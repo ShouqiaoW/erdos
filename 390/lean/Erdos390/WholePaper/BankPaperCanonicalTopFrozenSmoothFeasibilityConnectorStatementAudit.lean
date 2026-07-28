@@ -1,0 +1,17 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenSmoothFeasibilityConnector
+
+/-! # Statement audit for frozen-top smooth-row feasibility -/
+
+namespace Erdos390.WholePaper
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalStructuredValue_mem_roughBroadLowerBlock_of_physicalIntervals
+#check bankPaperCanonicalGuardedSmoothProtectedLayer_eq_rawWeight_of_mem_smoothBroadRow
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_smoothRow_feasible_of_scaledSeedCapacity
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_feasible_of_scaledSeedCapacity_of_active
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_feasible_of_scaledSeedDivLog_of_twoSidedSlack
+
+end BankPaperRealization
+
+end Erdos390.WholePaper

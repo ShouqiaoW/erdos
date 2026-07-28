@@ -1,0 +1,8 @@
+import Erdos390.Full.CanonicalEndpointWeightedInverseEventually
+
+/-! Axiom audit for the closed canonical Lemma 8.4 application chain. -/
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_doubleKernelSharpRowError
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonical_arithmeticGraphRowBudget_le
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_canonical_projected_inverse_and_paper_solutions
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_meshTolerance_cutoff_eventually_canonical_projected_inverse

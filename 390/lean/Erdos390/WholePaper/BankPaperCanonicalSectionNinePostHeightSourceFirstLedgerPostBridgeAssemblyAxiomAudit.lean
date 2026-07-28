@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstLedgerPostBridgeAssembly
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for source-first ledger and post-bridge assembly
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstLedgerPostBridgeAssembly
+
+assert_no_sorry BankPaperRealization.exists_bankPaperCanonicalSectionNinePostHeight_sourceFirstLedgerPostBridgeAssembly
+
+end Erdos390.WholePaper

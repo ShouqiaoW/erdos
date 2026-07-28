@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.GuardedExactificationProduct
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for guarded unions and ordinary products -/
+
+#print axioms Erdos390.WholePaper.selectedFactorSet_subset_candidateUniverse
+#print axioms Erdos390.WholePaper.disjoint_chosenBankFactors_of_disjoint_states_left
+#print axioms Erdos390.WholePaper.disjoint_chosenBankFactors_selectedFactorSet
+#print axioms Erdos390.WholePaper.guardedFinalFactorSet_prod_eq
+#print axioms Erdos390.WholePaper.guardedFinalFactorSet_factorization
+
+assert_no_sorry Erdos390.WholePaper.selectedFactorSet_subset_candidateUniverse
+assert_no_sorry Erdos390.WholePaper.disjoint_chosenBankFactors_of_disjoint_states_left
+assert_no_sorry Erdos390.WholePaper.disjoint_chosenBankFactors_selectedFactorSet
+assert_no_sorry Erdos390.WholePaper.guardedFinalFactorSet_prod_eq
+assert_no_sorry Erdos390.WholePaper.guardedFinalFactorSet_factorization

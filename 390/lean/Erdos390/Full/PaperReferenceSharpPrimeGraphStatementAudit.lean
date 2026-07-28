@@ -1,0 +1,9 @@
+import Erdos390.Full.PaperReferenceSharpPrimeGraph
+
+/-! Paper-facing signature audit for the literal prime-graph route. -/
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.referenceSharpRow_eq_primeGraph_add_errors
+#check Erdos390.Full.PaperBridgeFit.BridgeData.canonicalSlowKappa_mul_compressedPrimeAnchor_le_edge
+#check Erdos390.Full.PaperBridgeFit.BridgeData.abs_referenceSharpRow_sub_primeGraph_le
+#check Erdos390.Full.PaperBridgeFit.BridgeData.exists_referenceSharpProjectedEquiv_of_primeGraph
+#check Erdos390.Full.PaperBridgeFit.BridgeData.exists_structural_referenceSharpProjected_inverse_constants

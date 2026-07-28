@@ -1,0 +1,3 @@
+import Erdos390.Full.FiniteManyLowRawGraphInverse
+
+#print axioms Erdos390.Full.FiniteManyLowRawGraphInverse.ordinary_raw_bound

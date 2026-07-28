@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSignedExceptionalFourFiveRemainingInputsConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the signed exceptional four/five remaining inputs
+-/
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#print axioms roughCanonicalSignedExceptionalFourFiveChamberInputAt_of_precursors
+#print axioms exists_roughCanonicalSignedExceptionalFourFiveRemainingInputs
+
+assert_no_sorry roughCanonicalSignedExceptionalFourFiveChamberInputAt_of_precursors
+assert_no_sorry exists_roughCanonicalSignedExceptionalFourFiveRemainingInputs
+
+end Erdos390.WholePaper.BankPaperRealization

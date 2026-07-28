@@ -1,0 +1,12 @@
+import Erdos390.Full.PaperActualSchurMarkedRow
+
+/-! Axiom audit for the reciprocal nuisance-row Schur attachment. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_covariance_nuisance_bandScore_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceVector_bandScore_norm_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_covariance_nuisance_scaledBandRegression_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceCovarianceVector_scaledBandRegression_norm_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualSchurProjectedCLM_sub_full_le_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualSchurProjectedCLM_sub_full_le_of_pairwiseCells
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualSchurProjectedEquiv_of_full_of_marked
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualBandSchurEquiv_of_full_of_marked

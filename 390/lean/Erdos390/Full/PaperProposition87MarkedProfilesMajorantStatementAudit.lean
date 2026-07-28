@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperProposition87MarkedProfilesMajorant
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedMajorant
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedConstant_le_majorant
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedScaledMajorant
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedConstant_le_scaledMajorant
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedScaledHeadMajorant
+#check Erdos390.Full.PaperBridgeFit.BridgeData.vectorFieldProfilesMarkedScaledMajorant_le_headMajorant

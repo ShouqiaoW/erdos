@@ -1,0 +1,4 @@
+import Erdos390.Full.ContinuumCellGraphReversible
+
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.sharpKernelEdge_detailedBalance
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.meanProjection_sharpGraph_eq

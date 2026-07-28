@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalFullQuotientFastBlock
+
+#check Erdos390.Full.PaperBridgeFit.BridgeData.actualFullQuotient_mainScore_of_all_residuals

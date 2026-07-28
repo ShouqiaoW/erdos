@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperProposition87AllPrimeMarkedSplit
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.uniform_allPrime_markedRow_of_exactHead_and_moving

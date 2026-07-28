@@ -1,0 +1,8 @@
+import Erdos390.WholePaper.RoughSaiasRightAbel
+import Mathlib.Util.AssertNoSorry
+
+#print axioms Erdos390.WholePaper.RoughSaiasRightAbel.sum_mul_eq_sub_sub_integral_mul_right
+#print axioms Erdos390.WholePaper.RoughSaiasRightAbel.sum_mul_eq_sub_sub_integral_mul_right'
+
+assert_no_sorry Erdos390.WholePaper.RoughSaiasRightAbel.sum_mul_eq_sub_sub_integral_mul_right
+assert_no_sorry Erdos390.WholePaper.RoughSaiasRightAbel.sum_mul_eq_sub_sub_integral_mul_right'

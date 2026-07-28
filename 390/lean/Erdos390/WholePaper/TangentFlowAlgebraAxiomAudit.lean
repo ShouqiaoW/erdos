@@ -1,0 +1,22 @@
+import Erdos390.WholePaper.TangentFlowAlgebra
+import Mathlib.Util.AssertNoSorry
+
+/-! # Transitive axiom audit for exact tangent-flow algebra -/
+
+#print axioms Erdos390.WholePaper.tangentDelta_weightedSum
+#print axioms Erdos390.WholePaper.tangent_endpoint_factorization_sub
+#print axioms Erdos390.WholePaper.tangentUpdate_valuation
+#print axioms Erdos390.WholePaper.tangentUpdate_valuation_eq_target
+#print axioms Erdos390.WholePaper.tangentUpdate_mass
+#print axioms Erdos390.WholePaper.tangentUpdate_signatureRow
+#print axioms Erdos390.WholePaper.tangent_endpoint_log_sub
+#print axioms Erdos390.WholePaper.tangentUpdate_log
+
+assert_no_sorry Erdos390.WholePaper.tangentDelta_weightedSum
+assert_no_sorry Erdos390.WholePaper.tangent_endpoint_factorization_sub
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_valuation
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_valuation_eq_target
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_mass
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_signatureRow
+assert_no_sorry Erdos390.WholePaper.tangent_endpoint_log_sub
+assert_no_sorry Erdos390.WholePaper.tangentUpdate_log

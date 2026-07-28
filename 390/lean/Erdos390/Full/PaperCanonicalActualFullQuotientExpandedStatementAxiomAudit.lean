@@ -1,0 +1,6 @@
+import Erdos390.Full.PaperCanonicalActualFullQuotientExpandedStatementAudit
+
+/-! Transitive audit of the independently expanded statement wrappers. -/
+
+#print axioms Erdos390.Full.PaperCanonicalActualFullQuotientExpandedStatementAudit.BridgeData.expanded_nuisanceResidualVariance_residual_independent_mu
+#print axioms Erdos390.Full.PaperCanonicalActualFullQuotientExpandedStatementAudit.BridgeData.expanded_actualResidualSchur_fullQuotient_Dgap_canonicalKappa_independent_mu

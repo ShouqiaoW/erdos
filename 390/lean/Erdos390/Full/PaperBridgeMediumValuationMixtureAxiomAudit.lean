@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperBridgeMediumValuationMixture
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.mediumComponentValuationLaw
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.powerCorrectionCovariance_eq_covVV_sub_covII
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.powerCorrectionCovariance_eq_three_orientations
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.sigmaMixture_mediumComponent_probability
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.sigmaMixture_mediumComponent_value

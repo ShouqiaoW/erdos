@@ -1,0 +1,11 @@
+import Erdos390.WholePaper.ThirteenLayerLowerBound
+
+/-! Transitive axiom audit for the completed thirteen-layer lower bound. -/
+
+#print axioms Erdos390.WholePaper.factorialValuationSub_le_div_pred_add_log2
+#print axioms Erdos390.WholePaper.smallPrimeFactorialValuationSum_cast_le
+#print axioms Erdos390.WholePaper.shortEndpointMovingUnion_card_normalized_tendsto
+#print axioms Erdos390.WholePaper.smallPrimeCapacityError_normalized_tendsto
+#print axioms Erdos390.WholePaper.eventually_f_ge_two_mul_add_C0_sub_eps_mul_secondOrderScale
+#print axioms Erdos390.WholePaper.eventually_C0_sub_eps_le_normalized_f_sub_two_mul
+#print axioms Erdos390.WholePaper.C0_le_liminf_normalized_f_sub_two_mul

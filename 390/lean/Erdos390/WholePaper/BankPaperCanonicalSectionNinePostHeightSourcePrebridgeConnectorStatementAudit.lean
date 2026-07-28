@@ -1,0 +1,39 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourcePrebridgeConnector
+
+/-!
+# Statement audit for the post-height source prebridge
+
+The declarations below expose the complete chain:
+
+* concrete broad support gives frozen-top outside compatibility;
+* exact mass and head moments give the arbitrary-seed signed ledger;
+* the literal source state gives those head moments for `Tpost`;
+* the ledger transports integer row quotas and yields the full placement.
+-/
+
+namespace Erdos390.WholePaper
+
+open Erdos390.Full
+open Erdos390.Full.ArithmeticModel
+open Erdos390.Full.PaperBridgeFit
+open Erdos390.Full.PaperGuardCensus
+open Erdos390.Full.PaperHeadSimplex
+
+noncomputable section
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalTopFrozenRoundedPlacementOutsideCompatibility_of_broadSupport
+#check bankPaperCanonicalGuardedStructuredAdditivePlacementSelector_arbitrarySeed_sub_twoZeroSource_of_active
+#check bankPaperCanonicalGuardedStructuredAdditivePrebridgeMomentLedger_of_arbitrarySeedReplacement
+#check bankPaperCanonicalSectionNinePostHeight_headMoments_eq_roundedSource_of_sourceState
+#check bankPaperCanonicalSectionNinePostHeight_sourcePrebridgeMomentLedger_of_sourceState
+#check bankPaperCanonicalSectionNinePostHeightPlacedPreSelector_rowIntegral_of_sourceState
+#check bankPaperCanonicalSectionNinePostHeightPlaced_structuredPlacement_of_sourceState
+#check bankPaperCanonicalSectionNinePostHeight_sourcePrebridge_actualMeasure_and_placement_of_sourceState
+
+end BankPaperRealization
+
+end
+
+end Erdos390.WholePaper

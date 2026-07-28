@@ -1,0 +1,11 @@
+import Erdos390.Full.PaperVectorFieldEffectiveBound
+
+/-! Axiom audit for the exact vector-field/Schur decomposition. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.covarianceOperator_vectorField
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorField_eq_schurResidual_and_mainEquation
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.mainPart_vectorField_eq_exactSchurEquiv_symm
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.hasCovarianceGap_of_uniform_exactSchur
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.norm_effectiveParamEquiv_symm_schurResidual
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.effectiveVelocity_le_of_exactSchur_solution_component_bounds
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.vectorField_markedRow_le_of_fast_compensated

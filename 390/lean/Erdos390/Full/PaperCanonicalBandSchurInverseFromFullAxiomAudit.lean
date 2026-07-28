@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalBandSchurInverseFromFull
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_uniform_actualBandSchurEquiv_of_full_of_marked_on_closedBall

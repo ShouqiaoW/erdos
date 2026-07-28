@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperActualFastMarkedRowProfiles
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceResidual_bandRegression_markedRow_le_of_profiles

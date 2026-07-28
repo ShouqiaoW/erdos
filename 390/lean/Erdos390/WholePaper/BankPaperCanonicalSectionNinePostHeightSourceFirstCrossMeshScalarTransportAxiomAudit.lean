@@ -1,0 +1,32 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightSourceFirstCrossMeshScalarTransport
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for cross-mesh source-first scalar transport
+-/
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperRealization.bankPaperCanonicalSectionNinePostHeight_fixedRichThinOfRich
+#print axioms
+  BankPaperRealization.bankPaperCanonicalSectionNineCoherentSourceTarget_mesh_invariant
+#print axioms
+  BankPaperRealization.bankPaperCanonicalScaledActiveSeed_eq_of_beta_mu_eq
+#print axioms
+  BankPaperRealization.HeadSimplexReserve.beta_eq_of_exponent_activeMass_target_eq
+#print axioms
+  BankPaperRealization.eventually_bankPaperCanonicalSectionNinePostHeight_fixedRichSource_crossMeshScalarTransport
+
+assert_no_sorry
+  BankPaperRealization.bankPaperCanonicalSectionNinePostHeight_fixedRichThinOfRich
+assert_no_sorry
+  BankPaperRealization.bankPaperCanonicalSectionNineCoherentSourceTarget_mesh_invariant
+assert_no_sorry
+  BankPaperRealization.bankPaperCanonicalScaledActiveSeed_eq_of_beta_mu_eq
+assert_no_sorry
+  BankPaperRealization.HeadSimplexReserve.beta_eq_of_exponent_activeMass_target_eq
+assert_no_sorry
+  BankPaperRealization.eventually_bankPaperCanonicalSectionNinePostHeight_fixedRichSource_crossMeshScalarTransport
+
+end Erdos390.WholePaper

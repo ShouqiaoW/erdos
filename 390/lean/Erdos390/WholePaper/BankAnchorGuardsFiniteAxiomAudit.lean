@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.BankAnchorGuardsFinite
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom audit for finite anchor modifications and guards. -/
+
+#print axioms Erdos390.WholePaper.prefixReplacementCofactor_spec
+#print axioms Erdos390.WholePaper.prefixReplacementCofactor_mem_legalRange
+#print axioms Erdos390.WholePaper.prefixReplacementAnchor_mem_centralInterval
+
+assert_no_sorry Erdos390.WholePaper.prefixReplacementCofactor_spec
+assert_no_sorry Erdos390.WholePaper.prefixReplacementCofactor_mem_legalRange
+assert_no_sorry Erdos390.WholePaper.prefixReplacementAnchor_mem_centralInterval

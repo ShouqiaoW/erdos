@@ -1,0 +1,25 @@
+import Erdos390.WholePaper.BankPaperCanonicalTwoZeroHeadCellHfitConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the two-zero-cell Hfit connector
+
+The connector exports exactly five public theorems.  Both audit blocks
+below cover all five, in source order.
+-/
+
+/-! ## Transitive axiom dependencies -/
+
+#print axioms Erdos390.WholePaper.BankPaperRealization.eventually_bankPaperCanonicalSymmetricHeight_twoZeroHeadCell_upperAbsorption
+#print axioms Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualFrozenWeight_symmetricHeight_le
+#print axioms Erdos390.WholePaper.BankPaperRealization.eventually_bankPaperCanonicalActualFrozenWeight_symmetricHeight_le
+#print axioms Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualInitialMarkedRate_of_selectorDeficit
+#print axioms Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87Conclusion_of_localCanonical
+
+/-! ## Sorry-freedom -/
+
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.eventually_bankPaperCanonicalSymmetricHeight_twoZeroHeadCell_upperAbsorption
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualFrozenWeight_symmetricHeight_le
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.eventually_bankPaperCanonicalActualFrozenWeight_symmetricHeight_le
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.bankPaperCanonicalActualInitialMarkedRate_of_selectorDeficit
+assert_no_sorry Erdos390.WholePaper.BankPaperRealization.exists_bankPaperCanonicalActualP87Conclusion_of_localCanonical

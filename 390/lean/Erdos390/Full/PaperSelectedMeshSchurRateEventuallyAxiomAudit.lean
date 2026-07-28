@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperSelectedMeshSchurRateEventually
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.sum_harmonicMass_mul_bandCenter_eq_bandTReciprocalSum
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.tendsto_zero_of_nonneg_mul_logL_zero
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.tendsto_selectedMeshSchurRateMajorant_zero
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.schurInverseConstant_le_two_mul
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.nuisanceMarkedSchurRate_le_selectedMeshSchurRateMajorant
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_uniform_actualBandSchurEquiv_and_quadratic_of_full_of_marked

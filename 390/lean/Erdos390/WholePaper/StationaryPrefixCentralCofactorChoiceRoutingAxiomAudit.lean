@@ -1,0 +1,18 @@
+import Erdos390.WholePaper.StationaryPrefixCentralCofactorChoice
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom audit for the actual fixed-prefix routing layer. -/
+
+#print axioms Erdos390.WholePaper.isStationaryPrefixPartFamily_of_realization
+#print axioms Erdos390.WholePaper.stationaryPrefixCofactorChoice_eq_one_of_rowZero
+#print axioms Erdos390.WholePaper.stationaryPrefixCofactorChoice_spec
+#print axioms Erdos390.WholePaper.stationaryPrefixCofactorChoice_eq_of_mem_part
+#print axioms Erdos390.WholePaper.stationaryPrefixMarkedTriple_marker_injOn
+#print axioms Erdos390.WholePaper.stationaryPrefixCofactorChoice_isLargeCentralCofactorChoice
+
+assert_no_sorry Erdos390.WholePaper.isStationaryPrefixPartFamily_of_realization
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixCofactorChoice_eq_one_of_rowZero
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixCofactorChoice_spec
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixCofactorChoice_eq_of_mem_part
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixMarkedTriple_marker_injOn
+assert_no_sorry Erdos390.WholePaper.stationaryPrefixCofactorChoice_isLargeCentralCofactorChoice

@@ -1,0 +1,16 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNineWitnesswiseFinalPayloadConnector
+import Mathlib.Util.AssertNoSorry
+
+namespace Erdos390.WholePaper
+
+#print axioms
+  BankPaperCanonicalSectionNineWitnesswiseAnalyticCompletion
+#print axioms
+  exists_bankPaperCanonicalSectionNineParameterSynchronizedFinalPayload_of_witnesswiseAnalyticCompletion
+
+assert_no_sorry
+  BankPaperCanonicalSectionNineWitnesswiseAnalyticCompletion
+assert_no_sorry
+  exists_bankPaperCanonicalSectionNineParameterSynchronizedFinalPayload_of_witnesswiseAnalyticCompletion
+
+end Erdos390.WholePaper

@@ -1,0 +1,7 @@
+import Erdos390.Full.FiniteAnchoredDirichletQuadratic
+
+/-! Transitive axiom audit for the finite multi-anchor Dirichlet algebra. -/
+
+#print axioms Erdos390.Full.FiniteAnchoredDirichletQuadratic.referenceQuadratic_eq_dirichletEnergy_add_rowResidual
+#print axioms Erdos390.Full.FiniteAnchoredDirichletQuadratic.anchorMass_mul_weightedDistance_le_anchorPairVariation
+#print axioms Erdos390.Full.FiniteAnchoredDirichletQuadratic.half_kappa_anchorMass_mul_weightedDistance_le_dirichletEnergy

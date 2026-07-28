@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.BankAnchorGuardsFinite
+import Mathlib.Util.AssertNoSorry
+
+/-! Chunked transitive axiom audit for the three principal collision guards. -/
+
+#print axioms Erdos390.WholePaper.prefixReplacementAnchor_ne_incidentMarkerFactor
+#print axioms Erdos390.WholePaper.prefixMarkerAnchors_ne_of_marker_ne
+#print axioms Erdos390.WholePaper.prefixReplacementAnchor_ne_promotedCentralFactor
+
+assert_no_sorry Erdos390.WholePaper.prefixReplacementAnchor_ne_incidentMarkerFactor
+assert_no_sorry Erdos390.WholePaper.prefixMarkerAnchors_ne_of_marker_ne
+assert_no_sorry Erdos390.WholePaper.prefixReplacementAnchor_ne_promotedCentralFactor

@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.InfiniteAllocation
+import Mathlib.Util.AssertNoSorry
+
+/-! Transitive axiom audit for the exact infinite cofactor allocation. -/
+
+#print axioms Erdos390.WholePaper.tsum_tailPrimeRowLoad_eq_zero_of_le_two_hundred
+#print axioms Erdos390.WholePaper.infiniteAllocation_prime_capacity
+#print axioms Erdos390.WholePaper.infinite_cofactor_allocation
+
+assert_no_sorry Erdos390.WholePaper.tsum_tailPrimeRowLoad_eq_zero_of_le_two_hundred
+assert_no_sorry Erdos390.WholePaper.infiniteAllocation_prime_capacity
+assert_no_sorry Erdos390.WholePaper.infinite_cofactor_allocation

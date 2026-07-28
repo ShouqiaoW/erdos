@@ -1,0 +1,7 @@
+import Erdos390.Full.PaperHeadPrimeMarkedExact
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.markedValuation_eq_headFunctionScore_of_exactHeadPrimes
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.endpoint_preserves_headPrimeMarkedValuation
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.paperMoment_headFunction_eq_of_headIndicatorMoments
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.headPrimeMarkedMoment_eq_of_headIndicatorMoments
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.covariance_headPrimeMarkedValuation_vectorField_eq_zero

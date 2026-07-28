@@ -1,0 +1,6 @@
+import Erdos390.Full.CanonicalEndpointOrdinaryProjectedRawInverseEventually
+
+/-! Transitive axiom audit for the canonical ordinary endpoint inverse. -/
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_fineMesh_cutoff_eventually_canonical_ordinaryProjectedRaw_inverse
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_paperFineMesh_cutoff_eventually_canonical_ordinaryProjectedRaw_inverse

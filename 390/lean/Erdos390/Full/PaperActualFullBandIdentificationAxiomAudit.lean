@@ -1,0 +1,12 @@
+import Erdos390.Full.PaperActualFullBandIdentification
+
+/-! Axiom audit for the exact full-band and nuisance-Schur identification. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fullBandRow_actualValuationLaw_eq_normalizedBandCovarianceRow
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.scale_actualFullProjected_eq_actualBandFull
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualBandSchurLinearMap_eq_full_sub_nuisanceCorrection
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.rawBandEquivOfSharpEquiv_eq_actualBandSchurLinearMap
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.rawBandEquivOfSharpEquiv_symm_paperSharpNorm_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualSchurProjectedCLM_sub_full_le_of_nuisanceCorrectionRow
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.actualSchurProjectedCLM_sub_full_le_of_nuisanceCovarianceBounds
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualSchurProjectedEquiv_of_full_of_nuisanceCorrectionRow

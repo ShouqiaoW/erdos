@@ -1,0 +1,4 @@
+import Erdos390.Full.FiniteProbabilityMixtureGuardReindexing
+
+#print axioms Erdos390.Full.GuardedUniformCell.sigmaMixture_deleteGuards_expect_remaining_eq
+#print axioms Erdos390.Full.GuardedUniformCell.sigmaMixture_deleteGuards_covariance_remaining_eq

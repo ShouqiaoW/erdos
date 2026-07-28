@@ -1,0 +1,12 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenHeightPlacementMassRateConnector
+
+/-! # Statement audit for the height-only placement mass rate -/
+
+open Filter Asymptotics
+
+namespace Erdos390.WholePaper.BankPaperRealization
+
+#check bankPaperCanonicalSymmetricHeightCellMassFamily_isBigO_secondOrderScale_div_L
+#check eventually_bankPaperCanonicalSymmetricHeightCellMassFamily_abs_two_le
+
+end Erdos390.WholePaper.BankPaperRealization

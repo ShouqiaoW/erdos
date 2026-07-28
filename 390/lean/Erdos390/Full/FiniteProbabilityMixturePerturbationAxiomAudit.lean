@@ -1,0 +1,8 @@
+import Erdos390.Full.FiniteProbabilityMixturePerturbation
+
+#print axioms Erdos390.Full.FiniteProbability.abs_sigmaMixture_expect_sub_sigmaMixture_expect_le
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_sigmaMixture_expect_sub_sigmaMixture_expect_le
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_sigmaMixture_expect_le
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_sigmaMixture_covariance_sub_le
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_sigmaMixture_covariance_sub_le_of_component_covariance
+#print axioms Erdos390.Full.FiniteProbability.sum_abs_sigmaMixture_deleteGuards_covariance_sub_le

@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankBottomPoolMatching
+import Mathlib.Util.AssertNoSorry
+
+/-! # Axiom audit for used-slot counts and the terminal assignment -/
+
+#print axioms Erdos390.WholePaper.BankBottomPoolMatching.usedSlots_subset
+#print axioms Erdos390.WholePaper.BankBottomPoolMatching.card_usedSlots
+#print axioms Erdos390.WholePaper.BankBottomPoolMatching.card_unusedSlots
+#print axioms Erdos390.WholePaper.exists_bankBottomPool_injective_assignment
+
+assert_no_sorry Erdos390.WholePaper.BankBottomPoolMatching.usedSlots_subset
+assert_no_sorry Erdos390.WholePaper.BankBottomPoolMatching.card_usedSlots
+assert_no_sorry Erdos390.WholePaper.BankBottomPoolMatching.card_unusedSlots
+assert_no_sorry Erdos390.WholePaper.exists_bankBottomPool_injective_assignment

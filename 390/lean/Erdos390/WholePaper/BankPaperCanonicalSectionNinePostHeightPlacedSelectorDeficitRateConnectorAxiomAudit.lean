@@ -1,0 +1,11 @@
+import Erdos390.WholePaper.BankPaperCanonicalSectionNinePostHeightPlacedSelectorDeficitRateConnector
+
+/-! # Axiom audit: uniform post-height placed-selector deficit rate -/
+
+namespace Erdos390.WholePaper
+
+#print axioms BankPaperRealization.exists_eventually_bankPaperCanonicalSectionNinePostHeightPlacedSelector_deficit_paperRate
+
+assert_no_sorry BankPaperRealization.exists_eventually_bankPaperCanonicalSectionNinePostHeightPlacedSelector_deficit_paperRate
+
+end Erdos390.WholePaper

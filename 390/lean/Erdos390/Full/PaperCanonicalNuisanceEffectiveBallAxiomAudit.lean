@@ -1,0 +1,3 @@
+import Erdos390.Full.PaperCanonicalNuisanceEffectiveBall
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonicalEffectiveNuisanceGap_on_closedBall

@@ -1,0 +1,17 @@
+import Erdos390.Full.CanonicalEndpointRelativeCenterEventually
+import Erdos390.Full.CanonicalEndpointDiagonalEventually
+import Erdos390.Full.PaperWeightedInverseExport
+import Erdos390.Full.SharpRelativeRowBudget
+
+/-! Kernel-axiom audit for the canonical Lemma 8.4 application layer. -/
+
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalIntervalMesh
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.canonicalTwoTailCertificate
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.eventually_all_actualCoordinateLengths_lt
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.eventually_canonical_twoTails_lt
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_relativeCenters
+#print axioms Erdos390.Full.RegularMeshPrimeCutoffs.Mesh.exists_cutoff_eventually_canonical_diagonalError
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.centerRatio_weightedRow_le
+#print axioms Erdos390.Full.ContinuumCellGraph.IntervalMesh.arithmeticGraphRowBudget_le_of_relativeCenter
+#print axioms Erdos390.Full.PaperWeightedInverseExport.scale_projectedSharpLinearMap_eq_projectedRawLinearMap
+#print axioms Erdos390.Full.PaperWeightedInverseExport.exists_raw_solution_with_paperSharpNorm_bound

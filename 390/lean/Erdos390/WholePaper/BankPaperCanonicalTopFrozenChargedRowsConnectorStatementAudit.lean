@@ -1,0 +1,14 @@
+import Erdos390.WholePaper.BankPaperCanonicalTopFrozenChargedRowsConnector
+
+/-! # Statement audit for frozen-top charged nonsmooth rows -/
+
+namespace Erdos390.WholePaper
+
+namespace BankPaperRealization
+
+#check bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_chargedNonsmoothRows_of_activeCapacity
+#check eventually_bankPaperCanonicalGlobalCorrectedSourceSelectorWithTop_chargedNonsmoothRows
+
+end BankPaperRealization
+
+end Erdos390.WholePaper

@@ -1,0 +1,20 @@
+import Erdos390.WholePaper.BankPaperCanonicalP87TargetEnvelopeConnector
+import Mathlib.Util.AssertNoSorry
+
+/-!
+# Axiom audit for the finite P87 target-envelope connector
+-/
+
+/-! ## Transitive axiom dependencies -/
+
+#print axioms Erdos390.WholePaper.BankPaperCanonicalSelectorOrdinaryLogCompatible
+#print axioms Erdos390.WholePaper.bankPaperCanonicalBandCenterResidual_eq_primeDeviationResidual
+#print axioms Erdos390.WholePaper.bankPaperCanonicalHasTargetEnvelopes_seven_of_primeResidual
+#print axioms Erdos390.WholePaper.bankPaperCanonicalActualInitialHasTargetEnvelopes_of_selectorDeficit
+
+/-! ## Sorry-freedom -/
+
+assert_no_sorry Erdos390.WholePaper.BankPaperCanonicalSelectorOrdinaryLogCompatible
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalBandCenterResidual_eq_primeDeviationResidual
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalHasTargetEnvelopes_seven_of_primeResidual
+assert_no_sorry Erdos390.WholePaper.bankPaperCanonicalActualInitialHasTargetEnvelopes_of_selectorDeficit

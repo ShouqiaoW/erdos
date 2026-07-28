@@ -1,0 +1,6 @@
+import Erdos390.Full.PaperPrimePowerTailRate
+
+#print axioms Erdos390.Full.PaperPrimePowerTailRate.tendsto_L_div_three_fifths
+#print axioms Erdos390.Full.PaperPrimePowerTailRate.eventually_rpow_one_fifth_le_yNat
+#print axioms Erdos390.Full.PaperPrimePowerTailRate.eventually_prime_mul_L_div_yNat_pow_four_le_one
+#print axioms Erdos390.Full.PaperPrimePowerTailRate.eventually_mul_two_div_yNat_pow_four_le_sharp

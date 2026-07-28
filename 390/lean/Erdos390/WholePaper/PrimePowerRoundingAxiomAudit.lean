@@ -1,0 +1,11 @@
+import Erdos390.WholePaper.ValuationError
+
+#print axioms Erdos390.WholePaper.primePowerColumns_degree_le_log
+#print axioms Erdos390.WholePaper.floating_rounding_primePowerColumns
+#print axioms Erdos390.WholePaper.roundingValuationError_le
+#print axioms Erdos390.WholePaper.floating_rounding_valuationErrorBox
+
+assert_no_sorry Erdos390.WholePaper.primePowerColumns_degree_le_log
+assert_no_sorry Erdos390.WholePaper.floating_rounding_primePowerColumns
+assert_no_sorry Erdos390.WholePaper.roundingValuationError_le
+assert_no_sorry Erdos390.WholePaper.floating_rounding_valuationErrorBox

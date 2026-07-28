@@ -1,0 +1,11 @@
+import Erdos390.Full.PaperActualFullProjectedInverseEventually
+
+/-! Axiom audit for the eventual literal full-projected inverse. -/
+
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.canonical_varyingInverseConstant_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.tendsto_canonicalFullSharpRemainder
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.fullSharpRow_le_canonicalFullSharpRemainder
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.abs_actual_squarefreeSharpRow_sub_equalPartitionArithmetic_le
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualFullProjectedEquiv_of_reference_of_unitSharpRows
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_actualFullProjectedEquiv_of_equal_referencePartition
+#print axioms Erdos390.Full.PaperBridgeFit.BridgeData.exists_meshTolerance_cutoff_eventually_canonical_actualFullProjected_inverse

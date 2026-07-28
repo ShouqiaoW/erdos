@@ -1,0 +1,8 @@
+import Erdos390.WholePaper.BankOrdinaryCorePathsAxiomAudit
+import Erdos390.WholePaper.BankOrdinaryConcreteDemandAxiomAudit
+import Erdos390.WholePaper.BankOrdinaryPoolMatchingAxiomAudit
+import Erdos390.WholePaper.BankOrdinaryPaperComponentsAxiomAudit
+import Erdos390.WholePaper.BankPaperComponentsAxiomAudit
+import Erdos390.WholePaper.BankPaperPathsAxiomAudit
+
+/-! # Aggregated assumption audit for ordinary requests and assignment -/

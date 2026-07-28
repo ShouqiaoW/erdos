@@ -1,0 +1,13 @@
+import Erdos390.WholePaper.BankOrdinaryDonorRelation
+
+/-! # Axiom audit for the finite ordinary-bank relation -/
+
+#print axioms Erdos390.WholePaper.bankOrdinaryBulkRelation_subset_eligible
+#print axioms Erdos390.WholePaper.bankOrdinary_donorMultiplicity_le_div_sub_div
+#print axioms Erdos390.WholePaper.bankOrdinarySmallDonor_mem_window
+#print axioms Erdos390.WholePaper.bankOrdinarySmallPair_mem_eligible
+
+assert_no_sorry Erdos390.WholePaper.bankOrdinaryBulkRelation_subset_eligible
+assert_no_sorry Erdos390.WholePaper.bankOrdinary_donorMultiplicity_le_div_sub_div
+assert_no_sorry Erdos390.WholePaper.bankOrdinarySmallDonor_mem_window
+assert_no_sorry Erdos390.WholePaper.bankOrdinarySmallPair_mem_eligible

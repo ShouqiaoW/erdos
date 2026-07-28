@@ -1,0 +1,3 @@
+import Erdos390.Full.FiniteOneLowProjectedRawGraphInverse
+
+#print axioms Erdos390.Full.FiniteOneLowProjectedRawGraphInverse.ordinary_projected_raw_bound

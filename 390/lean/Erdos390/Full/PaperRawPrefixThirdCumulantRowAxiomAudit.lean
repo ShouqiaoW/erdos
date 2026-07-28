@@ -1,0 +1,8 @@
+import Erdos390.Full.PaperRawPrefixThirdCumulantRow
+
+/-! Axiom audit for the reciprocal raw valuation-score third-cumulant row. -/
+
+#print axioms Erdos390.Full.FiniteProbability.abs_covarianceThirdCentered_valuation_prefix_valuationScore_fallback_le
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantRow.eventually_rawThirdCumulantCoefficient_le
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantRow.tendsto_rawThirdCumulantRateMajorant_mul_logL_zero
+#print axioms Erdos390.Full.PaperRawPrefixThirdCumulantRow.exists_uniform_rawCell_valuationScore_thirdCumulant_bound
