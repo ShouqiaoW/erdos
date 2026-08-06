@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "route_id",
+    "family",
+    "mechanism",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "route_id": {
+      "type": "string",
+      "pattern": "^ROUTE-[0-9]{4,}$"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "blocked",
+        "refuted",
+        "merged",
+        "completed",
+        "abandoned"
+      ]
+    }
+  }
+}

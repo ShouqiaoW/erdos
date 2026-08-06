@@ -1,0 +1,13 @@
+{
+  "obligation_id": "OBL-0001",
+  "category": "proof",
+  "severity": "major",
+  "status": "open",
+  "claim_id": null,
+  "audit_finding_id": null,
+  "description": "TODO",
+  "required_resolution": [],
+  "evidence_paths": [],
+  "created_at": "ISO-8601",
+  "updated_at": "ISO-8601"
+}

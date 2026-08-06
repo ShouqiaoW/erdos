@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "case_id": "REPLACE_ME",
+  "title": "REPLACE_ME",
+  "created_at": "REPLACE_ME",
+  "selection_mode": "specified",
+  "literature_mode": "background_only",
+  "target_mode": "prove",
+  "computation": {
+    "allowed": true,
+    "exact_arithmetic_preferred": true,
+    "require_reproducibility": true
+  },
+  "formalization": {
+    "system": "lean",
+    "required": false
+  },
+  "budget": {
+    "minimum_research_hours": 8,
+    "strategy_reset_rounds": 40,
+    "maximum_active_routes": 12,
+    "maximum_stagnant_rounds": 5,
+    "probe_rounds": 2
+  },
+  "release": {
+    "require_clean_room_audit": true,
+    "require_prior_art_audit": true,
+    "require_reproducible_experiments": true,
+    "required_audit_lanes": [
+      "statement",
+      "quantifier",
+      "edge_case",
+      "dependency",
+      "external_theorem",
+      "counterexample",
+      "computation",
+      "formalization",
+      "clean_room",
+      "reproduction",
+      "prior_art"
+    ]
+  }
+}

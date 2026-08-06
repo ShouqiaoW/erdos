@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "case_id",
+    "final_theorem",
+    "items",
+    "admitted_or_unsafe"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "final_theorem": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "not_checked",
+            "statement_encoded",
+            "checked",
+            "checked_with_axioms",
+            "prose_only",
+            "blocked"
+          ]
+        }
+      }
+    }
+  }
+}

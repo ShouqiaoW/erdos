@@ -1,0 +1,13 @@
+{
+  "finding_id": "AUD-0001",
+  "lane": "quantifier",
+  "severity": "fatal",
+  "status": "open",
+  "claim_id": null,
+  "proof_location": null,
+  "issue": "TODO",
+  "required_resolution": [],
+  "evidence_paths": [],
+  "created_at": "ISO-8601",
+  "updated_at": "ISO-8601"
+}

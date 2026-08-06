@@ -1,0 +1,13 @@
+{
+  "route_id": "ROUTE-0001",
+  "family": "structural-induction",
+  "mechanism": "TODO",
+  "status": "proposed",
+  "claims_produced": [],
+  "blocker": null,
+  "reopen_condition": null,
+  "falsification_attempts": [],
+  "evidence_paths": [],
+  "created_at": "ISO-8601",
+  "updated_at": "ISO-8601"
+}

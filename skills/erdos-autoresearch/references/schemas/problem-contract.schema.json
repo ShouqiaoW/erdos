@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Erdos Autoresearch Problem Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "case_id",
+    "source",
+    "canonical_statement",
+    "definitions",
+    "quantifier_matrix",
+    "allowed_outcomes",
+    "non_solutions",
+    "traps",
+    "edge_cases",
+    "release_obligations",
+    "semantic_audits"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sha256",
+        "retrieved_at"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "retrieved_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "canonical_statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "definitions": {
+      "type": "array"
+    },
+    "quantifier_matrix": {
+      "type": "array"
+    },
+    "allowed_outcomes": {
+      "type": "object",
+      "required": [
+        "affirmative",
+        "negative"
+      ],
+      "properties": {
+        "affirmative": {
+          "type": "object",
+          "required": [
+            "enabled",
+            "statement",
+            "obligations"
+          ],
+          "properties": {
+            "enabled": {
+              "const": true
+            },
+            "statement": {
+              "type": "string",
+              "minLength": 1
+            },
+            "obligations": {
+              "type": "array",
+              "minItems": 1
+            }
+          }
+        },
+        "negative": {
+          "type": "object",
+          "required": [
+            "enabled",
+            "statement",
+            "obligations"
+          ],
+          "properties": {
+            "enabled": {
+              "const": false
+            },
+            "statement": {
+              "type": "string",
+              "minLength": 1
+            },
+            "obligations": {
+              "type": "array",
+              "maxItems": 0
+            }
+          }
+        }
+      }
+    },
+    "non_solutions": {
+      "type": "array",
+      "minItems": 1
+    },
+    "traps": {
+      "type": "array",
+      "minItems": 1
+    },
+    "edge_cases": {
+      "type": "array"
+    },
+    "semantic_audits": {
+      "type": "array",
+      "minItems": 2
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "obligation_id",
+    "category",
+    "severity",
+    "status",
+    "description",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "obligation_id": {
+      "type": "string",
+      "pattern": "^OBL-[0-9]{4,}$"
+    },
+    "severity": {
+      "enum": [
+        "fatal",
+        "major",
+        "minor",
+        "editorial"
+      ]
+    },
+    "status": {
+      "enum": [
+        "open",
+        "in_progress",
+        "resolved",
+        "invalidated",
+        "superseded"
+      ]
+    }
+  }
+}
